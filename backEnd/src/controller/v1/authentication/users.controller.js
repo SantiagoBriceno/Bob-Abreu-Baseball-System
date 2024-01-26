@@ -1,6 +1,6 @@
-import service from '../../service/v1/users.service.js'
+import service from '../../../service/v1/authentication/users.service.js'
 import bcrypt from 'bcrypt'
-import { isValidUser, existUsername } from '../../utils/formats/user.js'
+import { isValidUser, existUsername } from '../../../utils/formats/user.js'
 
 export const createUser = async (req, res) => {
   const { body } = req

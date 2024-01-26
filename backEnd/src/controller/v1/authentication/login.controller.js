@@ -1,7 +1,7 @@
-import service from '../../service/v1/login.service.js'
+import service from '../../../service/v1/authentication/users.service.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { SECRET } from '../../config.js'
+import { SECRET } from '../../../config.js'
 
 export const loginUser = async (req, res) => {
   const { body } = req
