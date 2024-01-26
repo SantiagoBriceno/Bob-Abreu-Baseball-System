@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS representante (
   direccion VARCHAR(100) NOT NULL,
   cedula_atleta VARCHAR(10) NOT NULL,
   correo VARCHAR(50) NOT NULL,
-  id_auditoria VARCHAR(10) NOT NULL
+  id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (cedula, cedula_atleta)
 );
 

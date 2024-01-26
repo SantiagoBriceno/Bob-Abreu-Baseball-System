@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 
-import usersRoutes from './routes/v1/users.routes.js'
-import loginRoutes from './routes/v1/login.routes.js'
-import testRoutes from './routes/v1/test.routes.js'
+import usersRoutes from './routes/v1/authentication/users.routes.js'
+import loginRoutes from './routes/v1/authentication/login.routes.js'
+import testRoutes from './routes/v1/authentication/test.routes.js'
 
 const app = express()
 app.use(cors())
