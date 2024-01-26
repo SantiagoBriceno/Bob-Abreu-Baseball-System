@@ -201,6 +201,16 @@ CREATE TABLE IF NOT EXISTS pitching (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS users (
+  id INT NOT NULL AUTO_INCREMENT,
+  cedula VARCHAR(10) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  password TEXT NOT NULL,
+  rol VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+)
+
 -- Insercion de datos de prueba de la tabla representante
 
 
