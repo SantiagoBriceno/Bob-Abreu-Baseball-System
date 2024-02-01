@@ -108,10 +108,10 @@ const actions = {
 Example of validationMethod */
 
 import { Heading, VStack, Stack, StackDivider } from '@chakra-ui/react'
-import MyFormControl from './components/MyFormControl.jsx'
-import MyInput from './components/MyInput.jsx'
-import MyFormTemplate from './components/MyFormTemplate.jsx'
-import MyButton from './components/MyButton.jsx'
+import MyFormControl from './form/MyFormControl.jsx'
+import MyInput from './form/MyInput2.jsx'
+import MyFormTemplate from './form/MyFormTemplate.jsx'
+import MyButton from './form/MyButton.jsx'
 
 const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
   return (

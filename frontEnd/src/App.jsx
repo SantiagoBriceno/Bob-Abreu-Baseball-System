@@ -1,5 +1,5 @@
 import React from 'react'
-import MyForm from './components/form/MyForm'
+import MyForm from './components/MyForm'
 import { useMyFormHook } from './hooks/form/useMyFormHook'
 import { representante } from './constants/dataStructure'
 import { representanteValidation } from './constants/dataValidation'
