@@ -42,3 +42,43 @@ export const representanteFields = [
   }
 
 ]
+
+export const registroEspecialFields = [
+  {
+    title: '',
+    campos:
+    [
+      [
+        {
+          label: 'Cedula',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'cedula_atleta'
+        },
+        {
+          label: 'Fecha',
+          name: 'fecha',
+          type: 'date',
+          required: true,
+          placeholder: '',
+          id: 'fecha_evento'
+        }
+      ],
+      [
+        {
+          label: 'Descripción',
+          name: 'descripcion',
+          type: 'text',
+          required: false,
+          placeholder: 'motivo de registro',
+          id: 'descripción'
+
+        }
+      ]
+
+    ]
+
+  }
+]
