@@ -15,32 +15,32 @@ import { pool } from '../../../db.js'
 */
 
 const getRepresentantes = async () => {
-  const [data] = await pool.query('SELECT * FROM representantes')
+  const [data] = await pool.query('SELECT * FROM representante')
   return data
 }
 
 const getRepresentante = async (id) => {
-  const [data] = await pool.query('SELECT * FROM representantes WHERE id = ?', [id])
+  const [data] = await pool.query('SELECT * FROM representante WHERE id = ?', [id])
   return data
 }
 
 const getCedulas = async () => {
-  const [data] = await pool.query('SELECT cedula FROM representantes')
+  const [data] = await pool.query('SELECT cedula FROM representante')
   return data.map(({ cedula }) => cedula)
 }
 
 const createRepresentante = async (representante) => {
-  const [data] = await pool.query('INSERT INTO representantes SET ?', [representante])
+  const [data] = await pool.query('INSERT INTO representante SET ?', [representante])
   return data
 }
 
 const updateRepresentante = async (id, representante) => {
-  const [data] = await pool.query('UPDATE representantes SET ? WHERE id = ?', [representante, id])
+  const [data] = await pool.query('UPDATE representante SET ? WHERE cedula = ?', [representante, id])
   return data
 }
 
 const deleteRepresentante = async (id) => {
-  const [data] = await pool.query('DELETE FROM representantes WHERE id = ?', [id])
+  const [data] = await pool.query('DELETE FROM representante WHERE id = ?', [id])
   return data
 }
 
