@@ -44,9 +44,9 @@ export const updateRegistroEspecial = async (req, res) => {
 
 export const deleteRegistroEspecial = async (req, res) => {
   try {
-    const id_auditoria = await deleteAuditoria({ entity: 'registro_especial', user: req.user, id: req.params.id })
+    const data = await service.deleteRegistroEspecial(req.params.id)
+    const id_auditoria = await deleteAuditoria({ entity: 'registro_especial', user: req.user, body: data, id: req.params.id })
     req.body.id_auditoria = id_auditoria
-    await service.deleteRegistroEspecial(req.params.id)
     res.status(204).send()
   } catch (error) {
     res.status(500).send({ message: error.message })

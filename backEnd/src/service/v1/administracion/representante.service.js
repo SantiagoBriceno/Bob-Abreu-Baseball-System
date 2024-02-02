@@ -40,8 +40,9 @@ const updateRepresentante = async (id, representante) => {
 }
 
 const deleteRepresentante = async (id) => {
-  const [data] = await pool.query('DELETE FROM representante WHERE cedula = ?', [id])
-  return data
+  const [deleteData] = await pool.query('SELECT * FROM representante WHERE cedula = ?', [id])
+  await pool.query('DELETE FROM representante WHERE cedula = ?', [id])
+  return deleteData[0]
 }
 
 export default {
