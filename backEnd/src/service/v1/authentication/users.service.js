@@ -1,4 +1,4 @@
-import { pool } from '../../db.js'
+import { pool } from '../../../db.js'
 
 const createUser = async (newUser) => {
   const [data] = await pool.query('INSERT INTO users SET ?', [newUser])

@@ -1,13 +1,14 @@
-import service from '../../service/v1/login.service.js'
+import service from '../../../service/v1/authentication/users.service.js'
+import lService from '../../../service/v1/authentication/login.service.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { SECRET } from '../../config.js'
+import { SECRET } from '../../../config.js'
 
 export const loginUser = async (req, res) => {
   const { body } = req
   const { username, password } = body
 
-  const user = await service.findUser(username)
+  const user = await lService.findUser(username)
   console.log(user)
   const passwordCorrect = user.length === 0
     ? false
