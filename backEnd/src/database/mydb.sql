@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS auditoria (
   id INT NOT NULL AUTO_INCREMENT,
   id_autor VARCHAR(10) NOT NULL,
   descripcion TEXT NOT NULL,
+  entity VARCHAR(50) NOT NULL,
+  id_entity VARCHAR(10) NOT NULL,
   fecha DATE NOT NULL
   PRIMARY KEY (id)
 )

@@ -48,7 +48,7 @@ export const updateRepresentante = async (req, res) => {
   try {
     const cedulas = await service.getCedulas()
     if (existRepresentante(cedulas, id)) {
-      const id_auditoria = await patchAuditoria({ entity: 'representante', user: req.user, body: representante })
+      const id_auditoria = await patchAuditoria({ entity: 'representante', user: req.user, body: representante, id })
       representante.id_auditoria = id_auditoria
       const data = await service.updateRepresentante(id, representante)
       res.status(200).json(data)
