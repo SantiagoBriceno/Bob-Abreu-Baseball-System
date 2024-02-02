@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import service from '../../../service/v1/administracion/representante.service.js'
 import { existRepresentante, isValidRepresentante } from '../../../utils/formats/representante.js'
+import { postAuditoria, patchAuditoria } from '../../../middleware/auditoria.js'
 
 export const getRepresentantes = async (req, res) => {
   try {
@@ -13,8 +14,8 @@ export const getRepresentantes = async (req, res) => {
 
 export const createRepresentante = async (req, res) => {
   try {
-    const { cedula, nombre, tlf, rif, estatura, email, direccion, cedula_atleta, id_auditoria } = req.body
-    const representante = { cedula, nombre, tlf, rif, estatura, email, direccion, cedula_atleta, id_auditoria }
+    const { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta } = req.body
+    const representante = { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta }
     if (!isValidRepresentante(representante)) {
       return res.status(400).json({ message: 'Representante no válido' })
     }
@@ -22,6 +23,8 @@ export const createRepresentante = async (req, res) => {
     if (existRepresentante(cedulas, cedula)) {
       return res.status(400).json({ message: 'Representante ya existe' })
     }
+    const id_auditoria = await postAuditoria({ entity: 'representante', user: req.user, body: representante })
+    representante.id_auditoria = id_auditoria
     const data = await service.createRepresentante(representante)
     res.status(201).json(data)
   } catch (error) {
@@ -40,19 +43,18 @@ export const getRepresentante = async (req, res) => {
 }
 
 export const updateRepresentante = async (req, res) => {
+  const { id } = req.params
+  const representante = req.body
   try {
-    const { id } = req.params
-    const { cedula, nombre, tlf, rif, estatura, email, direccion, cedula_atleta, id_auditoria } = req.body
-    const representante = { cedula, nombre, tlf, rif, estatura, email, direccion, cedula_atleta, id_auditoria }
-    if (!isValidRepresentante(representante)) {
-      return res.status(400).json({ message: 'Representante no válido' })
-    }
     const cedulas = await service.getCedulas()
-    if (existRepresentante(cedulas, cedula)) {
-      return res.status(400).json({ message: 'Representante ya existe' })
+    if (existRepresentante(cedulas, id)) {
+      const id_auditoria = await patchAuditoria({ entity: 'representante', user: req.user, body: representante, id })
+      representante.id_auditoria = id_auditoria
+      const data = await service.updateRepresentante(id, representante)
+      res.status(200).json(data)
+    } else {
+      res.status(400).json({ message: 'Representante no existe' })
     }
-    const data = await service.updateRepresentante(id, representante)
-    res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
   }

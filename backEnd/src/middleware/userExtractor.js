@@ -9,7 +9,6 @@ export const userExtractor = (req, res, next) => {
   }
   let decodeToken = ''
   let error = false
-
   try {
     decodeToken = jwt.verify(token, SECRET)
   } catch (e) {
@@ -21,7 +20,7 @@ export const userExtractor = (req, res, next) => {
       message: 'Invalid or missing token'
     })
   } else {
-    req.user = { name: decodeToken.name, rol: decodeToken.rol }
+    req.user = { cedula: decodeToken.cedula, rol: decodeToken.rol, username: decodeToken.username }
     next()
   }
 }

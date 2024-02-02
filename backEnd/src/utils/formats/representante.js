@@ -1,4 +1,4 @@
-import { representante as structure } from '../entities/main'
+import { representante as structure } from '../entities/main.js'
 
 // Saber si un representante es válido y cumple con la estructura definida en ../entities/main
 const isValidRepresentante = (representante) => {

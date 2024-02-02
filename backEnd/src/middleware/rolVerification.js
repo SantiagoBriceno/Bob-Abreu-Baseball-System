@@ -46,9 +46,22 @@ const gerenteVerification = (req, res, next) => {
   }
 }
 
+const adminPermission = (req, res, next) => {
+  const { rol } = req.user
+
+  if (rol === 'gerente' || rol === 'administrativo') {
+    next()
+  } else {
+    res.status(401).send({
+      message: 'No estas autorizado'
+    })
+  }
+}
+
 export default {
   administrativoVerification,
   deportivoVerification,
   fisioterapeutaVerification,
-  gerenteVerification
+  gerenteVerification,
+  adminPermission
 }
