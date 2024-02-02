@@ -48,8 +48,9 @@ CREATE TABLE IF NOT EXISTS indicadores (
 
 CREATE TABLE IF NOT EXISTS auditoria (
   id INT NOT NULL AUTO_INCREMENT,
-  id_auditoria VARCHAR(10) NOT NULL,
+  id_autor VARCHAR(10) NOT NULL,
   descripcion TEXT NOT NULL,
+  fecha DATE NOT NULL
   PRIMARY KEY (id)
 )
 

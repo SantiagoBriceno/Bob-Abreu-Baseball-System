@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { test } from '../../../controller/v1/test.controller.js'
+import { test } from '../../../controller/v1/authentication/test.controller.js'
 import { userExtractor } from '../../../middleware/userExtractor.js'
 import auth from '../../../middleware/rolVerification.js'
 
