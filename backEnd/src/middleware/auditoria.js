@@ -24,3 +24,15 @@ export const patchAuditoria = async ({ entity, user, body, id }) => {
   }
   return await service.createAuditoria(newAuditoria)
 }
+
+export const deleteAuditoria = async ({ entity, user, id }) => {
+  const { cedula } = user
+  const newAuditoria = {
+    id_autor: cedula,
+    descripcion: msg.msgDelete({ entity, id }),
+    fecha: new Date(),
+    entity,
+    id_entity: id
+  }
+  return await service.createAuditoria(newAuditoria)
+}
