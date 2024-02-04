@@ -1,20 +1,80 @@
 import React from 'react'
-import MyForm from './components/MyForm'
-import { useMyFormHook } from './hooks/form/useMyFormHook'
-import { representante } from './constants/dataStructure'
-import { representanteValidation } from './constants/dataValidation'
-import { validationInputRepresentante } from './constants/validationInputs'
-import { representanteFields } from './constants/form/fields'
 import HeaderSidebar from './components/partials/header-side'
-import { ConfigProvider } from 'antd'
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <HeaderSidebar />,
+      children: [
+        {
+          path: 'representantes',
+          element: <div>Representantes</div>
+        },
+        {
+          path: 'atletas',
+          children: [
+            {
+              path: '',
+              element: <div>Atletas</div>
+            },
+            {
+              path: 'infielders',
+              element: <div>Infielders</div>
+            },
+            {
+              path: 'outfielders',
+              element: <div>Outfielders</div>
+            },
+            {
+              path: 'catchers',
+              element: <div>Catchers</div>
+            },
+            {
+              path: 'pitchers',
+              element: <div>Pitchers</div>
+            }
+          ]
+        },
+        {
+          path: 'estadisticas',
+          children: [
+            {
+              path: '',
+              element: <div>Estadisticas</div>
+            },
+            {
+              path: 'running',
+              element: <div>Running</div>
+            },
+            {
+              path: 'hitting',
+              element: <div>Hitting</div>
+            },
+            {
+              path: 'pitching',
+              element: <div>Pitching</div>
+            },
+            {
+              path: 'catching',
+              element: <div>Catching</div>
+            },
+            {
+              path: 'fielding',
+              element: <div>Fielding</div>
+            }
+          ]
+        }
+      ]
+    }
+  ]
+)
 
 function App () {
-  const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante)
-
   return (
-    <>
-      <HeaderSidebar />
-    </>
+    <RouterProvider router={router} />
   )
 }
 
