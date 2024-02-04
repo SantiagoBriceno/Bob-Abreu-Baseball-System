@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS estadisticas (
 
 CREATE TABLE IF NOT EXISTS hitting (
   id INT NOT NULL AUTO_INCREMENT,
-  id_stat INT NOT NULL,
+  id_atleta VARCHAR(10) NOT NULL,
   agudeza_visual INT(10) NOT NULL,
   bat_speed FLOAT(10) NOT NULL,
   angle_attack FLOAT(10) NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS hitting (
 
 CREATE TABLE IF NOT EXISTS throwing (
   id INT NOT NULL AUTO_INCREMENT,
-  id_stat INT NOT NULL,
+  id_atleta VARCHAR(10) NOT NULL,
   lanzamiento_primera FLOAT(10) NULL,
   lanzamiento_segunda FLOAT(10) NULL,
   lanzamiento_tercera FLOAT(10) NULL,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS throwing (
 
 CREATE TABLE IF NOT EXISTS fielding (
   id INT NOT NULL AUTO_INCREMENT,
-  id_stat INT NOT NULL,
+  id_atleta VARCHAR(10) NOT NULL,
   getting_jump INT(10) NULL,
   ruta INT(10) NULL,
   alcance INT(10) NULL,
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS fielding (
 
 CREATE TABLE IF NOT EXISTS make_up (
   id INT NOT NULL AUTO_INCREMENT,
-  id_stat INT NOT NULL,
+  id_atleta VARCHAR(10) NOT NULL,
   actitud INT(10) NULL,
   compromiso INT(10) NULL,
   responsabilidad INT(10) NULL,
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS make_up (
 
 CREATE TABLE IF NOT EXISTS pitching (
   id INT NOT NULL AUTO_INCREMENT,
-  id_stat INT NOT NULL,
+  id_atleta VARCHAR(10) NOT NULL,
   velocidad_recta FLOAT(10) NOT NULL,
   velocidad_curva FLOAT(10) NOT NULL,
   velocidad_slider FLOAT(10) NULL,
@@ -203,6 +203,16 @@ CREATE TABLE IF NOT EXISTS pitching (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS running (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_atleta VARCHAR(10) NOT NULL,
+  velocidad_60 FLOAT(10) NOT NULL,
+  velocidad_40 FLOAT(10) NOT NULL,
+  id_auditoria VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id)
+);
+
 
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT,

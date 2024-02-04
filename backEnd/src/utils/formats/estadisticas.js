@@ -1,11 +1,9 @@
-import { hitting } from '../entities/main'
-
-export const isValidHittingStat = (hittingStat) => {
-  return Object.keys(hitting).every(key => {
-    return Object.keys(hittingStat).includes(key)
+export const isValidEntitie = (entitie, body) => {
+  return Object.keys(entitie).every(key => {
+    return Object.keys(body).includes(key)
   })
 }
 
-export const existHittingStat = (ids, id) => {
+export const existStat = (ids, id) => {
   return ids.includes(id)
 }

@@ -1,13 +1,13 @@
 import msg from '../utils/methods/messages.js'
 import service from '../service/v1/auditoria.service.js'
-export const postAuditoria = async ({ entity, user, body }) => {
+export const postAuditoria = async ({ entity, user, body, id = null }) => {
   const { cedula } = user
   const newAuditoria = {
     id_autor: cedula,
     descripcion: msg.msgPost({ entity, reqBody: body }),
     fecha: new Date(),
     entity,
-    id_entity: body.cedula
+    id_entity: body.cedula ? body.cedula : id
   }
 
   return await service.createAuditoria(newAuditoria)

@@ -35,7 +35,6 @@ export const createAtleta = async (req, res) => {
     }
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria
-    atleta.id_auditoria = id_auditoria
     const data = await service.createAtleta(atleta)
     res.status(201).json(data)
   } catch (error) {
