@@ -7,16 +7,18 @@ export const representante = {
   tlf: '',
   rif: '',
   estatura: '',
-  sexo: '',
-  correo: '',
+  email: '',
   direccion: '',
-  cedula_atleta: ''
+  cedula_atleta: '',
+  id_auditoria: ''
 }
 
 export const registro_especial = {
+  id: '',
   cedula_atleta: '',
   fecha_evento: '',
-  descripcion: ''
+  descripcion: '',
+  id_auditoria: ''
 }
 
 export const atleta = {
@@ -25,10 +27,11 @@ export const atleta = {
   tlf: '',
   lugar_nacimiento: '',
   fecha_nacimiento: '',
-  correo: '',
+  email: '',
   posicion: '',
   estado: '',
-  foto: ''
+  foto: '',
+  id_auditoria: ''
 
 }
 
@@ -37,7 +40,8 @@ export const indicadores = {
   clase: '',
   posicion: '',
   estadistica: '',
-  valor: ''
+  valor: '',
+  id_auditoria: ''
 }
 
 export const auditoria = {
@@ -49,7 +53,8 @@ export const auditoria = {
 
 export const ficha_antropometrica = {
   id_ficha: '',
-  id_atleta: ''
+  id_atleta: '',
+  id_auditoria: ''
 }
 
 export const datos_generales = {
@@ -67,7 +72,8 @@ export const datos_generales = {
   calorias_necesarias: '',
   peso_corporal: '',
   peso_ideal: '',
-  percentil_de_peso: ''
+  percentil_de_peso: '',
+  id_auditoria: ''
 }
 
 export const perimetros_corporales = {
@@ -85,7 +91,8 @@ export const perimetros_corporales = {
   muslo_superior: '',
   muslo_medio: '',
   pierna: '',
-  tobillo: ''
+  tobillo: '',
+  id_auditoria: ''
 }
 
 export const indices_cintura_cadera = {
@@ -94,7 +101,8 @@ export const indices_cintura_cadera = {
   id_atleta: '',
   cintura: '',
   cadera: '',
-  relacion_cintura_cadera: ''
+  relacion_cintura_cadera: '',
+  id_auditoria: ''
 }
 
 export const indice_Masa_corporal = {
@@ -104,7 +112,8 @@ export const indice_Masa_corporal = {
   masa_grasa_corporal: '',
   masa_grasa_ideal: '',
   masa_magra_corporal: '',
-  masa_magra_ideal: ''
+  masa_magra_ideal: '',
+  id_auditoria: ''
 }
 
 export const perfiles_fotograficos = {
@@ -117,19 +126,15 @@ export const perfiles_fotograficos = {
   id_auditoria: ''
 }
 
-export const running = {
-  id: '',
+export const estadisticas = {
   id_stat: '',
-  velocidad: '',
-  resistencia: '',
-  agilidad: '',
-  fuerza: '',
-  flexibilidad: '',
-  coordinacion: ''
+  id_atleta: '',
+  id_auditoria: ''
 }
 
 export const hitting = {
-  id_atleta: '',
+  id: '',
+  id_stat: '',
   agudeza_visual: '',
   bat_speed: '',
   angle_attack: '',
@@ -138,7 +143,8 @@ export const hitting = {
   rec_zona_strike: '',
   rec_pitcheos: '',
   control_bate: '',
-  rutal_del_bate: ''
+  rutal_del_bate: '',
+  id_auditoria: ''
 }
 
 export const throwing = {
@@ -148,7 +154,8 @@ export const throwing = {
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
   lanzamiento_home: '',
-  pop_time: ''
+  pop_time: '',
+  id_auditoria: ''
 }
 
 export const make_up = {
@@ -157,7 +164,8 @@ export const make_up = {
   actitud: '',
   compromiso: '',
   responsabilidad: '',
-  disciplina: ''
+  disciplina: '',
+  id_auditoria: ''
 }
 
 export const fielding = {
@@ -170,7 +178,8 @@ export const fielding = {
   control_cuerpo: '',
   juego_de_pie: '',
   anticipacion: '',
-  energia: ''
+  energia: '',
+  id_auditoria: ''
 }
 
 export const pitching = {
@@ -179,5 +188,6 @@ export const pitching = {
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',
-  velocidad_cambio: ''
+  velocidad_cambio: '',
+  id_auditoria: ''
 }

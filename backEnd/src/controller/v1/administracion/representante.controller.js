@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import service from '../../../service/v1/administracion/representante.service.js'
 import { existRepresentante, isValidRepresentante } from '../../../utils/formats/representante.js'
-import { postAuditoria, patchAuditoria } from '../../../middleware/auditoria.js'
+import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 
 export const getRepresentantes = async (req, res) => {
   try {
@@ -62,9 +62,17 @@ export const updateRepresentante = async (req, res) => {
 
 export const deleteRepresentante = async (req, res) => {
   try {
-    const { id } = req.params
-    const data = await service.deleteRepresentante(id)
-    res.status(200).json(data)
+    const cedulas = await service.getCedulas()
+    if (!existRepresentante(cedulas, req.params.id)) {
+      return res.status(400).json({ message: 'Representante no existe' })
+    } else {
+      const { id } = req.params
+      const data = await service.deleteRepresentante(id)
+      console.log(data)
+      const id_auditoria = await deleteAuditoria({ entity: 'representante', user: req.user, body: data, id })
+      data.id_auditoria = id_auditoria
+      res.status(200).json(data)
+    }
   } catch (error) {
     res.status(500).json(error)
   }
