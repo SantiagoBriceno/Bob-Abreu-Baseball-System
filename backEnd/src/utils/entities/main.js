@@ -117,14 +117,19 @@ export const perfiles_fotograficos = {
   id_auditoria: ''
 }
 
-export const estadisticas = {
+export const running = {
+  id: '',
   id_stat: '',
-  id_atleta: ''
+  velocidad: '',
+  resistencia: '',
+  agilidad: '',
+  fuerza: '',
+  flexibilidad: '',
+  coordinacion: ''
 }
 
 export const hitting = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   agudeza_visual: '',
   bat_speed: '',
   angle_attack: '',
