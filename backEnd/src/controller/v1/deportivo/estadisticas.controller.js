@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import service from '../../../service/v1/deportivo/estadisticas.service.js'
-import { postAuditoria, patchAuditoria } from '../../../middleware/auditoria.js'
+import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 import { isValidEntitie, existStat } from '../../../utils/formats/estadisticas.js'
-import { running, hitting } from '../../../utils/entities/main.js'
+import { running, hitting, throwing } from '../../../utils/entities/main.js'
 
 /* HITTING STATS CONTROLLERS */
 export const getHittingStats = async (req, res) => {
@@ -77,6 +77,7 @@ export const deleteHittingStat = async (req, res) => {
     if (existStat(ids, id)) {
       const deletedHittingStat = await service.deleteHittingStat(id)
       res.status(200).json(deletedHittingStat)
+      await deleteAuditoria({ entity: 'hitting', user: req.user, body: deletedHittingStat, id })
     } else {
       res.status(404).json({ message: 'Hitting stat not found' })
     }
@@ -158,6 +159,7 @@ export const deleteRunningStat = async (req, res) => {
     if (existStat(ids, id)) {
       const deletedRunningStat = await service.deleteRunningStat(id)
       res.status(200).json(deletedRunningStat)
+      await deleteAuditoria({ entity: 'running', user: req.user, body: deletedRunningStat, id })
     } else {
       res.status(404).json({ message: 'Running stat not found' })
     }
@@ -167,3 +169,83 @@ export const deleteRunningStat = async (req, res) => {
 }
 
 /* THROWING STATS CONTROLLERS */
+
+export const getThrowingStats = async (req, res) => {
+  try {
+    const throwingStats = await service.getThrowingStats()
+    if (throwingStats.length === 0) {
+      res.status(404).json({ message: 'No throwing stats found' })
+    } else {
+      res.status(200).json(throwingStats)
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getThrowingStatById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const ids = await service.getThrowingStatsIds()
+    if (existStat(ids, id)) {
+      const throwingStat = await service.getThrowingStatById(id)
+      res.status(200).json(throwingStat)
+    } else {
+      res.status(404).json({ message: 'Throwing stat not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const createThrowingStat = async (req, res) => {
+  const throwingStat = req.body
+  const nextId = await service.nextId('throwing')
+  if (isValidEntitie(throwing, throwingStat)) {
+    try {
+      const id_auditoria = await postAuditoria({ entity: 'throwing', user: req.user, body: throwingStat, id: nextId })
+      throwingStat.id_auditoria = id_auditoria
+      const newThrowingStat = await service.createThrowingStat(throwingStat)
+      res.status(201).json(newThrowingStat)
+    } catch (error) {
+      res.status(500).json({ message: error.message })
+    }
+  } else {
+    res.status(400).json({ message: 'Estadisticas invalidas' })
+  }
+}
+
+export const updateThrowingStat = async (req, res) => {
+  const { id } = req.params
+  const throwingStat = req.body
+
+  try {
+    const ids = await service.getThrowingStatsIds()
+    if (existStat(ids, id)) {
+      const id_auditoria = await patchAuditoria({ entity: 'throwing', user: req.user, body: throwingStat, id })
+      throwingStat.id_auditoria = id_auditoria
+      const updatedThrowingStat = await service.updateThrowingStat(id, throwingStat)
+      res.status(200).json(updatedThrowingStat)
+    } else {
+      res.status(404).json({ message: 'Throwing stat not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const deleteThrowingStat = async (req, res) => {
+  const { id } = req.params
+  try {
+    const ids = await service.getThrowingStatsIds()
+    if (existStat(ids, id)) {
+      const deletedThrowingStat = await service.deleteThrowingStat(id)
+      res.status(200).json(deletedThrowingStat)
+      await deleteAuditoria({ entity: 'throwing', user: req.user, body: deletedThrowingStat, id })
+    } else {
+      res.status(404).json({ message: 'Throwing stat not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}

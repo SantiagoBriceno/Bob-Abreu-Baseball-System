@@ -72,6 +72,39 @@ const deleteRunningStat = async (id) => {
   return runningStat
 }
 
+/* THROWING STATS SERVICE */
+
+const getThrowingStatsIds = async () => {
+  const [throwingStats] = await pool.query('SELECT id FROM throwing')
+  return throwingStats.map(({ id }) => id)
+}
+
+const getThrowingStats = async () => {
+  const [throwingStats] = await pool.query('SELECT * FROM throwing')
+  return throwingStats
+}
+
+const getThrowingStatById = async (id) => {
+  const [throwingStat] = await pool.query('SELECT * FROM throwing WHERE id = ?', [id])
+  return throwingStat
+}
+
+const createThrowingStat = async (throwingStat) => {
+  const [newThrowingStat] = await pool.query('INSERT INTO throwing SET ?', [throwingStat])
+  return newThrowingStat
+}
+
+const updateThrowingStat = async (id, throwingStat) => {
+  const [updatedThrowingStat] = await pool.query('UPDATE throwing SET ? WHERE id = ?', [throwingStat, id])
+  return updatedThrowingStat
+}
+
+const deleteThrowingStat = async (id) => {
+  const [throwingStat] = await pool.query('SELECT * FROM throwing WHERE id = ?', [id])
+  await pool.query('DELETE FROM throwing WHERE id = ?', [id])
+  return throwingStat
+}
+
 export default {
   getHittingStatsIds,
   getHittingStats,
@@ -85,5 +118,11 @@ export default {
   createRunningStat,
   updateRunningStat,
   deleteRunningStat,
+  getThrowingStatsIds,
+  getThrowingStats,
+  getThrowingStatById,
+  createThrowingStat,
+  updateThrowingStat,
+  deleteThrowingStat,
   nextId
 }
