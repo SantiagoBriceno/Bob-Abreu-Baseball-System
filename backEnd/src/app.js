@@ -6,6 +6,7 @@ import loginRoutes from './routes/v1/authentication/login.routes.js'
 import testRoutes from './routes/v1/authentication/test.routes.js'
 import representanteRoutes from './routes/v1/administracion/representante.routes.js'
 import atletaRoutes from './routes/v1/administracion/atleta.routes.js'
+import estadisticasRoutes from './routes/v1/deportivo/estadisticas.routes.js'
 
 const app = express()
 app.use(cors())
@@ -15,5 +16,6 @@ app.use('/api/v1/login', loginRoutes)
 app.use('/api/v1/test', testRoutes)
 app.use('/api/v1/representante', representanteRoutes)
 app.use('/api/v1/atleta', atletaRoutes)
+app.use('/api/v1/estadisticas', estadisticasRoutes)
 
 export default app
