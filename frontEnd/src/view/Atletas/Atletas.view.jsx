@@ -1,15 +1,18 @@
-import { Heading, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 import MyForm from '../../components/MyForm'
-import { atleta } from '../../../constants.js'
+import { atleta } from '../../../../global.constants.js'
+
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
+import { atletaFields } from '../../constants/form/fields.js'
+import { representanteValidation } from '../../constants/dataValidation.js'
+import { validationInputAtleta } from '../../constants/validationInputs.js'
 
 const AtletasView = () => {
-  const { fields, formData, actions, title, errorMessage } = useMyFormHook(atleta)
+  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta)
 
   return (
     <Stack spacing={8} align='center'>
-      <Heading size='lg'>{title}</Heading>
-      <MyForm fields={fields} formData={formData} actions={actions} title={title} errorMessage={errorMessage} />
+      <MyForm fields={atletaFields} formData={formData} actions={actions} title='Atletas' errorMessage={errorState} />
     </Stack>
   )
 }

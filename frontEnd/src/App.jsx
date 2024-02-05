@@ -2,6 +2,9 @@ import React from 'react'
 import HeaderSidebar from './components/partials/header-side'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// import AtletasView from './view/Atletas/Atletas.view.jsx'
+import RepresentanteView from './view/Representantes.view'
+import AtletasView from './view/Atletas/Atletas.view'
 
 const router = createBrowserRouter(
   [
@@ -11,14 +14,14 @@ const router = createBrowserRouter(
       children: [
         {
           path: 'representantes',
-          element: <div>Representantes</div>
+          element: <RepresentanteView />
         },
         {
           path: 'atletas',
           children: [
             {
               path: '',
-              element: <div>Atletas</div>
+              element: <AtletasView />
             },
             {
               path: 'infielders',

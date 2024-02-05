@@ -89,6 +89,7 @@ export const atletaFields = [
   }
 ]
 
+// NO ESTA TERMINADO
 export const fichaAntropometricaFields = [
   {
     title: 'Datos generales',
@@ -458,6 +459,7 @@ export const representanteFields = [
 
 ]
 
+// NO ESTA TERMINADO
 export const registroEspecialFields = [
   {
     title: '',
@@ -495,5 +497,286 @@ export const registroEspecialFields = [
 
     ]
 
+  }
+]
+
+export const hittingFields = [
+  {
+    title: 'Datos de bateo',
+    campos: [
+      [
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'id_atleta'
+        }
+      ],
+      [
+        {
+          label: 'Agudeza visual',
+          name: 'agudeza_visual',
+          type: 'number',
+          required: false,
+          placeholder: 'Agudeza visual del atleta',
+          id: 'agudeza_visual'
+        },
+        {
+          label: 'Bat speed',
+          name: 'bat_speed',
+          type: 'number',
+          required: false,
+          placeholder: 'Velocidad del bate',
+          id: 'bat_speed'
+        }
+      ],
+      [
+        {
+          label: 'coordinación de las manos',
+          name: 'coordinacion_manos',
+          type: 'number',
+          required: false,
+          placeholder: 'Coordinación de las manos',
+          id: 'coord_dos_manos'
+        },
+        {
+          label: 'Ritmo y balance',
+          name: 'ritmo_balance',
+          type: 'number',
+          required: false,
+          placeholder: 'Ritmo y balance',
+          id: 'ritmo_balance'
+        }
+      ],
+      [
+        {
+          label: 'Reacción a zona de strike',
+          name: 'reaccion_zona_strike',
+          type: 'number',
+          required: false,
+          placeholder: 'Reacción a zona de strike',
+          id: 'rec_zona_strike'
+        },
+        {
+          label: 'Reacción a pitcheos',
+          name: 'reaccion_pitcheos',
+          type: 'number',
+          required: false,
+          placeholder: 'Reacción a pitcheos',
+          id: 'rec_pitcheos'
+        }
+      ],
+      [
+        {
+          label: 'Control del bate',
+          name: 'control_bate',
+          type: 'number',
+          required: false,
+          placeholder: 'Control del bate',
+          id: 'control_bate'
+        },
+        {
+          label: 'Ruta del bate',
+          name: 'ruta_del_bate',
+          type: 'number',
+          required: false,
+          placeholder: 'Ruta del bate',
+          id: 'ruta_del_bate'
+        }
+      ]
+    ]
+  }
+]
+
+export const throwingFields = [
+  {
+    title: 'Datos de lanzamiento',
+    campos: [
+      [
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'id_atleta'
+        }
+      ],
+      [
+        {
+          label: 'Lanzamiento a primera',
+          name: 'lanzamiento_primera',
+          type: 'number',
+          required: false,
+          placeholder: 'Lanzamiento a primera',
+          id: 'lanzamiento_primera'
+        },
+        {
+          label: 'Lanzamiento a segunda',
+          name: 'lanzamiento_segunda',
+          type: 'number',
+          required: false,
+          placeholder: 'Lanzamiento a segunda',
+          id: 'lanzamiento_segunda'
+        }
+      ],
+      [
+        {
+          label: 'Lanzamiento a tercera',
+          name: 'lanzamiento_tercera',
+          type: 'number',
+          required: false,
+          placeholder: 'Lanzamiento a tercera',
+          id: 'lanzamiento_tercera'
+        },
+        {
+          label: 'Lanzamiento a home',
+          name: 'lanzamiento_home',
+          type: 'number',
+          required: false,
+          placeholder: 'Lanzamiento a home',
+          id: 'lanzamiento_home'
+        }
+      ],
+      [
+        {
+          label: 'Pop time',
+          name: 'pop_time',
+          type: 'number',
+          required: false,
+          placeholder: 'Pop time',
+          id: 'pop_time'
+        }
+      ]
+    ]
+  }
+]
+
+export const fieldingFields = [
+  {
+    title: 'Datos de fildeo',
+    campos: [
+      [
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'id_atleta'
+        }
+      ],
+      [
+        {
+          label: 'Getting jump',
+          name: 'getting_jump',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'getting_jump'
+        },
+        {
+          label: 'Ruta',
+          name: 'ruta',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'ruta'
+        }
+      ],
+      [
+        {
+          label: 'Alcance',
+          name: 'alcance',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'alcance'
+        },
+        {
+          label: 'Manos suaves',
+          name: 'manos_suaves',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'manos_suaves'
+        }
+      ],
+      [
+        {
+          label: 'Control del cuerpo',
+          name: 'control_cuerpo',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'control_cuerpo'
+        },
+        {
+          label: 'Juego de pies',
+          name: 'juego_de_pie',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'juego_de_pie'
+        }
+      ],
+      [
+        {
+          label: 'Anticipación',
+          name: 'anticipacion',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'anticipacion'
+        },
+        {
+          label: 'Energía',
+          name: 'energia',
+          type: 'number',
+          required: false,
+          placeholder: 'Escala de 1 a 10',
+          id: 'energia'
+        }
+      ]
+    ]
+  }
+]
+
+export const runningFields = [
+  {
+    title: 'Datos de atletismo',
+    campos: [
+      [
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'id_atleta'
+        }
+      ],
+      [
+        {
+          label: 'Tiempo 60 yardas',
+          name: 'sesenta_yardas',
+          type: 'number',
+          required: false,
+          placeholder: 'Tiempo en segundos',
+          id: 'sesenta_yardas'
+        },
+        {
+          // agregar en la base de datos
+          label: 'Home to first',
+          name: 'home_to_first',
+          type: 'number',
+          required: false,
+          placeholder: 'Tiempo en segundos',
+          id: 'home_to_first'
+        }
+      ]
+    ]
   }
 ]

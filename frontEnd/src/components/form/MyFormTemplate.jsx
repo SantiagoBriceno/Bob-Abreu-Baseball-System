@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 const MyFormTemplate = ({ children }) => {
   return (
-    <VStack align='left'>
+    <VStack bg='blue.300' rounded='15px' align='left'>
       {children}
     </VStack>
   )

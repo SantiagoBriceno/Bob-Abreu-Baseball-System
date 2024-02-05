@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS running (
   id INT NOT NULL AUTO_INCREMENT,
   id_atleta VARCHAR(10) NOT NULL,
   velocidad_60 FLOAT(10) NOT NULL,
-  velocidad_40 FLOAT(10) NOT NULL,
+  velocidad_home_to_first FLOAT(10) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
