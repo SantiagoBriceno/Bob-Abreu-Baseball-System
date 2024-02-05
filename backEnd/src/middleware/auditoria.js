@@ -36,3 +36,33 @@ export const deleteAuditoria = async ({ entity, user, body, id }) => {
   }
   return await service.createAuditoria(newAuditoria)
 }
+
+export const createAuditoria = (req, res) => {
+  const { entity, data, user, id } = req
+  try {
+    postAuditoria({ entity, user, body: data, id })
+    res.status(201).json({ message: 'Finish' })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const updateAuditoria = (req, res) => {
+  const { entity, data, user, id } = req
+  try {
+    patchAuditoria({ entity, user, body: data, id })
+    res.status(201).json({ message: 'Finish' })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const deleteAuditoriaV2 = (req, res) => {
+  const { entity, data, user, id } = req
+  try {
+    deleteAuditoria({ entity, user, body: data, id })
+    res.status(201).json({ message: 'Finish' })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}

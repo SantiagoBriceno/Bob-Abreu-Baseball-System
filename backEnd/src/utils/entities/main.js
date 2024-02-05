@@ -142,8 +142,7 @@ export const hitting = {
 }
 
 export const throwing = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   lanzamiento_primera: '',
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
@@ -152,8 +151,7 @@ export const throwing = {
 }
 
 export const make_up = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   actitud: '',
   compromiso: '',
   responsabilidad: '',
@@ -161,8 +159,7 @@ export const make_up = {
 }
 
 export const fielding = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   getting_jump: '',
   ruta: '',
   alcance: '',
@@ -174,8 +171,7 @@ export const fielding = {
 }
 
 export const pitching = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',

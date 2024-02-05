@@ -1,9 +1,9 @@
 import { pool } from '../../../db.js'
 
 const nextId = async (table) => {
-  const [id] = await pool.query("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'baseball_db' AND TABLE_NAME = 'indicadores';")
-  console.log(id)
-  return id[0].AUTO_INCREMENT + 1
+  const [id] = await pool.query(`SELECT MAX(id) + 1 AS id FROM ${table};`)
+
+  return id[0].id ? id[0].id : 1
 }
 
 /* HITTING STATS SERVICES */
@@ -105,6 +105,39 @@ const deleteThrowingStat = async (id) => {
   return throwingStat
 }
 
+/* FIELDING STATS SERVICE */
+
+const getFieldingStatsIds = async () => {
+  const [fieldingStats] = await pool.query('SELECT id FROM fielding')
+  return fieldingStats.map(({ id }) => id)
+}
+
+const getFieldingStats = async () => {
+  const [fieldingStats] = await pool.query('SELECT * FROM fielding')
+  return fieldingStats
+}
+
+const getFieldingStatById = async (id) => {
+  const [fieldingStat] = await pool.query('SELECT * FROM fielding WHERE id = ?', [id])
+  return fieldingStat
+}
+
+const createFieldingStat = async (fieldingStat) => {
+  const [newFieldingStat] = await pool.query('INSERT INTO fielding SET ?', [fieldingStat])
+  return newFieldingStat
+}
+
+const updateFieldingStat = async (id, fieldingStat) => {
+  const [updatedFieldingStat] = await pool.query('UPDATE fielding SET ? WHERE id = ?', [fieldingStat, id])
+  return updatedFieldingStat
+}
+
+const deleteFieldingStat = async (id) => {
+  const [fieldingStat] = await pool.query('SELECT * FROM fielding WHERE id = ?', [id])
+  await pool.query('DELETE FROM fielding WHERE id = ?', [id])
+  return fieldingStat
+}
+
 export default {
   getHittingStatsIds,
   getHittingStats,
@@ -124,5 +157,11 @@ export default {
   createThrowingStat,
   updateThrowingStat,
   deleteThrowingStat,
+  getFieldingStatsIds,
+  getFieldingStats,
+  getFieldingStatById,
+  createFieldingStat,
+  updateFieldingStat,
+  deleteFieldingStat,
   nextId
 }

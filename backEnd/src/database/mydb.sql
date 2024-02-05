@@ -175,6 +175,7 @@ CREATE TABLE IF NOT EXISTS fielding (
   ruta INT(10) NULL,
   alcance INT(10) NULL,
   manos_suaves INT(10) NULL,
+  control_cuerpo INT(10) NULL,
   juego_de_pie INT(10) NULL,
   anticipacion INT(10) NULL,
   energia INT(10) NULL,
