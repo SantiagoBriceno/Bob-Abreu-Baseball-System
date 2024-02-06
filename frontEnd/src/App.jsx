@@ -17,7 +17,6 @@ const router = createBrowserRouter(
       element: <PublicRoute />,
       children: [
         {
-          index: true,
           path: 'login',
           element: <LoginView />
         },

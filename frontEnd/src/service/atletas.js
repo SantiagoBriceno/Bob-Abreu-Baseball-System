@@ -14,6 +14,7 @@ export const createAtleta = async (atleta) => {
   const response = await fetch(RUTA_ATLETAS, {
     method: 'POST',
     headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(atleta)
