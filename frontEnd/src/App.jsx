@@ -8,7 +8,7 @@ import AtletasView from './view/Atletas/Atletas.view'
 import LoginView from './view/auth/Login.view'
 import { SesionContextProvider } from './context/SesionContext'
 import PublicRoute from './view/router/PublicRoute'
-import PriveteRoute from './view/router/PrivateRoute.jsx'
+import PrivateRoute from './view/router/PrivateRoute.jsx'
 
 const router = createBrowserRouter(
   [
@@ -17,7 +17,6 @@ const router = createBrowserRouter(
       element: <PublicRoute />,
       children: [
         {
-          index: true,
           path: 'login',
           element: <LoginView />
         },
@@ -29,7 +28,7 @@ const router = createBrowserRouter(
     },
     {
       path: '/private',
-      element: <PriveteRoute />,
+      element: <PrivateRoute />,
       children: [
         {
           path: '',
@@ -102,6 +101,7 @@ const router = createBrowserRouter(
 )
 
 function App () {
+  window.localStorage.setItem('token', true)
   return (
     <SesionContextProvider>
       <RouterProvider router={router} />

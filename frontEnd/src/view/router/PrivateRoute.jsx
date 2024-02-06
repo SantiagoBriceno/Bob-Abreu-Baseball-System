@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSesionContext } from '../../context/SesionContext'
 
-export default function PublicRoute () {
+export default function PrivateRoute () {
   const { isAuthenticated } = useSesionContext()
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return <Navigate to='/login' />
   }
   return <Outlet />
