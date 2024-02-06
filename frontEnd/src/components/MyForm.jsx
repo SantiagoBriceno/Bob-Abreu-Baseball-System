@@ -1,4 +1,16 @@
-import { Heading, VStack, Stack, StackDivider } from '@chakra-ui/react'
+import {
+  Heading, VStack, Stack, StackDivider, Box, Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+  Button
+} from '@chakra-ui/react'
 import MyFormControl from './form/MyFormControl.jsx'
 import MyInput from './form/MyInput.jsx'
 import MySelect from './form/MySelect.jsx'
@@ -8,6 +20,7 @@ import MyButton from './form/MyButton.jsx'
 const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
   return (
     <MyFormTemplate>
+      <FormStepper />
       <FormHeader title={title} />
       <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
       <FormFooter actions={actions} />
@@ -16,6 +29,42 @@ const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
 }
 
 export default MyForm
+
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' }
+]
+
+const FormStepper = () => {
+  const { activeStep, setActiveStep } = useSteps({
+    index: 1,
+    count: steps.length
+  })
+
+  return (
+    <Stepper size='lg' index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index} onClick={() => setActiveStep(index)}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
 
 const FormContent = ({ fields, formData, actions, errorMessage }) => {
   console.log(errorMessage)
