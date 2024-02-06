@@ -13,10 +13,12 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  useColorModeValue,
   Text,
   Container,
-  Avatar
+  Avatar,
+  Stack,
+  HStack,
+  VStack
 } from '@chakra-ui/react'
 import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
@@ -27,32 +29,43 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 const { Header, Sider, Content } = Layout
 
-const rol = window.localStorage.getItem('auth') ? window.localStorage.getItem('auth').rol : 'example'
-const username = window.localStorage.getItem('auth') ? window.localStorage.getItem('auth').username : 'example'
-
-const AvatarPanel = ({ rol, username }) => {
+const AvatarPanel = () => {
   const { logout } = useSesionContext()
+
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+  console.log('user', user)
+
+  const rol = user ? user.rol : ''
+  const username = user ? user.username : ''
+  console.log('user', username)
+  console.log('rol', rol)
 
   return (
     <Flex
-      minH='100vh'
       align='center'
       justify='center'
-      bg={useColorModeValue('gray.50', 'gray.800')}
     >
-      <Container>
+      <Container zIndex='1000' bg='#fff' rounded='15px'>
         <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
           <AccordionItem>
             <AccordionButton
               display='flex'
               alignItems='center'
               justifyContent='space-between'
-              p={4}
+              p={1}
             >
-              <Avatar bg='red.500' name={username} src='https://bit.ly/dan-abramov' />
-              <Text fontSize='md'>{username}</Text>
-              <Text fontSize='md'>{rol}</Text>
-              <ChevronDownIcon fontSize='24px' />
+              <HStack gap={2}>
+                <Avatar bg='red.500' color='#000' name={username} src='https://bit.ly/dan-abramov' />
+                <Stack>
+                  <VStack>
+                    <Text height='10px' fontSize='xs' color='#000'>{username} </Text>
+                    <Text fontSize='xs' color='#000'>{rol}</Text>
+
+                  </VStack>
+                </Stack>
+                <ChevronDownIcon fontSize='24px' />
+              </HStack>
+
             </AccordionButton>
             <AccordionPanel pb={4}>
               <Button
@@ -169,6 +182,7 @@ const HeaderSidebar = () => {
         <Header
           style={{
             padding: 0,
+            height: 80,
             background: colorBgContainer
           }}
 
@@ -185,7 +199,7 @@ const HeaderSidebar = () => {
               }}
             />
             <Spacer />
-            <AvatarPanel rol={rol} username={username} />
+            <AvatarPanel />
           </Flex>
         </Header>
         <Content

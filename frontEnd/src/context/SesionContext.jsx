@@ -12,7 +12,7 @@ export const SesionContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(window.localStorage.getItem('auth') ?? false)
 
   const login = useCallback((auth) => {
-    window.localStorage.setItem('auth', auth)
+    window.localStorage.setItem('auth', JSON.stringify(auth))
     setIsAuthenticated(true)
   }, [])
 
