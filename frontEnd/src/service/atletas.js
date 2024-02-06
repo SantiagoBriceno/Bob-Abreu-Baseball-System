@@ -1,7 +1,12 @@
 import { RUTA_ATLETAS } from '../constants/routes'
 
 export const getAllAtletas = async () => {
-  const response = await fetch(RUTA_ATLETAS)
+  const response = await fetch({
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('auth').token
+    }
+  }, RUTA_ATLETAS)
   return response.json()
 }
 

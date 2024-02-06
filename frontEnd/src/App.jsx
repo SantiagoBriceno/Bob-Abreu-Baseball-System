@@ -9,6 +9,7 @@ import LoginView from './view/auth/Login.view'
 import { SesionContextProvider } from './context/SesionContext'
 import PublicRoute from './view/router/PublicRoute'
 import PrivateRoute from './view/router/PrivateRoute.jsx'
+import RegisterView from './view/auth/Register.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -22,7 +23,7 @@ const router = createBrowserRouter(
         },
         {
           path: 'register',
-          element: <div>Register</div>
+          element: <RegisterView />
         }
       ]
     },
@@ -101,7 +102,6 @@ const router = createBrowserRouter(
 )
 
 function App () {
-  window.localStorage.setItem('token', true)
   return (
     <SesionContextProvider>
       <RouterProvider router={router} />

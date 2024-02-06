@@ -7,11 +7,72 @@ import {
   TeamOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons'
+import {
+  Flex, Spacer,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  useColorModeValue,
+  Text,
+  Container,
+  Avatar
+} from '@chakra-ui/react'
 import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
+import { useSesionContext } from '../../context/SesionContext'
 import logo from './logo.svg'
 import { NavLink, Outlet } from 'react-router-dom'
+
+import { ChevronDownIcon } from '@chakra-ui/icons'
 const { Header, Sider, Content } = Layout
+
+const rol = window.localStorage.getItem('auth') ? window.localStorage.getItem('auth').rol : 'example'
+const username = window.localStorage.getItem('auth') ? window.localStorage.getItem('auth').username : 'example'
+
+const AvatarPanel = ({ rol, username }) => {
+  const { logout } = useSesionContext()
+
+  return (
+    <Flex
+      minH='100vh'
+      align='center'
+      justify='center'
+      bg={useColorModeValue('gray.50', 'gray.800')}
+    >
+      <Container>
+        <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
+          <AccordionItem>
+            <AccordionButton
+              display='flex'
+              alignItems='center'
+              justifyContent='space-between'
+              p={4}
+            >
+              <Avatar bg='red.500' name={username} src='https://bit.ly/dan-abramov' />
+              <Text fontSize='md'>{username}</Text>
+              <Text fontSize='md'>{rol}</Text>
+              <ChevronDownIcon fontSize='24px' />
+            </AccordionButton>
+            <AccordionPanel pb={4}>
+              <Button
+                type='text'
+                icon={<UserOutlined />}
+                style={{
+                  fontSize: '16px',
+                  height: 64
+                }}
+                onClick={() => logout()}
+              > Cerrar Sesión
+              </Button>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </Container>
+    </Flex>
+  )
+}
+
 const HeaderSidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
   const {
@@ -110,17 +171,22 @@ const HeaderSidebar = () => {
             padding: 0,
             background: colorBgContainer
           }}
+
         >
-          <Button
-            type='text'
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64
-            }}
-          />
+          <Flex>
+            <Button
+              type='text'
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64
+              }}
+            />
+            <Spacer />
+            <AvatarPanel rol={rol} username={username} />
+          </Flex>
         </Header>
         <Content
           style={{
