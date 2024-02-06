@@ -1,6 +1,11 @@
 /* eslint-disable camelcase */
 // Estructuras de datos para las entidades de la base de datos
 
+export const usuario = {
+  users: '',
+  password: ''
+}
+
 export const representante = {
   cedula: '',
   nombre: '',

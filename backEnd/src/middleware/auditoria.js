@@ -1,7 +1,10 @@
 import msg from '../utils/methods/messages.js'
 import service from '../service/v1/auditoria.service.js'
 export const postAuditoria = async ({ entity, user, body, id = null }) => {
+  console.log(user)
   const { cedula } = user
+
+  console.log('body', body)
   const newAuditoria = {
     id_autor: cedula,
     descripcion: msg.msgPost({ entity, reqBody: body }),

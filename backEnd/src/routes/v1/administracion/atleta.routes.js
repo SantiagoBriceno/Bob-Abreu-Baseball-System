@@ -1,19 +1,22 @@
 import { Router } from 'express'
 
 import {
-  getAtleta,
+  getAtletas,
   getAtletaById,
   createAtleta,
   updateAtleta,
   deleteAtleta
 } from '../../../controller/v1/administracion/atleta.controller.js'
 
+import { userExtractor } from '../../../middleware/userExtractor.js'
+import auth from '../../../middleware/rolVerification.js'
+
 const router = Router()
 
-router.get('/atleta', getAtleta)
-router.get('/atleta/:id', getAtletaById)
-router.post('/atleta', createAtleta)
-router.put('/atleta/:id', updateAtleta)
-router.delete('/atleta/:id', deleteAtleta)
+router.get('/', userExtractor, auth.adminPermission, getAtletas)
+router.get('/:id', userExtractor, auth.adminPermission, getAtletaById)
+router.post('/', userExtractor, auth.adminPermission, createAtleta)
+router.patch('/:id', userExtractor, auth.adminPermission, updateAtleta)
+router.delete('/:id', userExtractor, auth.adminPermission, deleteAtleta)
 
 export default router

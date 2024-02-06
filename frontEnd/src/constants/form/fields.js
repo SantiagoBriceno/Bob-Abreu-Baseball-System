@@ -1,3 +1,31 @@
+export const loginFields = [
+  {
+    title: 'Iniciar sesión',
+    campos: [
+      [
+        {
+          label: 'Usuario',
+          name: 'users',
+          type: 'text',
+          required: true,
+          placeholder: 'Ingresa el usuario',
+          id: 'users'
+        }
+      ],
+      [
+        {
+          label: 'Contraseña',
+          name: 'password',
+          type: 'password',
+          required: true,
+          placeholder: 'Ingresa la contraseña',
+          id: 'password'
+        }
+      ]
+    ]
+  }
+]
+
 export const atletaFields = [
   {
     title: 'Datos del atleta',

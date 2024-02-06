@@ -127,7 +127,8 @@ const HeaderSidebar = () => {
             margin: '24px 16px',
             padding: 24,
             minHeight: 280,
-            borderRadius: borderRadiusLG
+            borderRadius: borderRadiusLG,
+            background: '#011526'
           }}
         >
           <Outlet />

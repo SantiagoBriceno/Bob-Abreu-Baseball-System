@@ -7,7 +7,11 @@ const isValidAtleta = (atleta) => {
 }
 
 const existAtleta = (cedulas, cedula) => {
-  return cedulas.includes(cedula)
+  if (cedulas.length === 0) {
+    return false
+  } else {
+    return cedulas.includes(cedula)
+  }
 }
 
 export { isValidAtleta, existAtleta }

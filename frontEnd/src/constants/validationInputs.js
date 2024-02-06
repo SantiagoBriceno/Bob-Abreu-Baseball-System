@@ -1,3 +1,14 @@
+export const validationInputLogin = ({ id, type, value, options = null }) => {
+  switch (id) {
+    case 'users':
+      return { isInvalid: value.length < 7, message: 'El email debe tener al menos 7 caracteres', isSubmitted: false }
+    case 'password':
+      return { isInvalid: value.length < 7, message: 'La contraseña debe tener al menos 7 caracteres', isSubmitted: false }
+    default:
+      return { isInvalid: false, message: '', isSubmitted: false }
+  }
+}
+
 export const validationInputRepresentante = ({ id, type, value, options = null }) => {
   switch (id) {
     case 'cedula':

@@ -5,79 +5,107 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // import AtletasView from './view/Atletas/Atletas.view.jsx'
 import RepresentanteView from './view/Representantes.view'
 import AtletasView from './view/Atletas/Atletas.view'
+import LoginView from './view/auth/Login.view'
+import { SesionContextProvider } from './context/SesionContext'
+import PublicRoute from './view/router/PublicRoute'
+import PriveteRoute from './view/router/PrivateRoute.jsx'
 
 const router = createBrowserRouter(
   [
     {
       path: '/',
-      element: <HeaderSidebar />,
+      element: <PublicRoute />,
       children: [
         {
-          path: 'representantes',
-          element: <RepresentanteView />
+          index: true,
+          path: 'login',
+          element: <LoginView />
         },
         {
-          path: 'atletas',
-          children: [
-            {
-              path: '',
-              element: <AtletasView />
-            },
-            {
-              path: 'infielders',
-              element: <div>Infielders</div>
-            },
-            {
-              path: 'outfielders',
-              element: <div>Outfielders</div>
-            },
-            {
-              path: 'catchers',
-              element: <div>Catchers</div>
-            },
-            {
-              path: 'pitchers',
-              element: <div>Pitchers</div>
-            }
-          ]
-        },
+          path: 'register',
+          element: <div>Register</div>
+        }
+      ]
+    },
+    {
+      path: '/private',
+      element: <PriveteRoute />,
+      children: [
         {
-          path: 'estadisticas',
+          path: '',
+          element: <HeaderSidebar />,
           children: [
             {
-              path: '',
-              element: <div>Estadisticas</div>
+              path: 'representantes',
+              element: <RepresentanteView />
             },
             {
-              path: 'running',
-              element: <div>Running</div>
+              path: 'atletas',
+              children: [
+                {
+                  path: '',
+                  element: <AtletasView />
+                },
+                {
+                  path: 'infielders',
+                  element: <div>Infielders</div>
+                },
+                {
+                  path: 'outfielders',
+                  element: <div>Outfielders</div>
+                },
+                {
+                  path: 'catchers',
+                  element: <div>Catchers</div>
+                },
+                {
+                  path: 'pitchers',
+                  element: <div>Pitchers</div>
+                }
+              ]
             },
             {
-              path: 'hitting',
-              element: <div>Hitting</div>
-            },
-            {
-              path: 'pitching',
-              element: <div>Pitching</div>
-            },
-            {
-              path: 'catching',
-              element: <div>Catching</div>
-            },
-            {
-              path: 'fielding',
-              element: <div>Fielding</div>
+              path: 'estadisticas',
+              children: [
+                {
+                  path: '',
+                  element: <div>Estadisticas</div>
+                },
+                {
+                  path: 'running',
+                  element: <div>Running</div>
+                },
+                {
+                  path: 'hitting',
+                  element: <div>Hitting</div>
+                },
+                {
+                  path: 'pitching',
+                  element: <div>Pitching</div>
+                },
+                {
+                  path: 'catching',
+                  element: <div>Catching</div>
+                },
+                {
+                  path: 'fielding',
+                  element: <div>Fielding</div>
+                }
+              ]
             }
           ]
         }
       ]
+
     }
   ]
 )
 
 function App () {
   return (
-    <RouterProvider router={router} />
+    <SesionContextProvider>
+      <RouterProvider router={router} />
+    </SesionContextProvider>
   )
 }
 

@@ -15,7 +15,7 @@ app.use('/api/v1/users', usersRoutes)
 app.use('/api/v1/login', loginRoutes)
 app.use('/api/v1/test', testRoutes)
 app.use('/api/v1/representante', representanteRoutes)
-app.use('/api/v1/atleta', atletaRoutes)
+app.use('/api/v1/atletas', atletaRoutes)
 app.use('/api/v1/estadisticas', estadisticasRoutes)
 
 export default app
