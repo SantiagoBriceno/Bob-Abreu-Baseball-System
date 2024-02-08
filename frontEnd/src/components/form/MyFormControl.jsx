@@ -7,7 +7,7 @@ import {
 const MyFormControl = ({ label, helperText = null, children }) => {
   console.log(helperText)
   return (
-    <FormControl p={8}>
+    <FormControl p={0}>
       <FormLabel>{label}</FormLabel>
       {children}
       <FormHelperText>{helperText}</FormHelperText>

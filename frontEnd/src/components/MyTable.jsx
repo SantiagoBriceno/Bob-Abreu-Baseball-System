@@ -16,8 +16,7 @@ import {
 } from '@chakra-ui/react'
 
 import './css/table.css'
-import FormModal from '../form/modals/FormModal'
-// import MyInput from '../form/components/MyInput'
+import FormModal from './modals/FormModal'
 
 const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false }) => {
   const [isOpen, setIsOpen] = useState(false)

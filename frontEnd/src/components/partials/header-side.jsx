@@ -7,11 +7,85 @@ import {
   TeamOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons'
+import {
+  Flex, Spacer,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  Text,
+  Container,
+  Avatar,
+  Stack,
+  HStack,
+  VStack
+} from '@chakra-ui/react'
 import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
+import { useSesionContext } from '../../context/SesionContext'
 import logo from './logo.svg'
 import { NavLink, Outlet } from 'react-router-dom'
+
+import { ChevronDownIcon } from '@chakra-ui/icons'
 const { Header, Sider, Content } = Layout
+
+const AvatarPanel = () => {
+  const { logout } = useSesionContext()
+
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+  console.log('user', user)
+
+  const rol = user ? user.rol : ''
+  const username = user ? user.username : ''
+  console.log('user', username)
+  console.log('rol', rol)
+
+  return (
+    <Flex
+      align='center'
+      justify='center'
+    >
+      <Container zIndex='1000' bg='#fff' rounded='15px'>
+        <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
+          <AccordionItem>
+            <AccordionButton
+              display='flex'
+              alignItems='center'
+              justifyContent='space-between'
+              p={1}
+            >
+              <HStack gap={2}>
+                <Avatar bg='red.500' color='#000' name={username} src='https://bit.ly/dan-abramov' />
+                <Stack>
+                  <VStack>
+                    <Text height='10px' fontSize='xs' color='#000'>{username} </Text>
+                    <Text fontSize='xs' color='#000'>{rol}</Text>
+
+                  </VStack>
+                </Stack>
+                <ChevronDownIcon fontSize='24px' />
+              </HStack>
+
+            </AccordionButton>
+            <AccordionPanel pb={4}>
+              <Button
+                type='text'
+                icon={<UserOutlined />}
+                style={{
+                  fontSize: '16px',
+                  height: 64
+                }}
+                onClick={() => logout()}
+              > Cerrar Sesión
+              </Button>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </Container>
+    </Flex>
+  )
+}
+
 const HeaderSidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
   const {
@@ -33,55 +107,55 @@ const HeaderSidebar = () => {
             {
               key: '1',
               icon: <TeamOutlined />,
-              label: <NavLink to='/representantes'>Representantes</NavLink>
+              label: <NavLink to='/private/representantes'>Representantes</NavLink>
             },
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: <NavLink to='/atletas'>Atletas</NavLink>,
+              label: <NavLink to='/private/atletas'>Atletas</NavLink>,
               children: [
                 {
                   key: '2.1',
-                  label: <NavLink to='/atletas/infielders'>Infielders</NavLink>
+                  label: <NavLink to='/private/atletas/infielders'>Infielders</NavLink>
                 },
                 {
                   key: '2.2',
-                  label: <NavLink to='/atletas/outfielders'>Outfielders</NavLink>
+                  label: <NavLink to='/private/atletas/outfielders'>Outfielders</NavLink>
                 },
                 {
                   key: '2.3',
-                  label: <NavLink to='/atletas/catchers'>Catchers</NavLink>
+                  label: <NavLink to='/private/atletas/catchers'>Catchers</NavLink>
                 },
                 {
                   key: '2.4',
-                  label: <NavLink to='/atletas/pitchers'>Pitchers</NavLink>
+                  label: <NavLink to='/private/atletas/pitchers'>Pitchers</NavLink>
                 }
               ]
             },
             {
               key: '3',
               icon: <UploadOutlined />,
-              label: <NavLink to='/estadisticas'>Estadisticas</NavLink>,
+              label: <NavLink to='/private/estadisticas'>Estadisticas</NavLink>,
               children: [
                 {
                   key: '3.1',
-                  label: <NavLink to='/estadisticas/running'>Running</NavLink>
+                  label: <NavLink to='/private/estadisticas/running'>Running</NavLink>
                 },
                 {
                   key: '3.2',
-                  label: <NavLink to='/estadisticas/fielding'>Fielding</NavLink>
+                  label: <NavLink to='/private/estadisticas/fielding'>Fielding</NavLink>
                 },
                 {
                   key: '3.3',
-                  label: <NavLink to='/estadisticas/batting'>Batting</NavLink>
+                  label: <NavLink to='/private/estadisticas/batting'>Batting</NavLink>
                 },
                 {
                   key: '3.4',
-                  label: <NavLink to='/estadisticas/throwing'>throwing</NavLink>
+                  label: <NavLink to='/private/estadisticas/throwing'>throwing</NavLink>
                 },
                 {
                   key: '3.5',
-                  label: <NavLink to='/estadisticas/pitchers'>Pitching</NavLink>
+                  label: <NavLink to='/private/estadisticas/pitchers'>Pitching</NavLink>
                 }
               ]
             },
@@ -108,26 +182,33 @@ const HeaderSidebar = () => {
         <Header
           style={{
             padding: 0,
+            height: 80,
             background: colorBgContainer
           }}
+
         >
-          <Button
-            type='text'
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64
-            }}
-          />
+          <Flex>
+            <Button
+              type='text'
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64
+              }}
+            />
+            <Spacer />
+            <AvatarPanel />
+          </Flex>
         </Header>
         <Content
           style={{
             margin: '24px 16px',
             padding: 24,
             minHeight: 280,
-            borderRadius: borderRadiusLG
+            borderRadius: borderRadiusLG,
+            background: '#011526'
           }}
         >
           <Outlet />

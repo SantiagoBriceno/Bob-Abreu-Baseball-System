@@ -73,6 +73,8 @@ CREATE TABLE IF NOT EXISTS datos_generales (
   envergadura FLOAT(10) NOT NULL,
   imc FLOAT(10) NOT NULL,
   imc_ideal FLOAT(10) NOT NULL,
+  peso_corporal FLOAT(10) NOT NULL,
+  calorias_diarias FLOAT(10) NOT NULL,
   peso_ideal FLOAT(10) NOT NULL,
   percentil_peso FLOAT(10) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
@@ -127,7 +129,7 @@ CREATE TABLE IF NOT EXISTS perfiles_fotograficos (
   id_ficha INT NOT NULL,
   id_atleta VARCHAR(10) NOT NULL,
   frente VARCHAR(100) NOT NULL,
-   perfil VARCHAR(100) NOT NULL,
+  perfil VARCHAR(100) NOT NULL,
   espalda VARCHAR(100) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
@@ -209,7 +211,7 @@ CREATE TABLE IF NOT EXISTS running (
   id INT NOT NULL AUTO_INCREMENT,
   id_atleta VARCHAR(10) NOT NULL,
   velocidad_60 FLOAT(10) NOT NULL,
-  velocidad_40 FLOAT(10) NOT NULL,
+  velocidad_home_to_first FLOAT(10) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );

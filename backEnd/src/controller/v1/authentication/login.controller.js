@@ -9,7 +9,6 @@ export const loginUser = async (req, res) => {
   const { username, password } = body
 
   const user = await lService.findUser(username)
-  console.log(user)
   const passwordCorrect = user.length === 0
     ? false
     : await bcrypt.compare(password, user[0].password)
@@ -31,8 +30,6 @@ export const loginUser = async (req, res) => {
       expiresIn: 60 * 60 * 24
     })
 
-    res.send({
-      token
-    })
+    res.status(200).send({ token, user: userForToken })
   }
 }

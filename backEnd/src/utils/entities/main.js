@@ -1,6 +1,14 @@
 /* eslint-disable camelcase */
 // Estructuras de datos para las entidades de la base de datos
 
+export const user = {
+  cedula: '',
+  username: '',
+  name: '',
+  password: '',
+  rol: ''
+}
+
 export const representante = {
   cedula: '',
   nombre: '',
@@ -29,7 +37,6 @@ export const atleta = {
   posicion: '',
   estado: '',
   foto: ''
-
 }
 
 export const indicadores = {
