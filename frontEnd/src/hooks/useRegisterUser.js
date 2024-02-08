@@ -10,7 +10,9 @@ export const useRegisterUser = () => {
   }
 
   const handleSubmit = (e) => {
+    console.log('user', user)
     registerUser({ user })
+    window.location.href = '/login'
   }
 
   return {

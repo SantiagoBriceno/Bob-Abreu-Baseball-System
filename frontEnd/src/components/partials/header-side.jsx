@@ -107,55 +107,55 @@ const HeaderSidebar = () => {
             {
               key: '1',
               icon: <TeamOutlined />,
-              label: <NavLink to='/representantes'>Representantes</NavLink>
+              label: <NavLink to='/private/representantes'>Representantes</NavLink>
             },
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: <NavLink to='/atletas'>Atletas</NavLink>,
+              label: <NavLink to='/private/atletas'>Atletas</NavLink>,
               children: [
                 {
                   key: '2.1',
-                  label: <NavLink to='/atletas/infielders'>Infielders</NavLink>
+                  label: <NavLink to='/private/atletas/infielders'>Infielders</NavLink>
                 },
                 {
                   key: '2.2',
-                  label: <NavLink to='/atletas/outfielders'>Outfielders</NavLink>
+                  label: <NavLink to='/private/atletas/outfielders'>Outfielders</NavLink>
                 },
                 {
                   key: '2.3',
-                  label: <NavLink to='/atletas/catchers'>Catchers</NavLink>
+                  label: <NavLink to='/private/atletas/catchers'>Catchers</NavLink>
                 },
                 {
                   key: '2.4',
-                  label: <NavLink to='/atletas/pitchers'>Pitchers</NavLink>
+                  label: <NavLink to='/private/atletas/pitchers'>Pitchers</NavLink>
                 }
               ]
             },
             {
               key: '3',
               icon: <UploadOutlined />,
-              label: <NavLink to='/estadisticas'>Estadisticas</NavLink>,
+              label: <NavLink to='/private/estadisticas'>Estadisticas</NavLink>,
               children: [
                 {
                   key: '3.1',
-                  label: <NavLink to='/estadisticas/running'>Running</NavLink>
+                  label: <NavLink to='/private/estadisticas/running'>Running</NavLink>
                 },
                 {
                   key: '3.2',
-                  label: <NavLink to='/estadisticas/fielding'>Fielding</NavLink>
+                  label: <NavLink to='/private/estadisticas/fielding'>Fielding</NavLink>
                 },
                 {
                   key: '3.3',
-                  label: <NavLink to='/estadisticas/batting'>Batting</NavLink>
+                  label: <NavLink to='/private/estadisticas/batting'>Batting</NavLink>
                 },
                 {
                   key: '3.4',
-                  label: <NavLink to='/estadisticas/throwing'>throwing</NavLink>
+                  label: <NavLink to='/private/estadisticas/throwing'>throwing</NavLink>
                 },
                 {
                   key: '3.5',
-                  label: <NavLink to='/estadisticas/pitchers'>Pitching</NavLink>
+                  label: <NavLink to='/private/estadisticas/pitchers'>Pitching</NavLink>
                 }
               ]
             },
