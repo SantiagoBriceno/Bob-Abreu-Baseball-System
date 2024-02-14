@@ -28,12 +28,16 @@ const deleteAtleta = async (id) => {
 
 const getCedulas = async () => {
   const [data] = await pool.query('SELECT cedula FROM atleta')
-  console.log('data', data)
   if (data.length === 0) {
     return []
   } else {
-    data.map(({ cedula }) => cedula)
+    return data.map(({ cedula }) => cedula)
   }
+}
+
+const getPositionById = async (id) => {
+  const [data] = await pool.query('SELECT * FROM posicion WHERE id = ?', [id])
+  return data
 }
 
 export default {
@@ -42,5 +46,6 @@ export default {
   createAtleta,
   updateAtleta,
   deleteAtleta,
-  getCedulas
+  getCedulas,
+  getPositionById
 }
