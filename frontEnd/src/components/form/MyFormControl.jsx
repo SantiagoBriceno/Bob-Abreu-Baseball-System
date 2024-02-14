@@ -4,11 +4,11 @@ import {
   FormHelperText
 } from '@chakra-ui/react'
 
-const MyFormControl = ({ label, helperText = null, children }) => {
+const MyFormControl = ({ label, helperText = null, children, mb = 0 }) => {
   console.log(helperText)
   return (
-    <FormControl p={8}>
-      <FormLabel>{label}</FormLabel>
+    <FormControl p={4} mb={mb} h='50%'>
+      <FormLabel fontWeight='semibold'>{label}</FormLabel>
       {children}
       <FormHelperText>{helperText}</FormHelperText>
     </FormControl>

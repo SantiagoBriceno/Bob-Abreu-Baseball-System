@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const useMyFormHook = (formDataStructure, formDataValidation, validationMethod) => {
+export const useMyFormHook = (formDataStructure, formDataValidation, validationMethod, onSubmit) => {
   const [formData, setFormData] = useState(formDataStructure)
   const [errorState, setErrorState] = useState(formDataValidation)
 
@@ -12,6 +12,7 @@ export const useMyFormHook = (formDataStructure, formDataValidation, validationM
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
+    onSubmit(formData)
   }
 
   const handleBlur = (e) => {

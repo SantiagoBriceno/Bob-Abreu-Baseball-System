@@ -1,7 +1,10 @@
-import { Input } from '@chakra-ui/react'
-const MyInput = ({ label, w = '100%', ...props }) => {
+import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
+const MyInput = ({ icon, label, w = '100%', ...props }) => {
   return (
-    <Input w={w} {...props} />
+    <InputGroup w={w}>
+      {icon !== undefined && <InputLeftAddon bg='background.border' color='text.87' rounded='md'>{icon}</InputLeftAddon>}
+      <Input variant='filled' {...props} />
+    </InputGroup>
   )
 }
 

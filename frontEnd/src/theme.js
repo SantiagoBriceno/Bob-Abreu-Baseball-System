@@ -9,6 +9,14 @@ const theme = extendTheme({
     useSystemColorMode: false
   },
   colors: {
+    principales: {
+      primary: '#010440',
+      secondary: '#010326',
+      terciary: '#F24405',
+      cuaternary: '#F20505',
+      quinary: '#0D0D0D',
+      sextary: '#F2F2F2'
+    },
     text: {
       87: 'rgba(255, 255, 255, 0.87)',
       60: 'rgba(255, 255, 255, 0.6)',
@@ -16,7 +24,7 @@ const theme = extendTheme({
     },
     background: {
       bg: '#121212',
-      panel: '222222',
+      panel: '#222222',
       border: 'rgba(255,255,255,0.09)'
     },
     primary: {

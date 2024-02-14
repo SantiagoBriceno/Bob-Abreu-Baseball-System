@@ -1,0 +1,65 @@
+.container-table {
+    margin: 40px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.container-table h1 {
+    font-weight: 700;
+    font-size: large;
+}
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.table-cell{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    max-width: fit-content;
+    width: fit-content;
+    gap: 20px;
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+}
+
+.button-1{
+    background-color: rgb(0, 53, 128);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.button-2{
+    background-color: red;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+}
+

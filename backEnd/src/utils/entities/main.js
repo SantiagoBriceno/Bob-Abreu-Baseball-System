@@ -1,6 +1,14 @@
 /* eslint-disable camelcase */
 // Estructuras de datos para las entidades de la base de datos
 
+export const user = {
+  cedula: '',
+  username: '',
+  name: '',
+  password: '',
+  rol: ''
+}
+
 export const representante = {
   cedula: '',
   nombre: '',
@@ -14,7 +22,6 @@ export const representante = {
 }
 
 export const registro_especial = {
-  id: '',
   cedula_atleta: '',
   fecha_evento: '',
   descripcion: ''
@@ -30,7 +37,6 @@ export const atleta = {
   posicion: '',
   estado: '',
   foto: ''
-
 }
 
 export const indicadores = {
@@ -118,14 +124,19 @@ export const perfiles_fotograficos = {
   id_auditoria: ''
 }
 
-export const estadisticas = {
+export const running = {
+  id: '',
   id_stat: '',
-  id_atleta: ''
+  velocidad: '',
+  resistencia: '',
+  agilidad: '',
+  fuerza: '',
+  flexibilidad: '',
+  coordinacion: ''
 }
 
 export const hitting = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   agudeza_visual: '',
   bat_speed: '',
   angle_attack: '',
@@ -138,8 +149,7 @@ export const hitting = {
 }
 
 export const throwing = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   lanzamiento_primera: '',
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
@@ -148,8 +158,7 @@ export const throwing = {
 }
 
 export const make_up = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   actitud: '',
   compromiso: '',
   responsabilidad: '',
@@ -157,8 +166,7 @@ export const make_up = {
 }
 
 export const fielding = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   getting_jump: '',
   ruta: '',
   alcance: '',
@@ -170,8 +178,7 @@ export const fielding = {
 }
 
 export const pitching = {
-  id: '',
-  id_stat: '',
+  id_atleta: '',
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',

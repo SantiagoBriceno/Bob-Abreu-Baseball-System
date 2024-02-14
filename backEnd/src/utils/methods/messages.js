@@ -7,7 +7,7 @@ const msgPost = ({ entity, reqBody }) => {
 }
 
 const msgDelete = ({ entity, reqBody }) => {
-  return `Se elimino un registro en la tabla ${entity} con los siguientes datos:\n${(reqBody)}`
+  return `Se elimino un registro en la tabla ${entity} con los siguientes datos:\n${formatReqBody(reqBody)}`
 }
 
 const formatReqBody = (reqBody) => {

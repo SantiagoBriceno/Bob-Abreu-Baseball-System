@@ -20,7 +20,7 @@ export const userExtractor = (req, res, next) => {
       message: 'Invalid or missing token'
     })
   } else {
-    req.user = { cedula: decodeToken.cedula, rol: decodeToken.rol, username: decodeToken.username }
+    req.user = { token, cedula: decodeToken.cedula, rol: decodeToken.rol, username: decodeToken.username }
     next()
   }
 }
