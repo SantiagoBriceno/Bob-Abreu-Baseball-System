@@ -45,7 +45,7 @@ const AvatarPanel = () => {
       align='center'
       justify='center'
     >
-      <Container zIndex='1000' bg='#fff' rounded='15px'>
+      <Container zIndex='1000' bg='#fff' color='black' rounded='15px'>
         <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
           <AccordionItem>
             <AccordionButton
@@ -55,10 +55,10 @@ const AvatarPanel = () => {
               p={1}
             >
               <HStack gap={2}>
-                <Avatar bg='red.500' color='#000' name={username} src='https://bit.ly/dan-abramov' />
+                <Avatar bg='red.500' color='#fff' name={username} src='https://bit.ly/dan-abramov' />
                 <Stack>
                   <VStack>
-                    <Text height='10px' fontSize='xs' color='#000'>{username} </Text>
+                    <Text height='10px' fontSize='xs' fontWeight='extrabold' color='#000'>{username} </Text>
                     <Text fontSize='xs' color='#000'>{rol}</Text>
 
                   </VStack>
@@ -208,7 +208,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#011526'
+            background: '#011526F5'
           }}
         >
           <Outlet />

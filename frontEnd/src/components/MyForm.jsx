@@ -1,5 +1,5 @@
 import {
-  Heading, VStack, Stack, StackDivider
+  Heading, Stack, Box
 } from '@chakra-ui/react'
 import MyFormControl from './form/MyFormControl.jsx'
 import MyInput from './form/MyInput.jsx'
@@ -9,11 +9,13 @@ import MyButton from './form/MyButton.jsx'
 
 const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
   return (
-    <MyFormTemplate>
+    <Box>
       <FormHeader title={title} />
-      <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
-      <FormFooter actions={actions} />
-    </MyFormTemplate>
+      <MyFormTemplate>
+        <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
+        <FormFooter actions={actions} />
+      </MyFormTemplate>
+    </Box>
   )
 }
 
@@ -22,7 +24,7 @@ export default MyForm
 const FormContent = ({ fields, formData, actions, errorMessage }) => {
   console.log(errorMessage)
   return (
-    <VStack divider={<StackDivider borderColor='gray.200' />}>
+    <>
       {fields.map((field, index) => (
         <Stack key={index}>
           <Heading size={2} textAlign='center'>
@@ -32,7 +34,6 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
             <Stack key={index} direction='row'>
               {campo.map((c, index) => (
                 <MyFormControl key={index} label={c.label} helperText={errorMessage[c]}>
-
                   {c.type === 'select'
                     ? <MySelect
                         opt={c.opt}
@@ -56,20 +57,28 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
           ))}
         </Stack>
       ))}
-    </VStack>
+    </>
   )
 }
 
 const FormHeader = ({ title }) => {
   return (
-    <Heading textAlign='center'>
-      {title}
-    </Heading>
+    <>
+      <Heading textAlign='center' w='100%' m='5% 0'>
+        {title}
+      </Heading>
+    </>
+
   )
 }
 
 const FormFooter = ({ actions }) => {
   return (
-    <MyButton ml='25%' w='50%' onClick={actions.handleSubmit} label='Click' />
+    <MyButton
+      w='25%' mt={10} onClick={actions.handleSubmit} bg='#F24405' _hover={{
+        background: '#F20505',
+        color: 'white'
+      }} label='Enviar'
+    />
   )
 }

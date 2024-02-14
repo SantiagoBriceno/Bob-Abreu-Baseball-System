@@ -444,7 +444,6 @@ export const fichaAntropometricaFields = [
 
 export const representanteFields = [
   {
-    titulo: 'Datos personales',
     campos: [
       [
         {
