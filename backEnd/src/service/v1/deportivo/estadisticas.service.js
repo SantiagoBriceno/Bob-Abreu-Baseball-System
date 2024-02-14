@@ -138,6 +138,57 @@ const deleteFieldingStat = async (id) => {
   return fieldingStat
 }
 
+const getFieldingStatsByIdPlayer = async (id) => {
+  const [fieldingStats] = await pool.query('SELECT * FROM fielding WHERE id_atleta = ?', [id])
+  return fieldingStats
+}
+
+const getHittingStatsByIdPlayer = async (id) => {
+  const [hittingStats] = await pool.query('SELECT * FROM hitting WHERE id_atleta = ?', [id])
+  return hittingStats
+}
+
+const getRunningStatsByIdPlayer = async (id) => {
+  const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
+  return runningStats
+}
+
+const getThrowingStatsByIdPlayer = async (id) => {
+  const [throwingStats] = await pool.query('SELECT * FROM throwing WHERE id_atleta = ?', [id])
+  return throwingStats
+}
+
+const getPitchingStats = async () => {
+  const [pitchingStats] = await pool.query('SELECT * FROM pitching')
+  return pitchingStats
+}
+
+const getPitchingStatById = async (id) => {
+  const [pitchingStat] = await pool.query('SELECT * FROM pitching WHERE id = ?', [id])
+  return pitchingStat
+}
+
+const getPitchingStatByIdPlayer = async (id) => {
+  const [pitchingStats] = await pool.query('SELECT * FROM pitching WHERE id_atleta = ?', [id])
+  return pitchingStats
+}
+
+const createPitchingStat = async (pitchingStat) => {
+  const [newPitchingStat] = await pool.query('INSERT INTO pitching SET ?', [pitchingStat])
+  return newPitchingStat
+}
+
+const updatePitchingStat = async (id, pitchingStat) => {
+  const [updatedPitchingStat] = await pool.query('UPDATE pitching SET ? WHERE id = ?', [pitchingStat, id])
+  return updatedPitchingStat
+}
+
+const deletePitchingStat = async (id) => {
+  const [pitchingStat] = await pool.query('SELECT * FROM pitching WHERE id = ?', [id])
+  await pool.query('DELETE FROM pitching WHERE id = ?', [id])
+  return pitchingStat
+}
+
 export default {
   getHittingStatsIds,
   getHittingStats,
@@ -163,5 +214,15 @@ export default {
   createFieldingStat,
   updateFieldingStat,
   deleteFieldingStat,
-  nextId
+  nextId,
+  getFieldingStatsByIdPlayer,
+  getHittingStatsByIdPlayer,
+  getRunningStatsByIdPlayer,
+  getThrowingStatsByIdPlayer,
+  getPitchingStats,
+  getPitchingStatById,
+  getPitchingStatByIdPlayer,
+  createPitchingStat,
+  updatePitchingStat,
+  deletePitchingStat
 }
