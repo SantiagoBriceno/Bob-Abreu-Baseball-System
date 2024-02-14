@@ -40,6 +40,11 @@ const getPositionById = async (id) => {
   return data
 }
 
+const getAtletaByPosition = async (posicion) => {
+  const [data] = await pool.query('SELECT * FROM atleta WHERE posicion = ?', [posicion])
+  return data
+}
+
 export default {
   getAtletas,
   getAtletaById,
@@ -47,5 +52,6 @@ export default {
   updateAtleta,
   deleteAtleta,
   getCedulas,
-  getPositionById
+  getPositionById,
+  getAtletaByPosition
 }

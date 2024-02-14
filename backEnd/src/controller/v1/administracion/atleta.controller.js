@@ -15,7 +15,39 @@ export const getAtletas = async (req, res) => {
 export const getAtletaById = async (req, res) => {
   try {
     const { id } = req.params
+    if (!existAtleta(await service.getCedulas(), id)) {
+      return res.status(400).json({ message: 'Atleta no existe' })
+    }
     const data = await service.getAtletaById(id)
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+export const getAtletaByPosition = async (req, res) => {
+  try {
+    const { posicion } = req.params
+    const data = await service.getAtletaByPosition(posicion)
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+export const getAtletasByPosition = async (req, res) => {
+  try {
+    const catchers = await service.getAtletaByPosition('Catcher')
+    const pitchers = await service.getAtletaByPosition('Pitcher')
+    const infielders = await service.getAtletaByPosition('Infielder')
+    const outfielders = await service.getAtletaByPosition('Outfielder')
+
+    const data = {
+      catchers,
+      pitchers,
+      infielders,
+      outfielders
+    }
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
