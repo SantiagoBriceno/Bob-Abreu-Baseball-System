@@ -37,7 +37,7 @@ export const getHittingStatById = async (req, res) => {
 export const getHittingStatByIdPlayer = async (req, res) => {
   const { id } = req.params
   try {
-    const hittingStats = await service.getHittingStatById(id)
+    const hittingStats = await service.getHittingStatByIdPlayer(id)
     if (hittingStats.length === 0) {
       res.status(404).json({ message: 'No hitting stats found' })
     } else {
@@ -133,7 +133,7 @@ export const getRunningStatById = async (req, res) => {
 export const getRunningStatByIdPlayer = async (req, res) => {
   const { id } = req.params
   try {
-    const runningStats = await service.getRunningStatById(id)
+    const runningStats = await service.getRunningStatByIdPlayer(id)
     if (runningStats.length === 0) {
       res.status(404).json({ message: 'No running stats found' })
     } else {
@@ -228,7 +228,7 @@ export const getThrowingStatById = async (req, res) => {
 export const getThrowingStatByIdPlayer = async (req, res) => {
   const { id } = req.params
   try {
-    const throwingStats = await service.getThrowingStatById(id)
+    const throwingStats = await service.getThrowingStatsByIdPlayer(id)
     if (throwingStats.length === 0) {
       res.status(404).json({ message: 'No throwing stats found' })
     } else {
@@ -410,7 +410,7 @@ export const getPitchingStatById = async (req, res) => {
 export const getPitchingStatByIdPlayer = async (req, res) => {
   const { id } = req.params
   try {
-    const pitchingStats = await service.getPitchingStatById(id)
+    const pitchingStats = await service.getPitchingStatByIdPlayer(id)
     if (pitchingStats.length === 0) {
       res.status(404).json({ message: 'No pitching stats found' })
     } else {
@@ -499,7 +499,7 @@ export const getStatsByIdPlayer = async (req, res) => {
       pitching: pitchingStats || null
     }
 
-    res.status(200).json({ data })
+    res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

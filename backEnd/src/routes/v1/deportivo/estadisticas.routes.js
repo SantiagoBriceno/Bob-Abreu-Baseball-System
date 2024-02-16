@@ -65,6 +65,6 @@ router.post('/throwing', userExtractor, createRunningStat)
 router.patch('/throwing/:id', userExtractor, updateFieldingStat)
 
 // RUTA PARA OBTENER TODAS LAS STATISTICAS DE UN ATLETA
-router.get('/:id', getStatsByIdPlayer)
+router.get('/player/:id', getStatsByIdPlayer)
 
 export default router
