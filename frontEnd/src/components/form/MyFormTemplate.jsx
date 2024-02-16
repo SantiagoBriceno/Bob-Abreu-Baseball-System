@@ -3,9 +3,9 @@ const MyFormTemplate = ({ children, bg = true }) => {
   return (
     <Box
       rouned='lg'
-      bg='background.bg'
-      boxShadow={bg ? 'lg' : 'none'}
-      p={8}
+      bg='white'
+      color='black'
+      p={4}
       mb={4}
       minW={600}
     >

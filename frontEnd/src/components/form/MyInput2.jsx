@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputLeftAddon } from '@chakra-ui/react'
-const MyInput = ({ label, onChange, placeholder, id, type = 'text', valueControl, isReadOnly = false, onBlur, validationField = { isInvalid: false, message: '' }, icon = null, mb = 0 }) => {
+const MyInput = ({ label, onChange, placeholder, id, type = 'text', valueControl, isReadOnly = false, onBlur, validationField = { isInvalid: false, message: '' }, icon = null, mb = 0, ...props }) => {
   return (
-    <FormControl mb={mb} h='50%' isInvalid={validationField.isInvalid}>
+    <FormControl {...props} mb={mb} h='50%' isInvalid={validationField.isInvalid}>
       <FormLabel fontWeight='semibold'>{label}</FormLabel>
       {type === 'tel'
         ? (

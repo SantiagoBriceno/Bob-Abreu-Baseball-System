@@ -19,11 +19,15 @@ const columns = [
 ]
 
 const RepresentanteView = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
 
   const closeModal = () => {
     setIsOpen(false)
+  }
+
+  const openModal = () => {
+    setIsOpen(true)
   }
 
   return (
@@ -32,7 +36,7 @@ const RepresentanteView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           TABLA DE REPRESENTANTES
         </Heading>
-        <MyTable columns={columns} title='Visualización de representantes' />
+        <MyTable columns={columns} title='Visualización de representantes' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />

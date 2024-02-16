@@ -75,9 +75,8 @@ const FormHeader = ({ title }) => {
 const FormFooter = ({ actions }) => {
   return (
     <MyButton
-      w='25%' mt={10} onClick={actions.handleSubmit} bg='#F24405' _hover={{
-        background: '#F20505',
-        color: 'white'
+      w='25%' mt={10} onClick={actions.handleSubmit} color='white' bg='principales.terciary' _hover={{
+        background: 'principales.cuaternary'
       }} label='Enviar'
     />
   )
