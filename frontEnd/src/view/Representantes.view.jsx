@@ -34,7 +34,7 @@ const RepresentanteView = () => {
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
-          TABLA DE REPRESENTANTES
+          REPRESENTANTES
         </Heading>
         <MyTable columns={columns} title='Visualización de representantes' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>

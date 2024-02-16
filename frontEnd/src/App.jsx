@@ -5,6 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // import AtletasView from './view/Atletas/Atletas.view.jsx'
 import RepresentanteView from './view/Representantes.view'
 import AtletasView from './view/Atletas/Atletas.view'
+import InfieldersView from './view/Atletas/Infielders.view'
+import OutfieldersView from './view/Atletas/Outfielders.view'
+import CatchersView from './view/Atletas/Catchers.view'
+import PitchersView from './view/Atletas/Pitchers.view'
 import LoginView from './view/auth/Login.view'
 import { SesionContextProvider } from './context/SesionContext'
 import PublicRoute from './view/router/PublicRoute'
@@ -48,19 +52,19 @@ const router = createBrowserRouter(
                 },
                 {
                   path: 'infielders',
-                  element: <div>Infielders</div>
+                  element: <InfieldersView />
                 },
                 {
                   path: 'outfielders',
-                  element: <div>Outfielders</div>
+                  element: <OutfieldersView />
                 },
                 {
                   path: 'catchers',
-                  element: <div>Catchers</div>
+                  element: <CatchersView />
                 },
                 {
                   path: 'pitchers',
-                  element: <div>Pitchers</div>
+                  element: <PitchersView />
                 }
               ]
             },
