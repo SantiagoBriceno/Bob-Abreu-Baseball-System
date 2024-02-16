@@ -1,4 +1,4 @@
-import { HStack, Heading, Stack } from '@chakra-ui/react'
+import { Heading, Stack } from '@chakra-ui/react'
 import MyForm from '../components/MyForm'
 import { representante } from '../../../global.constants.js'
 import { representanteValidation } from '../constants/dataValidation.js'
@@ -7,6 +7,8 @@ import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { representanteFields } from '../constants/form/fields.js'
 import { createRepresentante } from '../service/representante.js'
 import MyTable from '../components/MyTable.jsx'
+import { useState } from 'react'
+import FormModal from '../components/modals/FormModal.jsx'
 
 const columns = [
   { key: 'nombre', name: 'Nombre' },
@@ -17,19 +19,25 @@ const columns = [
 ]
 
 const RepresentanteView = () => {
+  const [isOpen, setIsOpen] = useState(true)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
 
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+
   return (
-    <HStack spacing={8} align='center'>
-      <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />
-      {/* <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} /> */}
-      <Stack spacing={8} align='center' minH='80vh' w='80%'>
+    <Stack spacing={8} align='center'>
+      <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           TABLA DE REPRESENTANTES
         </Heading>
         <MyTable columns={columns} title='Visualización de representantes' />
       </Stack>
-    </HStack>
+      <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />
+      </FormModal>
+    </Stack>
   )
 }
 

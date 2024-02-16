@@ -96,13 +96,14 @@ const HeaderSidebar = () => {
       minHeight: '100vh'
     }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ background: '#010440' }} trigger={null} collapsible collapsed={collapsed}>
         <div className='demo-logo-vertical'><img src={logo} alt='logo' /></div>
         <Menu
           theme='dark'
           mode='inline'
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['2']}
+          style={{ background: '#010440' }}
           items={[
             {
               key: '1',
@@ -183,7 +184,7 @@ const HeaderSidebar = () => {
           style={{
             padding: 0,
             height: 80,
-            background: colorBgContainer
+            background: 'rgba(255,255,255,0.09)'
           }}
 
         >
@@ -208,7 +209,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#011526F5'
+            background: '#222222'
           }}
         >
           <Outlet />
