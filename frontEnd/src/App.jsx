@@ -20,10 +20,6 @@ const router = createBrowserRouter(
         {
           path: 'login',
           element: <LoginView />
-        },
-        {
-          path: 'register',
-          element: <RegisterView />
         }
       ]
     },
@@ -35,6 +31,10 @@ const router = createBrowserRouter(
           path: '',
           element: <HeaderSidebar />,
           children: [
+            {
+              path: 'register',
+              element: <RegisterView />
+            },
             {
               path: 'representantes',
               element: <RepresentanteView />

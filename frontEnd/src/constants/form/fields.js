@@ -75,17 +75,17 @@ export const atletaFields = [
           required: false,
           placeholder: 'Ingresa el número de teléfono',
           id: 'tlf'
-        },
-        {
-          label: 'Correo',
-          name: 'correo',
-          type: 'email',
-          required: false,
-          placeholder: 'Ingresa el correo electrónico',
-          id: 'correo'
         }
       ],
       [
+        {
+          label: 'Preferecia de bateo',
+          name: 'hitting',
+          type: 'text',
+          required: true,
+          placeholder: 'Ingresa la preferencia de bateo',
+          id: 'hitting'
+        },
         {
           label: 'Posición',
           name: 'posicion',
