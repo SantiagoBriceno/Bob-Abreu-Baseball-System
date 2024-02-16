@@ -33,7 +33,7 @@ export const atleta = {
   tlf: '',
   lugar_nacimiento: '',
   fecha_nacimiento: '',
-  correo: '',
+  hitting: '',
   posicion: '',
   estado: '',
   foto: ''
@@ -154,7 +154,11 @@ export const throwing = {
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
   lanzamiento_home: '',
-  pop_time: ''
+  pop_time: '',
+  fluidez_brazo: '',
+  brazo_rapido: '',
+  facilidad_movimiento: '',
+  linealidad_lanzamiento: ''
 }
 
 export const make_up = {

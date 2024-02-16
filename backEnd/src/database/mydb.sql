@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS atleta (
   tlf VARCHAR(15) NULL,
   lugar_nacimiento VARCHAR(100) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
-  email VARCHAR(50) NULL,
+  hitting VARCHAR(50) NOT NULL,
   posicion VARCHAR(50) NOT NULL,
   estado VARCHAR(50) NOT NULL,
   foto VARCHAR(100) NOT NULL,
@@ -166,6 +166,10 @@ CREATE TABLE IF NOT EXISTS throwing (
   lanzamiento_tercera FLOAT(10) NULL,
   lanzamiento_home FLOAT(10) NULL,
   pop_time FLOAT(10) NULL,
+  fluidez_brazo FLOAT(10) NULL,
+  brazo_rapido FLOAT(10) NULL,
+  facilidad_movimiento FLOAT(10) NULL,
+  linealidad_lanzamiento FLOAT(10) NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
