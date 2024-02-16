@@ -61,7 +61,7 @@ const AvatarPanel = () => {
                 <Avatar color='#fff' name={username} />
                 <Stack>
                   <VStack>
-                    <Text height='10px' fontSize='s' fontWeight='extrabold' color='#000'>{username} </Text>
+                    <Text height='10px' fontSize='s' fontWeight='extrabold' color='#000'>{username}</Text>
                     <Text fontSize='xs' color='#000'>{rol}</Text>
 
                   </VStack>
@@ -156,7 +156,7 @@ const HeaderSidebar = () => {
                 },
                 {
                   key: '3.4',
-                  label: <NavLink to='/private/estadisticas/throwing'>throwing</NavLink>
+                  label: <NavLink to='/private/estadisticas/throwing'>Throwing</NavLink>
                 },
                 {
                   key: '3.5',
