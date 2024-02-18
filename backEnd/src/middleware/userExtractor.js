@@ -4,7 +4,6 @@ import { SECRET } from '../config.js'
 export const userExtractor = (req, res, next) => {
   let token = null
   const authorization = req.get('authorization')
-  console.log('authorization', authorization)
   if (authorization && authorization.toLowerCase().startsWith('bearer')) {
     token = authorization.split(' ')[1]
   }

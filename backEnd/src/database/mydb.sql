@@ -84,7 +84,6 @@ CREATE TABLE IF NOT EXISTS datos_generales (
 CREATE TABLE IF NOT EXISTS perimetros_corporales (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
-  id_atleta VARCHAR(10) NOT NULL,
   cabeza FLOAT(10) NOT NULL,
   cuello FLOAT(10) NOT NULL,
   brazo_relajado FLOAT(10) NOT NULL,
@@ -104,7 +103,6 @@ CREATE TABLE IF NOT EXISTS perimetros_corporales (
 CREATE TABLE IF NOT EXISTS indice_cintura_cadera (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
-  id_atleta VARCHAR(10) NOT NULL,
   cintura FLOAT(10) NOT NULL,
   cadera FLOAT(10) NOT NULL,
   relacion_cintura_cadera FLOAT(10) NOT NULL,
@@ -115,7 +113,6 @@ CREATE TABLE IF NOT EXISTS indice_cintura_cadera (
 CREATE TABLE IF NOT EXISTS indice_masa_corporal (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
-  id_atleta VARCHAR(10) NOT NULL,
   masa_grasa_corporal FLOAT(10) NOT NULL,
   masa_grasa_ideal FLOAT(10) NOT NULL,
   masa_magra_corporal FLOAT(10) NOT NULL,
@@ -127,19 +124,11 @@ CREATE TABLE IF NOT EXISTS indice_masa_corporal (
 CREATE TABLE IF NOT EXISTS perfiles_fotograficos (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
-  id_atleta VARCHAR(10) NOT NULL,
   frente VARCHAR(100) NOT NULL,
   perfil VARCHAR(100) NOT NULL,
   espalda VARCHAR(100) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS estadisticas (
-  id_stat INT NOT NULL AUTO_INCREMENT,
-  id_atleta VARCHAR(10) NOT NULL,
-  id_auditoria VARCHAR(10) NOT NULL,
-  PRIMARY KEY (id_stat)
 );
 
 CREATE TABLE IF NOT EXISTS hitting (
@@ -153,7 +142,7 @@ CREATE TABLE IF NOT EXISTS hitting (
   rec_zona_strike INT(10) NOT NULL,
   rec_pitcheos INT(10) NOT NULL,
   control_bate INT(10) NOT NULL,
-  rutal_del_bate INT(10) NOT NULL,
+  ruta_del_bate INT(10) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
