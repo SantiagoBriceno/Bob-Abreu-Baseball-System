@@ -46,7 +46,7 @@ const AvatarPanel = () => {
       justify='center'
       maxH='80px'
     >
-      <Container maxH='80px' w='200px' zIndex='1000' bg='white' color='black' alignItems='center' _expanded={{ bg: 'white', color: 'black', borderColor: 'transparent', border: 0 }}>
+      <Container maxH='80px' w='200px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ bg: 'white', color: 'black', borderColor: 'transparent', border: 0 }}>
         <Accordion alignContent='center' allowMultiple width='100%' h='80px' style={{ border: 0, borderColor: 'transparent' }} mt={0} pt={0} _hover={{ bg: 'trasnparent' }}>
           <AccordionItem
             _expanded={{ background: 'white', color: 'black' }}
@@ -213,7 +213,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#222222'
+            background: colorBgContainer
           }}
         >
           <Outlet />
