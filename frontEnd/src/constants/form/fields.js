@@ -459,8 +459,16 @@ export const representanteFields = [
           name: 'nombre',
           type: 'text',
           required: true,
-          placeholder: 'Ingresa el nombre',
+          placeholder: 'Nombre del representante...',
           id: 'nombre'
+        },
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula_atleta',
+          type: 'text',
+          required: true,
+          placeholder: 'Cédula del atleta...',
+          id: 'cedula_atleta'
         }
       ],
       [
@@ -469,18 +477,61 @@ export const representanteFields = [
           name: 'tlf',
           type: 'text',
           required: true,
-          placeholder: 'Ingresa el número de teléfono',
+          placeholder: '0412-22222',
           id: 'tlf'
+        }, {
+          label: 'RIF',
+          name: 'rif',
+          type: 'text',
+          required: true,
+          placeholder: 'J-3145123-00',
+          id: 'rif'
         }
       ],
       [{
-        label: 'RIF',
-        name: 'rif',
+        label: 'Correo Electronico',
+        name: 'correo',
         type: 'text',
         required: true,
-        placeholder: 'Ingresa el número de RIF',
-        id: 'rif'
-      }]
+        placeholder: 'Example@gmail.com',
+        id: 'correo'
+      }],
+      [
+
+        {
+          label: 'Dirección',
+          name: 'direccion',
+          type: 'text',
+          required: true,
+          placeholder: 'Carabobo, Valencia, Urb. La Isabelica, Calle 3, Casa 2-3',
+          id: 'direccion'
+        }
+      ],
+      [
+        {
+          label: 'Sexo',
+          name: 'sexo',
+          type: 'select',
+          required: true,
+          id: 'sexo',
+          opt: [{
+            value: 'M',
+            label: 'Masculino'
+          },
+          {
+            value: 'F',
+            label: 'Femenino'
+          }]
+        },
+        {
+          label: 'Estatura',
+          name: 'estatura',
+          type: 'text',
+          required: true,
+          placeholder: '190 cm',
+          id: 'estatura'
+        }
+      ]
     ]
   }
 

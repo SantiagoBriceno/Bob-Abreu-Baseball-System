@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { MyToast } from './toast'
+import { useToast } from '@chakra-ui/react'
 
 export const useMyFormHook = (formDataStructure, formDataValidation, validationMethod, onSubmit) => {
+  const toast = useToast()
   const [formData, setFormData] = useState(formDataStructure)
   const [errorState, setErrorState] = useState(formDataValidation)
 
@@ -12,7 +15,13 @@ export const useMyFormHook = (formDataStructure, formDataValidation, validationM
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    onSubmit(formData)
+    onSubmit(formData).then((response) => {
+      const { status } = response
+      console.log(status)
+      response.json().then((data) => {
+        MyToast({ toast, title: data.message, description: '', status })
+      })
+    })
   }
 
   const handleBlur = (e) => {

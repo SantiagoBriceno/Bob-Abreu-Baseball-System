@@ -67,35 +67,6 @@ const router = createBrowserRouter(
                   element: <PitchersView />
                 }
               ]
-            },
-            {
-              path: 'estadisticas',
-              children: [
-                {
-                  path: '',
-                  element: <div>Estadisticas</div>
-                },
-                {
-                  path: 'running',
-                  element: <div>Running</div>
-                },
-                {
-                  path: 'hitting',
-                  element: <div>Hitting</div>
-                },
-                {
-                  path: 'pitching',
-                  element: <div>Pitching</div>
-                },
-                {
-                  path: 'catching',
-                  element: <div>Catching</div>
-                },
-                {
-                  path: 'fielding',
-                  element: <div>Fielding</div>
-                }
-              ]
             }
           ]
         }

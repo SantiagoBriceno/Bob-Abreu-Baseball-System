@@ -30,7 +30,7 @@ export const createRepresentante = async (representante) => {
     },
     body: JSON.stringify(representante)
   })
-  return response.json()
+  return response
 }
 
 export const updateRepresentante = async (id, representante) => {

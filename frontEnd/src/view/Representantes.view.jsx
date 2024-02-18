@@ -32,10 +32,10 @@ const RepresentanteView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           REPRESENTANTES
         </Heading>
-        <MyTable columns={columns} openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
+        <MyTable columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />
+        <MyForm fields={representanteFields} formData={formData} actions={actions} title='Registrar representante' errorMessage={errorState} />
       </FormModal>
     </Stack>
   )

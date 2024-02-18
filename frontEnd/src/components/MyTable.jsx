@@ -46,14 +46,12 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
   }
 
   const searchFilter = (data) => {
-    if (data.length !== 0) {
-      if (data[0].nombre) {
-        return data.filter((row) => {
-          return row.name.toLowerCase().includes(search.toLowerCase())
-        })
-      }
+    if (data.length === 0) {
+      return data
     } else {
-      return null
+      if (data[0].nombre) {
+        return data.filter((row) => row.nombre.toLowerCase().includes(search.toLowerCase()))
+      }
     }
   }
 
