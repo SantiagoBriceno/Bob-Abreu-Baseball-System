@@ -1,10 +1,11 @@
 import { RUTA_REPRESENTANTES } from '../constants/routes'
 
-export const getAllRepresentantes = async () => {
+export const getAllRepresentantes = async (token) => {
   const response = await fetch({
     method: 'GET',
     headers: {
-      Authorization: 'Bearer ' + window.localStorage.getItem('auth').token
+      Authorization: 'Bearer ' + token,
+      Accept: 'application/json'
     }
   }, RUTA_REPRESENTANTES)
   return response.json()

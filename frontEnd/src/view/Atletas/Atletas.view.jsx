@@ -7,17 +7,7 @@ import { atletaFields } from '../../constants/form/fields.js'
 import { representanteValidation } from '../../constants/dataValidation.js'
 import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
-
-const columns = [
-  { key: 'nombre', name: 'Nombre' },
-  { key: 'cedula', name: 'Cédula' },
-  { key: 'telefono', name: 'Telefono' },
-  { key: 'lugar_de_nacimiento', name: 'Lugar de nacimiento' },
-  { key: 'fecha_de_nacimiento', name: 'Fecha de nacimiento' },
-  { key: 'posicion', name: 'Posición' },
-  { key: 'status', name: 'Status' }
-
-]
+import { atletaColumns as columns } from '../../constants/table/columns.js'
 
 const AtletasView = () => {
   const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta)

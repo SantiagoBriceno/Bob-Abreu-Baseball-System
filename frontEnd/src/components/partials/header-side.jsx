@@ -103,7 +103,7 @@ const HeaderSidebar = () => {
           mode='inline'
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['2']}
-          style={{ background: '#010440' }}
+          style={{ background: '#000035' }}
           items={[
             {
               key: '1',
@@ -184,7 +184,7 @@ const HeaderSidebar = () => {
           style={{
             padding: 0,
             height: 80,
-            background: 'rgba(255,255,255,0.09)'
+            background: '#E1E4E7'
           }}
 
         >
@@ -209,7 +209,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#222222'
+            background: '#fff'
           }}
         >
           <Outlet />

@@ -9,18 +9,14 @@ import { createRepresentante } from '../service/representante.js'
 import MyTable from '../components/MyTable.jsx'
 import { useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
-
-const columns = [
-  { key: 'nombre', name: 'Nombre' },
-  { key: 'cedula', name: 'Cédula' },
-  { key: 'telefono', name: 'Telefono' },
-  { key: 'correo', name: 'Correo' }
-
-]
+import { representanteColumns as columns } from '../constants/table/columns.js'
+import { useRepresentante } from '../hooks/table/useRepresentante.js'
 
 const RepresentanteView = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
+  const { data } = useRepresentante()
+  console.log('data', data)
 
   const closeModal = () => {
     setIsOpen(false)
@@ -32,7 +28,7 @@ const RepresentanteView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           TABLA DE REPRESENTANTES
         </Heading>
-        <MyTable columns={columns} title='Visualización de representantes' />
+        <MyTable data={data} columns={columns} idRow='cedula' title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />

@@ -1,6 +1,6 @@
 const RUTA_API = 'http://localhost:3000/api/v1'
 export const RUTA_ATLETAS = RUTA_API + '/atletas'
-export const RUTA_REPRESENTANTES = RUTA_API + '/representantes'
+export const RUTA_REPRESENTANTES = RUTA_API + '/representante'
 export const RUTA_ESTADISTICAS = RUTA_API + '/estadisticas'
 export const RUTA_HITTING = RUTA_API + '/hitting'
 export const RUTA_RUNNING = RUTA_API + '/running'
