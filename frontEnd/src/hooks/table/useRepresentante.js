@@ -8,8 +8,8 @@ export const useRepresentante = () => {
   console.log('isAuthenticated', isAuthenticated)
   useMemo(() => {
     const fetchData = async () => {
-      const response = await getAllRepresentantes(isAuthenticated.token)
-      setData(response)
+      const response = await getAllRepresentantes()
+      setData(response.data)
     }
     fetchData()
   }, [])
