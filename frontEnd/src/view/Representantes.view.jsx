@@ -22,13 +22,17 @@ const RepresentanteView = () => {
     setIsOpen(false)
   }
 
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
-          TABLA DE REPRESENTANTES
+          REPRESENTANTES
         </Heading>
-        <MyTable data={data} columns={columns} idRow='cedula' title='Visualización de representantes' />
+        <MyTable columns={columns} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='REPRESENTANTE' errorMessage={errorState} />

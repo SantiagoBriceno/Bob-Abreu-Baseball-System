@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import {
   Table,
   Thead,
@@ -22,9 +21,8 @@ import {
 import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
+const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
+  const [search, setSearch] = useState('')
   const handleEdit = (e) => {
     const index = e.target.id.split('%')[1]
     console.log(index)
@@ -43,19 +41,24 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
     setDeleteData(data[index])
   }
 
+  const searcher = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const results = !search ? data : []
+
   return (
     <>
       <Flex minWidth='max-content' p='10px' w='90%' alignItems='center' gap='2'>
         <ButtonGroup gap='2'>
-          <Button bg='#F24405'>Sign Up</Button>
-          <Button bg='#F24405'>Log in</Button>
+          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>Agregar atleta</Button>
         </ButtonGroup>
         <Spacer />
         <Box p='1'>
-          <MyInput2 placeholder='Cesar Pausin' label='Busque por el nombre' />
+          <MyInput2 w='25rem' valueControl={search} onChange={searcher} placeholder='Cesar Pausin' label='Búsqueda por el nombre' />
         </Box>
       </Flex>
-      <Card w={modalMode ? '100%' : '90%'} bg='white' shadow={modalMode ? 'none' : 'lg'}>
+      <Card w={modalMode ? '100%' : '90%'} bg='white' border='2px solid black' shadow='lg'>
         <CardBody>
           <TableContainer bg='background.border'>
             <Table variant='none' color='black' bg='background.border' size='sm'>
@@ -70,7 +73,7 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
               </Thead>
               <Tbody>
                 {data
-                  ? data.map((row, i) => (
+                  ? results.map((row, i) => (
                     <Tr
                       className='table-row'
                       key={i + row[idRow]}

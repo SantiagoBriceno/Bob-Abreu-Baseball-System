@@ -12,9 +12,9 @@ import {
 const FormModal = ({ isOpen, onClose, children, btn = null }) => {
   return (
     <>
-      <Modal size='3xl' isOpen={isOpen} onClose={onClose} close>
+      <Modal size='2xl' isOpen={isOpen} onClose={onClose} close>
         <ModalOverlay />
-        <ModalContent bg='background.bg'>
+        <ModalContent bg='white'>
           <ModalHeader />
           <ModalCloseButton />
           <ModalBody>

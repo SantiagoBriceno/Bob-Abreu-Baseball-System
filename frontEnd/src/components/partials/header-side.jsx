@@ -44,36 +44,40 @@ const AvatarPanel = () => {
     <Flex
       align='center'
       justify='center'
+      maxH='80px'
     >
-      <Container zIndex='1000' bg='#fff' color='black' rounded='15px'>
-        <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
-          <AccordionItem>
+      <Container maxH='80px' w='200px' zIndex='1000' bg='white' color='black' alignItems='center' _expanded={{ bg: 'white', color: 'black', borderColor: 'transparent', border: 0 }}>
+        <Accordion alignContent='center' allowMultiple width='100%' h='80px' style={{ border: 0, borderColor: 'transparent' }} mt={0} pt={0} _hover={{ bg: 'trasnparent' }}>
+          <AccordionItem
+            _expanded={{ background: 'white', color: 'black' }}
+          >
             <AccordionButton
               display='flex'
               alignItems='center'
-              justifyContent='space-between'
-              p={1}
+              _expanded={{ background: 'white', color: 'black' }}
+              _hover={{ bg: 'trasnparent', border: 0, borderColor: 'transparent' }}
             >
               <HStack gap={2}>
-                <Avatar bg='red.500' color='#fff' name={username} src='https://bit.ly/dan-abramov' />
+                <Avatar color='#fff' name={username} />
                 <Stack>
                   <VStack>
-                    <Text height='10px' fontSize='xs' fontWeight='extrabold' color='#000'>{username} </Text>
+                    <Text height='10px' fontSize='s' fontWeight='extrabold' color='#000'>{username}</Text>
                     <Text fontSize='xs' color='#000'>{rol}</Text>
 
                   </VStack>
                 </Stack>
+                <Spacer />
                 <ChevronDownIcon fontSize='24px' />
               </HStack>
 
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel mt={0}>
               <Button
                 type='text'
                 icon={<UserOutlined />}
                 style={{
                   fontSize: '16px',
-                  height: 64
+                  height: 80
                 }}
                 onClick={() => logout()}
               > Cerrar Sesión
@@ -152,7 +156,7 @@ const HeaderSidebar = () => {
                 },
                 {
                   key: '3.4',
-                  label: <NavLink to='/private/estadisticas/throwing'>throwing</NavLink>
+                  label: <NavLink to='/private/estadisticas/throwing'>Throwing</NavLink>
                 },
                 {
                   key: '3.5',
@@ -184,7 +188,7 @@ const HeaderSidebar = () => {
           style={{
             padding: 0,
             height: 80,
-            background: '#E1E4E7'
+            background: 'rgba(255,255,255,0.09)'
           }}
 
         >
@@ -209,7 +213,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#fff'
+            background: '#222222'
           }}
         >
           <Outlet />
