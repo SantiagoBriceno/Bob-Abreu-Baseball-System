@@ -100,7 +100,7 @@ export const atletaFields = [
           type: 'text',
           required: true,
           placeholder: 'Ingresa el status',
-          id: 'status'
+          id: 'estado'
         }
       ],
       [

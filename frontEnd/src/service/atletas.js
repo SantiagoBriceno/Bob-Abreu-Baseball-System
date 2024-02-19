@@ -1,12 +1,13 @@
 import { RUTA_ATLETAS } from '../constants/routes'
+const auth = () => JSON.parse(window.localStorage.getItem('auth'))
 
 export const getAllAtletas = async () => {
-  const response = await fetch({
+  const response = await fetch(RUTA_ATLETAS, {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer ' + window.localStorage.getItem('auth').token
+      Authorization: 'Bearer ' + auth().token
     }
-  }, RUTA_ATLETAS)
+  })
   return response.json()
 }
 
@@ -19,12 +20,12 @@ export const createAtleta = async (atleta) => {
   const response = await fetch(RUTA_ATLETAS, {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      Authorization: 'Bearer ' + auth().token,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(atleta)
   })
-  return response.json()
+  return response
 }
 
 export const updateAtleta = async (id, atleta) => {

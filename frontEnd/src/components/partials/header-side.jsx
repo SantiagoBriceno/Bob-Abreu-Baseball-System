@@ -33,13 +33,9 @@ const AvatarPanel = () => {
   const { logout } = useSesionContext()
 
   const user = JSON.parse(window.localStorage.getItem('auth')).user
-  console.log('user', user)
 
   const rol = user ? user.rol : ''
   const username = user ? user.username : ''
-  console.log('user', username)
-  console.log('rol', rol)
-
   return (
     <Flex
       align='center'
@@ -213,7 +209,7 @@ const HeaderSidebar = () => {
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: colorBgContainer
+            background: 'rgba(255,255,255,0.09)'
           }}
         >
           <Outlet />

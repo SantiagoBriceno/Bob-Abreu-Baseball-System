@@ -9,10 +9,14 @@ import { representanteValidation } from '../../constants/dataValidation.js'
 import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
 import { atletaColumns as columns } from '../../constants/table/columns.js'
+import { useAtleta } from '../../hooks/table/useAtleta.js'
+import { createAtleta } from '../../service/atletas.js'
 
 const AtletasView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta)
+  const { data } = useAtleta()
+  console.log('data', data)
+  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta)
 
   const closeModal = () => {
     setIsOpen(false)
@@ -28,7 +32,7 @@ const AtletasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ATLETAS DE LA ACADEMIA
         </Heading>
-        <MyTable columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} title='INGRESO DE ATLETA' errorMessage={errorState} />
