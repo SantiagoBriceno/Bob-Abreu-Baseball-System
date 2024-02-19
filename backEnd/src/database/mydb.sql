@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS atleta (
   posicion VARCHAR(50) NOT NULL,
   estado VARCHAR(50) NOT NULL,
   foto VARCHAR(100) NOT NULL,
-  id_auditoria VARCHAR(10) NOT NULL
+  id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (cedula)
 );
 

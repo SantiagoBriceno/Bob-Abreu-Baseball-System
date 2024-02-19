@@ -6,6 +6,7 @@ import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
 export const getAtletas = async (req, res) => {
   try {
     const data = await service.getAtletas()
+    console.log('data', data)
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
@@ -56,14 +57,14 @@ export const getAtletasByPosition = async (req, res) => {
 
 export const createAtleta = async (req, res) => {
   try {
-    const { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, correo, posicion, estado, foto } = req.body
-    const atleta = { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, correo, posicion, estado, foto }
+    const { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting } = req.body
+    const atleta = { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting }
     if (!isValidAtleta(atleta)) {
-      return res.status(400).json({ message: 'Atleta no válido' })
+      return res.status(400).json({ message: 'Por favor, llene todos los campos' })
     }
     const cedulas = await service.getCedulas()
     if (existAtleta(cedulas, cedula)) {
-      return res.status(400).json({ message: 'Atleta ya existe' })
+      return res.status(406).json({ message: 'Atleta ya existe' })
     }
     console.log('req.user', req.user)
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })

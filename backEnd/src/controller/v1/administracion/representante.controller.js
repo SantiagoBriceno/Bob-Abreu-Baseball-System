@@ -21,7 +21,7 @@ export const createRepresentante = async (req, res) => {
     const { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta } = req.body
     const representante = { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta }
     if (!isValidRepresentante(representante)) {
-      return res.status(400).json({ message: 'Por llene todos los campos' })
+      return res.status(400).json({ message: 'Por favor, llene todos los campos' })
     }
     const cedulas = await service.getCedulas()
     if (existRepresentante(cedulas, cedula)) {

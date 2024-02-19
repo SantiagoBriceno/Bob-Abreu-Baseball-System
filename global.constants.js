@@ -27,10 +27,10 @@ export const registro_especial = {
 export const atleta = {
   cedula: '',
   nombre: '',
+  hitting: '',
   tlf: '',
   lugar_nacimiento: '',
   fecha_nacimiento: '',
-  correo: '',
   posicion: '',
   estado: '',
   foto: ''
