@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS atleta (
   tlf VARCHAR(15) NULL,
   lugar_nacimiento VARCHAR(100) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
+  clase VARCHAR(50) NOT NULL,
   hitting VARCHAR(50) NOT NULL,
   posicion VARCHAR(50) NOT NULL,
   estado VARCHAR(50) NOT NULL,
@@ -143,6 +144,7 @@ CREATE TABLE IF NOT EXISTS hitting (
   rec_pitcheos INT(10) NOT NULL,
   control_bate INT(10) NOT NULL,
   ruta_del_bate INT(10) NOT NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -159,6 +161,7 @@ CREATE TABLE IF NOT EXISTS throwing (
   brazo_rapido FLOAT(10) NULL,
   facilidad_movimiento FLOAT(10) NULL,
   linealidad_lanzamiento FLOAT(10) NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -174,6 +177,7 @@ CREATE TABLE IF NOT EXISTS fielding (
   juego_de_pie INT(10) NULL,
   anticipacion INT(10) NULL,
   energia INT(10) NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -185,6 +189,7 @@ CREATE TABLE IF NOT EXISTS make_up (
   compromiso INT(10) NULL,
   responsabilidad INT(10) NULL,
   disciplina INT(10) NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -196,6 +201,7 @@ CREATE TABLE IF NOT EXISTS pitching (
   velocidad_curva FLOAT(10) NOT NULL,
   velocidad_slider FLOAT(10) NULL,
   velocidad_cambio FLOAT(10) NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -203,8 +209,9 @@ CREATE TABLE IF NOT EXISTS pitching (
 CREATE TABLE IF NOT EXISTS running (
   id INT NOT NULL AUTO_INCREMENT,
   id_atleta VARCHAR(10) NOT NULL,
-  velocidad_60 FLOAT(10) NOT NULL,
+  velocidad_sesenta FLOAT(10) NOT NULL,
   velocidad_home_to_first FLOAT(10) NOT NULL,
+  fecha_evaluacion DATE NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );

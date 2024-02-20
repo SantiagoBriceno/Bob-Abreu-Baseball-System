@@ -124,17 +124,6 @@ export const perfiles_fotograficos = {
   id_auditoria: ''
 }
 
-export const running = {
-  id: '',
-  id_stat: '',
-  velocidad: '',
-  resistencia: '',
-  agilidad: '',
-  fuerza: '',
-  flexibilidad: '',
-  coordinacion: ''
-}
-
 export const hitting = {
   id_atleta: '',
   agudeza_visual: '',
@@ -145,7 +134,8 @@ export const hitting = {
   rec_zona_strike: '',
   rec_pitcheos: '',
   control_bate: '',
-  rutal_del_bate: ''
+  rutal_del_bate: '',
+  fecha_evaluacion: ''
 }
 
 export const throwing = {
@@ -155,10 +145,7 @@ export const throwing = {
   lanzamiento_tercera: '',
   lanzamiento_home: '',
   pop_time: '',
-  fluidez_brazo: '',
-  brazo_rapido: '',
-  facilidad_movimiento: '',
-  linealidad_lanzamiento: ''
+  fecha_evaluacion: ''
 }
 
 export const make_up = {
@@ -166,7 +153,8 @@ export const make_up = {
   actitud: '',
   compromiso: '',
   responsabilidad: '',
-  disciplina: ''
+  disciplina: '',
+  fecha_evaluacion: ''
 }
 
 export const fielding = {
@@ -178,7 +166,8 @@ export const fielding = {
   control_cuerpo: '',
   juego_de_pie: '',
   anticipacion: '',
-  energia: ''
+  energia: '',
+  fecha_evaluacion: ''
 }
 
 export const pitching = {
@@ -186,5 +175,13 @@ export const pitching = {
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',
-  velocidad_cambio: ''
+  velocidad_cambio: '',
+  fecha_evaluacion: ''
+}
+
+export const running = {
+  id_atleta: '',
+  velocidad_sesenta: '',
+  velocidad_home_to_first: '',
+  fecha_evaluacion: ''
 }

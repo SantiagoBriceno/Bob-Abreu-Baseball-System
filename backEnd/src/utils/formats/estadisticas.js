@@ -1,6 +1,6 @@
 export const isValidEntitie = (entitie, body) => {
   return Object.keys(entitie).every(key => {
-    return Object.keys(body).includes(key)
+    return Object.keys(body).includes(key) && body[key] !== '' && body[key]
   })
 }
 

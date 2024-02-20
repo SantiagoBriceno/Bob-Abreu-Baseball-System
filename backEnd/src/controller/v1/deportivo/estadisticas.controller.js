@@ -196,6 +196,39 @@ export const deleteRunningStat = async (req, res) => {
   }
 }
 
+export const getSixtyYardStatByClass = async (req, res) => {
+  // Aqui tengo los ids de todos los players que tienen stats de running
+  const ids = await service.getIdPlayerOfRunningStats()
+  // luego los recorro y por cada uno obtengo la ultima estadistica de 60 yardas y los acumulo segun su clase
+  const cantAtletasPerClass = await service.getAllClases()
+  const sixtyYardStats = []
+  for (const id of ids) {
+    const sixtyYardStat = await service.getRunningSixtyYardStatByIdPlayer(id.id_atleta)
+    sixtyYardStats.push(sixtyYardStat)
+  }
+
+  const acumPorClases = {}
+  sixtyYardStats.map((stat) => {
+    const { clase, velocidad_sesenta } = stat
+    acumPorClases[clase] = acumPorClases[clase] ? acumPorClases[clase] += velocidad_sesenta : velocidad_sesenta
+    return null
+  })
+
+  cantAtletasPerClass.map((item) => {
+    const { clase, cant_atletas } = item
+    acumPorClases[clase] = acumPorClases[clase] / cant_atletas
+    return null
+  })
+
+  console.log('cantidad de atletas por clase', cantAtletasPerClass)
+  console.log('Acumulador de velocidades por clase', acumPorClases)
+  const data = {
+    label: Object.keys(acumPorClases),
+    values: Object.values(acumPorClases)
+  }
+  return res.status(200).json(data)
+}
+
 /* THROWING STATS CONTROLLERS */
 export const getThrowingStats = async (req, res) => {
   try {

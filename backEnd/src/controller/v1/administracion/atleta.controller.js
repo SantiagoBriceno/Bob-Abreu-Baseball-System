@@ -2,6 +2,7 @@
 import service from '../../../service/v1/administracion/atleta.service.js'
 import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
+import { calcularClase } from './utils/atleta.js'
 
 export const getAtletas = async (req, res) => {
   try {
@@ -66,7 +67,8 @@ export const createAtleta = async (req, res) => {
     if (existAtleta(cedulas, cedula)) {
       return res.status(406).json({ message: 'Atleta ya existe' })
     }
-    console.log('req.user', req.user)
+
+    atleta.clase = calcularClase(fecha_nacimiento)
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria
     const data = await service.createAtleta(atleta)

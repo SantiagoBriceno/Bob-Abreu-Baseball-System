@@ -2,8 +2,13 @@ import { pool } from '../../../db.js'
 
 const nextId = async (table) => {
   const [id] = await pool.query(`SELECT MAX(id) + 1 AS id FROM ${table};`)
-
+  console.log(id)
   return id[0].id ? id[0].id : 1
+}
+
+const getAllClases = async () => {
+  const [clases] = await pool.query('SELECT atleta.clase, COUNT(*) AS cant_atletas FROM atleta  WHERE atleta.cedula IN (SELECT id_atleta FROM running) AND atleta.estado = "Activo" GROUP BY atleta.clase;')
+  return clases
 }
 
 /* HITTING STATS SERVICES */
@@ -39,6 +44,11 @@ const deleteHittingStat = async (id) => {
   return hittingStat
 }
 
+const getHittingStatsByIdPlayer = async (id) => {
+  const [hittingStats] = await pool.query('SELECT * FROM hitting WHERE id_atleta = ?', [id])
+  return hittingStats
+}
+
 /* RUNNING STATS SERVICE */
 
 const getRunningStatsIds = async () => {
@@ -69,6 +79,27 @@ const updateRunningStat = async (id, runningStat) => {
 const deleteRunningStat = async (id) => {
   const [runningStat] = await pool.query('SELECT * FROM running WHERE id = ?', [id])
   await pool.query('DELETE FROM running WHERE id = ?', [id])
+  return runningStat
+}
+
+const getRunningStatsByIdPlayer = async (id) => {
+  const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
+  return runningStats
+}
+
+const getIdPlayerOfRunningStats = async () => {
+  const [runningStats] = await pool.query('SELECT DISTINCT id_atleta, clase FROM running INNER JOIN atleta ON running.id_atleta = atleta.cedula WHERE atleta.estado = "Activo";')
+  return runningStats
+}
+
+const getRunningSixtyYardStatByIdPlayer = async (idAtleta) => {
+  // Recibe un id de un atleta, y devuelve la ultima estadistica de velocidad de 60 yardas segun la fecha de evaluacion de la misma
+  const [runningStat] = await pool.query('SELECT id_atleta, velocidad_sesenta, clase FROM running INNER JOIN atleta ON running.id_atleta = atleta.cedula WHERE id_atleta = ? ORDER BY fecha_evaluacion DESC LIMIT 1;', [idAtleta])
+  return runningStat[0]
+}
+
+const getRunningSixtyYardStatByClass = async (clase) => {
+  const [runningStat] = await pool.query('SELECT clase, count(*) as nro_atletas, sum(running.velocidad_sesenta) as total_por_clase FROM running INNER JOIN atleta ON running.id_atleta = atleta.cedula GROUP BY atleta.clase;', [clase])
   return runningStat
 }
 
@@ -143,16 +174,6 @@ const getFieldingStatsByIdPlayer = async (id) => {
   return fieldingStats
 }
 
-const getHittingStatsByIdPlayer = async (id) => {
-  const [hittingStats] = await pool.query('SELECT * FROM hitting WHERE id_atleta = ?', [id])
-  return hittingStats
-}
-
-const getRunningStatsByIdPlayer = async (id) => {
-  const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
-  return runningStats
-}
-
 const getThrowingStatsByIdPlayer = async (id) => {
   const [throwingStats] = await pool.query('SELECT * FROM throwing WHERE id_atleta = ?', [id])
   return throwingStats
@@ -190,6 +211,7 @@ const deletePitchingStat = async (id) => {
 }
 
 export default {
+  getAllClases,
   getHittingStatsIds,
   getHittingStats,
   getHittingStatById,
@@ -202,6 +224,10 @@ export default {
   createRunningStat,
   updateRunningStat,
   deleteRunningStat,
+  getIdPlayerOfRunningStats,
+  getRunningStatsByIdPlayer,
+  getRunningSixtyYardStatByIdPlayer,
+  getRunningSixtyYardStatByClass,
   getThrowingStatsIds,
   getThrowingStats,
   getThrowingStatById,
@@ -217,7 +243,6 @@ export default {
   nextId,
   getFieldingStatsByIdPlayer,
   getHittingStatsByIdPlayer,
-  getRunningStatsByIdPlayer,
   getThrowingStatsByIdPlayer,
   getPitchingStats,
   getPitchingStatById,

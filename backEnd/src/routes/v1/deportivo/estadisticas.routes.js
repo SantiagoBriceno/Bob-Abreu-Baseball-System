@@ -16,7 +16,8 @@ import {
   getFieldingStatByIdPlayer,
   getRunningStatByIdPlayer,
   getThrowingStatByIdPlayer,
-  getStatsByIdPlayer
+  getStatsByIdPlayer,
+  getSixtyYardStatByClass
 
 } from '../../../controller/v1/deportivo/estadisticas.controller.js'
 import { userExtractor } from '../../../middleware/userExtractor.js'
@@ -66,5 +67,7 @@ router.patch('/throwing/:id', userExtractor, updateFieldingStat)
 
 // RUTA PARA OBTENER TODAS LAS STATISTICAS DE UN ATLETA
 router.get('/player/:id', getStatsByIdPlayer)
+
+router.get('/running/g/promedio', getSixtyYardStatByClass)
 
 export default router
