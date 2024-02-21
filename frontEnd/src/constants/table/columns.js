@@ -1,11 +1,11 @@
 export const atletaColumns = [
   { key: 'nombre', name: 'Nombre' },
   { key: 'cedula', name: 'Cédula' },
-  { key: 'telefono', name: 'Telefono' },
-  { key: 'lugar_de_nacimiento', name: 'Lugar de nacimiento' },
-  { key: 'fecha_de_nacimiento', name: 'Fecha de nacimiento' },
+  { key: 'tlf', name: 'Telefono' },
+  { key: 'lugar_nacimiento', name: 'Lugar de nacimiento' },
+  { key: 'fecha_nacimiento', name: 'Fecha de nacimiento' },
   { key: 'posicion', name: 'Posición' },
-  { key: 'status', name: 'Status' }
+  { key: 'estado', name: 'Status' }
 
 ]
 
