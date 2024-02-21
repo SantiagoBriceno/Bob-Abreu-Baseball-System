@@ -1,5 +1,5 @@
 import {
-  Heading, Stack, Box
+  Heading, Stack
 } from '@chakra-ui/react'
 import MyFormControl from './form/MyFormControl.jsx'
 import MyInput from './form/MyInput.jsx'
@@ -9,13 +9,13 @@ import MyButton from './form/MyButton.jsx'
 
 const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
   return (
-    <Box>
+    <form>
       <FormHeader title={title} />
       <MyFormTemplate>
         <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
         <FormFooter actions={actions} />
       </MyFormTemplate>
-    </Box>
+    </form>
   )
 }
 

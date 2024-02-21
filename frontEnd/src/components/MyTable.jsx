@@ -22,7 +22,7 @@ import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
 const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState()
   const handleEdit = (e) => {
     const index = e.target.id.split('%')[1]
     console.log(index)
