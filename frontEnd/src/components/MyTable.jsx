@@ -22,6 +22,7 @@ import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
 const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
+  console.log('data', data)
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
     const index = e.target.id.split('%')[1]
@@ -61,7 +62,7 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
     <>
       <Flex minWidth='max-content' p='10px' w='90%' alignItems='center' gap='2'>
         <ButtonGroup gap='2'>
-          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>Agregar atleta</Button>
+          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>Agregar {data[0]?.estado ? 'atleta' : 'representante'}</Button>
         </ButtonGroup>
         <Spacer />
         <Box p='1'>
