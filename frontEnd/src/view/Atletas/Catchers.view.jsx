@@ -8,6 +8,8 @@ import { atletaFields } from '../../constants/form/fields.js'
 import { representanteValidation } from '../../constants/dataValidation.js'
 import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
+import { useCatcher } from '../../hooks/table/useCatcher.js'
+import { createAtleta } from '../../service/atletas.js'
 
 const columns = [
   { key: 'nombre', name: 'Nombre' },
@@ -22,7 +24,9 @@ const columns = [
 
 const CatchersView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta)
+  const { data } = useCatcher()
+  console.log('data from veiew', data)
+  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta)
 
   const closeModal = () => {
     setIsOpen(false)

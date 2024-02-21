@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
-import { getAllCatchers } from '../../service/catchers'
+import { getAllPitchers } from '../../service/pitchers'
 
-export const useCatcher = () => {
+export const usePitcher = () => {
   const [data, setData] = useState([])
   useMemo(() => {
     const fetchData = async () => {
-      const response = await getAllCatchers()
+      const response = await getAllPitchers()
       console.log('response', response)
       setData(response)
     }
