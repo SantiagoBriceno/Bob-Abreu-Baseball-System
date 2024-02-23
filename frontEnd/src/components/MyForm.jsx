@@ -1,5 +1,5 @@
 import {
-  Heading, Stack, Box
+  Heading, Stack
 } from '@chakra-ui/react'
 import MyFormControl from './form/MyFormControl.jsx'
 import MyInput from './form/MyInput.jsx'
@@ -9,20 +9,19 @@ import MyButton from './form/MyButton.jsx'
 
 const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
   return (
-    <Box>
+    <form>
       <FormHeader title={title} />
       <MyFormTemplate>
         <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
         <FormFooter actions={actions} />
       </MyFormTemplate>
-    </Box>
+    </form>
   )
 }
 
 export default MyForm
 
 const FormContent = ({ fields, formData, actions, errorMessage }) => {
-  console.log(errorMessage)
   return (
     <>
       {fields.map((field, index) => (
@@ -48,7 +47,7 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                         placeholder={c.placeholder}
                         id={c.id}
                         onChange={actions.handleChange}
-                        value={formData[c.id]}
+                        value={c.type === 'file' ? null : formData[c.id]}
                         onBlur={actions.handleBlur}
                       />}
                 </MyFormControl>
@@ -75,9 +74,8 @@ const FormHeader = ({ title }) => {
 const FormFooter = ({ actions }) => {
   return (
     <MyButton
-      w='25%' mt={10} onClick={actions.handleSubmit} bg='#F24405' _hover={{
-        background: '#F20505',
-        color: 'white'
+      w='25%' mt={10} onClick={actions.handleSubmit} color='white' bg='principales.terciary' _hover={{
+        background: 'principales.cuaternary'
       }} label='Enviar'
     />
   )

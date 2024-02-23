@@ -2,10 +2,16 @@
 import service from '../../../service/v1/administracion/atleta.service.js'
 import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
+import { calcularClase } from './utils/atleta.js'
 
 export const getAtletas = async (req, res) => {
   try {
     const data = await service.getAtletas()
+    data.map((atleta) => {
+      const fecha = new Date(atleta.fecha_nacimiento)
+      atleta.fecha_nacimiento = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+      return null
+    })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
@@ -35,7 +41,7 @@ export const getAtletaByPosition = async (req, res) => {
   }
 }
 
-export const getAtletasByPosition = async (req, res) => {
+export const getAtletasClasifiedByPosition = async (req, res) => {
   try {
     const catchers = await service.getAtletaByPosition('Catcher')
     const pitchers = await service.getAtletaByPosition('Pitcher')
@@ -54,18 +60,34 @@ export const getAtletasByPosition = async (req, res) => {
   }
 }
 
+export const getAtletasByPosition = async (req, res) => {
+  const { position } = req.params
+  try {
+    const data = await service.getAtletaByPosition(position)
+    data.map((atleta) => {
+      const fecha = new Date(atleta.fecha_nacimiento)
+      atleta.fecha_nacimiento = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+      return null
+    })
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 export const createAtleta = async (req, res) => {
   try {
-    const { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, correo, posicion, estado, foto } = req.body
-    const atleta = { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, correo, posicion, estado, foto }
+    const { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting } = req.body
+    const atleta = { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting }
     if (!isValidAtleta(atleta)) {
-      return res.status(400).json({ message: 'Atleta no válido' })
+      return res.status(400).json({ message: 'Por favor, llene todos los campos' })
     }
     const cedulas = await service.getCedulas()
     if (existAtleta(cedulas, cedula)) {
-      return res.status(400).json({ message: 'Atleta ya existe' })
+      return res.status(406).json({ message: 'Atleta ya existe' })
     }
-    console.log('req.user', req.user)
+    atleta.foto = `${cedula}-${nombre}-${Date.now()}`
+    atleta.clase = calcularClase(fecha_nacimiento)
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria
     const data = await service.createAtleta(atleta)
@@ -74,6 +96,10 @@ export const createAtleta = async (req, res) => {
     console.log('error', error)
     res.status(500).json(error)
   }
+}
+
+export const uploadImgAtleta = async (req, res) => {
+
 }
 
 export const updateAtleta = async (req, res) => {

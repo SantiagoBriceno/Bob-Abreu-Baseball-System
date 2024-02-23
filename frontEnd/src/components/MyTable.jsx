@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import {
   Table,
   Thead,
@@ -12,15 +11,19 @@ import {
   CardBody,
   TableCaption,
   TableContainer,
-  Stack
+  Stack,
+  Flex,
+  Box,
+  Spacer,
+  ButtonGroup
 } from '@chakra-ui/react'
 
 import './css/table.css'
-import FormModal from './modals/FormModal'
+import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
+const MyTable = ({ datatype = 'entity', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
+  console.log('data', data)
+  const [search, setSearch] = useState()
   const handleEdit = (e) => {
     const index = e.target.id.split('%')[1]
     console.log(index)
@@ -38,16 +41,38 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
     const index = e.target.id.split('-')[1]
     setDeleteData(data[index])
   }
-  const closeModal = () => {
-    setIsOpen(!isOpen)
+
+  const searcher = (e) => {
+    setSearch(e.target.value)
   }
+
+  const searchFilter = (data) => {
+    if (data.length === 0) {
+      return data
+    } else {
+      if (data[0].nombre) {
+        return data.filter((row) => row.nombre.toLowerCase().includes(search.toLowerCase()))
+      }
+    }
+  }
+
+  const results = !search ? data : searchFilter(data)
 
   return (
     <>
-      <Card w={modalMode ? '100%' : '90%'} bg='background.bg' shadow={modalMode ? 'none' : 'lg'}>
+      <Flex bg='white' border='2px solid black' shadow='lg' rounded='10px' p='20px 30px' w='90%' alignItems='center' gap='2'>
+        <ButtonGroup gap='2'>
+          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>{datatype}</Button>
+        </ButtonGroup>
+        <Spacer />
+        <Box p='1'>
+          <MyInput2 valueControl={search} onChange={searcher} placeholder='Cesar Pausin' label='Búsqueda por el nombre' />
+        </Box>
+      </Flex>
+      <Card w={modalMode ? '100%' : '90%'} bg='white' border='2px solid black' shadow='lg'>
         <CardBody>
-          <TableContainer>
-            <Table variant='none' bg='background.panel' size='sm'>
+          <TableContainer bg='background.border'>
+            <Table variant='none' color='black' bg='background.border' size='sm'>
               <TableCaption>{title}</TableCaption>
               <Thead>
                 <Tr>
@@ -59,7 +84,7 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
               </Thead>
               <Tbody>
                 {data
-                  ? data.map((row, i) => (
+                  ? results.map((row, i) => (
                     <Tr
                       className='table-row'
                       key={i + row[idRow]}
@@ -84,9 +109,6 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
             </Table>
           </TableContainer>
         </CardBody>
-        <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-          {children}
-        </FormModal>
       </Card>
     </>
   )

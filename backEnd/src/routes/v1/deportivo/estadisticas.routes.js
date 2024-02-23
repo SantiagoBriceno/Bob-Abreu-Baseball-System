@@ -1,24 +1,14 @@
 import { Router } from 'express'
 import {
-  getHittingStats,
-  getHittingStatById,
-  createHittingStat,
-  updateHittingStat,
-  deleteHittingStat,
-  createFieldingStat,
-  getFieldingStatById,
-  getFieldingStats,
-  updateFieldingStat,
-  getRunningStats,
-  createRunningStat,
-  getRunningStatById,
-  getHittingStatByIdPlayer,
-  getFieldingStatByIdPlayer,
-  getRunningStatByIdPlayer,
-  getThrowingStatByIdPlayer,
   getStatsByIdPlayer
-
 } from '../../../controller/v1/deportivo/estadisticas.controller.js'
+
+import { createThrowingStat, deleteThrowingStat, getThrowingStatById, getThrowingStatByIdPlayer, getThrowingStats, updateThrowingStat, getFirstBaseStatByClass, getSecondBaseStatByClass, getThirdBaseStatByClass } from '../../../controller/v1/deportivo/estadisticas/throwing.controller.js'
+import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat } from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
+import { createRunningStat, deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
+import { createFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
+// import { createPitchingStat, deletePitchingStat, getPitchingStatById, getPitchingStatByIdPlayer, getPitchingStats, updatePitchingStat } from '../../../controller/v1/deportivo/estadisticas/pitching.controller.js'
+
 import { userExtractor } from '../../../middleware/userExtractor.js'
 import { createAuditoria } from '../../../middleware/auditoria.js'
 
@@ -55,16 +45,26 @@ router.get('/running', getRunningStats)
 router.get('/running/:id', getRunningStatById)
 router.get('/running/player/:id', getRunningStatByIdPlayer)
 router.post('/running', userExtractor, createRunningStat)
-router.patch('/running/:id', userExtractor, updateFieldingStat)
+router.patch('/running/:id', userExtractor, updateRunningStat)
+router.delete('/running/:id', userExtractor, deleteRunningStat)
 
 // RUTAS PARA LAS ESTADISTICAS DE throwing DE LOS ATLETAS
-router.get('/throwing', getRunningStats)
-router.get('/throwing/:id', getRunningStatById)
+router.get('/throwing', getThrowingStats)
+router.get('/throwing/:id', getThrowingStatById)
 router.get('/throwing/player/:id', getThrowingStatByIdPlayer)
-router.post('/throwing', userExtractor, createRunningStat)
-router.patch('/throwing/:id', userExtractor, updateFieldingStat)
+router.post('/throwing', userExtractor, createThrowingStat)
+router.patch('/throwing/:id', userExtractor, updateThrowingStat)
+router.delete('/throwing/:id', userExtractor, deleteThrowingStat)
 
 // RUTA PARA OBTENER TODAS LAS STATISTICAS DE UN ATLETA
 router.get('/player/:id', getStatsByIdPlayer)
+
+router.get('/running/g/promedio', getSixtyYardStatByClass)
+
+router.get('/throwing/g/primera', getFirstBaseStatByClass)
+
+router.get('/throwing/g/segunda', getSecondBaseStatByClass)
+
+router.get('/throwing/g/tercera', getThirdBaseStatByClass)
 
 export default router

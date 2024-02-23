@@ -27,10 +27,10 @@ export const registro_especial = {
 export const atleta = {
   cedula: '',
   nombre: '',
+  hitting: '',
   tlf: '',
   lugar_nacimiento: '',
   fecha_nacimiento: '',
-  correo: '',
   posicion: '',
   estado: '',
   foto: ''
@@ -130,7 +130,8 @@ export const hitting = {
   rec_zona_strike: '',
   rec_pitcheos: '',
   control_bate: '',
-  rutal_del_bate: ''
+  rutal_del_bate: '',
+  fecha_evaluacion: ''
 }
 
 export const throwing = {
@@ -139,7 +140,8 @@ export const throwing = {
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
   lanzamiento_home: '',
-  pop_time: ''
+  pop_time: '',
+  fecha_evaluacion: ''
 }
 
 export const make_up = {
@@ -147,7 +149,8 @@ export const make_up = {
   actitud: '',
   compromiso: '',
   responsabilidad: '',
-  disciplina: ''
+  disciplina: '',
+  fecha_evaluacion: ''
 }
 
 export const fielding = {
@@ -159,7 +162,8 @@ export const fielding = {
   control_cuerpo: '',
   juego_de_pie: '',
   anticipacion: '',
-  energia: ''
+  energia: '',
+  fecha_evaluacion: ''
 }
 
 export const pitching = {
@@ -167,11 +171,13 @@ export const pitching = {
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',
-  velocidad_cambio: ''
+  velocidad_cambio: '',
+  fecha_evaluacion: ''
 }
 
 export const running = {
   id_atleta: '',
   velocidad_sesenta: '',
-  velocidad_home_to_first: ''
+  velocidad_home_to_first: '',
+  fecha_evaluacion: ''
 }

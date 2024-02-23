@@ -6,7 +6,11 @@ import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middlew
 export const getRepresentantes = async (req, res) => {
   try {
     const data = await service.getRepresentantes()
-    res.status(200).json(data)
+    return res.send({
+      status: 200,
+      message: 'Representantes encontrados',
+      data
+    })
   } catch (error) {
     res.status(500).json(error)
   }
@@ -17,17 +21,18 @@ export const createRepresentante = async (req, res) => {
     const { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta } = req.body
     const representante = { cedula, nombre, tlf, rif, estatura, sexo, correo, direccion, cedula_atleta }
     if (!isValidRepresentante(representante)) {
-      return res.status(400).json({ message: 'Representante no válido' })
+      return res.status(400).json({ message: 'Por favor, llene todos los campos' })
     }
     const cedulas = await service.getCedulas()
     if (existRepresentante(cedulas, cedula)) {
-      return res.status(400).json({ message: 'Representante ya existe' })
+      return res.status(406).json({ message: 'Representante ya registrado' })
     }
     const id_auditoria = await postAuditoria({ entity: 'representante', user: req.user, body: representante })
     representante.id_auditoria = id_auditoria
     const data = await service.createRepresentante(representante)
-    res.status(201).json(data)
+    res.status(201).json({ message: 'Representante creado exitosamente', data })
   } catch (error) {
+    console.log(error)
     res.status(500).json(error)
   }
 }

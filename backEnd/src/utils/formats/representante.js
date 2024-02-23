@@ -3,7 +3,7 @@ import { representante as structure } from '../entities/main.js'
 // Saber si un representante es válido y cumple con la estructura definida en ../entities/main
 const isValidRepresentante = (representante) => {
   return Object.keys(structure).every(key => {
-    return Object.keys(representante).includes(key)
+    return Object.keys(representante).includes(key) && representante[key] !== ''
   })
 }
 

@@ -33,47 +33,47 @@ const AvatarPanel = () => {
   const { logout } = useSesionContext()
 
   const user = JSON.parse(window.localStorage.getItem('auth')).user
-  console.log('user', user)
 
   const rol = user ? user.rol : ''
   const username = user ? user.username : ''
-  console.log('user', username)
-  console.log('rol', rol)
-
   return (
     <Flex
       align='center'
       justify='center'
+      maxH='80px'
     >
-      <Container zIndex='1000' bg='#fff' color='black' rounded='15px'>
-        <Accordion allowMultiple width='100%' maxW='lg' rounded='lg'>
-          <AccordionItem>
+      <Container maxH='80px' w='200px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ bg: 'white', color: 'black', borderColor: 'transparent', border: 0 }}>
+        <Accordion alignContent='center' allowMultiple width='100%' h='80px' style={{ border: 0, borderColor: 'transparent' }} mt={0} pt={0} _hover={{ bg: 'trasnparent' }}>
+          <AccordionItem
+            _expanded={{ background: 'white', color: 'black' }}
+          >
             <AccordionButton
               display='flex'
               alignItems='center'
-              justifyContent='space-between'
-              p={1}
+              _expanded={{ background: 'white', color: 'black' }}
+              _hover={{ bg: 'trasnparent', border: 0, borderColor: 'transparent' }}
             >
               <HStack gap={2}>
-                <Avatar bg='red.500' color='#fff' name={username} src='https://bit.ly/dan-abramov' />
+                <Avatar color='#fff' name={username} />
                 <Stack>
                   <VStack>
-                    <Text height='10px' fontSize='xs' fontWeight='extrabold' color='#000'>{username} </Text>
+                    <Text height='10px' fontSize='s' fontWeight='extrabold' color='#000'>{username}</Text>
                     <Text fontSize='xs' color='#000'>{rol}</Text>
 
                   </VStack>
                 </Stack>
+                <Spacer />
                 <ChevronDownIcon fontSize='24px' />
               </HStack>
 
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel mt={0}>
               <Button
                 type='text'
                 icon={<UserOutlined />}
                 style={{
                   fontSize: '16px',
-                  height: 64
+                  height: 80
                 }}
                 onClick={() => logout()}
               > Cerrar Sesión
@@ -96,13 +96,14 @@ const HeaderSidebar = () => {
       minHeight: '100vh'
     }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider style={{ background: '#010440' }} trigger={null} collapsible collapsed={collapsed}>
         <div className='demo-logo-vertical'><img src={logo} alt='logo' /></div>
         <Menu
           theme='dark'
           mode='inline'
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['2']}
+          style={{ background: '#000035' }}
           items={[
             {
               key: '1',
@@ -151,7 +152,7 @@ const HeaderSidebar = () => {
                 },
                 {
                   key: '3.4',
-                  label: <NavLink to='/private/estadisticas/throwing'>throwing</NavLink>
+                  label: <NavLink to='/private/estadisticas/throwing'>Throwing</NavLink>
                 },
                 {
                   key: '3.5',
@@ -183,7 +184,7 @@ const HeaderSidebar = () => {
           style={{
             padding: 0,
             height: 80,
-            background: colorBgContainer
+            background: 'rgba(255,255,255,0.09)'
           }}
 
         >
@@ -204,11 +205,11 @@ const HeaderSidebar = () => {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: '30px 30px',
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: '#011526F5'
+            background: '#dcdcdc'
           }}
         >
           <Outlet />
