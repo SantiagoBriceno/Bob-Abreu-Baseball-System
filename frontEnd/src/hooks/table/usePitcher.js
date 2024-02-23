@@ -11,5 +11,5 @@ export const usePitcher = () => {
     }
     fetchData()
   }, [])
-  return data
+  return { data }
 }

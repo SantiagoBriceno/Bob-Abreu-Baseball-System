@@ -21,7 +21,7 @@ import {
 import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
+const MyTable = ({ datatype = 'entity', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
   console.log('data', data)
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
@@ -60,13 +60,13 @@ const MyTable = ({ data, columns, title, idRow, inventoryMode = false, children,
 
   return (
     <>
-      <Flex minWidth='max-content' p='10px' w='90%' alignItems='center' gap='2'>
+      <Flex bg='white' border='2px solid black' shadow='lg' rounded='10px' p='20px 30px' w='90%' alignItems='center' gap='2'>
         <ButtonGroup gap='2'>
-          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>Agregar {data[0]?.estado ? 'atleta' : 'representante'}</Button>
+          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>{datatype}</Button>
         </ButtonGroup>
         <Spacer />
         <Box p='1'>
-          <MyInput2 w='25rem' valueControl={search} onChange={searcher} placeholder='Cesar Pausin' label='Búsqueda por el nombre' />
+          <MyInput2 valueControl={search} onChange={searcher} placeholder='Cesar Pausin' label='Búsqueda por el nombre' />
         </Box>
       </Flex>
       <Card w={modalMode ? '100%' : '90%'} bg='white' border='2px solid black' shadow='lg'>

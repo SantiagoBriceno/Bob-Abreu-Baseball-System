@@ -8,21 +8,13 @@ import { atletaFields } from '../../constants/form/fields.js'
 import { representanteValidation } from '../../constants/dataValidation.js'
 import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
-
-const columns = [
-  { key: 'nombre', name: 'Nombre' },
-  { key: 'cedula', name: 'Cédula' },
-  { key: 'telefono', name: 'Telefono' },
-  { key: 'lugar_de_nacimiento', name: 'Lugar de nacimiento' },
-  { key: 'fecha_de_nacimiento', name: 'Fecha de nacimiento' },
-  { key: 'posicion', name: 'Posición' },
-  { key: 'status', name: 'Status' }
-
-]
+import { useOutfielder } from '../../hooks/table/useOutfielder.js'
+import { atletaColumns as columns } from '../../constants/table/columns.js'
 
 const OutfieldersView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta)
+  const { data } = useOutfielder()
 
   const closeModal = () => {
     setIsOpen(false)
@@ -38,7 +30,7 @@ const OutfieldersView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           OUTFIELDERS DE LA ACADEMIA
         </Heading>
-        <MyTable columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable datatype='Agregar atleta' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} title='INGRESO DE ATLETA' errorMessage={errorState} />

@@ -11,5 +11,5 @@ export const useCatcher = () => {
     }
     fetchData()
   }, [])
-  return data
+  return { data }
 }

@@ -11,5 +11,5 @@ export const useInfielder = () => {
     }
     fetchData()
   }, [])
-  return data
+  return { data }
 }

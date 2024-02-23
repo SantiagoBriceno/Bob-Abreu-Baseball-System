@@ -11,5 +11,5 @@ export const useOutfielder = () => {
     }
     fetchData()
   }, [])
-  return data
+  return { data }
 }

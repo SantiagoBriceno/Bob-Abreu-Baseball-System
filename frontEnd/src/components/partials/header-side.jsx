@@ -205,11 +205,11 @@ const HeaderSidebar = () => {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: '30px 30px',
             padding: 24,
             minHeight: 280,
             borderRadius: borderRadiusLG,
-            background: 'rgba(255,255,255,0.09)'
+            background: '#dcdcdc'
           }}
         >
           <Outlet />
