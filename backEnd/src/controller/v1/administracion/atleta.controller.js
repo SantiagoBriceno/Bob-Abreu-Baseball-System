@@ -7,7 +7,6 @@ import { calcularClase } from './utils/atleta.js'
 export const getAtletas = async (req, res) => {
   try {
     const data = await service.getAtletas()
-    console.log('data', data)
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
@@ -77,7 +76,7 @@ export const createAtleta = async (req, res) => {
     if (existAtleta(cedulas, cedula)) {
       return res.status(406).json({ message: 'Atleta ya existe' })
     }
-    atleta.foto = `${cedula}-${nombre}`
+    atleta.foto = `${cedula}-${nombre}-${Date.now()}`
     atleta.clase = calcularClase(fecha_nacimiento)
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria

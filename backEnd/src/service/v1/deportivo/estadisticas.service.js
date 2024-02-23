@@ -6,8 +6,8 @@ const nextId = async (table) => {
   return id[0].id ? id[0].id : 1
 }
 
-const getAllClases = async () => {
-  const [clases] = await pool.query('SELECT atleta.clase, COUNT(*) AS cant_atletas FROM atleta  WHERE atleta.cedula IN (SELECT id_atleta FROM running) AND atleta.estado = "Activo" GROUP BY atleta.clase;')
+const getAllClases = async (table) => {
+  const [clases] = await pool.query(`SELECT atleta.clase, COUNT(*) AS cant_atletas FROM atleta  WHERE atleta.cedula IN (SELECT id_atleta FROM ${table}) AND atleta.estado = "Activo" GROUP BY atleta.clase;`)
   return clases
 }
 
@@ -210,6 +210,21 @@ const deletePitchingStat = async (id) => {
   return pitchingStat
 }
 
+const getIdPlayersOfStat = async (table) => {
+  // SELECT DISTINCT id_atleta, clase FROM running INNER JOIN atleta ON running.id_atleta = atleta.cedula WHERE atleta.estado = "Activo";
+  const [ids] = await pool.query(`SELECT DISTINCT id_atleta FROM ${table} INNER JOIN atleta ON ${table}.id_atleta = atleta.cedula WHERE atleta.estado = "Activo"`)
+  return ids
+}
+
+const getFirstBaseStatByIdPlayer = async (id) => {
+  const [firstBaseStat] = await pool.query('SELECT clase, lanzamiento_primera FROM throwing INNER JOIN atleta ON throwing.id_atleta = atleta.cedula WHERE id_atleta = ? ORDER BY fecha_evaluacion DESC LIMIT 1;', [id])
+  return firstBaseStat[0]
+}
+const getRowFromTableByIdWithClass = async (table, atribute, id) => {
+  const [row] = await pool.query(`SELECT clase, ${atribute} FROM ${table} INNER JOIN atleta ON ${table}.id_atleta = atleta.cedula WHERE id_atleta = ? ORDER BY fecha_evaluacion DESC LIMIT 1;`, [id])
+  return row[0]
+}
+
 export default {
   getAllClases,
   getHittingStatsIds,
@@ -249,5 +264,8 @@ export default {
   getPitchingStatByIdPlayer,
   createPitchingStat,
   updatePitchingStat,
-  deletePitchingStat
+  deletePitchingStat,
+  getIdPlayersOfStat,
+  getFirstBaseStatByIdPlayer,
+  getRowFromTableByIdWithClass
 }
