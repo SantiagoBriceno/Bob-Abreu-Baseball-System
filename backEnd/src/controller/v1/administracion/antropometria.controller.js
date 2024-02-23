@@ -3,6 +3,7 @@ import service from '../../../service/v1/administracion/antropometria.service.js
 import { isValidEntrie } from '../../../utils/formats/validEntrie.js'
 import { datos_generales as dg, perimetros_corporales as pc, indice_Masa_corporal as imc, indices_cintura_cadera as icc } from '../../../utils/entities/main.js'
 import { postAuditoria } from '../../../middleware/auditoria.js'
+
 export const getAllFichasAntropometricas = async (req, res) => {
   try {
     const response = await service.getAllFichasAntropometricas()
@@ -51,6 +52,16 @@ export const createFichaAntropometrica = async (req, res) => {
     ficha_antropometrica.id_auditoria = id_auditoria
     const newFichaAntropometrica = await service.createFichaAntropometrica(ficha_antropometrica)
     res.status(201).json(newFichaAntropometrica)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const deleteFichaAntropometrica = async (req, res) => {
+  const { id } = req.params
+  try {
+    const response = await service.deleteFichaAntropometrica(id)
+    res.status(200).json({ message: 'Ficha antropometrica eliminada', response })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

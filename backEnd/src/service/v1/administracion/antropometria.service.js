@@ -23,26 +23,6 @@ const createFichaAntropometrica = async (data) => {
   return response
 }
 
-const createDatosGenerales = async (data) => {
-  const [response] = await pool.query('INSERT INTO datos_generales SET ?', [data])
-  return response
-}
-
-const createPerimetros = async (data) => {
-  const [response] = await pool.query('INSERT INTO perimetros_corporales SET ?', [data])
-  return response
-}
-
-const createICC = async (data) => {
-  const [response] = await pool.query('INSERT INTO indice_cintura_cadera SET ?', [data])
-  return response
-}
-
-const createIMC = async (data) => {
-  const [response] = await pool.query('INSERT INTO indice_masa_corporal SET ?', [data])
-  return response
-}
-
 // DATOS GENERALES DE LA FICHA ANTROPOMETRICA
 const getAllDatosGenerales = async () => {
   const [response] = await pool.query('SELECT * FROM datos_generales')
@@ -61,6 +41,11 @@ const getDatosGeneralesByIdFicha = async (id) => {
 
 const getDatosGeneralesByIdAtleta = async (id) => {
   const [response] = await pool.query('SELECT * FROM datos_generales WHERE id_atleta = ?', [id])
+  return response
+}
+
+const createDatosGenerales = async (data) => {
+  const [response] = await pool.query('INSERT INTO datos_generales SET ?', [data])
   return response
 }
 
@@ -85,6 +70,11 @@ const getPerimetrosByIdAtleta = async (id) => {
   return response
 }
 
+const createPerimetros = async (data) => {
+  const [response] = await pool.query('INSERT INTO perimetros_corporales SET ?', [data])
+  return response
+}
+
 // DATOS DE INDICE CINTURA CADERA DE LA FICHA ANTROPOMETRICA
 const getAllICC = async () => {
   const [response] = await pool.query('SELECT * FROM indice_cintura_cadera')
@@ -106,6 +96,11 @@ const getICCByIdAtleta = async (id) => {
   return response
 }
 
+const createICC = async (data) => {
+  const [response] = await pool.query('INSERT INTO indice_cintura_cadera SET ?', [data])
+  return response
+}
+
 // DATOS DE INDICE DE MASA CORPORAL DE LA FICHA ANTROPOMETRICA
 const getAllIMC = async () => {
   const [response] = await pool.query('SELECT * FROM indice_masa_corporal')
@@ -124,6 +119,11 @@ const getIMCByIdFicha = async (id) => {
 
 const getIMCByIdAtleta = async (id) => {
   const [response] = await pool.query('SELECT * FROM indice_masa_corporal WHERE id_atleta = ?', [id])
+  return response
+}
+
+const createIMC = async (data) => {
+  const [response] = await pool.query('INSERT INTO indice_masa_corporal SET ?', [data])
   return response
 }
 
