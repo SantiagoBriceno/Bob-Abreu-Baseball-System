@@ -2,6 +2,14 @@ import { pool } from '../../../db.js'
 
 const JOIN_FICHA = 'ficha_antropometrica INNER JOIN datos_generales ON ficha_antropometrica.id = datos_generales.id_ficha INNER JOIN perimetros_corporales ON ficha_antropometrica.id = perimetros_corporales.id_ficha INNER JOIN indice_cintura_cadera ON ficha_antropometrica.id = indice_cintura_cadera.id_ficha INNER JOIN indice_masa_corporal ON ficha_antropometrica.id = indice_masa_corporal.id_ficha'
 
+const GENERAL_ROWS = 'estatura_maxima, percentil_talla, longitud_de_pie, longitud_sentado, envergadura, imc, imc_ideal, tasa_metabolica_basal, calorias_necesarias, peso_corporal, peso_ideal, percentil_de_peso'
+
+const PERIMETROS_ROWS = 'cabeza, cuello, brazo_relajado, brazo_contraido, antebrazo, muneca, torax, espalda, muslo_superior, muslo_medio, pierna, tobillo'
+
+const ICC_ROWS = 'cintura, cadera, relacion_cintura_cadera'
+
+const IMC_ROWS = 'masa_grasa_corporal, masa_grasa_ideal, masa_magra_corporal, masa_magra_ideal'
+
 const nextId = async (table) => {
   const [id] = await pool.query(`SELECT MAX(id_ficha) + 1 AS id FROM ${table};`)
   return id[0].id ? id[0].id : 1
@@ -14,7 +22,19 @@ const getAllFichasAntropometricas = async () => {
 }
 
 const getFichaAntropometricaById = async (id) => {
-  const [response] = await pool.query(`SELECT * FROM ${JOIN_FICHA} WHERE ficha_antropometrica.id = ?`, [id])
+  const [basic] = await pool.query('SELECT id_atleta, id_ficha FROM ficha_antropometrica WHERE ficha_antropometrica.id_ficha = ?', [id])
+  const [general] = await pool.query(`SELECT ${GENERAL_ROWS} FROM datos_generales WHERE datos_generales.id_ficha = ?`, [id])
+  const [perimetros] = await pool.query(`SELECT ${PERIMETROS_ROWS} FROM perimetros_corporales WHERE perimetros_corporales.id_ficha = ?`, [id])
+  const [icc] = await pool.query(`SELECT ${ICC_ROWS} FROM indice_cintura_cadera WHERE indice_cintura_cadera.id_ficha = ?`, [id])
+  const [imc] = await pool.query(`SELECT ${IMC_ROWS} FROM indice_masa_corporal WHERE indice_masa_corporal.id_ficha = ?`, [id])
+  const response = {
+    id_ficha: basic[0].id_ficha,
+    cedula: basic[0].id_atleta,
+    datos_general: general[0],
+    perimetros_corporales: perimetros[0],
+    indice_cintura_cadera: icc[0],
+    indice_masa_corporal: imc[0]
+  }
   return response
 }
 
