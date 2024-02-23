@@ -61,7 +61,7 @@ export const deleteFichaAntropometrica = async (req, res) => {
   const { id } = req.params
   try {
     const response = await service.deleteFichaAntropometrica(id)
-    res.status(200).json({ message: 'Ficha antropometrica eliminada', response })
+    res.status(200).json({ message: 'Ficha antropometrica eliminada exitosamente', response })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

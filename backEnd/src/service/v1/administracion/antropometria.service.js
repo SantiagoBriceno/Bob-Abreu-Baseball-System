@@ -23,6 +23,15 @@ const createFichaAntropometrica = async (data) => {
   return response
 }
 
+const deleteFichaAntropometrica = async (id) => {
+  const [response] = await pool.query('DELETE FROM ficha_antropometrica WHERE id_ficha = ?', [id])
+  await pool.query('DELETE FROM datos_generales WHERE id_ficha = ?', [id])
+  await pool.query('DELETE FROM perimetros_corporales WHERE id_ficha = ?', [id])
+  await pool.query('DELETE FROM indice_cintura_cadera WHERE id_ficha = ?', [id])
+  await pool.query('DELETE FROM indice_masa_corporal WHERE id_ficha = ?', [id])
+  return response
+}
+
 // DATOS GENERALES DE LA FICHA ANTROPOMETRICA
 const getAllDatosGenerales = async () => {
   const [response] = await pool.query('SELECT * FROM datos_generales')
@@ -132,6 +141,7 @@ export default {
   getAllFichasAntropometricas,
   getFichaAntropometricaById,
   createFichaAntropometrica,
+  deleteFichaAntropometrica,
   getAllDatosGenerales,
   getDatosGeneralesById,
   getDatosGeneralesByIdAtleta,

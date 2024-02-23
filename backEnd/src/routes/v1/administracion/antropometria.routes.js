@@ -6,6 +6,7 @@ import { userExtractor } from '../../../middleware/userExtractor.js'
 import {
   createFichaAntropometrica,
   getAllFichasAntropometricas,
+  deleteFichaAntropometrica,
   getDatosGenerales,
   getDatosGeneralesById,
   getDatosGeneralesByIdAtleta,
@@ -30,6 +31,7 @@ const router = Router()
 router.get('/ficha', userExtractor, getAllFichasAntropometricas)
 router.get('/ficha/:id', userExtractor, getFichaAntropometricaById)
 router.post('/ficha', userExtractor, createFichaAntropometrica)
+router.delete('/ficha/:id', userExtractor, deleteFichaAntropometrica)
 
 router.get('/general', userExtractor, getDatosGenerales)
 router.get('/general/:id', userExtractor, getDatosGeneralesById)
