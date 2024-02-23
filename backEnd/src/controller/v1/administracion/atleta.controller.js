@@ -7,6 +7,11 @@ import { calcularClase } from './utils/atleta.js'
 export const getAtletas = async (req, res) => {
   try {
     const data = await service.getAtletas()
+    data.map((atleta) => {
+      const fecha = new Date(atleta.fecha_nacimiento)
+      atleta.fecha_nacimiento = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+      return null
+    })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
@@ -59,6 +64,11 @@ export const getAtletasByPosition = async (req, res) => {
   const { position } = req.params
   try {
     const data = await service.getAtletaByPosition(position)
+    data.map((atleta) => {
+      const fecha = new Date(atleta.fecha_nacimiento)
+      atleta.fecha_nacimiento = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+      return null
+    })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json(error)
