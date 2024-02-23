@@ -57,9 +57,6 @@ export const ficha_antropometrica = {
 }
 
 export const datos_generales = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
   estatura_maxima: '',
   percentil_talla: '',
   longitud_de_pie: '',
@@ -75,9 +72,6 @@ export const datos_generales = {
 }
 
 export const perimetros_corporales = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
   cabeza: '',
   cuello: '',
   brazo_relajado: '',
@@ -93,18 +87,12 @@ export const perimetros_corporales = {
 }
 
 export const indices_cintura_cadera = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
   cintura: '',
   cadera: '',
   relacion_cintura_cadera: ''
 }
 
 export const indice_Masa_corporal = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
   masa_grasa_corporal: '',
   masa_grasa_ideal: '',
   masa_magra_corporal: '',
@@ -112,9 +100,6 @@ export const indice_Masa_corporal = {
 }
 
 export const perfiles_fotograficos = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
   frente: '',
   lateral: '',
   espalda: ''

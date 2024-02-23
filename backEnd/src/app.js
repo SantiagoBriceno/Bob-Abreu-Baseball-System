@@ -7,6 +7,7 @@ import testRoutes from './routes/v1/authentication/test.routes.js'
 import representanteRoutes from './routes/v1/administracion/representante.routes.js'
 import atletaRoutes from './routes/v1/administracion/atleta.routes.js'
 import estadisticasRoutes from './routes/v1/deportivo/estadisticas.routes.js'
+import antropometriaRoutes from './routes/v1/administracion/antropometria.routes.js'
 
 const app = express()
 app.use(cors())
@@ -17,5 +18,6 @@ app.use('/api/v1/test', testRoutes)
 app.use('/api/v1/representante', representanteRoutes)
 app.use('/api/v1/atletas', atletaRoutes)
 app.use('/api/v1/estadisticas', estadisticasRoutes)
+app.use('/api/v1/antropometria', antropometriaRoutes)
 
 export default app
