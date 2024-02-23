@@ -47,7 +47,7 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                         placeholder={c.placeholder}
                         id={c.id}
                         onChange={actions.handleChange}
-                        value={formData[c.id]}
+                        value={c.type === 'file' ? null : formData[c.id]}
                         onBlur={actions.handleBlur}
                       />}
                 </MyFormControl>
