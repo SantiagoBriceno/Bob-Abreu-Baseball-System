@@ -12,7 +12,12 @@ export const getAllAtletas = async () => {
 }
 
 export const getAtleta = async (id) => {
-  const response = await fetch(`${RUTA_ATLETAS}/${id}`)
+  const response = await fetch(`${RUTA_ATLETAS}/${id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + auth().token
+    }
+  })
   return response.json()
 }
 

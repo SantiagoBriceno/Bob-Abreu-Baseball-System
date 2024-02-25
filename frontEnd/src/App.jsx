@@ -14,6 +14,9 @@ import { SesionContextProvider } from './context/SesionContext'
 import PublicRoute from './view/router/PublicRoute'
 import PrivateRoute from './view/router/PrivateRoute.jsx'
 import RegisterView from './view/auth/Register.view.jsx'
+import AtletaView from './view/Atletas/Atleta.view.jsx'
+import RegistrosEspecialesView from './view/RegistrosEspeciales.view.jsx'
+import UsuariosView from './view/Usuarios.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -65,8 +68,20 @@ const router = createBrowserRouter(
                 {
                   path: 'pitchers',
                   element: <PitchersView />
+                },
+                {
+                  path: 'atleta/:id',
+                  element: <AtletaView />
                 }
               ]
+            },
+            {
+              path: 'registros-especiales',
+              element: <RegistrosEspecialesView />
+            },
+            {
+              path: 'usuarios',
+              element: <UsuariosView />
             }
           ]
         }
