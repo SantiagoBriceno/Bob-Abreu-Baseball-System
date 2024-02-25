@@ -1,11 +1,11 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import MyForm from '../components/MyForm'
-import { representante } from '../../../global.constants.js'
-import { representanteValidation } from '../constants/dataValidation.js'
-import { validationInputRepresentante } from '../constants/validationInputs.js'
+import { usuarioRegister } from '../../../global.constants.js'
+import { userValidation } from '../constants/dataValidation.js'
+import { validationInputUser } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { representanteFields } from '../constants/form/fields.js'
-import { createRepresentante } from '../service/representante.js'
+import { createUser } from '../service/users.js'
 import MyTable from '../components/MyTable.jsx'
 import { useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
@@ -14,7 +14,7 @@ import { useUser } from '../hooks/table/useUser.js'
 
 const UsuariosView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
+  const { formData, actions, errorState } = useMyFormHook(usuarioRegister, userValidation, validationInputUser, createUser)
   const { data } = useUser()
   console.log('data', data)
 
@@ -32,7 +32,7 @@ const UsuariosView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           USUARIOS
         </Heading>
-        <MyTable datatype='Agregar usuario' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
+        <MyTable datatype='Agregar usuario' searchParam='name' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='Registrar representante' errorMessage={errorState} />

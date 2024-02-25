@@ -9,6 +9,21 @@ export const validationInputLogin = ({ id, type, value, options = null }) => {
   }
 }
 
+export const validationInputUser = ({ id, type, value, options = null }) => {
+  switch (id) {
+    case 'name':
+      return { isInvalid: value.length < 3, message: 'El nombre debe tener al menos 3 caracteres', isSubmitted: false }
+    case 'username':
+      return { isInvalid: value.length < 7, message: 'El usuario debe tener al menos 7 caracteres', isSubmitted: false }
+    case 'password':
+      return { isInvalid: value.length < 7, message: 'La contraseña debe tener al menos 7 caracteres', isSubmitted: false }
+    case 'rol':
+      return { isInvalid: value.length < 3, message: 'El rol debe tener al menos 3 caracteres', isSubmitted: false }
+    default:
+      return { isInvalid: false, message: '', isSubmitted: false }
+  }
+}
+
 export const validationInputRepresentante = ({ id, type, value, options = null }) => {
   switch (id) {
     case 'cedula':

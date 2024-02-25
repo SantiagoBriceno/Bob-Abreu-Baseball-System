@@ -3,6 +3,14 @@ export const loginValidation = {
   password: { isInvalid: false, message: '', isSubmitted: false }
 }
 
+export const userValidation = {
+  cedula: { isInvalid: false, message: '', isSubmitted: false },
+  nombre: { isInvalid: false, message: '', isSubmitted: false },
+  username: { isInvalid: false, message: '', isSubmitted: false },
+  password: { isInvalid: false, message: '', isSubmitted: false },
+  rol: { isInvalid: false, message: '', isSubmitted: false }
+}
+
 export const representanteValidation = {
   cedula: { isInvalid: false, message: '', isSubmitted: false },
   nombre: { isInvalid: false, message: '', isSubmitted: false },

@@ -1,5 +1,15 @@
 /* eslint-disable camelcase */
 // Estructuras de datos para las entidades de la base de datos
+
+export const usuarioRegister = {
+  username: '',
+  nombre: '',
+  cedula: '',
+  rol: '',
+  password: ''
+
+}
+
 export const usuario = {
   users: '',
   password: ''

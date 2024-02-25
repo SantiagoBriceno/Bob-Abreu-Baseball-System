@@ -18,10 +18,11 @@ import {
   ButtonGroup
 } from '@chakra-ui/react'
 
+import { Link } from 'react-router-dom'
 import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ datatype = 'entity', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen }) => {
+const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false }) => {
   console.log('data', data)
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
@@ -50,14 +51,14 @@ const MyTable = ({ datatype = 'entity', data, columns, title, idRow, inventoryMo
     if (data.length === 0) {
       return data
     } else {
-      if (data[0].nombre) {
-        return data.filter((row) => row.nombre.toLowerCase().includes(search.toLowerCase()))
+      if (data[0][searchParam]) {
+        return data.filter((row) => row[searchParam].toLowerCase().includes(search.toLowerCase()))
       }
     }
   }
 
   const results = !search ? data : searchFilter(data)
-
+  console.log('results', results)
   return (
     <>
       <Flex bg='white' border='2px solid black' shadow='lg' rounded='10px' p='20px 30px' w='90%' alignItems='center' gap='2'>
@@ -101,6 +102,12 @@ const MyTable = ({ datatype = 'entity', data, columns, title, idRow, inventoryMo
                           <Button id={`D%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='red' _hover={{ bg: 'red.500' }} className='button-2' onClick={handleDelete}>
                             Eliminar
                           </Button>
+                          {setVisualizable &&
+                            <Link to={`/private/atletas/atleta/${row[idRow]}`} style={{ textDecoration: 'none' }}>
+                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3' onClick={handleDelete}>
+                                Visualizar
+                              </Button>
+                            </Link>}
                         </Td>}
                     </Tr>
                   ))

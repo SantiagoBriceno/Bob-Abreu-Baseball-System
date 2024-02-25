@@ -10,6 +10,5 @@ export const useUser = () => {
     }
     fetchData()
   }, [])
-  console.log('data desde hook', data)
   return { data }
 }

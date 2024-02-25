@@ -11,3 +11,15 @@ export const getAllUsers = async () => {
   console.log('response', response)
   return response.json()
 }
+
+export const createUser = async (user) => {
+  const response = await fetch(RUTA_REGISTER, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + auth().token
+    },
+    body: JSON.stringify(user)
+  })
+  return response.json()
+}
