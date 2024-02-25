@@ -2,7 +2,6 @@ import { pool } from '../../../db.js'
 
 const nextId = async (table) => {
   const [id] = await pool.query(`SELECT MAX(id) + 1 AS id FROM ${table};`)
-  console.log(id)
   return id[0].id ? id[0].id : 1
 }
 
@@ -84,7 +83,6 @@ const deleteRunningStat = async (id) => {
 
 const getRunningStatsByIdPlayer = async (id) => {
   const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
-  console.log(runningStats, 'desde el service')
   return runningStats
 }
 

@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import express, { Router } from 'express'
 
 import {
   getAtletas,
@@ -7,7 +7,8 @@ import {
   updateAtleta,
   deleteAtleta,
   getAtletasByPosition,
-  getAtletasClasifiedByPosition
+  getAtletasClasifiedByPosition,
+  getAtletaImg
 } from '../../../controller/v1/administracion/atleta.controller.js'
 
 import { userExtractor } from '../../../middleware/userExtractor.js'
@@ -42,12 +43,13 @@ const multerUpload = multer({
 })
 
 const router = Router()
-
 router.get('/', userExtractor, auth.adminPermission, getAtletas)
-router.get('/:id', userExtractor, auth.adminPermission, getAtletaById)
+router.get('/:id', getAtletaById, (req, res) => {
+  res.status(200).json({ data: req.data, img: req.foto })
+})
 router.get('/all/position', userExtractor, auth.adminPermission, getAtletasClasifiedByPosition)
 router.get('/all/position/:position', userExtractor, auth.adminPermission, getAtletasByPosition)
-router.post('/', multerUpload.single('foto'), createAtleta)
+router.post('/', userExtractor, auth.adminPermission, multerUpload.single('foto'), createAtleta)
 router.patch('/:id', userExtractor, auth.adminPermission, updateAtleta)
 router.delete('/:id', userExtractor, auth.adminPermission, deleteAtleta)
 

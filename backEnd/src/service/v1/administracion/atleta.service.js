@@ -45,6 +45,11 @@ const getAtletaByPosition = async (posicion) => {
   return data
 }
 
+const getAtletaImg = async (id) => {
+  const [data] = await pool.query('SELECT foto FROM atleta WHERE cedula = ?', [id])
+  return data
+}
+
 export default {
   getAtletas,
   getAtletaById,
@@ -53,5 +58,6 @@ export default {
   deleteAtleta,
   getCedulas,
   getPositionById,
-  getAtletaByPosition
+  getAtletaByPosition,
+  getAtletaImg
 }

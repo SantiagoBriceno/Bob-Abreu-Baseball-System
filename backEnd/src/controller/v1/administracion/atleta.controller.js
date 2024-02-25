@@ -5,6 +5,11 @@ import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
 import { calcularClase } from './utils/atleta.js'
 import antropometriaService from '../../../service/v1/administracion/antropometria.service.js'
 import estadisticasService from '../../../service/v1/deportivo/estadisticas.service.js'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+
+const CURRENT_DIR = dirname(fileURLToPath(import.meta.url))
 
 export const getAtletas = async (req, res) => {
   try {
@@ -48,7 +53,31 @@ export const getAtletaById = async (req, res) => {
       estadisticas
     }
 
+    req.data = data
+
     res.status(200).json(data)
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json(error)
+  }
+}
+
+export const getAtletaImg = async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const data = await service.getAtletaImg(id)
+    console.log('data', data)
+    const imgPath = join(CURRENT_DIR, '../../../storage/atletas', data[0].foto)
+    console.log('imgPath', imgPath)
+    fs.access(imgPath, fs.constants.F_OK, (err) => {
+      if (err) {
+        req.foto = null
+        res.status(500).json({ message: 'No se encontro la imagen' })
+      } else {
+        req.foto = imgPath
+        next()
+      }
+    })
   } catch (error) {
     console.log('error', error)
     res.status(500).json(error)
