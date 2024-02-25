@@ -19,27 +19,25 @@ import { dirname, join, extname } from 'path'
 import { fileURLToPath } from 'url'
 
 const CURRENT_DIR = dirname(fileURLToPath(import.meta.url))
-const MIMETYPES = ['image/jpeg', 'image/png', 'image/jpg']
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, join(CURRENT_DIR, '../../../storage/atletas'))
+  },
+  filename: (req, file, cb) => {
+    const fileExtension = extname(file.originalname)
+    const inputName = req.body.nombre
+    const inputCedula = req.body.cedula
+    const storageName = `${inputCedula}-${inputName}-${Date.now()}${fileExtension}`
+    req.body.foto = storageName
+    cb(null, `${inputCedula}-${inputName}-${Date.now()}${fileExtension}`)
+  }
+})
 
 const multerUpload = multer({
-  storage: multer.diskStorage({
-    destination: join(CURRENT_DIR, '../../../storage/atletas'),
-    filename: (req, file, cb) => {
-      const fileExtension = extname(file.originalname)
-      const inputName = req.body.nombre
-      const inputCedula = req.body.cedula
-      console.log('inputName', inputName)
-      const storageName = `${inputCedula}-${inputName}-${Date.now()}${fileExtension}`
-      req.body.foto = storageName
-      cb(null, `${inputCedula}-${inputName}-${Date.now()}${fileExtension}`)
-    }
-  }),
-  fileFilter: (req, file, cb) => {
-    if (MIMETYPES.includes(file.mimetype)) cb(null, true)
-    else cb(new Error(`Only ${MIMETYPES.join(', ')} files are allowed`))
-  },
+  storage,
   limits: {
-    fieldSize: 10000000
+    fileSize: 100000000
   }
 })
 
@@ -49,7 +47,7 @@ router.get('/', userExtractor, auth.adminPermission, getAtletas)
 router.get('/:id', userExtractor, auth.adminPermission, getAtletaById)
 router.get('/all/position', userExtractor, auth.adminPermission, getAtletasClasifiedByPosition)
 router.get('/all/position/:position', userExtractor, auth.adminPermission, getAtletasByPosition)
-router.post('/', userExtractor, auth.adminPermission, multerUpload.single('foto'), createAtleta)
+router.post('/', multerUpload.single('foto'), createAtleta)
 router.patch('/:id', userExtractor, auth.adminPermission, updateAtleta)
 router.delete('/:id', userExtractor, auth.adminPermission, deleteAtleta)
 

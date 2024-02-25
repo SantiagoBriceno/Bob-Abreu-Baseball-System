@@ -76,6 +76,8 @@ export const getAtletasByPosition = async (req, res) => {
 }
 
 export const createAtleta = async (req, res) => {
+  console.log('req.body', req.body)
+  console.log('req.file', req.file)
   try {
     const { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting } = req.body
     const atleta = { cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, posicion, estado, foto, hitting }
@@ -86,7 +88,6 @@ export const createAtleta = async (req, res) => {
     if (existAtleta(cedulas, cedula)) {
       return res.status(406).json({ message: 'Atleta ya existe' })
     }
-    atleta.foto = `${cedula}-${nombre}-${Date.now()}`
     atleta.clase = calcularClase(fecha_nacimiento)
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria
@@ -96,10 +97,6 @@ export const createAtleta = async (req, res) => {
     console.log('error', error)
     res.status(500).json(error)
   }
-}
-
-export const uploadImgAtleta = async (req, res) => {
-
 }
 
 export const updateAtleta = async (req, res) => {
