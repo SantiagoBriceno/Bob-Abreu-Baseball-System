@@ -16,7 +16,7 @@ const AtletasView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { data } = useAtleta()
   console.log('data', data)
-  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta)
+  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true)
 
   const closeModal = () => {
     setIsOpen(false)
@@ -35,7 +35,7 @@ const AtletasView = () => {
         <MyTable datatype='Agregar atleta' data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={atletaFields} formData={formData} actions={actions} title='INGRESO DE ATLETA' errorMessage={errorState} />
+        <MyForm encType fields={atletaFields} formData={formData} actions={actions} title='INGRESO DE ATLETA' errorMessage={errorState} />
       </FormModal>
     </Stack>
   )

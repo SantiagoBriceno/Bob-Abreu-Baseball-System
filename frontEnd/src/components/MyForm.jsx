@@ -7,13 +7,13 @@ import MySelect from './form/MySelect.jsx'
 import MyFormTemplate from './form/MyFormTemplate.jsx'
 import MyButton from './form/MyButton.jsx'
 
-const MyForm = ({ fields, formData, actions, title, errorMessage }) => {
+const MyForm = ({ fields, formData, actions, title, errorMessage, encType = false }) => {
   return (
-    <form>
+    <form id='form' encType={encType ? 'multipart/form-data' : null} onSubmit={actions.handleSubmit}>
       <FormHeader title={title} />
       <MyFormTemplate>
         <FormContent fields={fields} formData={formData} actions={actions} errorMessage={errorMessage} />
-        <FormFooter actions={actions} />
+        <FormFooter encType={encType} actions={actions} />
       </MyFormTemplate>
     </form>
   )
@@ -64,19 +64,53 @@ const FormHeader = ({ title }) => {
   return (
     <>
       <Heading textAlign='center' w='100%' m='5% 0'>
-        {title}
+        {title ? 'INGRESO DE ATLETA' : title}
       </Heading>
     </>
 
   )
 }
 
-const FormFooter = ({ actions }) => {
+const FormFooter = ({ actions, encType = false }) => {
   return (
-    <MyButton
-      w='25%' mt={10} onClick={actions.handleSubmit} color='white' bg='principales.terciary' _hover={{
-        background: 'principales.cuaternary'
-      }} label='Enviar'
-    />
+    <>
+      {!encType
+        ? (
+          <MyButton
+            w='25%'
+            mt={10}
+            onClick={actions.handleSubmit}
+            color='white'
+            bg='principales.terciary'
+            _hover={{
+              background: 'principales.cuaternary'
+            }} label='Enviar'
+          />
+          )
+        : (
+          <MyButton
+            w='25%'
+            type='submit'
+            mt={10}
+            color='white'
+            bg='principales.terciary'
+            _hover={{
+              background: 'principales.cuaternary'
+            }} label='Enviar 2'
+          />
+
+          )}
+    </>
   )
 }
+
+// <MyButton
+//   w='25%'
+//   mt={10}
+//   onClick={actions.handleSubmit}
+//   color='white'
+//   bg='principales.terciary'
+//   _hover={{
+//     background: 'principales.cuaternary'
+//   }} label='Enviar'
+// />
