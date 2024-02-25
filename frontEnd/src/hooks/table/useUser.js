@@ -6,7 +6,7 @@ export const useUser = () => {
   useMemo(() => {
     const fetchData = async () => {
       const response = await getAllUsers()
-      setData(response.data)
+      setData(response)
     }
     fetchData()
   }, [])
