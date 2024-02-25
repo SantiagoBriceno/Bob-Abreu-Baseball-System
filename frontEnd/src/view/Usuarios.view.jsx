@@ -9,13 +9,13 @@ import { createRepresentante } from '../service/representante.js'
 import MyTable from '../components/MyTable.jsx'
 import { useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
-import { representanteColumns as columns } from '../constants/table/columns.js'
-import { useRepresentante } from '../hooks/table/useRepresentante.js'
+import { userColumns as columns } from '../constants/table/columns.js'
+import { useUser } from '../hooks/table/useUser.js'
 
 const UsuariosView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
-  const { data } = useRepresentante()
+  const { data } = useUser()
   console.log('data', data)
 
   const closeModal = () => {
@@ -32,7 +32,7 @@ const UsuariosView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           USUARIOS
         </Heading>
-        <MyTable datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
+        <MyTable datatype='Agregar usuario' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='Registrar representante' errorMessage={errorState} />

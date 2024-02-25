@@ -9,6 +9,12 @@ export const atletaColumns = [
 
 ]
 
+export const userColumns = [
+  { key: 'cedula', name: 'Cédula' },
+  { key: 'name', name: 'Nombre' },
+  { key: 'rol', name: 'Rol' }
+]
+
 export const representanteColumns = [
   { key: 'nombre', name: 'Nombre' },
   { key: 'cedula', name: 'Cédula' },
