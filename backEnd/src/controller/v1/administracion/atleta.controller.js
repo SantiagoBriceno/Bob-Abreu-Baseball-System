@@ -3,6 +3,8 @@ import service from '../../../service/v1/administracion/atleta.service.js'
 import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
 import { calcularClase } from './utils/atleta.js'
+import antropometriaService from '../../../service/v1/administracion/antropometria.service.js'
+import estadisticasService from '../../../service/v1/deportivo/estadisticas.service.js'
 
 export const getAtletas = async (req, res) => {
   try {
@@ -24,9 +26,31 @@ export const getAtletaById = async (req, res) => {
     if (!existAtleta(await service.getCedulas(), id)) {
       return res.status(400).json({ message: 'Atleta no existe' })
     }
-    const data = await service.getAtletaById(id)
+    const datosGeneral = await service.getAtletaById(id)
+
+    const antropometria = await antropometriaService.getFichaAntropometricaByIdAtleta(id)
+    // HACER ALGUNAS COSAS MAS
+
+    const estadisticas = {
+      hitting: await estadisticasService.getHittingStatsByIdPlayer(id),
+      running: await estadisticasService.getRunningStatsByIdPlayer(id),
+      throwing: await estadisticasService.getThrowingStatsByIdPlayer(id),
+      fielding: await estadisticasService.getFieldingStatsByIdPlayer(id)
+    }
+
+    if (datosGeneral.posicion === 'Pitcher') {
+      estadisticas.pitching = await estadisticasService.getPitchingStatByIdPlayer(id)
+    }
+
+    const data = {
+      datosGeneral,
+      antropometria,
+      estadisticas
+    }
+
     res.status(200).json(data)
   } catch (error) {
+    console.log('error', error)
     res.status(500).json(error)
   }
 }

@@ -10,7 +10,13 @@ const getUsernames = async () => {
   return data.map((user) => user.username)
 }
 
+const getUsers = async () => {
+  const [data] = await pool.query('SELECT cedula, name, rol FROM users')
+  return data
+}
+
 export default {
   createUser,
-  getUsernames
+  getUsernames,
+  getUsers
 }

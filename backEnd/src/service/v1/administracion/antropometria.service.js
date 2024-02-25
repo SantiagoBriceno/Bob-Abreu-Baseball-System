@@ -38,6 +38,11 @@ const getFichaAntropometricaById = async (id) => {
   return response
 }
 
+const getFichaAntropometricaByIdAtleta = async (id) => {
+  const [response] = await pool.query('SELECT * FROM ficha_antropometrica WHERE ficha_antropometrica.id_atleta = ?', [id])
+  return response
+}
+
 const createFichaAntropometrica = async (data) => {
   const [response] = await pool.query('INSERT INTO ficha_antropometrica SET ?', [data])
   return response
@@ -181,5 +186,6 @@ export default {
   getIMCById,
   getIMCByIdFicha,
   getIMCByIdAtleta,
-  createIMC
+  createIMC,
+  getFichaAntropometricaByIdAtleta
 }

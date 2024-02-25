@@ -84,6 +84,7 @@ const deleteRunningStat = async (id) => {
 
 const getRunningStatsByIdPlayer = async (id) => {
   const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
+  console.log(runningStats, 'desde el service')
   return runningStats
 }
 
