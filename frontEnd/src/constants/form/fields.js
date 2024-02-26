@@ -26,6 +26,65 @@ export const loginFields = [
   }
 ]
 
+export const usuarioRegisterFields = [
+  {
+    title: 'Registro de usuario',
+    campos: [
+      [
+        {
+          label: 'Cédula',
+          name: 'cedula',
+          type: 'text',
+          required: true,
+          placeholder: '12345678',
+          id: 'cedula'
+        },
+        {
+          label: 'Nombre',
+          name: 'nombre',
+          type: 'text',
+          required: true,
+          placeholder: 'César Pausin',
+          id: 'nombre'
+        }
+      ],
+      [
+        {
+          label: 'Username',
+          name: 'username',
+          type: 'text',
+          required: true,
+          placeholder: 'andrespausin',
+          id: 'username'
+        },
+        {
+          label: 'Contraseña',
+          name: 'contraseña',
+          type: 'password',
+          required: true,
+          placeholder: '',
+          id: 'password'
+        }
+      ],
+      [
+        {
+          label: 'Rol',
+          name: 'rol',
+          type: 'select',
+          required: true,
+          id: 'rol',
+          opt: [
+            { value: 'admin', label: 'Administrador' },
+            { value: 'deportivo', label: 'Staff deportivo' },
+            { value: 'gerente', label: 'Gerente' },
+            { value: 'fisioterapeuta', label: 'Fisioterapeuta' }
+          ]
+        }
+      ]
+    ]
+  }
+]
+
 export const atletaFields = [
   {
     title: 'Datos del atleta',
