@@ -35,7 +35,7 @@ const RegistrosEspecialesView = () => {
         <MyTable datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={representanteFields} formData={formData} actions={actions} title='Registrar representante' errorMessage={errorState} />
+        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTROS ESPECIALES' errorMessage={errorState} />
       </FormModal>
     </Stack>
   )
