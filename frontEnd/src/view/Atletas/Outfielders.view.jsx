@@ -33,7 +33,7 @@ const OutfieldersView = () => {
         <MyTable setVisualizable datatype='Agregar atleta' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={atletaFields} formData={formData} actions={actions} title='INGRESO DE ATLETA' errorMessage={errorState} />
+        <MyForm fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />
       </FormModal>
     </Stack>
   )

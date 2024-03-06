@@ -17,6 +17,7 @@ import RegisterView from './view/auth/Register.view.jsx'
 import AtletaView from './view/Atletas/Atleta.view.jsx'
 import RegistrosEspecialesView from './view/RegistrosEspeciales.view.jsx'
 import UsuariosView from './view/Usuarios.view.jsx'
+import LesionesView from './view/Lesiones.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -82,6 +83,10 @@ const router = createBrowserRouter(
             {
               path: 'usuarios',
               element: <UsuariosView />
+            },
+            {
+              path: 'lesiones',
+              element: <LesionesView />
             }
           ]
         }

@@ -12,7 +12,7 @@ import FormModal from '../components/modals/FormModal.jsx'
 import { representanteColumns as columns } from '../constants/table/columns.js'
 import { useRepresentante } from '../hooks/table/useRepresentante.js'
 
-const RepresentanteView = () => {
+const LesionesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
   const { data } = useRepresentante()
@@ -30,15 +30,15 @@ const RepresentanteView = () => {
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
-          REPRESENTANTES
+          LESIONES
         </Heading>
         <MyTable datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTRO DE REPRESENTANTE' errorMessage={errorState} />
+        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />
       </FormModal>
     </Stack>
   )
 }
 
-export default RepresentanteView
+export default LesionesView

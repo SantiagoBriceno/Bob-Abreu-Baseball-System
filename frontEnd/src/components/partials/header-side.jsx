@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
   TeamOutlined,
   VideoCameraOutlined
@@ -142,6 +141,11 @@ const HeaderSidebar = () => {
               key: '4',
               icon: <UserOutlined />,
               label: <NavLink to='/private/usuarios'>Usuarios</NavLink>
+            },
+            {
+              key: '5',
+              icon: <UserOutlined />,
+              label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
             }
 
           ]}

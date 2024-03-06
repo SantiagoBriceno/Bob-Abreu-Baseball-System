@@ -63,8 +63,8 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
 const FormHeader = ({ title }) => {
   return (
     <>
-      <Heading textAlign='center' w='100%' m='5% 0'>
-        {title ? 'INGRESO DE ATLETA' : title}
+      <Heading fontWeight='extrabold' textAlign='center' w='100%' m='5% 0'>
+        {!title ? 'REGISTRO DE ATLETA' : title}
       </Heading>
     </>
 
