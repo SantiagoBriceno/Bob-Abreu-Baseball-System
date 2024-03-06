@@ -5,7 +5,7 @@ import {
 
 import { createThrowingStat, deleteThrowingStat, getThrowingStatById, getThrowingStatByIdPlayer, getThrowingStats, updateThrowingStat, getFirstBaseStatByClass, getSecondBaseStatByClass, getThirdBaseStatByClass } from '../../../controller/v1/deportivo/estadisticas/throwing.controller.js'
 import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat } from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
-import { createRunningStat, deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
+import { createRunningStat, getArrayOfDate,deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
 import { createFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
 // import { createPitchingStat, deletePitchingStat, getPitchingStatById, getPitchingStatByIdPlayer, getPitchingStats, updatePitchingStat } from '../../../controller/v1/deportivo/estadisticas/pitching.controller.js'
 
@@ -66,5 +66,7 @@ router.get('/throwing/g/primera', getFirstBaseStatByClass)
 router.get('/throwing/g/segunda', getSecondBaseStatByClass)
 
 router.get('/throwing/g/tercera', getThirdBaseStatByClass)
+
+router.get('/running/t/data', getArrayOfDate)
 
 export default router

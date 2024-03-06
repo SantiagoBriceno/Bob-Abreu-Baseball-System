@@ -10,6 +10,19 @@ const getAllClases = async (table) => {
   return clases
 }
 
+// Saber los atletas que tienen estadisticas de algun tipo dado
+const getExistIdPlayer = async (table) => {
+  const [ids] = await pool.query(`SELECT DISTINCT id_atleta as id FROM ${table}`)
+  console.log(ids)
+  return ids
+}
+
+// Saber las fechas de evaluacion de las estadisticas de algun tipo dado, para la regresion lineal
+const getArrayOfDateById = async (table, row, id) => {
+  const [date] = await pool.query(`SELECT ${row} as y, fecha_evaluacion as x FROM ${table} WHERE id_atleta = ?`, [id])
+  return date
+}
+
 /* HITTING STATS SERVICES */
 
 const getHittingStatsIds = async () => {
@@ -226,6 +239,8 @@ const getRowFromTableByIdWithClass = async (table, atribute, id) => {
 
 export default {
   getAllClases,
+  getExistIdPlayer,
+  getArrayOfDateById,
   getHittingStatsIds,
   getHittingStats,
   getHittingStatById,

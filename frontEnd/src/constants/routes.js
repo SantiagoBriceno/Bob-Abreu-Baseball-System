@@ -1,4 +1,4 @@
-const RUTA_API = 'https://nnzggmgv-3000.use2.devtunnels.ms/api/v1'
+const RUTA_API = 'http://localhost:3000/api/v1'
 export const RUTA_ATLETAS = RUTA_API + '/atletas'
 export const RUTA_REPRESENTANTES = RUTA_API + '/representante'
 export const RUTA_ESTADISTICAS = RUTA_API + '/estadisticas'

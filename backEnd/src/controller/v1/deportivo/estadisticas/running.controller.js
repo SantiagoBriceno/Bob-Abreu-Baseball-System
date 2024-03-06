@@ -133,3 +133,42 @@ export const getSixtyYardStatByClass = async (req, res) => {
   }
   return res.status(200).json(data)
 }
+
+// IMPORTANTE PARA LA REGRESION LINEAL
+
+export const getArrayOfDate = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('running')
+    if (ids.length === 0) {
+      res.status(404).json({ message: 'No running stats found' })
+    }
+    const idsArray = ids.map(({ id }) => id)
+    const arrayOfDate = []
+    for (const id of idsArray) {
+      // obtengo las fechas de las estadisticas y el valor de la stat que importa de running por id en un arreglo de objeto
+      const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+
+      // obtengo solo las fechas de dateAndStat
+      const dates = dateAndStat.map(({ x }) => x)
+      const firstDate = dates[0]
+      const diasTranscurridos = []
+      for (const date of dates) {
+        const diffMs = date - firstDate
+
+        const days = diffMs / (1000 * 60 * 60 * 24)
+        diasTranscurridos.push(days)
+      }
+
+      dates.map((date, index) => {
+        dateAndStat[index].x = diasTranscurridos[index]
+        return null
+      })
+
+      arrayOfDate.push({ dateAndStat })
+    }
+    res.status(200).json(arrayOfDate)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}

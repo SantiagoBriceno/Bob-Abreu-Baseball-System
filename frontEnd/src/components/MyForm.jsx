@@ -84,7 +84,7 @@ const FormFooter = ({ actions, encType = false }) => {
             bg='principales.terciary'
             _hover={{
               background: 'principales.cuaternary'
-            }} label='Enviar'
+            }} label='Guardar'
           />
           )
         : (
@@ -96,7 +96,7 @@ const FormFooter = ({ actions, encType = false }) => {
             bg='principales.terciary'
             _hover={{
               background: 'principales.cuaternary'
-            }} label='Enviar 2'
+            }} label='Guardar'
           />
 
           )}

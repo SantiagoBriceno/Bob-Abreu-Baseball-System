@@ -15,6 +15,22 @@ CREATE TABLE IF NOT EXISTS representante (
   PRIMARY KEY (cedula, cedula_atleta)
 );
 
+INSERT INTO representante (cedula, nombre, tlf, rif, estatura, sexo, direccion, cedula_atleta, correo, id_auditoria)
+VALUES ('1234567890', 'John Doe', '555-1234', 'ABC123', '180', 'M', '123 Main St', '9876543210', 'john.doe@example.com', '1');
+
+INSERT INTO representante (cedula, nombre, tlf, rif, estatura, sexo, direccion, cedula_atleta, correo, id_auditoria)
+VALUES ('0987654321', 'Jane Smith', '555-5678', 'DEF456', '165', 'F', '456 Elm St', '0123456789', 'jane.smith@example.com', '2');
+
+INSERT INTO representante (cedula, nombre, tlf, rif, estatura, sexo, direccion, cedula_atleta, correo, id_auditoria)
+VALUES ('2468135790', 'Mike Johnson', '555-9876', 'GHI789', '175', 'M', '789 Oak St', '1357924680', 'mike.johnson@example.com', '3');
+
+INSERT INTO representante (cedula, nombre, tlf, rif, estatura, sexo, direccion, cedula_atleta, correo, id_auditoria)
+VALUES ('1357924680', 'Emily Davis', '555-5432', 'JKL012', '160', 'F', '321 Pine St', '2468135790', 'emily.davis@example.com', '4');
+
+INSERT INTO representante (cedula, nombre, tlf, rif, estatura, sexo, direccion, cedula_atleta, correo, id_auditoria)
+VALUES ('0123456789', 'David Wilson', '555-8765', 'MNO345', '185', 'M', '654 Cedar St', '0987654321', 'david.wilson@example.com', '5');
+
+
 CREATE TABLE IF NOT EXISTS registro_especial (
   id INT NOT NULL AUTO_INCREMENT,
   cedula_atleta VARCHAR(10) NOT NULL,
@@ -38,6 +54,22 @@ CREATE TABLE IF NOT EXISTS atleta (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (cedula)
 );
+
+INSERT INTO atleta (cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, clase, hitting, posicion, estado, foto, id_auditoria)
+VALUES ('9876543210', 'John Doe', '555-1234', 'Caracas', '2010-05-15', '2026', 'Right', 'Pitcher', 'Active', 'john_doe.jpg', '1');
+
+INSERT INTO atleta (cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, clase, hitting, posicion, estado, foto, id_auditoria)
+VALUES ('0123456789', 'Jane Smith', '555-5678', 'Maracaibo', '1995-08-20', 'A', 'Left', 'Catcher', 'Active', 'jane_smith.jpg', '2');
+
+INSERT INTO atleta (cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, clase, hitting, posicion, estado, foto, id_auditoria)
+VALUES ('2468135790', 'Mike Johnson', '555-9876', 'Valencia', '1992-03-10', 'B', 'Right', 'Shortstop', 'Active', 'mike_johnson.jpg', '3');
+
+INSERT INTO atleta (cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, clase, hitting, posicion, estado, foto, id_auditoria)
+VALUES ('1357924680', 'Emily Davis', '555-5432', 'Barquisimeto', '1998-11-25', 'B', 'Left', 'Outfielder', 'Active', 'emily_davis.jpg', '4');
+
+INSERT INTO atleta (cedula, nombre, tlf, lugar_nacimiento, fecha_nacimiento, clase, hitting, posicion, estado, foto, id_auditoria)
+VALUES ('0987654321', 'David Wilson', '555-8765', 'Maracay', '1993-07-05', 'C', 'Right', 'First Base', 'Active', 'david_wilson.jpg', '5');
+
 
 CREATE TABLE IF NOT EXISTS indicadores (
   id INT NOT NULL AUTO_INCREMENT,
@@ -216,7 +248,6 @@ CREATE TABLE IF NOT EXISTS running (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
-
 
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT,
