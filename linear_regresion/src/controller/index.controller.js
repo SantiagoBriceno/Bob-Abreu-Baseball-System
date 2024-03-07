@@ -3,18 +3,7 @@ import * as tf from '@tensorflow/tfjs'
 export const getRunningCordinates = async (req, res) => {
   try {
     const response = await service.getRunningCordinates()
-    const x = [
-      0,
-      10,
-      20,
-      30
-    ]
-    const y = [
-      7.9,
-      7.9,
-      7.9,
-      7.6
-    ]
+    const { x, y } = response
     const xLength = x.length
     const yLength = y.length
     const xs = tf.tensor2d(
@@ -29,14 +18,14 @@ export const getRunningCordinates = async (req, res) => {
     model.add(tf.layers.dense({ units: 1, inputShape: [1] }))
     model.compile({ loss: 'meanSquaredError', optimizer: tf.train.adam(0.01) })
     await model.fit(xs, ys, {
-      epochs: 5500,
+      epochs: 1500,
       callbacks: {
         onEpochEnd: async (epoch, logs) => {
           console.log(`Epoch ${epoch}: loss = ${logs.loss}`)
         }
       }
     })
-    const prediction = model.predict(tf.tensor2d([500], [1, 1]))
+    const prediction = model.predict(tf.tensor2d([30], [1, 1]))
     console.log(`Prediccion de 60 yardas para un atleta al 30 de marzo: ${prediction.dataSync()[0]}`)
     res.status(200).json(response)
   } catch (error) {
@@ -51,21 +40,53 @@ export const getRunningPrediction = async (req, res) => {
     0,
     10,
     20,
-    30
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190
   ]
   const y = [
     7.9,
     7.9,
     7.9,
-    7.6
+    7.8,
+    7.8,
+    7.9,
+    7.9,
+    7.9,
+    7.6,
+    7.7,
+    7.8,
+    7.8,
+    7.9,
+    7.9,
+    7.9,
+    7.6,
+    7.7,
+    7.6,
+    7.9,
+    7.8
   ]
 
   const regressionParams = linearRegression(x, y)
 
-  const estimatedYforX = estimateY(210, regressionParams)
+  const estimatedYforX = estimateY(600, regressionParams)
   console.log(estimatedYforX)
 
-  const futureX = [200, 250, 300, 350]
+  const futureX = [25, 30, 35, 40]
   const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
   console.log(estimatedFutureY)
 }
