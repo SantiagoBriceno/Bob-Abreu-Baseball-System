@@ -143,7 +143,7 @@ export const getArrayOfDate = async (req, res) => {
       res.status(404).json({ message: 'No running stats found' })
     }
     const idsArray = ids.map(({ id }) => id)
-    const arrayOfDate = []
+    const arrayOfDateAndStat = []
     for (const id of idsArray) {
       // obtengo las fechas de las estadisticas y el valor de la stat que importa de running por id en un arreglo de objeto
       const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
@@ -164,9 +164,25 @@ export const getArrayOfDate = async (req, res) => {
         return null
       })
 
-      arrayOfDate.push({ dateAndStat })
+      arrayOfDateAndStat.push({ dateAndStat })
     }
-    res.status(200).json(arrayOfDate)
+
+    const allX = []
+    const allY = []
+
+    for (const item of arrayOfDateAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
+    const result = {
+      x: allX,
+      y: allY
+    }
+    res.status(200).json(result)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error.message })
