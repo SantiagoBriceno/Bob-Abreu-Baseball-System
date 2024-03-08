@@ -101,7 +101,7 @@ export const getRunningPredictionById = async (req, res) => {
     // const estimatedYforX = estimateY(400, regressionParams)
     // console.log(estimatedYforX)
     const loadedModel = await tf.loadLayersModel('file://./running/model.json')
-    const prediction = loadedModel.predict(tf.tensor2d([4800], [1, 1]))
+    const prediction = loadedModel.predict(tf.tensor2d([1500], [1, 1]))
     res.json({ segunStatsHistoricas: prediction.dataSync()[0] })
     // const futureX = [25, 30, 35, 40]
     // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))

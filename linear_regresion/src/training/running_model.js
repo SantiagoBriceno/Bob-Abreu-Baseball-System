@@ -7,7 +7,7 @@ async function trainRunningModel (inputData, outputData) {
   model.add(tf.layers.dense({ units: 1, inputShape: [1] }))
   model.compile({ loss: 'meanSquaredError', optimizer: tf.train.adam(0.01) })
   await model.fit(inputData, outputData, {
-    epochs: 5000,
+    epochs: 1500,
     callbacks: {
       onEpochEnd: async (epoch, logs) => {
         console.log(`Epoch ${epoch}: loss = ${logs.loss}`)

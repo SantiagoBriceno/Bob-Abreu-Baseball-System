@@ -238,7 +238,7 @@ export const getArrayOfDays = async (req, res) => {
 
         const diffMs = actual - cumpleanio
         const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
-        dates[i] = diasTranscurridos
+        dates[i] = diasTranscurridos - 3600
       }
       dateAndStat.map((item, index) => {
         item.x = dates[index]
@@ -247,35 +247,17 @@ export const getArrayOfDays = async (req, res) => {
       arrayOfDaysAndStat.push({ dateAndStat })
     }
 
-    const arraySixteen = generarArregloMinMax(5475, 5840, true)
-    const statSixteen = generarArregloMinMax(6.9, 7.3)
+    const allX = []
+    const allY = []
 
-    const arrayFiveteen = generarArregloMinMax(5110, 5474, true)
-    const statFiveteen = generarArregloMinMax(7.3, 7.6)
-
-    const arrayFourteen = generarArregloMinMax(4745, 5110, true)
-    const statFourteen = generarArregloMinMax(7.6, 7.9)
-
-    const arrayThirteen = generarArregloMinMax(4380, 4744, true)
-    const statThirteen = generarArregloMinMax(7.9, 8.2)
-
-    const arrayTwelve = generarArregloMinMax(4015, 4379, true)
-    const statTwelve = generarArregloMinMax(8.2, 8.5)
-
-    const arrayEleven = generarArregloMinMax(3650, 4014, true)
-    const statEleven = generarArregloMinMax(8.5, 8.8)
-
-    const allX = [0, 100, 200, 300, 400, 500, 600, 1000, 2000, 4500, 5000, 5840, 5840, 5840, 5840, 5840, 5840, 5840].concat(arraySixteen, arrayFiveteen, arrayFourteen, arrayThirteen, arrayTwelve, arrayEleven)
-    const allY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 8.9, 8.7, 6.9, 7.2, 7.4, 7.4, 7.4, 7.4, 7.4].concat(statSixteen, statFiveteen, statFourteen, statThirteen, statTwelve, statEleven)
-
-    // for (const item of arrayOfDaysAndStat) {
-    //   const { dateAndStat } = item
-    //   dateAndStat.map(({ x, y }) => {
-    //     allX.push(x)
-    //     allY.push(y)
-    //     return null
-    //   })
-    // }
+    for (const item of arrayOfDaysAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
     res.send({ x: allX, y: allY })
   } catch (error) {
     console.log(error)
