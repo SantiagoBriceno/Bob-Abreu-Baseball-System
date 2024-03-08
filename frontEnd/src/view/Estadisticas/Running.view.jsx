@@ -1,4 +1,4 @@
-import { Stack, background } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend } from 'chart.js'
 import { Bubble } from 'react-chartjs-2'
@@ -24,6 +24,22 @@ export const options = {
   },
   plugins: {
     decimation: true
+  },
+  events: ['click'],
+  onClick: function (e) {
+    const canvasPosition = ChartJS.helpers.getRelativePosition(e, this)
+
+    const data = this.data.datasets[0].data
+    let minDistance = Infinity
+    let closestIndex = -1
+    for (let i = 0; i < data.length; i++) {
+      const distance = Math.hypot(canvasPosition.x - data[i].x, canvasPosition.y - data[i].y)
+      if (distance < minDistance) {
+        minDistance = distance
+        closestIndex = i
+      }
+    }
+    console.log(data[closestIndex])
   }
 
 }
@@ -44,7 +60,7 @@ const RunningView = () => {
   const data = {
     datasets: [
       {
-        label: 'Red dataset',
+        label: 'relacion de la velocidad con la edad en dia de los atletas de la academia',
         data: trainingData,
         backgroundColor: 'rgba(255, 99, 132)'
       }
@@ -53,8 +69,10 @@ const RunningView = () => {
   }
   console.log(trainingData)
   return (
-    <Stack h='100%' w='100%' alignItems='center'>
+    <Stack h='75%' w='75%' alignItems='center'>
       <Bubble data={data} options={options} />
+      <Text>Tiempo recorrido 60 yardas en segundos</Text>
+
     </Stack>
   )
 }

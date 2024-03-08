@@ -91,7 +91,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                       key={i + row[idRow]}
                     >
                       {columns.map((column) => (
-                        <Td textAlign='center' className='table-cell' key={column.key}>{inventoryMode ? (row[column.key] === 'F' ? 'FILTRO' : row[column.key] === 'A' ? 'ACEITE' : row[column.key]) : row[column.key]}</Td>
+                        <Td textAlign='center' className='table-cell' key={column.key}>{row[column.key]}</Td>
                       ))}
                       {action &&
                         <Td className='button'>

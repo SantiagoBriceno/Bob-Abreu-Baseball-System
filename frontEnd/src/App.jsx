@@ -72,7 +72,7 @@ const router = createBrowserRouter(
                   element: <PitchersView />
                 },
                 {
-                  path: 'atleta/:id',
+                  path: 'atleta/:cedula',
                   element: <AtletaView />
                 }
               ]

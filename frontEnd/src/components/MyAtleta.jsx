@@ -8,18 +8,18 @@ export const MyAtletaDatos = ({ data = [''] }) => {
       <Stack bg='black' w='30%' h='33%' rounded='full' alignItems='center' mb={8}>
         photo
       </Stack>
-      <Stack p={4} w='100%' h='65%' align='center'>
+      <Stack p={4} w='100%' h='65%' alignItems='center'>
         <Heading fontSize='xl'>DATOS PERSONALES</Heading>
-        <HStack p={4} w='100%' h='fit-content' alignItems='start'>
+        <HStack p={4} w='100%' h='fit-content'>
           <Box flex={1}>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Nombre:</Text>
+              <Text fontSize='md' fontWeight=''>Nombre:</Text>
               <Text fontSize='md'>
                 {data[0].nombre}
               </Text>
             </Flex>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Fecha de nacimiento:</Text>
+              <Text fontSize='md' fontWeight=''>Fecha de nacimiento:</Text>
               <Text fontSize='md'>
                 {data[0].fecha_nacimiento}
               </Text>
@@ -27,21 +27,21 @@ export const MyAtletaDatos = ({ data = [''] }) => {
           </Box>
           <Box flex={1}>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Cédula:</Text>
+              <Text fontSize='md' fontWeight=''>Cédula:</Text>
               <Text fontSize='md'>
                 {data[0].cedula}
               </Text>
             </Flex>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Lugar de nacimiento:</Text>
+              <Text fontSize='md' fontWeight=''>Lugar de nacimiento:</Text>
               <Text fontSize='md'>
                 {data[0].lugar_nacimiento}
               </Text>
             </Flex>
-            <Text fontSize='lg' fontWeight='bold'>
+            <Text fontSize='lg' fontWeight=''>
               {data.edad}
             </Text>
-            <Text fontSize='lg' fontWeight='bold'>
+            <Text fontSize='lg' fontWeight=''>
               {data.email}
             </Text>
           </Box>
@@ -50,13 +50,13 @@ export const MyAtletaDatos = ({ data = [''] }) => {
         <HStack p={4} w='100%' h='fit-content' alignItems='start'>
           <Box flex={1}>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Hitting arm:</Text>
+              <Text fontSize='md' fontWeight=''>Hitting arm:</Text>
               <Text fontSize='md'>
                 {data[0].hitting}
               </Text>
             </Flex>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Throwing arm:</Text>
+              <Text fontSize='md' fontWeight=''>Throwing arm:</Text>
               <Text fontSize='md'>
                 {/* {data[0].throwing} */}
               </Text>
@@ -64,13 +64,13 @@ export const MyAtletaDatos = ({ data = [''] }) => {
           </Box>
           <Box flex={1}>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Clase:</Text>
+              <Text fontSize='md' fontWeight=''>Clase:</Text>
               <Text fontSize='md'>
                 {data[0].clase}
               </Text>
             </Flex>
             <Flex gap={2}>
-              <Text fontSize='md' fontWeight='bold'>Posición</Text>
+              <Text fontSize='md' fontWeight=''>Posición</Text>
               <Text fontSize='md'>
                 {data[0].posicion}
               </Text>
