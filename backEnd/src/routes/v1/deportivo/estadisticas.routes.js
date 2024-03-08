@@ -67,7 +67,7 @@ router.get('/throwing/g/segunda', getSecondBaseStatByClass)
 
 router.get('/throwing/g/tercera', getThirdBaseStatByClass)
 
-router.get('/running/t/data', getArrayOfDate)
+router.get('/running/t/data', getArrayOfDays)
 
 router.get('/running/t/edad/data', getArrayOfDays)
 

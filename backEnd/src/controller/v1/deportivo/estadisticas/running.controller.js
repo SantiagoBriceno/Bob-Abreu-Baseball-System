@@ -264,11 +264,3 @@ export const getArrayOfDays = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
-
-const generarArregloMinMax = (min, max, floor = false) => {
-  const arr = []
-  for (let i = 0; i < 100; i++) {
-    arr.push(floor ? Math.floor(Math.random() * (max - min + 1) + min) : Math.random() * (max - min + 1) + min)
-  }
-  return arr
-}
