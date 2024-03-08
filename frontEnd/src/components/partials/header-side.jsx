@@ -146,6 +146,11 @@ const HeaderSidebar = () => {
               key: '5',
               icon: <UserOutlined />,
               label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
+            },
+            {
+              key: '6',
+              icon: <UserOutlined />,
+              label: <NavLink to='/private/running'>Running</NavLink>
             }
 
           ]}

@@ -218,7 +218,7 @@ export const getArrayOfDays = async (req, res) => {
     const idsArray = ids.map(({ id }) => id)
 
     const arrayOfDaysAndStat = []
-
+    let menorDiaTranscurrido = Infinity
     for (const id of idsArray) {
       // Obtenemos la edad en dias de cada jugador
       const birthDate = await service.getBirthDateById(id)
@@ -238,10 +238,14 @@ export const getArrayOfDays = async (req, res) => {
 
         const diffMs = actual - cumpleanio
         const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
-        dates[i] = diasTranscurridos - 3600
+        if (diasTranscurridos < menorDiaTranscurrido) {
+          menorDiaTranscurrido = diasTranscurridos
+        }
+        dates[i] = diasTranscurridos
       }
+
       dateAndStat.map((item, index) => {
-        item.x = dates[index]
+        item.x = dates[index] - menorDiaTranscurrido
         return null
       })
       arrayOfDaysAndStat.push({ dateAndStat })
@@ -258,9 +262,119 @@ export const getArrayOfDays = async (req, res) => {
         return null
       })
     }
-    res.send({ x: allX, y: allY })
+    res.send({ x: allX, y: allY, menorDiaTranscurrido })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error.message })
   }
+}
+
+export const graphData = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('running')
+    if (ids.length === 0) {
+      res.status(404).json({ message: 'No running stats found' })
+    }
+    const idsArray = ids.map(({ id }) => id)
+
+    const arrayOfDaysAndStat = []
+    let menorDiaTranscurrido = Infinity
+    for (const id of idsArray) {
+      // Obtenemos la edad en dias de cada jugador
+      const birthDate = await service.getBirthDateById(id)
+      const cumpleanio = new Date(birthDate[0].date)
+
+      const edad = (new Date().getFullYear() - cumpleanio.getFullYear()) * 365
+      console.log('Edad', edad)
+      console.log('Cumpleanio', cumpleanio)
+
+      // obtengo las fechas de las estadisticas y el valor de la stat que importa de running por id en un arreglo de objeto
+      const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+
+      const dates = dateAndStat.map(({ x }) => x)
+      for (let i = 0; i < dates.length; i++) {
+        // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
+        const actual = new Date(dates[i])
+
+        const diffMs = actual - cumpleanio
+        const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+        if (diasTranscurridos < menorDiaTranscurrido) {
+          menorDiaTranscurrido = diasTranscurridos
+        }
+        dates[i] = diasTranscurridos
+      }
+
+      dateAndStat.map((item, index) => {
+        item.x = dates[index] - menorDiaTranscurrido
+        return null
+      })
+      arrayOfDaysAndStat.push({ dateAndStat })
+    }
+
+    const allX = []
+    const allY = []
+
+    for (const item of arrayOfDaysAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
+    const result = parOrdenadoDeDosArreglosDeIgualLongitud(allX, allY)
+    res.send({ result })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getArrayOfDaysById = async (req, res) => {
+  const { id } = req.params
+  try {
+    // verificamos que existe el id del jugador
+    const player = await service.existPlayer(id)
+    if (player.length === 0) {
+      return res.status(404).json({ message: 'Player not found' })
+    }
+
+    const birthDate = await service.getBirthDateById(id)
+    const cumpleanio = new Date(birthDate[0].date)
+
+    const edad = (new Date().getFullYear() - cumpleanio.getFullYear()) * 365
+    console.log('Edad', edad)
+    console.log('Cumpleanio', cumpleanio)
+    let menorDiaTranscurrido = Infinity
+    const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+    const dates = dateAndStat.map(({ x }) => x)
+    for (let i = 0; i < dates.length; i++) {
+      // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
+      const actual = new Date(dates[i])
+
+      const diffMs = actual - cumpleanio
+      const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+      dates[i] = diasTranscurridos
+      if (diasTranscurridos < menorDiaTranscurrido) {
+        menorDiaTranscurrido = diasTranscurridos
+      }
+    }
+    dateAndStat.map((item, index) => {
+      item.x = dates[index] - menorDiaTranscurrido
+      return null
+    })
+    const x = dateAndStat.map(({ x }) => x)
+    const y = dateAndStat.map(({ y }) => y)
+    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+const parOrdenadoDeDosArreglosDeIgualLongitud = (x, y) => {
+  const result = []
+  for (let i = 0; i < x.length; i++) {
+    result.push({ x: x[i], y: y[i] })
+  }
+  return result
 }

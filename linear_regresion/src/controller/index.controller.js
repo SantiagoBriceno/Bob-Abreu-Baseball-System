@@ -94,15 +94,16 @@ export const getRunningPrediction = async (req, res) => {
 
 export const getRunningPredictionById = async (req, res) => {
   try {
-    // const { id } = req.params
-    // const response = await service.getRunningDataById(id)
-    // const { x, y } = response
-    // const regressionParams = linearRegression(x, y)
-    // const estimatedYforX = estimateY(400, regressionParams)
-    // console.log(estimatedYforX)
+    const { id } = req.params
+    const response = await service.getRunningDataById(id)
+    const { x, y } = response
+    const regressionParams = linearRegression(x, y)
+    const estimatedYforX = estimateY(1500, regressionParams)
+    console.log(estimatedYforX)
     const loadedModel = await tf.loadLayersModel('file://./running/model.json')
     const prediction = loadedModel.predict(tf.tensor2d([1500], [1, 1]))
-    res.json({ segunStatsHistoricas: prediction.dataSync()[0] })
+
+    res.json({ prediction: prediction.dataSync()[0], estimatedYforX })
     // const futureX = [25, 30, 35, 40]
     // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
     // console.log(estimatedFutureY)

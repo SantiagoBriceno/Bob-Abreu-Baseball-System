@@ -10,6 +10,11 @@ const getAllClases = async (table) => {
   return clases
 }
 
+const existPlayer = async (id) => {
+  const [player] = await pool.query('SELECT * FROM atleta WHERE cedula = ?', [id])
+  return player
+}
+
 // Saber los atletas que tienen estadisticas de algun tipo dado
 const getExistIdPlayer = async (table) => {
   const [ids] = await pool.query(`SELECT DISTINCT id_atleta as id FROM ${table}`)
@@ -287,5 +292,6 @@ export default {
   getIdPlayersOfStat,
   getFirstBaseStatByIdPlayer,
   getRowFromTableByIdWithClass,
-  getBirthDateById
+  getBirthDateById,
+  existPlayer
 }
