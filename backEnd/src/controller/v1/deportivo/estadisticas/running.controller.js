@@ -188,3 +188,105 @@ export const getArrayOfDate = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const getArrayOfDateById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+    if (dateAndStat.length === 0) {
+      res.status(404).json({ message: 'No running stats found' })
+    } else {
+      const x = dateAndStat.map(({ x }) => {
+        const diffMs = x - dateAndStat[0].x
+        const days = diffMs / (1000 * 60 * 60 * 24)
+        return days
+      })
+      const y = dateAndStat.map(({ y }) => y)
+      res.status(200).json({ x, y })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getArrayOfDays = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('running')
+    if (ids.length === 0) {
+      res.status(404).json({ message: 'No running stats found' })
+    }
+    const idsArray = ids.map(({ id }) => id)
+
+    const arrayOfDaysAndStat = []
+
+    for (const id of idsArray) {
+      // Obtenemos la edad en dias de cada jugador
+      const birthDate = await service.getBirthDateById(id)
+      const cumpleanio = new Date(birthDate[0].date)
+
+      const edad = (new Date().getFullYear() - cumpleanio.getFullYear()) * 365
+      console.log('Edad', edad)
+      console.log('Cumpleanio', cumpleanio)
+
+      // obtengo las fechas de las estadisticas y el valor de la stat que importa de running por id en un arreglo de objeto
+      const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+
+      const dates = dateAndStat.map(({ x }) => x)
+      for (let i = 0; i < dates.length; i++) {
+        // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
+        const actual = new Date(dates[i])
+
+        const diffMs = actual - cumpleanio
+        const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+        dates[i] = diasTranscurridos
+      }
+      dateAndStat.map((item, index) => {
+        item.x = dates[index]
+        return null
+      })
+      arrayOfDaysAndStat.push({ dateAndStat })
+    }
+
+    const arraySixteen = generarArregloMinMax(5475, 5840, true)
+    const statSixteen = generarArregloMinMax(6.9, 7.3)
+
+    const arrayFiveteen = generarArregloMinMax(5110, 5474, true)
+    const statFiveteen = generarArregloMinMax(7.3, 7.6)
+
+    const arrayFourteen = generarArregloMinMax(4745, 5110, true)
+    const statFourteen = generarArregloMinMax(7.6, 7.9)
+
+    const arrayThirteen = generarArregloMinMax(4380, 4744, true)
+    const statThirteen = generarArregloMinMax(7.9, 8.2)
+
+    const arrayTwelve = generarArregloMinMax(4015, 4379, true)
+    const statTwelve = generarArregloMinMax(8.2, 8.5)
+
+    const arrayEleven = generarArregloMinMax(3650, 4014, true)
+    const statEleven = generarArregloMinMax(8.5, 8.8)
+
+    const allX = [0, 100, 200, 300, 400, 500, 600, 1000, 2000, 4500, 5000, 5840, 5840, 5840, 5840, 5840, 5840, 5840].concat(arraySixteen, arrayFiveteen, arrayFourteen, arrayThirteen, arrayTwelve, arrayEleven)
+    const allY = [0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 8.9, 8.7, 6.9, 7.2, 7.4, 7.4, 7.4, 7.4, 7.4].concat(statSixteen, statFiveteen, statFourteen, statThirteen, statTwelve, statEleven)
+
+    // for (const item of arrayOfDaysAndStat) {
+    //   const { dateAndStat } = item
+    //   dateAndStat.map(({ x, y }) => {
+    //     allX.push(x)
+    //     allY.push(y)
+    //     return null
+    //   })
+    // }
+    res.send({ x: allX, y: allY })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+const generarArregloMinMax = (min, max, floor = false) => {
+  const arr = []
+  for (let i = 0; i < 100; i++) {
+    arr.push(floor ? Math.floor(Math.random() * (max - min + 1) + min) : Math.random() * (max - min + 1) + min)
+  }
+  return arr
+}

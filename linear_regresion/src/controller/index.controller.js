@@ -1,5 +1,7 @@
 import service from '../service/index.service.js'
 import * as tf from '@tensorflow/tfjs'
+import '@tensorflow/tfjs-node'
+
 export const getRunningCordinates = async (req, res) => {
   try {
     const response = await service.getRunningCordinates()
@@ -27,7 +29,6 @@ export const getRunningCordinates = async (req, res) => {
     })
     const prediction = model.predict(tf.tensor2d([30], [1, 1]))
     console.log(`Prediccion de 60 yardas para un atleta al 30 de marzo: ${prediction.dataSync()[0]}`)
-    res.status(200).json(response)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error.message })
@@ -89,6 +90,26 @@ export const getRunningPrediction = async (req, res) => {
   const futureX = [25, 30, 35, 40]
   const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
   console.log(estimatedFutureY)
+}
+
+export const getRunningPredictionById = async (req, res) => {
+  try {
+    // const { id } = req.params
+    // const response = await service.getRunningDataById(id)
+    // const { x, y } = response
+    // const regressionParams = linearRegression(x, y)
+    // const estimatedYforX = estimateY(400, regressionParams)
+    // console.log(estimatedYforX)
+    const loadedModel = await tf.loadLayersModel('file://./running/model.json')
+    const prediction = loadedModel.predict(tf.tensor2d([4800], [1, 1]))
+    res.json({ segunStatsHistoricas: prediction.dataSync()[0] })
+    // const futureX = [25, 30, 35, 40]
+    // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
+    // console.log(estimatedFutureY)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
 }
 
 function linearRegression (x, y) {

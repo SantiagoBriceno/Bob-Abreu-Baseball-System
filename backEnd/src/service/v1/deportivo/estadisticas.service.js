@@ -23,6 +23,11 @@ const getArrayOfDateById = async (table, row, id) => {
   return date
 }
 
+const getBirthDateById = async (id) => {
+  const [birthDate] = await pool.query('SELECT fecha_nacimiento as date FROM atleta WHERE cedula = ?', [id])
+  return birthDate
+}
+
 /* HITTING STATS SERVICES */
 
 const getHittingStatsIds = async () => {
@@ -281,5 +286,6 @@ export default {
   deletePitchingStat,
   getIdPlayersOfStat,
   getFirstBaseStatByIdPlayer,
-  getRowFromTableByIdWithClass
+  getRowFromTableByIdWithClass,
+  getBirthDateById
 }

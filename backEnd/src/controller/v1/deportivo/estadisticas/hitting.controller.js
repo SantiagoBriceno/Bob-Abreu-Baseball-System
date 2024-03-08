@@ -134,3 +134,74 @@ export const getBatSpeedStatByClass = async (req, res) => {
   }
   return res.status(200).json(data)
 }
+
+export const getArrayOfDate = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('hitting')
+    if (ids.length === 0) {
+      return res.status(404).json({ message: 'No hitting stats found' })
+    }
+    const idsArray = ids.map((id) => id.id)
+    const arrayOfDateAndStat = []
+    // Obtengo las fechas de las estadisticas y el valor de la stat que importa de hitting por id en un arreglo de objeto
+    for (const id of idsArray) {
+      const dateAndStat = await service.getArrayOfDateAndStat('hitting', 'bat_speed', id)
+
+      const dates = dateAndStat.map(({ x }) => x)
+      const firstDate = dates[0]
+      const diasTranscurridos = []
+      for (const date of dates) {
+        const diffMs = date - firstDate
+
+        const days = diffMs / (1000 * 60 * 60 * 24)
+        diasTranscurridos.push(days)
+      }
+      dates.map((date, index) => {
+        dateAndStat[index].x = diasTranscurridos[index]
+        return null
+      })
+      arrayOfDateAndStat.push({ dateAndStat })
+    }
+
+    const allX = []
+    const allY = []
+
+    for (const item of arrayOfDateAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
+    const result = {
+      x: allX,
+      y: allY
+    }
+    return res.status(200).json(result)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getArrayOfDateById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const dateAndStat = await service.getArrayOfDateAndStat('hitting', 'bat_speed', id)
+
+    if (dateAndStat.length === 0) {
+      return res.status(404).json({ message: 'No hitting stats found' })
+    } else {
+      const x = dateAndStat.map(({ x }) => {
+        const firstDate = dateAndStat[0].x
+        const diffMs = x - firstDate
+        const days = diffMs / (1000 * 60 * 60 * 24)
+        return days
+      })
+      const y = dateAndStat.map(({ y }) => y)
+      res.status(200).json({ x, y })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
