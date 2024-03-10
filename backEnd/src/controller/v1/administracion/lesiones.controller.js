@@ -1,4 +1,4 @@
-import { service } from '../../../service/v1/administracion/lesiones.service.js'
+import service from '../../../service/v1/administracion/lesiones.service.js'
 import { patchAuditoria, postAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
 
 export const getLesiones = async (req, res) => {
