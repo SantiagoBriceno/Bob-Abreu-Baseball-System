@@ -65,6 +65,13 @@ export const ficha_antropometrica = {
   id_atleta: ''
 }
 
+export const lesiones = {
+  id: '',
+  id_atleta: '',
+  fecha: '',
+  descripcion: ''
+}
+
 export const datos_generales = {
   estatura_maxima: '',
   percentil_talla: '',
