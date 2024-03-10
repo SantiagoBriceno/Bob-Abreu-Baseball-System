@@ -5,7 +5,7 @@ import {
   createRegistroEspecial,
   updateRegistroEspecial,
   deleteRegistroEspecial
-} from '../../../controllers/administracion/registroEspecial.controller'
+} from '../../../controller/administracion/registroEspecial.controller'
 
 const router = Router()
 

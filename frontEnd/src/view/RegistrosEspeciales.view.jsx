@@ -1,8 +1,8 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import MyForm from '../components/MyForm'
-import { representante } from '../../../global.constants.js'
-import { representanteValidation } from '../constants/dataValidation.js'
-import { validationInputRepresentante } from '../constants/validationInputs.js'
+import { registroEspecial } from '../../../global.constants.js'
+import { registroEspecialFields } from '../constants/dataValidation.js'
+import { validationInputRegistroEspecial } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { representanteFields } from '../constants/form/fields.js'
 import { createRepresentante } from '../service/representante.js'
@@ -14,7 +14,7 @@ import { useRepresentante } from '../hooks/table/useRepresentante.js'
 
 const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
+  const { formData, actions, errorState } = useMyFormHook(registroEspecial, registroEspecialFields, validationInputRegistroEspecial, createRepresentante)
   const { data } = useRepresentante()
   console.log('data', data)
 

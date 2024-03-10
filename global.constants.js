@@ -27,7 +27,7 @@ export const representante = {
   cedula_atleta: ''
 }
 
-export const registro_especial = {
+export const registroEspecial = {
   cedula_atleta: '',
   fecha_evento: '',
   descripcion: ''
