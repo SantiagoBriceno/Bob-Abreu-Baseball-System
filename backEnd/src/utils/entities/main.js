@@ -168,3 +168,10 @@ export const running = {
   velocidad_home_to_first: '',
   fecha_evaluacion: ''
 }
+
+export const lesiones = {
+  id: '',
+  id_atleta: '',
+  fecha: '',
+  descripcion: ''
+}
