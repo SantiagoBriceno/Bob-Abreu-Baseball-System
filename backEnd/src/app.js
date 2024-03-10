@@ -9,6 +9,7 @@ import atletaRoutes from './routes/v1/administracion/atleta.routes.js'
 import estadisticasRoutes from './routes/v1/deportivo/estadisticas.routes.js'
 import antropometriaRoutes from './routes/v1/administracion/antropometria.routes.js'
 import registroEspecialRoutes from './routes/v1/administracion/registroEspecial.routes.js'
+import lesionesRoutes from './routes/v1/administracion/lesiones.routes.js'
 
 const app = express()
 app.use(cors())
@@ -21,5 +22,6 @@ app.use('/api/v1/atletas', atletaRoutes)
 app.use('/api/v1/estadisticas', estadisticasRoutes)
 app.use('/api/v1/antropometria', antropometriaRoutes)
 app.use('/api/v1/registroEspecial', registroEspecialRoutes)
+app.use('/api/v1/lesiones', lesionesRoutes)
 
 export default app
