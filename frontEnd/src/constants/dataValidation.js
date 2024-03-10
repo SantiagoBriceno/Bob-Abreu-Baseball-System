@@ -73,9 +73,8 @@ export const runningFields = {
   home_to_first: { isInvalid: false, message: '', isSubmitted: false }
 }
 
-export const registroEspecialFields = {
+export const registrosEspecialesFields = {
   id_atleta: { isInvalid: false, message: '', isSubmitted: false },
   fecha_evento: { isInvalid: false, message: '', isSubmitted: false },
   descripcion: { isInvalid: false, message: '', isSubmitted: false }
 }
-
