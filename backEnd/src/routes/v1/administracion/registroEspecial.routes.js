@@ -9,10 +9,10 @@ import {
 
 const router = Router()
 
-router.get('/registroEspecial', getRegistroEspecial)
-router.get('/registroEspecial/:id', getRegistroEspecialById)
-router.post('/registroEspecial', createRegistroEspecial)
-router.put('/registroEspecial/:id', updateRegistroEspecial)
-router.delete('/registroEspecial/:id', deleteRegistroEspecial)
+router.get('/', getRegistroEspecial)
+router.get('/:id', getRegistroEspecialById)
+router.post('/', createRegistroEspecial)
+router.put('/:id', updateRegistroEspecial)
+router.delete('/:id', deleteRegistroEspecial)
 
 export default router
