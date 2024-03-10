@@ -284,8 +284,6 @@ export const graphData = async (req, res) => {
       const birthDate = await service.getBirthDateById(id)
       const cumpleanio = new Date(birthDate[0].date)
 
-      const edad = (new Date().getFullYear() - cumpleanio.getFullYear()) * 365
-      console.log('Edad', edad)
       console.log('Cumpleanio', cumpleanio)
 
       // obtengo las fechas de las estadisticas y el valor de la stat que importa de running por id en un arreglo de objeto

@@ -1,26 +1,3 @@
--- 9876543210
--- 2468135790
--- 0123456789
--- 28063634
--- 28055422
-
--- INSERTS PARA ENTRENAR LA IA DE HITTING EN LA ESTADISTICA BAT_SPEED
-
---Columns de la tabla hitting_ml:
---id int AI PK 
---id_atleta varchar(10) 
---agudeza_visual int 
---bat_speed float 
---angle_attack float 
---coord_dos_manos int 
---ritmo_balance int 
---rec_zona_strike int 
---rec_pitcheos int 
---control_bate int 
---ruta_del_bate int 
---fecha_evaluacion date 
---id_auditoria varchar(10)
-
 CREATE TABLE hitting_ml (
     id int AUTO_INCREMENT PRIMARY KEY,
     id_atleta varchar(10),
@@ -29,372 +6,308 @@ CREATE TABLE hitting_ml (
 );
 
 -- Registros con las mismas fechas de evaluacion para que la IA pueda entrenar con datos reales
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 80, '2020-05-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 81, '2020-06-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 82, '2020-07-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 83, '2020-08-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 84, '2020-09-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 85, '2020-10-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 86, '2020-11-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 87, '2020-12-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 88, '2021-01-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 89, '2021-02-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 90, '2021-03-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 91, '2021-04-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 92, '2021-05-15'); -- CUMPLE 11 AÑOS
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 93, '2021-06-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 94, '2021-06-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 95, '2021-07-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 96, '2021-07-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 97, '2021-08-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 98, '2021-08-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 99, '2021-09-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 100, '2021-09-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 101, '2021-10-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 102, '2021-10-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 103, '2021-11-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 104, '2021-11-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 105, '2021-12-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 106, '2022-12-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 107, '2022-01-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 108, '2022-01-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 109, '2022-02-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 110, '2022-02-28');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 111, '2022-03-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 112, '2022-03-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 113, '2022-04-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 114, '2022-04-30');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 115, '2022-05-15'); -- CUMPLE 12 AÑOS
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 116, '2022-06-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 117, '2022-07-05');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 118, '2022-07-15');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 119, '2022-07-25');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 120, '2022-08-14');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 121, '2022-08-24');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 122, '2022-09-03');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 123, '2022-09-13');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 124, '2022-09-23');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 125, '2022-10-13');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 126, '2022-10-23');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 127, '2022-11-02');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 128, '2022-11-12');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 129, '2022-11-22');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 130, '2022-12-02');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 131, '2022-12-12');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 132, '2022-12-22');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 133, '2023-01-01');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 134, '2023-01-21');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 135, '2023-01-31');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 136, '2023-02-10');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 137, '2023-02-20');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 138, '2023-03-02');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 139, '2023-03-12');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 140, '2023-03-22');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 141, '2023-04-01');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 142, '2023-04-11');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 143, '2023-04-21');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 144, '2023-05-01');
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 145, '2023-05-11'); 
-INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 146, '2023-05-21'); -- CUMPLE 13 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 54, '2020-05-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 54, '2020-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 55, '2020-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 56, '2020-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 54, '2020-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 53, '2020-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 55, '2020-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 54, '2020-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 56, '2021-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 58, '2021-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 56, '2021-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-05-15'); -- CUMPLE 11 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 55, '2021-06-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 56, '2021-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-07-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 56, '2021-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-08-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 58, '2021-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 57, '2021-09-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 58, '2021-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 59, '2021-10-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 58, '2021-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 60, '2021-11-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2021-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2021-12-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 60, '2022-01-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 62, '2022-02-28');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 60, '2022-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 60, '2022-03-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 62, '2022-04-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-05-15'); -- CUMPLE 12 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 62, '2022-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 63, '2022-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 62, '2022-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 61, '2022-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 63, '2022-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 63, '2022-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 64, '2022-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 63, '2022-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 64, '2022-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 65, '2022-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 65, '2022-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 66, '2022-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 64, '2022-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 65, '2022-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 66, '2022-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 66, '2023-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 66, '2023-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 65, '2023-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 66, '2023-03-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-03-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-03-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-04-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 68, '2023-04-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 67, '2023-04-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 68, '2023-05-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 68, '2023-05-11'); 
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('40876543', 69, '2023-05-21'); -- CUMPLE 13 AÑOS
+
+
+
+
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 53, '2019-05-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 55, '2019-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 54, '2019-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 55, '2019-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 54, '2019-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 53, '2019-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 55, '2019-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 55, '2019-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 56, '2020-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 55, '2020-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 57, '2020-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 57, '2020-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-05-15'); -- CUMPLE 11 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 57, '2020-06-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 57, '2020-07-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 56, '2020-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 57, '2020-08-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 59, '2020-09-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-10-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 58, '2020-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 60, '2020-11-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 60, '2020-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 59, '2020-12-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 60, '2021-01-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 62, '2021-02-28');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 62, '2021-03-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 62, '2021-04-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-05-15'); -- CUMPLE 12 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 62, '2021-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 61, '2021-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 63, '2021-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 62, '2021-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 63, '2021-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 63, '2021-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 64, '2021-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 63, '2021-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 63, '2021-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 64, '2021-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2021-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 65, '2021-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2021-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 65, '2021-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 65, '2021-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2021-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2022-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2022-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 65, '2022-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 66, '2022-03-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-03-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-03-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-04-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 68, '2022-04-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-04-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 69, '2022-05-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 67, '2022-05-11'); 
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 69, '2022-05-21'); -- CUMPLE 13 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 69, '2022-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 71, '2022-06-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 70, '2022-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 70, '2022-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 71, '2022-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 70, '2022-08-04');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 71, '2022-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 71, '2022-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2022-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 72, '2022-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 72, '2022-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2022-10-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2022-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2022-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2022-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2022-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2022-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 72, '2022-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2022-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2022-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2023-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2023-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2023-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 73, '2023-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2023-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('38456722', 74, '2023-03-02');
 
 
 
 
 
 
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.8, 5, '2020-05-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.8, 5, '2020-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.7, 5, '2020-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.6, 5, '2020-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.8, 5, '2020-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.7, 5, '2020-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.5, 5, '2020-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.3, 5, '2020-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.6, 5, '2021-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.6, 5, '2021-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.5, 5, '2021-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.4, 5, '2021-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.3, 5, '2021-05-15', '1'); -- CUMPLE 11 años, clase 2029
--- valores de velocidad_sesenta a que varien desde 10.8 a 10.2 hasta que el atleta tenga 12 años de 15 dias en 15 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.2, 5, '2021-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.1, 5, '2021-06-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.2, 5, '2021-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.2, 5, '2021-07-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10.1, 5, '2021-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 10, 5, '2021-08-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.9, 5, '2021-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.7, 5, '2021-09-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.6, 5, '2021-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2021-10-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.5, 5, '2021-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2021-11-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2021-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.5, 5, '2021-12-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2022-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2022-01-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.5, 5, '2022-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.3, 5, '2022-02-28', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2022-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.5, 5, '2022-03-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.3, 5, '2022-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.4, 5, '2022-04-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.2, 5, '2022-05-15', '1'); -- CUMPLE 12 años, clase 2028 8.4 - 7.9
--- valores de velocidad_sesenta a que varien desde 10.2 a 8.6 hasta que el atleta tenga 12 años de 20 dias en 20 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.3, 5, '2022-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.9, 5, '2022-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.8, 5, '2022-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.9, 5, '2022-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9.1, 5, '2022-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 9, 5, '2022-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.7, 5, '2022-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.8, 5, '2022-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.6, 5, '2022-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.6, 5, '2022-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.6, 5, '2023-01-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.5, 5, '2023-01-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.4, 5, '2023-02-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.4, 5, '2023-03-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.4, 5, '2023-03-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.5, 5, '2023-04-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.3, 5, '2023-05-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.4, 5, '2023-05-15', '1'); -- CUMPLE 13 años, clase 2027 7.9 - 7.4
--- valores de velocidad_sesenta a que varien desde 8.6 a 8.2 hasta que el atleta tenga 13 años de 10 dias en 10 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.3, 5, '2023-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.2, 5, '2023-06-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.4, 5, '2023-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8, 5, '2023-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.1, 5, '2023-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8, 5, '2023-08-04', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.1, 5, '2023-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.9, 5, '2023-08-24', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.8, 5, '2023-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.9, 5, '2023-09-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 8.1, 5, '2023-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.9, 5, '2023-10-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.8, 5, '2023-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.8, 5, '2023-10-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.7, 5, '2023-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.6, 5, '2023-11-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.7, 5, '2023-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.6, 5, '2023-12-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.6, 5, '2023-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('40876543', 7.7, 5, '2023-12-22', '1');
-
--- OTRO ATLETA
-
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.8, 5, '2019-05-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.9, 5, '2019-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.7, 5, '2019-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.5, 5, '2019-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.7, 5, '2019-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.8, 5, '2019-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.6, 5, '2019-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.4, 5, '2019-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.7, 5, '2020-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.7, 5, '2020-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.4, 5, '2020-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.5, 5, '2020-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.2, 5, '2020-05-15', '1'); -- CUMPLE 11 años, clase 2029
--- valores de velocidad_sesenta a que varien desde 10.8 a 10.2 hasta que el atleta tenga 12 años de 15 dias en 15 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.2, 5, '2020-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.3, 5, '2020-06-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.1, 5, '2020-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10, 5, '2020-07-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.9, 5, '2020-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 10.1, 5, '2020-08-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.8, 5, '2020-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.6, 5, '2020-09-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.7, 5, '2020-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.4, 5, '2020-10-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.5, 5, '2020-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.6, 5, '2020-11-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.5, 5, '2020-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.5, 5, '2020-12-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.4, 5, '2021-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.5, 5, '2021-01-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.3, 5, '2021-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.4, 5, '2021-02-28', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.4, 5, '2021-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.5, 5, '2021-03-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.3, 5, '2021-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.2, 5, '2021-04-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9.3, 5, '2021-05-15', '1'); -- CUMPLE 12 años, clase 2028 8.4 - 7.9
--- valores de velocidad_sesenta a que varien desde 10.2 a 8.6 hasta que el atleta tenga 12 años de 20 dias en 20 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9, 5, '2021-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.9, 5, '2021-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.8, 5, '2021-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.9, 5, '2021-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.9, 5, '2021-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 9, 5, '2021-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.8, 5, '2021-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.6, 5, '2021-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.7, 5, '2021-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.5, 5, '2021-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.4, 5, '2022-01-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.4, 5, '2022-01-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.4, 5, '2022-02-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.4, 5, '2022-03-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.5, 5, '2022-03-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.3, 5, '2022-04-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.2, 5, '2022-05-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.3, 5, '2022-05-15', '1'); -- CUMPLE 13 años, clase 2027 7.9 - 7.4
--- valores de velocidad_sesenta a que varien desde 8.6 a 8.2 hasta que el atleta tenga 13 años de 10 dias en 10 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.2, 5, '2022-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.3, 5, '2022-06-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.1, 5, '2022-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.4, 5, '2022-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.2, 5, '2022-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.3, 5, '2022-08-04', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8.1, 5, '2022-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8, 5, '2022-08-24', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8, 5, '2022-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.9, 5, '2022-09-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 8, 5, '2022-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.8, 5, '2022-10-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.9, 5, '2022-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.7, 5, '2022-10-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.7, 5, '2022-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.6, 5, '2022-11-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.7, 5, '2022-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.6, 5, '2022-12-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.5, 5, '2022-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.7, 5, '2022-12-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.6, 5, '2023-01-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.7, 5, '2023-01-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.4, 5, '2023-01-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.5, 5, '2023-01-31', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.4, 5, '2023-02-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.4, 5, '2023-02-20', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('38456722', 7.5, 5, '2023-03-02', '1');
-
--- OTRO ATLETA 372878964
-
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.8, 5, '2018-05-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.9, 5, '2018-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.7, 5, '2018-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.6, 5, '2018-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.5, 5, '2018-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.8, 5, '2018-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.7, 5, '2018-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.5, 5, '2018-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.6, 5, '2019-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.7, 5, '2019-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.5, 5, '2019-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.4, 5, '2019-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10, 5, '2019-05-15', '1'); -- CUMPLE 11 años, clase 2029
--- valores de velocidad_sesenta a que varien desde 10.8 a 10.2 hasta que el atleta tenga 12 años de 15 dias en 15 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.3, 5, '2019-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.2, 5, '2019-06-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 10.1, 5, '2019-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.9, 5, '2019-07-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.8, 5, '2019-08-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.7, 5, '2019-08-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.8, 5, '2019-09-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.7, 5, '2019-09-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.6, 5, '2019-10-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.6, 5, '2019-10-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.7, 5, '2019-11-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.6, 5, '2019-11-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.5, 5, '2019-12-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.5, 5, '2019-12-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.4, 5, '2020-01-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.5, 5, '2020-01-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.4, 5, '2020-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.3, 5, '2020-02-28', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.6, 5, '2020-03-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.4, 5, '2020-03-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.3, 5, '2020-04-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.3, 5, '2020-04-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9.2, 5, '2020-05-15', '1'); -- CUMPLE 12 años, clase 2028 8.4 - 7.9
--- valores de velocidad_sesenta a que varien desde 10.2 a 8.6 hasta que el atleta tenga 12 años de 20 dias en 20 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9, 5, '2020-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.9, 5, '2020-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.8, 5, '2020-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.9, 5, '2020-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.9, 5, '2020-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 9, 5, '2020-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.8, 5, '2020-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.7, 5, '2020-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.6, 5, '2020-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.5, 5, '2020-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.5, 5, '2021-01-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.4, 5, '2021-01-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.5, 5, '2021-02-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.3, 5, '2021-03-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.4, 5, '2021-03-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.3, 5, '2021-04-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.4, 5, '2021-05-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.2, 5, '2021-05-15', '1'); -- CUMPLE 13 años, clase 2027 7.9 - 7.4
--- valores de velocidad_sesenta a que varien desde 8.6 a 8.2 hasta que el atleta tenga 13 años de 10 dias en 10 dias
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8, 5, '2021-06-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.9, 5, '2021-06-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.9, 5, '2021-07-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8, 5, '2021-07-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.8, 5, '2021-07-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8, 5, '2021-08-04', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8.1, 5, '2021-08-14', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8, 5, '2021-08-24', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.8, 5, '2021-09-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.9, 5, '2021-09-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 8, 5, '2021-09-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.7, 5, '2021-10-03', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.6, 5, '2021-10-13', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.6, 5, '2021-10-23', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.7, 5, '2021-11-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.6, 5, '2021-11-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.7, 5, '2021-11-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.5, 5, '2021-12-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.6, 5, '2021-12-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.5, 5, '2021-12-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.6, 5, '2022-01-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-01-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-01-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.5, 5, '2022-01-31', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-02-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-02-20', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-03-02', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-03-12', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-03-22', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.5, 5, '2022-04-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-04-11', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-04-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-05-01', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-05-11', '1'); -- CUMPLE 14 años, clase 2026 7.4 -
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-05-21', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-05-31', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.5, 5, '2022-06-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-06-20', '1');  
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-06-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-07-10', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-07-20', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-07-30', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-08-09', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-08-19', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.4, 5, '2022-08-29', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-09-08', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-09-18', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-09-28', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.3, 5, '2022-10-08', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-10-18', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-10-28', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-11-07', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-11-17', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-11-27', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-12-07', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-12-17', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2022-12-27', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-01-06', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-01-16', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-01-26', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-02-05', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-02-15', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-02-25', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-03-07', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-03-17', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-03-27', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-04-06', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-04-16', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-04-26', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-06', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-16', '1');
-INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-26', '1');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 54, '2018-05-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2018-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 54, '2018-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 55, '2018-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 53, '2018-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 54, '2018-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2018-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 54, '2018-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2019-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 55, '2019-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2019-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2019-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-05-15'); -- CUMPLE 11 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 57, '2019-06-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 57, '2019-07-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 56, '2019-08-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 57, '2019-08-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2019-09-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-09-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-10-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-10-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 58, '2019-11-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2019-11-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2019-12-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2019-12-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 60, '2020-01-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2020-01-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 60, '2020-02-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 61, '2020-02-28');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 61, '2020-03-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 59, '2020-03-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 61, '2020-04-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 62, '2020-04-30');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 60, '2020-05-15'); -- CUMPLE 12 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 60, '2020-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 61, '2020-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 62, '2020-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 65, '2020-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 63, '2020-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 64, '2020-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2020-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2020-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2020-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 65, '2020-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2020-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2020-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2021-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 65, '2021-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2021-03-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-03-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 66, '2021-03-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 68, '2021-04-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 68, '2021-04-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-04-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 69, '2021-05-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 67, '2021-05-11'); 
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 68, '2021-05-21'); -- CUMPLE 13 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 69, '2021-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 70, '2021-06-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 70, '2021-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 71, '2021-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 71, '2021-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 70, '2021-08-04');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 71, '2021-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 71, '2021-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 72, '2021-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 72, '2021-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-10-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2021-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 71, '2021-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2021-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-03-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 72, '2022-03-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2022-03-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-04-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-04-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-04-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-05-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-05-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-05-21'); -- CUMPLE 14 AÑOS
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-06-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-06-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-07-05');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-07-15');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-07-25');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-08-04');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-08-14');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-08-24');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-09-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-09-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-09-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2022-10-03');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 73, '2022-10-13');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-10-23');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2022-11-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-11-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2022-11-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2022-12-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2022-12-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2022-12-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2023-01-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2023-01-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-01-31');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2023-02-10');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-02-20');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2023-03-02');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-03-12');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-03-22');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-04-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 77, '2023-04-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2023-04-21');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2023-05-01');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2023-05-11');
+INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2023-05-21'); -- CUMPLE 15 AÑOS

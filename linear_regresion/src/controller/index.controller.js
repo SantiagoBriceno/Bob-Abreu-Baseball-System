@@ -113,6 +113,27 @@ export const getRunningPredictionById = async (req, res) => {
   }
 }
 
+export const getHittingPredictionById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const response = await service.getHittingDataById(id)
+    const { x, y } = response
+    const regressionParams = linearRegression(x, y)
+    const estimatedYforX = estimateY(1500, regressionParams)
+    console.log(estimatedYforX)
+    const loadedModel = await tf.loadLayersModel('file://./hitting/model.json')
+    const prediction = loadedModel.predict(tf.tensor2d([1500], [1, 1]))
+
+    res.json({ prediction: prediction.dataSync()[0], estimatedYforX })
+    // const futureX = [25, 30, 35, 40]
+    // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
+    // console.log(estimatedFutureY)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
 function linearRegression (x, y) {
   const xSum = x.reduce((a, b) => a + b, 0)
   const ySum = y.reduce((a, b) => a + b, 0)

@@ -4,9 +4,13 @@ import {
 } from '../../../controller/v1/deportivo/estadisticas.controller.js'
 
 import { createThrowingStat, deleteThrowingStat, getThrowingStatById, getThrowingStatByIdPlayer, getThrowingStats, updateThrowingStat, getFirstBaseStatByClass, getSecondBaseStatByClass, getThirdBaseStatByClass } from '../../../controller/v1/deportivo/estadisticas/throwing.controller.js'
-import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat } from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
+
+import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat, getArrayOfDaysHitting, graphDataHitting, getArrayOfDaysHittingById} from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
+
 import { createRunningStat, getArrayOfDate, graphData, getArrayOfDaysById, getArrayOfDays, getArrayOfDateById, deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
+
 import { createFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
+
 // import { createPitchingStat, deletePitchingStat, getPitchingStatById, getPitchingStatByIdPlayer, getPitchingStats, updatePitchingStat } from '../../../controller/v1/deportivo/estadisticas/pitching.controller.js'
 
 import { userExtractor } from '../../../middleware/userExtractor.js'
@@ -67,10 +71,20 @@ router.get('/throwing/g/segunda', getSecondBaseStatByClass)
 
 router.get('/throwing/g/tercera', getThirdBaseStatByClass)
 
+// RUTAS PARA LAS ESTADISTICAS DE RUNNING PARA LA GRAFICA Y ML DE LOS ATLETAS
+
 router.get('/running/t/data', getArrayOfDays)
 
 router.get('/running/t/data/:id', getArrayOfDaysById)
 
 router.get('/running/g/graph', graphData)
+
+// RUTAS PARA LAS ESTADISTICAS DE HITTING PARA LA GRAFICA Y ML DE LOS ATLETAS
+
+router.get('/hitting/t/data', getArrayOfDaysHitting)
+
+router.get('/hitting/t/data/:id', getArrayOfDaysHittingById)
+
+router.get('/hitting/g/graph', graphDataHitting)
 
 export default router
