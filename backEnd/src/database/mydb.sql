@@ -258,3 +258,12 @@ CREATE TABLE IF NOT EXISTS users (
   rol VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 )
+
+CREATE TABLE IF NOT EXISTS lesiones (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_atleta VARCHAR(10) NOT NULL,
+  fecha DATE NOT NULL,
+  descripcion TEXT NOT NULL,
+  id_auditoria VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id)
+)

@@ -47,6 +47,19 @@ export const validationInputRepresentante = ({ id, type, value, options = null }
   }
 }
 
+export const validationInputRegistroEspecial = ({ id, type, value, options = null }) => {
+  switch (id) {
+    case 'cedula_atleta':
+      return { isInvalid: value.length < 7, message: 'La cédula del atleta debe tener al menos 7 caracteres', isSubmitted: false }
+    case 'fecha_evento':
+      return { isInvalid: value.length < 7, message: 'La fecha del evento debe tener al menos 7 caracteres', isSubmitted: false }
+    case 'descripcion':
+      return { isInvalid: value.length < 3, message: 'La descripción debe tener al menos 3 caracteres', isSubmitted: false }
+    default:
+      return { isInvalid: false, message: '', isSubmitted: false }
+  }
+}
+
 export const validationInputAtleta = ({ id, type, value, options = null }) => {
   switch (id) {
     case 'cedula':

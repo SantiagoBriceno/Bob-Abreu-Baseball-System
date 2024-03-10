@@ -27,7 +27,7 @@ export const representante = {
   cedula_atleta: ''
 }
 
-export const registro_especial = {
+export const registroEspecial = {
   cedula_atleta: '',
   fecha_evento: '',
   descripcion: ''
@@ -63,6 +63,13 @@ export const auditoria = {
 export const ficha_antropometrica = {
   id_ficha: '',
   id_atleta: ''
+}
+
+export const lesiones = {
+  id: '',
+  id_atleta: '',
+  fecha: '',
+  descripcion: ''
 }
 
 export const datos_generales = {
