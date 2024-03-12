@@ -5,7 +5,7 @@ import { registrosEspecialesFields } from '../constants/dataValidation.js'
 import { validationInputRegistroEspecial } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { registroEspecialFields } from '../constants/form/fields.js'
-import { createRepresentante } from '../service/representante.js'
+import { createRegistroEspecial } from '../service/registroEspecial.js'
 import MyTable from '../components/MyTable.jsx'
 import { useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
@@ -14,7 +14,7 @@ import { useRegistroEspecial } from '../hooks/table/useRegistroEspecial.js'
 
 const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesFields, validationInputRegistroEspecial, createRepresentante)
+  const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesFields, validationInputRegistroEspecial, createRegistroEspecial)
   const { data } = useRegistroEspecial()
   console.log('data', data)
 
