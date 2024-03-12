@@ -611,8 +611,8 @@ export const registroEspecialFields = [
           placeholder: 'Cédula del atleta...',
           id: 'cedula_atleta',
           opt: [
-            { key: '1234567', value: '12345678', label: 'Andres Pausin' },
-            { key: '1234568', value: '12345679', label: 'Santiatgo Briceno' }
+            { value: '12345678', label: 'Andres Pausin' },
+            { value: '12345679', label: 'Santiatgo Briceno' }
           ]
         },
         {
@@ -628,9 +628,9 @@ export const registroEspecialFields = [
         {
           label: 'Descripción',
           name: 'descripcion',
-          type: 'text',
+          type: 'textarea',
           required: false,
-          placeholder: 'motivo de registro',
+          placeholder: 'Motivo de registro',
           id: 'descripción'
 
         }
