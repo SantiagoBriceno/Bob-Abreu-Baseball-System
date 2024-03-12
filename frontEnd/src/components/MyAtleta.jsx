@@ -1,9 +1,9 @@
-import React from 'react'
-import { HStack, Stack, Box, Text, Heading, Flex, useDisclosure, Button, Collapse, IconButton } from '@chakra-ui/react'
+import { HStack, Stack, Box, Text, Heading, Flex, useDisclosure, Collapse, IconButton } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import MyButton from './form/MyButton'
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
+import { Line } from 'react-chartjs-2'
 export const MyAtletaDatos = ({ data = [''] }) => {
-  console.log(data)
   return (
     <>
       <Stack bg='black' w='30%' h='33%' rounded='full' alignItems='center' mb={8}>
@@ -87,12 +87,15 @@ export const MyAtletaDatos = ({ data = [''] }) => {
 }
 
 export const MyAtletaEstadisticas = ({ data }) => {
+  console.log(data)
   const { isOpen, onToggle } = useDisclosure()
   return (
     <Stack boxShadow='xl' p={2} bg='white' w='100%' h='100%' rounded='10px'>
       <Heading fontSize='xl' alignItems='center'>Estadisticas</Heading>
-      <DropDown title='Hitting'>
-        asdkljaskldjl
+      <DropDown title='Running'>
+        <Box pl={5} bg='white'>
+          {data ? <LineChart stats={data.running} /> : <Text>No hay datos</Text>}
+        </Box>
       </DropDown>
     </Stack>
 
@@ -102,11 +105,11 @@ export const MyAtletaEstadisticas = ({ data }) => {
 export const DropDown = ({ title, children }) => {
   const { isOpen, onToggle } = useDisclosure()
   return (
-    <Stack pl={5} bg='gray' rounded='5px 5px 0 0'>
+    <Stack bg='gray' rounded='5px 5px 0 0'>
       <HStack>
-        <Text w='90%'>{title}</Text>
+        <Text ml={5} w='95%'>{title}</Text>
         <IconButton
-          w='10%'
+          w='5%'
           variant='ghost'
           _hover={{ bg: 'transparent' }}
           onClick={onToggle}
@@ -118,5 +121,45 @@ export const DropDown = ({ title, children }) => {
         {children}
       </Collapse>
     </Stack>
+  )
+}
+
+export const LineChart = ({ stats, param }) => {
+  const velocidad_sesenta = stats.values.map((running) => {
+    return running.velocidad_sesenta
+  })
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top'
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart'
+      }
+    }
+  }
+
+  console.log(velocidad_sesenta, 'desde la grafica')
+
+  const labels = stats.x
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Running Sixty Yards',
+        data: velocidad_sesenta,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }
+    ]
+  }
+  return (
+    <div>
+      {stats ? <Line data={data} options={options} /> : <Text>No hay datos</Text>}
+    </div>
   )
 }

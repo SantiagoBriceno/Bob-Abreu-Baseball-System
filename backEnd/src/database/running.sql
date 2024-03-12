@@ -294,3 +294,12 @@ INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fech
 INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-06', '1');
 INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-16', '1');
 INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('372878964', 7.2, 5, '2023-05-26', '1');
+
+42987621
+
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 10.8, 6, '2021-05-15', '1');
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 10.5, 5.6, '2021-10-30', '1');
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 10.4, 5.4, '2022-05-15', '1');
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 10, 5.3, '2022-10-30', '1');
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 9.5, 5.1, '2023-05-15', '1');
+INSERT INTO running (id_atleta, velocidad_sesenta, velocidad_home_to_first, fecha_evaluacion, id_auditoria) VALUES ('42987621', 8.9, 4.7, '2023-10-30', '1');

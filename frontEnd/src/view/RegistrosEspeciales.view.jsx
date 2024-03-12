@@ -1,7 +1,7 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import MyForm from '../components/MyForm'
 import { registroEspecial } from '../../../global.constants.js'
-import { registrosEspecialesFields } from '../constants/dataValidation.js'
+import { registrosEspecialesValidation } from '../constants/dataValidation.js'
 import { validationInputRegistroEspecial } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { registroEspecialFields } from '../constants/form/fields.js'
@@ -15,7 +15,7 @@ import { useRegistroEspecial } from '../hooks/table/useRegistroEspecial.js'
 const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { data } = useRegistroEspecial(registroEspecialFields)
-  const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesFields, validationInputRegistroEspecial, createRegistroEspecial)
+  const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesValidation, validationInputRegistroEspecial, createRegistroEspecial)
 
   const closeModal = () => {
     setIsOpen(false)

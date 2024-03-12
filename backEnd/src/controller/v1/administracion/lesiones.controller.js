@@ -3,9 +3,12 @@ import { patchAuditoria, postAuditoria, deleteAuditoria } from '../../../middlew
 
 export const getLesiones = async (req, res) => {
   try {
+    const atletas = await service.getAtletasInfo()
     const data = await service.getAllLesiones()
-    res.status(200).send(data)
+    console.log('atletas desde el controlador: ', atletas)
+    res.status(200).json({ data, atletas })
   } catch (error) {
+    console.log('error desde el controlador: ', error)
     res.status(500).send({ message: error.message })
   }
 }

@@ -28,10 +28,16 @@ const deleteLesion = async (id) => {
   return lesion
 }
 
+const getAtletasInfo = async () => {
+  const [atletas] = await pool.query('SELECT nombre, cedula FROM atleta')
+  return atletas
+}
+
 export default {
   getAllLesiones,
   getLesionByIdPlayer,
   createLesion,
   updateLesion,
-  deleteLesion
+  deleteLesion,
+  getAtletasInfo
 }

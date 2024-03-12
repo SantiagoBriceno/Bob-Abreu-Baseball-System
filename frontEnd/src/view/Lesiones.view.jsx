@@ -1,21 +1,21 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import MyForm from '../components/MyForm'
-import { representante } from '../../../global.constants.js'
-import { representanteValidation } from '../constants/dataValidation.js'
-import { validationInputRepresentante } from '../constants/validationInputs.js'
+import { lesiones } from '../../../global.constants.js'
+import { lesionValidation } from '../constants/dataValidation.js'
+import { validationInputLesion } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
-import { representanteFields } from '../constants/form/fields.js'
-import { createRepresentante } from '../service/representante.js'
+import { lesionesFields } from '../constants/form/fields.js'
+import { createLesion } from '../service/lesiones.js'
 import MyTable from '../components/MyTable.jsx'
 import { useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
-import { representanteColumns as columns } from '../constants/table/columns.js'
-import { useRepresentante } from '../hooks/table/useRepresentante.js'
+import { lesionesColumns as columns } from '../constants/table/columns.js'
+import { useLesiones } from '../hooks/table/useLesiones.js'
 
 const LesionesView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
-  const { data } = useRepresentante()
+  const { data } = useLesiones(lesionesFields)
+  const { formData, actions, errorState } = useMyFormHook(lesiones, lesionValidation, validationInputLesion, createLesion)
   console.log('data', data)
 
   const closeModal = () => {
@@ -32,10 +32,10 @@ const LesionesView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           LESIONES
         </Heading>
-        <MyTable datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
+        <MyTable datatype='Agregar lesión' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />
+        <MyForm fields={lesionesFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />
       </FormModal>
     </Stack>
   )

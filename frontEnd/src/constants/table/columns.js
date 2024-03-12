@@ -27,6 +27,14 @@ export const representanteColumns = [
   { key: 'estatura', name: 'Estatura' }
 ]
 
+export const lesionesColumns = [
+  { key: 'id', name: 'ID' },
+  { key: 'fecha', name: 'Fecha' },
+  { key: 'cedula', name: 'Cédula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'descripcion', name: 'Descripción' }
+]
+
 export const indicadoresColumns = [
   { key: 'clase', name: 'Clase' },
   { key: 'posicion', name: 'Posición' },

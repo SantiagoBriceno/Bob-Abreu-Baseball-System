@@ -1,5 +1,10 @@
 import { pool } from '../../../db.js'
 
+const RUNNING_ROWS = 'id, velocidad_sesenta, velocidad_home_to_first, id_atleta'
+const HITTING_ROWS = 'id, agudeza_visual, bat_speed, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, id_atleta, angle_attack'
+const THROWING_ROWS = 'id, lanzamiento_primera, lanzamiento_segunda, lanzamiento_tercera, lanzamiento_home, pop_time, id_atleta'
+const FIELDING_ROWS = 'id, getting_jump, ruta, alcance, manos_suaves, control_cuerpo, juego_de_pie, anticipacion, energia, id_atleta'
+
 const nextId = async (table) => {
   const [id] = await pool.query(`SELECT MAX(id) + 1 AS id FROM ${table};`)
   return id[0].id ? id[0].id : 1
@@ -67,7 +72,7 @@ const deleteHittingStat = async (id) => {
 }
 
 const getHittingStatsByIdPlayer = async (id) => {
-  const [hittingStats] = await pool.query('SELECT * FROM hitting WHERE id_atleta = ?', [id])
+  const [hittingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${HITTING_ROWS}  FROM hitting WHERE id_atleta = ?`, [id])
   return hittingStats
 }
 
@@ -105,7 +110,7 @@ const deleteRunningStat = async (id) => {
 }
 
 const getRunningStatsByIdPlayer = async (id) => {
-  const [runningStats] = await pool.query('SELECT * FROM running WHERE id_atleta = ?', [id])
+  const [runningStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${RUNNING_ROWS} FROM running WHERE id_atleta = ?`, [id])
   return runningStats
 }
 
@@ -192,12 +197,12 @@ const deleteFieldingStat = async (id) => {
 }
 
 const getFieldingStatsByIdPlayer = async (id) => {
-  const [fieldingStats] = await pool.query('SELECT * FROM fielding WHERE id_atleta = ?', [id])
+  const [fieldingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${FIELDING_ROWS} FROM fielding WHERE id_atleta = ?`, [id])
   return fieldingStats
 }
 
 const getThrowingStatsByIdPlayer = async (id) => {
-  const [throwingStats] = await pool.query('SELECT * FROM throwing WHERE id_atleta = ?', [id])
+  const [throwingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${THROWING_ROWS} FROM throwing WHERE id_atleta = ?`, [id])
   return throwingStats
 }
 

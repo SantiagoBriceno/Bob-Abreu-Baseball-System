@@ -26,6 +26,41 @@ export const loginFields = [
   }
 ]
 
+export const lesionesFields = [
+  {
+    title: 'Lesiones',
+    campos: [
+      [
+        {
+          label: 'Cédula del atleta',
+          name: 'cedula',
+          type: 'select',
+          required: true,
+          id: 'cedula',
+          opt: []
+        },
+        {
+          label: 'Fecha de la lesión',
+          name: 'fecha',
+          type: 'date',
+          required: true,
+          id: 'fecha'
+        }
+      ],
+      [
+        {
+          label: 'Descripción de la lesión',
+          name: 'descripcion',
+          type: 'textarea',
+          required: true,
+          placeholder: 'Descripción de la lesión...',
+          id: 'descripcion'
+        }
+      ]
+    ]
+  }
+]
+
 export const usuarioRegisterFields = [
   {
     title: 'Registro de usuario',

@@ -200,3 +200,16 @@ export const validationInputMakeUp = ({ id, type, value, options = null }) => {
       return { isInvalid: false, message: '', isSubmitted: false }
   }
 }
+
+export const validationInputLesion = ({ id, type, value, options = null }) => {
+  switch (id) {
+    case 'id_atleta':
+      return { isInvalid: value.length < 3, message: 'El id del atleta debe tener al menos 3 caracteres', isSubmitted: false }
+    case 'fecha_lesion':
+      return { isInvalid: value.length < 3, message: 'La fecha de la lesión debe tener al menos 3 caracteres', isSubmitted: false }
+    case 'descripcion':
+      return { isInvalid: value.length < 3, message: 'La descripción debe tener al menos 3 caracteres', isSubmitted: false }
+    default:
+      return { isInvalid: false, message: '', isSubmitted: false }
+  }
+}
