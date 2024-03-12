@@ -6,6 +6,7 @@ import MyInput from './form/MyInput.jsx'
 import MySelect from './form/MySelect.jsx'
 import MyFormTemplate from './form/MyFormTemplate.jsx'
 import MyButton from './form/MyButton.jsx'
+import MyTextArea from './form/MyTextArea.jsx'
 
 const MyForm = ({ fields, formData, actions, title, errorMessage, encType = false }) => {
   return (
@@ -40,16 +41,27 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                         onChange={actions.handleChange}
                         value={formData[c.id]}
                       />
-                    : <MyInput
-                        name={c.name}
-                        type={c.type}
-                        required={c.required}
-                        placeholder={c.placeholder}
-                        id={c.id}
-                        onChange={actions.handleChange}
-                        value={c.type === 'file' ? null : formData[c.id]}
-                        onBlur={actions.handleBlur}
-                      />}
+                    : (c.type === 'textarea'
+                        ? <MyTextArea
+                            name={c.name}
+                            type={c.type}
+                            required={c.required}
+                            placeholder={c.placeholder}
+                            id={c.id}
+                            onChange={actions.handleChange}
+                            value={formData[c.id]}
+                            onBlur={actions.handleBlur}
+                          />
+                        : <MyInput
+                            name={c.name}
+                            type={c.type}
+                            required={c.required}
+                            placeholder={c.placeholder}
+                            id={c.id}
+                            onChange={actions.handleChange}
+                            value={c.type === 'file' ? null : formData[c.id]}
+                            onBlur={actions.handleBlur}
+                          />)}
                 </MyFormControl>
               ))}
             </Stack>
