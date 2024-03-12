@@ -1,5 +1,6 @@
 import React from 'react'
-import { HStack, Stack, Box, Text, Heading, Flex } from '@chakra-ui/react'
+import { HStack, Stack, Box, Text, Heading, Flex, useDisclosure, Button, Collapse, IconButton } from '@chakra-ui/react'
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 import MyButton from './form/MyButton'
 export const MyAtletaDatos = ({ data = [''] }) => {
   console.log(data)
@@ -86,9 +87,36 @@ export const MyAtletaDatos = ({ data = [''] }) => {
 }
 
 export const MyAtletaEstadisticas = ({ data }) => {
+  const { isOpen, onToggle } = useDisclosure()
   return (
-    <>
-      <h1>asdhaskld</h1>
-    </>
+    <Stack boxShadow='xl' p={2} bg='white' w='100%' h='100%' rounded='10px'>
+      <Heading fontSize='xl' alignItems='center'>Estadisticas</Heading>
+      <DropDown title='Hitting'>
+        asdkljaskldjl
+      </DropDown>
+    </Stack>
+
+  )
+}
+
+export const DropDown = ({ title, children }) => {
+  const { isOpen, onToggle } = useDisclosure()
+  return (
+    <Stack pl={5} bg='gray' rounded='5px 5px 0 0'>
+      <HStack>
+        <Text w='90%'>{title}</Text>
+        <IconButton
+          w='10%'
+          variant='ghost'
+          _hover={{ bg: 'transparent' }}
+          onClick={onToggle}
+          aria-label='Open'
+          icon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        />
+      </HStack>
+      <Collapse in={isOpen} animateOpacity>
+        {children}
+      </Collapse>
+    </Stack>
   )
 }
