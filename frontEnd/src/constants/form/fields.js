@@ -628,9 +628,9 @@ export const registroEspecialFields = [
         {
           label: 'Descripción',
           name: 'descripcion',
-          type: 'text',
+          type: 'textarea',
           required: false,
-          placeholder: 'motivo de registro',
+          placeholder: 'Motivo de registro',
           id: 'descripción'
 
         }
