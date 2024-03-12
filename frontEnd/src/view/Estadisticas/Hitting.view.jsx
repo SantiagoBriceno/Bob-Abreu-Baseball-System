@@ -6,41 +6,18 @@ import { Bubble } from 'react-chartjs-2'
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend)
 
 export const options = {
-  aspectRatio: 1,
   scales: {
     y: {
       beginAtZero: true,
-      min: 6,
-      max: 12
     },
     x: {
-      beginAtZero: true,
-      min: 0,
-      max: 1400,
-      ticks: {
-        stepSize: 100
-      }
+      beginAtZero: true
     }
   },
   plugins: {
     decimation: true
   },
-  events: ['click'],
-  onClick: function (e) {
-    const canvasPosition = ChartJS.helpers.getRelativePosition(e, this)
-
-    const data = this.data.datasets[0].data
-    let minDistance = Infinity
-    let closestIndex = -1
-    for (let i = 0; i < data.length; i++) {
-      const distance = Math.hypot(canvasPosition.x - data[i].x, canvasPosition.y - data[i].y)
-      if (distance < minDistance) {
-        minDistance = distance
-        closestIndex = i
-      }
-    }
-    console.log(data[closestIndex])
-  }
+  events: ['click']
 
 }
 
@@ -60,7 +37,7 @@ const HittingView = () => {
   const data = {
     datasets: [
       {
-        label: 'relacion de la velocidad con la edad en dia de los atletas de la academia',
+        label: 'relacion de la velocidad de bateo con la edad en dia de los atletas de la academia',
         data: trainingData,
         backgroundColor: 'rgba(255, 99, 132)'
       }
@@ -71,7 +48,7 @@ const HittingView = () => {
   return (
     <Stack h='75%' w='75%' alignItems='center'>
       <Bubble data={data} options={options} />
-      <Text>Tiempo recorrido 60 yardas en segundos</Text>
+      <Text>Velocidad de bateo en Km/Hr</Text>
 
     </Stack>
   )

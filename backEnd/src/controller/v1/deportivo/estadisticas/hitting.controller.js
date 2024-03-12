@@ -205,3 +205,151 @@ export const getArrayOfDateById = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const getArrayOfDaysHitting = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('hitting_ml')
+    if (ids.length === 0) {
+      return res.status(404).json({ message: 'No hitting stats found' })
+    }
+    const idsArray = ids.map((id) => id.id)
+
+    const arrayOfDaysAndStat = []
+    let menorDiaTranscurrido = Infinity
+
+    for (const id of idsArray) {
+      const birthDate = await service.getBirthDateById(id)
+      const cumpleanio = new Date(birthDate[0].date)
+
+      const dateAndStat = await service.getArrayOfDateById('hitting_ml', 'bat_speed', id)
+
+      const dates = dateAndStat.map(({ x }) => x)
+      for (let i = 0; i < dates.length; i++) {
+        const actual = new Date(dates[i])
+
+        const diffMs = actual - cumpleanio
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+        if (days < menorDiaTranscurrido) {
+          menorDiaTranscurrido = days
+        }
+        dates[i] = days
+      }
+      dateAndStat.map((item, index) => {
+        item.x = dates[index] - menorDiaTranscurrido
+        return null
+      })
+      arrayOfDaysAndStat.push({ dateAndStat })
+    }
+    const allX = []
+    const allY = []
+
+    for (const item of arrayOfDaysAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
+    res.send({ x: allX, y: allY, menorDiaTranscurrido })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const getArrayOfDaysHittingById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const player = await service.existPlayer(id)
+    if (player.length === 0) {
+      return res.status(404).json({ message: 'Player not found' })
+    }
+    const birthDate = await service.getBirthDateById(id)
+    const cumpleanio = new Date(birthDate[0].date)
+    let menorDiaTranscurrido = Infinity
+    const dateAndStat = await service.getArrayOfDateById('hitting_ml', 'bat_speed', id)
+    const dates = dateAndStat.map(({ x }) => x)
+    for (let i = 0; i < dates.length; i++) {
+      // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
+      const actual = new Date(dates[i])
+
+      const diffMs = actual - cumpleanio
+      const diasTranscurridos = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+      dates[i] = diasTranscurridos
+      if (diasTranscurridos < menorDiaTranscurrido) {
+        menorDiaTranscurrido = diasTranscurridos
+      }
+    }
+    dateAndStat.map((item, index) => {
+      item.x = dates[index] - menorDiaTranscurrido
+      return null
+    })
+    const x = dateAndStat.map(({ x }) => x)
+    const y = dateAndStat.map(({ y }) => y)
+    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const graphDataHitting = async (req, res) => {
+  try {
+    const ids = await service.getExistIdPlayer('hitting_ml')
+    if (ids.length === 0) {
+      return res.status(404).json({ message: 'No hitting stats found' })
+    }
+    const idsArray = ids.map((id) => id.id)
+
+    const arrayOfDaysAndStat = []
+    let menorDiaTranscurrido = Infinity
+
+    for (const id of idsArray) {
+      const birthDate = await service.getBirthDateById(id)
+      const cumpleanio = new Date(birthDate[0].date)
+
+      const dateAndStat = await service.getArrayOfDateById('hitting_ml', 'bat_speed', id)
+
+      const dates = dateAndStat.map(({ x }) => x)
+      for (let i = 0; i < dates.length; i++) {
+        const actual = new Date(dates[i])
+
+        const diffMs = actual - cumpleanio
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+        if (days < menorDiaTranscurrido) {
+          menorDiaTranscurrido = days
+        }
+        dates[i] = days
+      }
+      dateAndStat.map((item, index) => {
+        item.x = dates[index] - menorDiaTranscurrido
+        return null
+      })
+      arrayOfDaysAndStat.push({ dateAndStat })
+    }
+    const allX = []
+    const allY = []
+
+    for (const item of arrayOfDaysAndStat) {
+      const { dateAndStat } = item
+      dateAndStat.map(({ x, y }) => {
+        allX.push(x)
+        allY.push(y)
+        return null
+      })
+    }
+    const result = parOrdenadoDeDosArreglosDeIgualLongitud(allX, allY)
+    res.send({ result })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+const parOrdenadoDeDosArreglosDeIgualLongitud = (x, y) => {
+  const result = []
+  for (let i = 0; i < x.length; i++) {
+    result.push({ x: x[i], y: y[i] })
+  }
+  return result
+}
