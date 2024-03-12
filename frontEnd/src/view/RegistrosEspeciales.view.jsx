@@ -14,9 +14,8 @@ import { useRegistroEspecial } from '../hooks/table/useRegistroEspecial.js'
 
 const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { data } = useRegistroEspecial(registroEspecialFields)
   const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesFields, validationInputRegistroEspecial, createRegistroEspecial)
-  const { data } = useRegistroEspecial()
-  console.log('data', data)
 
   const closeModal = () => {
     setIsOpen(false)

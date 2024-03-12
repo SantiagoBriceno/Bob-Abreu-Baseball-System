@@ -25,10 +25,16 @@ const deleteRegistroEspecial = async (id) => {
   return data
 }
 
+const getAtletasInfo = async () => {
+  const [data] = await pool.query('SELECT nombre, cedula FROM atleta')
+  return data
+}
+
 export default {
   getRegistroEspecial,
   getRegistroEspecialById,
   createRegistroEspecial,
   updateRegistroEspecial,
-  deleteRegistroEspecial
+  deleteRegistroEspecial,
+  getAtletasInfo
 }

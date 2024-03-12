@@ -4,8 +4,9 @@ import { patchAuditoria, postAuditoria, deleteAuditoria } from '../../../middlew
 
 export const getRegistroEspecial = async (req, res) => {
   try {
+    const atletas = await service.getAtletasInfo()
     const data = await service.getRegistroEspecial()
-    res.status(200).send(data)
+    res.status(200).json({ data, atletas })
   } catch (error) {
     res.status(500).send({ message: error.message })
   }
