@@ -120,8 +120,7 @@ CREATE TABLE IF NOT EXISTS datos_generales (
   PRIMARY KEY (id);
 );
 
-INSERT INTO datos_generales (id_ficha, estatura_maxima, percentil_talla, longitud_de_pie, longitud_sentado, envergadura, imc, imc_ideal, tasa_metabolica_basal, calorias_necesarias, calorias_diarias, percentil_de_peso, peso_ideal, peso_corporal, id_auditoria)
-VALUES (1, 180, 75, 28, 90, 190, 23, 22, 1500, 2000, 2500, 80, 70, 80, '1');
+INSERT INTO datos_generales (id_ficha, estatura_maxima, percentil_talla, longitud_de_pie, longitud_sentado, envergadura, imc, imc_ideal, tasa_metabolica_basal, calorias_necesarias, calorias_diarias, percentil_de_peso, peso_ideal, peso_corporal, id_auditoria) VALUES (1, 180, 75, 28, 90, 190, 23, 22, 1500, 2000, 2500, 80, 70, 80, '1');
 
 CREATE TABLE IF NOT EXISTS perimetros_corporales (
   id INT NOT NULL AUTO_INCREMENT,
