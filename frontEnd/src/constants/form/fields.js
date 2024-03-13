@@ -644,7 +644,7 @@ export const registroEspecialFields = [
           type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'cedula_atleta',
+          id: 'cedula',
           opt: [
 
           ]
@@ -665,7 +665,7 @@ export const registroEspecialFields = [
           type: 'textarea',
           required: false,
           placeholder: 'Motivo de registro',
-          id: 'descripción'
+          id: 'descripcion'
 
         }
       ]

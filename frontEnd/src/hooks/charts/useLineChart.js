@@ -33,5 +33,5 @@ export const useLineChart = (info, param, title, index) => {
     })
   }, [])
 
-  return { data, options }
+  return { data, options, setData }
 }

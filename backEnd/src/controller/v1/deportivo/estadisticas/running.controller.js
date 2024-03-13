@@ -345,6 +345,7 @@ export const getArrayOfDaysById = async (req, res) => {
     console.log('Cumpleanio', cumpleanio)
     let menorDiaTranscurrido = Infinity
     const dateAndStat = await service.getArrayOfDateById('running', 'velocidad_sesenta', id)
+    const fechaUltimo = dateAndStat[dateAndStat.length - 1].x.toISOString().split('T')[0]
     const dates = dateAndStat.map(({ x }) => x)
     for (let i = 0; i < dates.length; i++) {
       // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
@@ -363,7 +364,7 @@ export const getArrayOfDaysById = async (req, res) => {
     })
     const x = dateAndStat.map(({ x }) => x)
     const y = dateAndStat.map(({ y }) => y)
-    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio })
+    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio, ultimaFecha: { days: x[x.length - 1], fecha: fechaUltimo } })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

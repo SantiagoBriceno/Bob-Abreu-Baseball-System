@@ -94,16 +94,21 @@ export const getRunningPrediction = async (req, res) => {
 
 export const getRunningPredictionById = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id, days } = req.query
     const response = await service.getRunningDataById(id)
-    const { x, y } = response
+    const { x, y, ultimaFecha } = response
+    const ultimaFechaDate = new Date(ultimaFecha.fecha)
+    // calculamos la fecha days dias despues de la ultima fecha
+    const predictionDayDate = new Date(ultimaFechaDate.setDate(ultimaFechaDate.getDate() + parseInt(days))).toISOString().split('T')[0]
+
+    const predictionDay = ultimaFecha.days + parseInt(days)
     const regressionParams = linearRegression(x, y)
-    const estimatedYforX = estimateY(1500, regressionParams)
+    const estimatedYforX = estimateY(predictionDay, regressionParams)
     console.log(estimatedYforX)
     const loadedModel = await tf.loadLayersModel('file://./running/model.json')
-    const prediction = loadedModel.predict(tf.tensor2d([1500], [1, 1]))
+    const prediction = loadedModel.predict(tf.tensor2d([predictionDay], [1, 1]))
 
-    res.json({ prediction: prediction.dataSync()[0], estimatedYforX })
+    res.json({ prediction: prediction.dataSync()[0], estimatedYforX, date: predictionDayDate, days: predictionDay })
     // const futureX = [25, 30, 35, 40]
     // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
     // console.log(estimatedFutureY)
@@ -115,16 +120,19 @@ export const getRunningPredictionById = async (req, res) => {
 
 export const getHittingPredictionById = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id, days } = req.query
     const response = await service.getHittingDataById(id)
-    const { x, y } = response
+    const { x, y, ultimaFecha } = response
+    const ultimaFechaDate = new Date(ultimaFecha.fecha)
+    const predictionDayDate = new Date(ultimaFechaDate.setDate(ultimaFechaDate.getDate() + parseInt(days))).toISOString().split('T')[0]
+    const predictionDay = ultimaFecha.days + parseInt(days)
     const regressionParams = linearRegression(x, y)
-    const estimatedYforX = estimateY(1500, regressionParams)
+    const estimatedYforX = estimateY(predictionDay, regressionParams)
     console.log(estimatedYforX)
     const loadedModel = await tf.loadLayersModel('file://./hitting/model.json')
-    const prediction = loadedModel.predict(tf.tensor2d([1500], [1, 1]))
+    const prediction = loadedModel.predict(tf.tensor2d([predictionDay], [1, 1]))
 
-    res.json({ prediction: prediction.dataSync()[0], estimatedYforX })
+    res.json({ prediction: prediction.dataSync()[0], estimatedYforX, date: predictionDayDate, days: predictionDay })
     // const futureX = [25, 30, 35, 40]
     // const estimatedFutureY = futureX.map(x => estimateY(x, regressionParams))
     // console.log(estimatedFutureY)

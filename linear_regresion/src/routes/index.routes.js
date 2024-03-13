@@ -3,8 +3,8 @@ import { getRunningPredictionById, getHittingPredictionById } from '../controlle
 
 const router = Router()
 
-router.get('/running/:id', getRunningPredictionById)
+router.get('/running', getRunningPredictionById)
 
-router.get('/hitting/:id', getHittingPredictionById)
+router.get('/hitting', getHittingPredictionById)
 
 export default router

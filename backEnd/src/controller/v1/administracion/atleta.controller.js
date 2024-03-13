@@ -5,6 +5,7 @@ import { isValidAtleta, existAtleta } from '../../../utils/formats/atleta.js'
 import { calcularClase } from './utils/atleta.js'
 import antropometriaService from '../../../service/v1/administracion/antropometria.service.js'
 import estadisticasService from '../../../service/v1/deportivo/estadisticas.service.js'
+import registroEspecialService from '../../../service/v1/administracion/registroEspecial.service.js'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
@@ -37,12 +38,13 @@ export const getAtletaById = async (req, res) => {
     const antropometria = await antropometriaService.getFichaAntropometricaByIdAtleta(id)
     const restAntropometria = antropometria.fichas.length > 0 ? antropometria : null
     // HACER ALGUNAS COSAS MAS
+    const registros_especiales = await registroEspecialService.getRegistroEspecialByIdPlayer(id)
 
     const estadisticas = {
-      hitting: { values: await estadisticasService.getHittingStatsByIdPlayer(id) },
-      running: { values: await estadisticasService.getRunningStatsByIdPlayer(id) },
-      throwing: await estadisticasService.getThrowingStatsByIdPlayer(id),
-      fielding: await estadisticasService.getFieldingStatsByIdPlayer(id)
+      hitting: { values: await estadisticasService.getHittingStatsByIdPlayer(id), id },
+      running: { values: await estadisticasService.getRunningStatsByIdPlayer(id), id },
+      throwing: { values: await estadisticasService.getThrowingStatsByIdPlayer(id), id },
+      fielding: { values: await estadisticasService.getFieldingStatsByIdPlayer(id), id }
     }
 
     const xRunning = estadisticas.running.values.map((running) => {
@@ -63,7 +65,8 @@ export const getAtletaById = async (req, res) => {
     const data = {
       datosGeneral,
       antropometria: restAntropometria,
-      estadisticas
+      estadisticas,
+      registros_especiales
     }
 
     req.data = data

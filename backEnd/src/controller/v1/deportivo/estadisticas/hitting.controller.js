@@ -268,7 +268,9 @@ export const getArrayOfDaysHittingById = async (req, res) => {
     const birthDate = await service.getBirthDateById(id)
     const cumpleanio = new Date(birthDate[0].date)
     let menorDiaTranscurrido = Infinity
-    const dateAndStat = await service.getArrayOfDateById('hitting_ml', 'bat_speed', id)
+    const dateAndStat = await service.getArrayOfDateById('hitting', 'bat_speed', id)
+    console.log(dateAndStat)
+    const fechaUltimo = dateAndStat[dateAndStat.length - 1].x.toISOString().split('T')[0]
     const dates = dateAndStat.map(({ x }) => x)
     for (let i = 0; i < dates.length; i++) {
       // Conseguimos los dias que transcurrieron desde el cumpleaños del jugador
@@ -287,8 +289,9 @@ export const getArrayOfDaysHittingById = async (req, res) => {
     })
     const x = dateAndStat.map(({ x }) => x)
     const y = dateAndStat.map(({ y }) => y)
-    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio })
+    res.status(200).json({ x, y, menorDiaTranscurrido, cumpleanio, ultimaFecha: { days: x[x.length - 1], fecha: fechaUltimo } })
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message })
   }
 }
