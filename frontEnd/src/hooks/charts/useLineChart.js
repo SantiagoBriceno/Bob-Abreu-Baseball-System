@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-export const useLineChart = (info, param) => {
-  const [dataset, setDataset] = useState([])
-  const [data, setData] = useState()
 
+export const useLineChart = (info, param, title, index) => {
+  const [data, setData] = useState()
   const options = {
     responsive: true,
     plugins: {
@@ -11,30 +10,28 @@ export const useLineChart = (info, param) => {
       },
       title: {
         display: true,
-        text: 'Chart.js Line Chart'
+        text: title
       }
     }
   }
-  const labels = data.x
-  useEffect(() => {
-    const result = data.map((item) => {
-      return item.values[param]
-    })
-    setDataset(result)
-  }, [])
 
   useEffect(() => {
     setData({
-      labels,
+      labels: info.x,
       datasets: [
         {
-          label: info,
-          data: dataset,
+          label: index,
+          data: info.values.map((item) => {
+            return item[param]
+          }),
           fill: false,
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgba(255, 99, 132, 0.2)'
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
         }
       ]
+
     })
-  }, [dataset])
+  }, [])
+
+  return { data, options }
 }

@@ -21,6 +21,13 @@ export const getAtleta = async (id) => {
   return response.json()
 }
 
+export const getAtletaImg = async (id) => {
+  const response = await fetch(`${RUTA_ATLETAS}/img/public/${id}`, {
+    method: 'GET'
+  })
+  return response
+}
+
 export const createAtleta = async (atleta) => {
   const response = await fetch(RUTA_ATLETAS, {
     method: 'POST',

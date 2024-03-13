@@ -1,17 +1,17 @@
 // Recuperar el query param id y mostrar los datos del atleta\
 import { useParams } from 'react-router-dom'
 import { useAtletaData } from '../../hooks/view/useAtletaData'
-import { Stack, VStack } from '@chakra-ui/react'
+import { Stack, VStack, Image } from '@chakra-ui/react'
 import { MyAtletaDatos, MyAtletaEstadisticas } from '../../components/MyAtleta'
 const AtletaView = () => {
   const { cedula } = useParams()
-  const { atleta } = useAtletaData({ id: cedula })
+  const { atleta, img } = useAtletaData({ id: cedula })
   console.log(atleta)
   return (
     <>
       <Stack direction='row' w='100%' h='100%' gap='1%'>
         <Stack boxShadow='xl' bg='white' rounded='15px' p={10} align='center' w='35%' h='100%'>
-          <MyAtletaDatos data={atleta.datosGeneral} />
+          <MyAtletaDatos data={atleta.datosGeneral} img={img} />
         </Stack>
         <VStack rounded='10px' w='65%' h='100%' gap={4}>
           <Stack boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px'>
