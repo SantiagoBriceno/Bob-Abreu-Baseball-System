@@ -28,9 +28,8 @@ export const representanteColumns = [
 ]
 
 export const lesionesColumns = [
-  { key: 'id', name: 'ID' },
   { key: 'fecha', name: 'Fecha' },
-  { key: 'cedula', name: 'Cédula' },
+  { key: 'id_atleta', name: 'Cédula' },
   { key: 'nombre', name: 'Nombre' },
   { key: 'descripcion', name: 'Descripción' }
 ]

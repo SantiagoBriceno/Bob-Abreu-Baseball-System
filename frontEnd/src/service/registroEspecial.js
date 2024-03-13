@@ -25,8 +25,7 @@ export const createRegistroEspecial = async (registroEspecial) => {
   const response = await fetch(RUTA_REGISTROS_ESPECIALES, {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer ' + auth().token,
-      'Content-Type': 'application/json'
+      Authorization: 'Bearer ' + auth().token
     },
     body: JSON.stringify(registroEspecial)
   })
