@@ -40,6 +40,16 @@ CREATE TABLE IF NOT EXISTS registro_especial (
   PRIMARY KEY (id)
 );
 
+INSERT INTO registro_especial (cedula_atleta, fecha_evento, descripcion, id_auditoria)
+VALUES ('42987621', '2022-09-01', 'Salida de fin de semana con sus padres, fecha de regreso estimada: 2022-09-04', '6');
+
+INSERT INTO registro_especial (cedula_atleta, fecha_evento, descripcion, id_auditoria)
+VALUES ('42987621', '2023-11-12', 'Cumpleaños de familiar, estará fuera de la institución 2 horas', '7');
+
+INSERT INTO registro_especial (cedula_atleta, fecha_evento, descripcion, id_auditoria)
+VALUES ('42987621', '2024-03-13', 'Salida para ayudar a familiares en quehaceres de la casa, fecha de reingreso, 2024-03-14', '8');
+
+
 CREATE TABLE IF NOT EXISTS atleta (
   cedula VARCHAR(10) NOT NULL,
   nombre VARCHAR(50) NOT NULL,
@@ -285,3 +295,4 @@ CREATE TABLE IF NOT EXISTS lesiones (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 )
+

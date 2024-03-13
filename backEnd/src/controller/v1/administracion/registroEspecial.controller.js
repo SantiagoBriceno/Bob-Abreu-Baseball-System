@@ -23,7 +23,8 @@ export const getRegistroEspecialById = async (req, res) => {
 
 export const createRegistroEspecial = async (req, res) => {
   try {
-    const id_auditoria = await postAuditoria({ entity: 'registro_especial', user: req.user, body: req.body })
+    const nextId = await service.nextId()
+    const id_auditoria = await postAuditoria({ entity: 'registro_especial', user: req.user, body: req.body, id: nextId })
     req.body.id_auditoria = id_auditoria
     const data = await service.createRegistroEspecial(req.body)
     res.status(201).send(data)

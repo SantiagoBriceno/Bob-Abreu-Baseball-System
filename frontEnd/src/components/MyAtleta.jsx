@@ -1,13 +1,18 @@
-import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Image, Divider, SimpleGrid, List, ListItem, Button } from '@chakra-ui/react'
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
+import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Tooltip as CTooltip, Image, Divider, SimpleGrid, List, ListItem, Button } from '@chakra-ui/react'
+import { ChevronDownIcon, ChevronUpIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useLineChart } from '../hooks/charts/useLineChart'
+import { runningPrediction } from '../service/running.prediction'
+import { hittingPrediction } from '../service/hitting.prediction'
 import { useAntropometria } from '../hooks/useMedidasAntropometricas'
+import { useEstadisticas } from '../hooks/useEstadisticas'
+import { useState } from 'react'
 export const MyAtletaDatos = ({ data = [''], img }) => {
   return (
     <>
       <Heading fontSize='2xl' fontWeight='800'>Datos del Atleta</Heading>
+
       <Divider />
       <Image src={img} alt='Imagen del atleta' borderRadius='full' w='60%' />
 
@@ -51,31 +56,109 @@ export const MyAtletaDatos = ({ data = [''], img }) => {
             </List>
           </SimpleGrid>
         </Box>
+        <Divider />
+        <Heading fontSize='md' fontWeight='400'>Perfiles fotograficos</Heading>
+        <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='fit-content'>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+            <Button variant='link' colorScheme='blue'>Perfiles</Button>
+            <Button variant='link' colorScheme='blue'>...</Button>
+          </SimpleGrid>
+        </Box>
+
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+
+          <CTooltip hasArrow label='Registros especiales' aria-label='A tooltip'>
+            <IconButton variant='ghost' icon={<HamburgerIcon />} />
+          </CTooltip>
+
+          <CTooltip hasArrow label='Editar datos del atleta' aria-label='A tooltip'>
+            <IconButton variant='ghost' icon={<EditIcon />} />
+          </CTooltip>
+
+          <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
+            <IconButton variant='ghost' icon={<DeleteIcon />} />
+          </CTooltip>
+        </SimpleGrid>
+
       </Stack>
     </>
   )
 }
 
+export const MyAtletaRegistrosEspeciales = ({ data }) => {}
+
 export const MyAtletaEstadisticas = ({ data }) => {
-  // console.log(data)
+  const { hitting, running } = useEstadisticas({ data })
   return (
     <Stack boxShadow='xl' p={8} bg='white' w='100%' h='100%' rounded='10px'>
-      <Heading fontSize='xl' fontWeight='800' alignItems='center'>Estadisticas</Heading>
+      <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Información relevante</Heading>
       <Divider />
-      <DropDown title='Progreso de tiempo en Sesenta Yardas'>
-        <Box pl={5} bg='white'>
-          {data
-            ? <LineChart stats={data.running} param='velocidad_sesenta' title='Progreso del tiempo de 60 yardas' index='Tiempo en segundos' />
-            : <Text>No hay datos</Text>}
-        </Box>
-      </DropDown>
-      <DropDown title='Progreso de velocidad de bateos'>
-        <Box pl={5} bg='white'>
-          {data
-            ? <LineChart stats={data.hitting} param='bat_speed' title='Progreso de la velocidad del bate en Millas Por Hora' index='MPH' />
-            : <Text>No hay datos</Text>}
-        </Box>
-      </DropDown>
+      <Stack spacing={5} p={5} pb={0}>
+        <Heading fontWeight='800' fontSize='md'>Estadísticas</Heading>
+        <DropDown title='Progreso de tiempo en Sesenta Yardas'>
+          <Box bg='white'>
+            {data
+              ? <LineChart stats={data.running} param='velocidad_sesenta' title='Progreso del tiempo de 60 yardas' index='Tiempo en segundos' />
+              : <Text>No hay datos</Text>}
+          </Box>
+        </DropDown>
+        <DropDown title='Progreso de velocidad de bateos'>
+          <Box bg='white'>
+            {data
+              ? <LineChartHitting stats={data.hitting} param='bat_speed' title='Progreso de la velocidad del bate en Millas Por Hora' index='MPH' />
+              : <Text>No hay datos</Text>}
+          </Box>
+        </DropDown>
+      </Stack>
+      <Stack spacing={5} p={5}>
+        <Heading fontWeight='800' fontSize='md'>Especificaciones deportivas</Heading>
+        <Divider />
+        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
+          {/* hitting posee los siguientes atributos: bat_speed, angle_attack, rec_pitcheos, ruta_del_bate */}
+          <List textAlign='left' spacing={2}>
+            <ListItem><Heading fontSize='sm'>Estadisticas de bateo</Heading></ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Velocidad del bate:</Text>
+              <Text>{hitting.value ? `${hitting.value.bat_speed} MPH` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Angulo de ataque:</Text>
+              <Text>{hitting.value ? `${hitting.value.angle_attack} °` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Reconocimiento de pitcheos:</Text>
+              <Text>{hitting.value ? `${hitting.value.rec_pitcheos}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Ruta del bate:</Text>
+              <Text>{hitting.value ? `${hitting.value.ruta_del_bate}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Ver más</Text>
+              <Button variant='link' colorScheme='blue'>...</Button>
+            </ListItem>
+          </List>
+
+          {/* Running posee los siguientes atributos:  velocidad_sesenta, velocidad_home_to_first */}
+          <List spacing={2}>
+            <ListItem><Heading fontSize='sm'>Estadisticas de running</Heading></ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Velocidad en 60 yardas:</Text>
+              <Text>{running.value ? `${running.value.velocidad_sesenta} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Velocidad de home a primera:</Text>
+              <Text>{running.value ? `${running.value.velocidad_home_to_first} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Ver más</Text>
+              <Button variant='link' colorScheme='blue'>...</Button>
+            </ListItem>
+          </List>
+
+        </SimpleGrid>
+      </Stack>
+
     </Stack>
 
   )
@@ -83,10 +166,10 @@ export const MyAtletaEstadisticas = ({ data }) => {
 
 export const MyAtletaMedidasAntropometricas = ({ data }) => {
   const { datosGenerales, perimetros, icc, imc } = useAntropometria({ data })
-  console.log('datos Generales: ', datosGenerales)
-  console.log('perimetros: ', perimetros)
-  console.log('icc: ', icc)
-  console.log('imc: ', imc)
+  // console.log('datos Generales: ', datosGenerales)
+  // console.log('perimetros: ', perimetros)
+  // console.log('icc: ', icc)
+  // console.log('imc: ', imc)
 
   return (
     <Stack boxShadow='xl' p={8} bg='white' w='100%' h='100%' rounded='10px'>
@@ -220,11 +303,103 @@ export const DropDown = ({ title, children }) => {
 }
 
 export const LineChart = ({ stats, param, title, index }) => {
-  const { data, options } = useLineChart(stats, param, title, index)
+  const { data, options, setData } = useLineChart(stats, param, title, index)
+  const [counter, setCounter] = useState(0)
+  const [lastDay, setLastDay] = useState(90)
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+
+  const handleAddData = async () => {
+    if (counter === 0) {
+      const response = await runningPrediction(stats.id, lastDay)
+      const { prediction, estimatedYforX, date } = response
+      setLastDay(lastDay + 90)
+      const newDataSet = {
+        label: 'proyeccion del tiempo en 60 yardas',
+        data: data.datasets[0].data.map((item, index) => {
+          return index > data.datasets[0].data.length - 2 ? item : NaN
+        }),
+        fill: true,
+        borderColor: 'rgb(249, 67, 97)',
+        tension: 0.1
+      }
+      newDataSet.data.push(prediction)
+      console.log('newDataSet', newDataSet)
+      data.labels.push(date)
+      setData({
+        ...data,
+        datasets: data.datasets.concat(newDataSet)
+      })
+      ChartJS.getChart('Line').update()
+      setCounter(counter + 1)
+      // data.labels.push(date)
+      // data.datasets[0].data.push(prediction)
+      // ChartJS.getChart('Line').update()
+      // setCounter(counter + 1)
+    } else {
+      const response = await runningPrediction(stats.id, lastDay)
+      const { prediction, estimatedYforX, date } = response
+      setLastDay(lastDay + 90)
+      data.labels.push(date)
+      data.datasets[1].data.push(prediction)
+      ChartJS.getChart('Line').update()
+      setCounter(counter + 1)
+    }
+  }
   return (
     <Stack>
-      {data ? <Line data={data} options={options} /> : <Text>No hay datos</Text>}
+      {data ? <Line id='Line' data={data} options={options} /> : <Text>No hay datos</Text>}
+      <Button onClick={handleAddData}>Agregar datos</Button>
+    </Stack>
+  )
+}
+
+export const LineChartHitting = ({ stats, param, title, index }) => {
+  const { data, options, setData } = useLineChart(stats, param, title, index)
+  const [counter, setCounter] = useState(0)
+  const [lastDay, setLastDay] = useState(90)
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+
+  const handleAddData = async () => {
+    if (counter === 0) {
+      const response = await hittingPrediction(stats.id, lastDay)
+      const { prediction, estimatedYforX, date } = response
+      setLastDay(lastDay + 90)
+      const newDataSet = {
+        label: 'proyeccion de la velocidad del bate',
+        data: data.datasets[0].data.map((item, index) => {
+          return index > data.datasets[0].data.length - 2 ? item : NaN
+        }),
+        fill: true,
+        borderColor: 'rgb(249, 67, 97)',
+        tension: 0.1
+      }
+      newDataSet.data.push(prediction)
+      console.log('newDataSet', newDataSet)
+      data.labels.push(date)
+      setData({
+        ...data,
+        datasets: data.datasets.concat(newDataSet)
+      })
+      ChartJS.getChart('Line').update()
+      setCounter(counter + 1)
+      // data.labels.push(date)
+      // data.datasets[0].data.push(prediction)
+      // ChartJS.getChart('Line').update()
+      // setCounter(counter + 1)
+    } else {
+      const response = await hittingPrediction(stats.id, lastDay)
+      const { prediction, estimatedYforX, date } = response
+      setLastDay(lastDay + 90)
+      data.labels.push(date)
+      data.datasets[1].data.push(prediction)
+      ChartJS.getChart('Line').update()
+      setCounter(counter + 1)
+    }
+  }
+  return (
+    <Stack>
+      {data ? <Line id='Line' data={data} options={options} /> : <Text>No hay datos</Text>}
+      <Button onClick={handleAddData}>Agregar datos</Button>
     </Stack>
   )
 }

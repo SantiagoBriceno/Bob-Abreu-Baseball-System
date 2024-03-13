@@ -1,5 +1,10 @@
 import { pool } from '../../../db.js'
 
+const nextId = async () => {
+  const [data] = await pool.query('SELECT MAX(id) + 1 AS nextId FROM registro_especial')
+  return data[0].nextId ? data[0].nextId : 1
+}
+
 const getRegistroEspecial = async () => {
   const [data] = await pool.query('SELECT * FROM registro_especial')
   return data
@@ -7,6 +12,11 @@ const getRegistroEspecial = async () => {
 
 const getRegistroEspecialById = async (id) => {
   const [data] = await pool.query('SELECT * FROM registro_especial WHERE id = ?', [id])
+  return data
+}
+
+const getRegistroEspecialByIdPlayer = async (id) => {
+  const [data] = await pool.query('SELECT * FROM registro_especial WHERE cedula_atleta = ?', [id])
   return data
 }
 
@@ -36,5 +46,7 @@ export default {
   createRegistroEspecial,
   updateRegistroEspecial,
   deleteRegistroEspecial,
-  getAtletasInfo
+  getAtletasInfo,
+  getRegistroEspecialByIdPlayer,
+  nextId
 }

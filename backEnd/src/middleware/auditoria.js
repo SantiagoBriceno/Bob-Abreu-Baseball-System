@@ -10,7 +10,7 @@ export const postAuditoria = async ({ entity, user, body, id = null }) => {
     descripcion: msg.msgPost({ entity, reqBody: body }),
     fecha: new Date(),
     entity,
-    id_entity: body.cedula ? body.cedula : id
+    id_entity: !id ? body.cedula : id
   }
 
   return await service.createAuditoria(newAuditoria)

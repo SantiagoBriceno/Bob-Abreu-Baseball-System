@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { userExtractor } from '../../../middleware/userExtractor.js'
 import {
   getRegistroEspecial,
   getRegistroEspecialById,
@@ -11,7 +12,7 @@ const router = Router()
 
 router.get('/', getRegistroEspecial)
 router.get('/:id', getRegistroEspecialById)
-router.post('/', createRegistroEspecial)
+router.post('/', userExtractor, createRegistroEspecial)
 router.put('/:id', updateRegistroEspecial)
 router.delete('/:id', deleteRegistroEspecial)
 
