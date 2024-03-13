@@ -38,16 +38,22 @@ export const getAtletaById = async (req, res) => {
     // HACER ALGUNAS COSAS MAS
 
     const estadisticas = {
-      hitting: await estadisticasService.getHittingStatsByIdPlayer(id),
+      hitting: { values: await estadisticasService.getHittingStatsByIdPlayer(id) },
       running: { values: await estadisticasService.getRunningStatsByIdPlayer(id) },
       throwing: await estadisticasService.getThrowingStatsByIdPlayer(id),
       fielding: await estadisticasService.getFieldingStatsByIdPlayer(id)
     }
 
-    const x = estadisticas.running.values.map((running) => {
+    const xRunning = estadisticas.running.values.map((running) => {
       return running.fecha_evaluacion
     })
-    estadisticas.running.x = x
+    estadisticas.running.x = xRunning
+
+    const xHitting = estadisticas.hitting.values.map((hitting) => {
+      return hitting.fecha_evaluacion
+    })
+
+    estadisticas.hitting.x = xHitting
 
     if (datosGeneral.posicion === 'Pitcher') {
       estadisticas.pitching = await estadisticasService.getPitchingStatByIdPlayer(id)

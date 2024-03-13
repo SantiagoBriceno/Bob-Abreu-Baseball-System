@@ -43,6 +43,7 @@ const multerUpload = multer({
 })
 
 const router = Router()
+router.use('/img/public', express.static(join(CURRENT_DIR, '../../../storage/atletas')))
 router.get('/', userExtractor, auth.adminPermission, getAtletas)
 router.get('/:id', getAtletaById, (req, res) => {
   res.status(200).json({ data: req.data, img: req.foto })

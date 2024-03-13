@@ -311,3 +311,24 @@ INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('3728789
 INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 75, '2023-05-01');
 INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 76, '2023-05-11');
 INSERT INTO hitting_ml (id_atleta, bat_speed, fecha_evaluacion) VALUES ('372878964', 74, '2023-05-21'); -- CUMPLE 15 AÑOS
+
+42987621
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 6, 53, 64, 5, 6, 6, 7, 5, 4, '2021-05-15', '6');
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 7, 55, 63, 5, 7, 6, 7, 6, 7, '2021-10-15', '6');
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 7, 56, 65, 7, 7, 6, 7, 8, 7, '2022-05-15', '6');
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 8, 57, 66, 7, 8, 7, 8, 7, 6, '2022-10-15', '6');
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 8, 60, 65, 7, 7, 7, 8, 8, 7, '2023-05-15', '6');
+
+INSERT INTO hitting (id_atleta, agudeza_visual, bat_speed, angle_attack, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, fecha_evaluacion, id_auditoria)
+VALUES ('42987621', 8, 63, 66, 7, 7, 7, 9, 9, 8, '2023-10-15', '6');
+

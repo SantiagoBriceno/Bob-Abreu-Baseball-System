@@ -72,7 +72,7 @@ const deleteHittingStat = async (id) => {
 }
 
 const getHittingStatsByIdPlayer = async (id) => {
-  const [hittingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${HITTING_ROWS}  FROM hitting WHERE id_atleta = ?`, [id])
+  const [hittingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${HITTING_ROWS}  FROM hitting WHERE id_atleta = ?`, [id])
   return hittingStats
 }
 
@@ -197,12 +197,12 @@ const deleteFieldingStat = async (id) => {
 }
 
 const getFieldingStatsByIdPlayer = async (id) => {
-  const [fieldingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${FIELDING_ROWS} FROM fielding WHERE id_atleta = ?`, [id])
+  const [fieldingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${FIELDING_ROWS} FROM fielding WHERE id_atleta = ?`, [id])
   return fieldingStats
 }
 
 const getThrowingStatsByIdPlayer = async (id) => {
-  const [throwingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y"), ${THROWING_ROWS} FROM throwing WHERE id_atleta = ?`, [id])
+  const [throwingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${THROWING_ROWS} FROM throwing WHERE id_atleta = ?`, [id])
   return throwingStats
 }
 
