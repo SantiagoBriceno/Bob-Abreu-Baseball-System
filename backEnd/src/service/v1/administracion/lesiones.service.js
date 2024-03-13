@@ -3,7 +3,7 @@ import { pool } from '../../../db.js'
 /* Lesiones */
 
 const getAllLesiones = async () => {
-  const [lesiones] = await pool.query('SELECT * FROM lesiones')
+  const [lesiones] = await pool.query('SELECT nombre, id_atleta, fecha, descripcion FROM lesiones INNER JOIN atleta ON lesiones.id_atleta = atleta.cedula')
   return lesiones
 }
 

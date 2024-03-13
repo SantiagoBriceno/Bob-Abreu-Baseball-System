@@ -36,7 +36,7 @@ export const lesionesFields = [
           name: 'cedula',
           type: 'select',
           required: true,
-          id: 'cedula',
+          id: 'id_atleta',
           opt: []
         },
         {
