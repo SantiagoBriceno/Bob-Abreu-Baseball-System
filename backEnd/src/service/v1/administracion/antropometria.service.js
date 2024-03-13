@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { pool } from '../../../db.js'
 
 const JOIN_FICHA = 'ficha_antropometrica INNER JOIN datos_generales ON ficha_antropometrica.id = datos_generales.id_ficha INNER JOIN perimetros_corporales ON ficha_antropometrica.id = perimetros_corporales.id_ficha INNER JOIN indice_cintura_cadera ON ficha_antropometrica.id = indice_cintura_cadera.id_ficha INNER JOIN indice_masa_corporal ON ficha_antropometrica.id = indice_masa_corporal.id_ficha'
@@ -40,7 +41,31 @@ const getFichaAntropometricaById = async (id) => {
 
 const getFichaAntropometricaByIdAtleta = async (id) => {
   const [response] = await pool.query('SELECT * FROM ficha_antropometrica WHERE ficha_antropometrica.id_atleta = ?', [id])
-  return response
+  const allDatosGenerales = []
+  const allPerimetros_corporales = []
+  const allICC = []
+  const allIMC = []
+
+  for (const ficha of response) {
+    const [datos_generales] = await pool.query('SELECT * FROM datos_generales WHERE datos_generales.id_ficha = ?', [ficha.id_ficha])
+    const [perimetros_corporales] = await pool.query('SELECT * FROM perimetros_corporales WHERE perimetros_corporales.id_ficha = ?', [ficha.id_ficha])
+    const [indice_cintura_cadera] = await pool.query('SELECT * FROM indice_cintura_cadera WHERE indice_cintura_cadera.id_ficha = ?', [ficha.id_ficha])
+    const [indice_masa_corporal] = await pool.query('SELECT * FROM indice_masa_corporal WHERE indice_masa_corporal.id_ficha = ?', [ficha.id_ficha])
+    allDatosGenerales.push(datos_generales[0])
+    allPerimetros_corporales.push(perimetros_corporales[0])
+    allICC.push(indice_cintura_cadera[0])
+    allIMC.push(indice_masa_corporal[0])
+  }
+
+  const data = {
+    id_atleta: id,
+    fichas: response,
+    datos_generales: allDatosGenerales,
+    perimetros_corporales: allPerimetros_corporales,
+    indice_cintura_cadera: allICC,
+    indice_masa_corporal: allIMC
+  }
+  return data
 }
 
 const createFichaAntropometrica = async (data) => {

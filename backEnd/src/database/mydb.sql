@@ -97,6 +97,9 @@ CREATE TABLE IF NOT EXISTS ficha_antropometrica (
   PRIMARY KEY (id_ficha)
 );
 
+INSERT INTO ficha_antropometrica (id_atleta, id_auditoria)
+VALUES ('42987621', '1');
+
 CREATE TABLE IF NOT EXISTS datos_generales (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
@@ -107,13 +110,18 @@ CREATE TABLE IF NOT EXISTS datos_generales (
   envergadura FLOAT(10) NOT NULL,
   imc FLOAT(10) NOT NULL,
   imc_ideal FLOAT(10) NOT NULL,
+  tasa_metabolica_basal FLOAT(10) NOT NULL,
+  calorias_necesarias FLOAT(10) NOT NULL,
+  percentil_de_peso FLOAT(10) NOT NULL,
+  peso_ideal FLOAT(10) NOT NULL,
   peso_corporal FLOAT(10) NOT NULL,
   calorias_diarias FLOAT(10) NOT NULL,
-  peso_ideal FLOAT(10) NOT NULL,
-  percentil_peso FLOAT(10) NOT NULL,
   id_auditoria VARCHAR(10) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id);
 );
+
+INSERT INTO datos_generales (id_ficha, estatura_maxima, percentil_talla, longitud_de_pie, longitud_sentado, envergadura, imc, imc_ideal, tasa_metabolica_basal, calorias_necesarias, calorias_diarias, percentil_de_peso, peso_ideal, peso_corporal, id_auditoria)
+VALUES (1, 180, 75, 28, 90, 190, 23, 22, 1500, 2000, 2500, 80, 70, 80, '1');
 
 CREATE TABLE IF NOT EXISTS perimetros_corporales (
   id INT NOT NULL AUTO_INCREMENT,
@@ -134,6 +142,10 @@ CREATE TABLE IF NOT EXISTS perimetros_corporales (
   PRIMARY KEY (id)
 );
 
+INSERT INTO perimetros_corporales (id_ficha, cabeza, cuello, brazo_relajado, brazo_contraido, antebrazo, muneca, torax, espalda, muslo_superior, muslo_medio, pierna, tobillo, id_auditoria)
+VALUES (1, 55, 40, 30, 35, 25, 15, 90, 80, 60, 50, 40, 20, '1');
+
+
 CREATE TABLE IF NOT EXISTS indice_cintura_cadera (
   id INT NOT NULL AUTO_INCREMENT,
   id_ficha INT NOT NULL,
@@ -143,6 +155,9 @@ CREATE TABLE IF NOT EXISTS indice_cintura_cadera (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
+
+INSERT INTO indice_cintura_cadera (id_ficha, cintura, cadera, relacion_cintura_cadera, id_auditoria)
+VALUES (1, 80, 100, 0.8, '1');
 
 CREATE TABLE IF NOT EXISTS indice_masa_corporal (
   id INT NOT NULL AUTO_INCREMENT,
@@ -154,6 +169,9 @@ CREATE TABLE IF NOT EXISTS indice_masa_corporal (
   id_auditoria VARCHAR(10) NOT NULL,
   PRIMARY KEY (id)
 );
+
+INSERT INTO indice_masa_corporal (id_ficha, masa_grasa_corporal, masa_grasa_ideal, masa_magra_corporal, masa_magra_ideal, id_auditoria)
+VALUES (1, 20, 15, 80, 85, '1');
 
 CREATE TABLE IF NOT EXISTS perfiles_fotograficos (
   id INT NOT NULL AUTO_INCREMENT,

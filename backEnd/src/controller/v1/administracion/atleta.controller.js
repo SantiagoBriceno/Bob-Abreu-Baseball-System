@@ -35,6 +35,7 @@ export const getAtletaById = async (req, res) => {
 
     datosGeneral[0].fecha_nacimiento = new Date(datosGeneral[0].fecha_nacimiento).toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' })
     const antropometria = await antropometriaService.getFichaAntropometricaByIdAtleta(id)
+    const restAntropometria = antropometria.fichas.length > 0 ? antropometria : null
     // HACER ALGUNAS COSAS MAS
 
     const estadisticas = {
@@ -61,7 +62,7 @@ export const getAtletaById = async (req, res) => {
 
     const data = {
       datosGeneral,
-      antropometria,
+      antropometria: restAntropometria,
       estadisticas
     }
 

@@ -28,6 +28,7 @@ export const getFichaAntropometricaByIdAtleta = async (req, res) => {
   try {
     const { id } = req.params
     const response = await service.getFichaAntropometricaByIdAtleta(id)
+    console.log('response')
     res.status(200).json({ data: response.length > 0 ? response : 'No hay fichas antropometricas' })
   } catch (error) {
     console.log(error)
