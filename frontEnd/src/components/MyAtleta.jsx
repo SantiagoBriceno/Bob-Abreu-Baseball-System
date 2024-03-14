@@ -1,5 +1,5 @@
 import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Tooltip as CTooltip, Image, Divider, SimpleGrid, List, ListItem, Button } from '@chakra-ui/react'
-import { ChevronDownIcon, ChevronUpIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { AddIcon, ChevronDownIcon, ChevronUpIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useLineChart } from '../hooks/charts/useLineChart'
@@ -9,12 +9,20 @@ import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
+// str 1 = 'dd/mm/yyyy'
+// str 2 = 'dd/mm/yyyy'
+// retorna true si str1 es mayor que str2
+const compararFechas = (str1, str2) => {
+  const date1 = new Date(str1.split('/').reverse().join('/'))
+  const date2 = new Date(str2.split('/').reverse().join('/'))
+  return date1 > date2
+}
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleIsOpen = () => {
     setIsOpen(!isOpen)
   }
-  console.log('data', registrosEspeciales)
+
   return (
     <>
       <Heading fontSize='2xl' fontWeight='800'>Datos del Atleta</Heading>
@@ -102,25 +110,28 @@ export const MyAtletaRegistrosEspeciales = ({ data }) => {
     <Stack p={8} bg='white' w='100%' h='100%' rounded='10px'>
       <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Registros Especiales</Heading>
       <Divider />
-      <Stack p={5}>
-        <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+      <Stack>
+        <SimpleGrid columns={{ base: 1, md: 1 }} spacing={5}>
           {data && data.length > 0 && data.map((item, index) => (
             <div key={index}>
 
               <List spacing={2}>
-                <ListItem display='flex' justifyContent=''>
+                <ListItem bg='gray.100' rounded='lg' px='2' py='2' display='flex' justifyContent=''>
                   <Text w='50%' textAlign='justify'>Fecha:</Text>
                   <Text w='50%' textAlign='justify'>{item.fecha_evento}</Text>
                 </ListItem>
-                <ListItem display='flex' justifyContent=''>
+                <ListItem bg='gray.200' rounded='lg' px='2' py='2' display='flex' justifyContent=''>
                   <Text w='50%' textAlign='justify'>Descripción:</Text>
                   <Text w='50%' textAlign='justify'>{item.descripcion}</Text>
                 </ListItem>
               </List>
-              <Divider />
+              <Divider p={1} />
             </div>
           ))}
         </SimpleGrid>
+        <CTooltip label='Añadir nuevo registro' aria-label='A tooltip'>
+          <IconButton w='25%' variant='ghost' icon={<AddIcon />} />
+        </CTooltip>
       </Stack>
     </Stack>
   )
