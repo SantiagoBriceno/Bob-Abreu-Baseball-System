@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false }) => {
+const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false, viewLink }) => {
   console.log('data', data)
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
@@ -103,7 +103,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                             Eliminar
                           </Button>
                           {setVisualizable &&
-                            <Link to={`/private/atletas/atleta/${row[idRow]}`} style={{ textDecoration: 'none' }}>
+                            <Link to={`${viewLink}${row[idRow]}`} style={{ textDecoration: 'none' }}>
                               <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3' onClick={handleDelete}>
                                 Visualizar
                               </Button>

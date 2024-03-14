@@ -15,6 +15,7 @@ import { createAtleta } from '../../service/atletas.js'
 const AtletasView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { data } = useAtleta()
+  const viewLink = '/private/atletas/atleta/'
   console.log('data', data)
   const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true)
 
@@ -32,7 +33,7 @@ const AtletasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ATLETAS DE LA ACADEMIA
         </Heading>
-        <MyTable setVisualizable datatype='Agregar atleta' data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable setVisualizable datatype='Agregar atleta' data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} viewLink={viewLink} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm encType fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

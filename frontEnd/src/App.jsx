@@ -20,7 +20,8 @@ import UsuariosView from './view/Usuarios.view.jsx'
 import LesionesView from './view/Lesiones.view.jsx'
 import RunningView from './view/Estadisticas/Running.view.jsx'
 import HittingView from './view/Estadisticas/Hitting.view.jsx'
-import FichaView from './view/Ficha.view.jsx'
+import FichasView from './view/Fichas/Fichas.view.jsx'
+import FichaView from './view/Fichas/Ficha.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -100,8 +101,19 @@ const router = createBrowserRouter(
               element: <HittingView />
             },
             {
-              path: 'ficha',
-              element: <FichaView />
+              path: 'fichas',
+              children: [
+                {
+                  path: '',
+                  element: <FichasView />
+                },
+                {
+                  path: 'ficha/:id_ficha',
+                  element: <FichaView />
+                }
+
+              ]
+
             }
           ]
         }

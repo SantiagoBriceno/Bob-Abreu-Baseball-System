@@ -140,27 +140,45 @@ const HeaderSidebar = () => {
             {
               key: '4',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/usuarios'>Usuarios</NavLink>
+              label: <NavLink to='/private/fichas'>ficha</NavLink>,
+              children: [
+                {
+                  key: '4.1',
+                  label: <NavLink to='/private/fichas/generales'>Datos generales</NavLink>
+                },
+                {
+                  key: '4.2',
+                  label: <NavLink to='/private/fichas/perimetros'>Perimetros</NavLink>
+                },
+                {
+                  key: '4.3',
+                  label: <NavLink to='/private/fichas/imc'>IMC´s</NavLink>
+                },
+                {
+                  key: '4.4',
+                  label: <NavLink to='/private/fichas/icc'>ICC´s</NavLink>
+                }
+              ]
             },
             {
               key: '5',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
+              label: <NavLink to='/private/usuarios'>Usuarios</NavLink>
             },
             {
               key: '6',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/running'>Running</NavLink>
+              label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
             },
             {
               key: '7',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/hitting'>Hitting</NavLink>
+              label: <NavLink to='/private/running'>Running</NavLink>
             },
             {
               key: '8',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/ficha'>ficha</NavLink>
+              label: <NavLink to='/private/hitting'>Hitting</NavLink>
             }
 
           ]}

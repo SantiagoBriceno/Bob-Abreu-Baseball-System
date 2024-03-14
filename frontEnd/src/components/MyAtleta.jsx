@@ -9,14 +9,6 @@ import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
-// str 1 = 'dd/mm/yyyy'
-// str 2 = 'dd/mm/yyyy'
-// retorna true si str1 es mayor que str2
-const compararFechas = (str1, str2) => {
-  const date1 = new Date(str1.split('/').reverse().join('/'))
-  const date2 = new Date(str2.split('/').reverse().join('/'))
-  return date1 > date2
-}
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleIsOpen = () => {
