@@ -39,7 +39,10 @@ export const getAtletaById = async (req, res) => {
     const restAntropometria = antropometria.fichas.length > 0 ? antropometria : null
     // HACER ALGUNAS COSAS MAS
     const registros_especiales = await registroEspecialService.getRegistroEspecialByIdPlayer(id)
-
+    registros_especiales.map((registro) => {
+      registro.fecha_evento = new Date(registro.fecha_evento).toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      return null
+    })
     const estadisticas = {
       hitting: { values: await estadisticasService.getHittingStatsByIdPlayer(id), id },
       running: { values: await estadisticasService.getRunningStatsByIdPlayer(id), id },

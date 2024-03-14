@@ -8,7 +8,13 @@ import { hittingPrediction } from '../service/hitting.prediction'
 import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
-export const MyAtletaDatos = ({ data = [''], img }) => {
+import FormModal from './modals/FormModal'
+export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen)
+  }
+  console.log('data', registrosEspeciales)
   return (
     <>
       <Heading fontSize='2xl' fontWeight='800'>Datos del Atleta</Heading>
@@ -67,9 +73,12 @@ export const MyAtletaDatos = ({ data = [''], img }) => {
 
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
 
-          <CTooltip hasArrow label='Registros especiales' aria-label='A tooltip'>
-            <IconButton variant='ghost' icon={<HamburgerIcon />} />
-          </CTooltip>
+          {registrosEspeciales && registrosEspeciales.length > 0
+            ? (
+              <CTooltip hasArrow label='Registros especiales' aria-label='A tooltip'>
+                <IconButton onClick={handleIsOpen} variant='ghost' icon={<HamburgerIcon />} />
+              </CTooltip>)
+            : null}
 
           <CTooltip hasArrow label='Editar datos del atleta' aria-label='A tooltip'>
             <IconButton variant='ghost' icon={<EditIcon />} />
@@ -81,11 +90,41 @@ export const MyAtletaDatos = ({ data = [''], img }) => {
         </SimpleGrid>
 
       </Stack>
+      <FormModal isOpen={isOpen} onClose={handleIsOpen}>
+        <MyAtletaRegistrosEspeciales data={registrosEspeciales} />
+      </FormModal>
     </>
   )
 }
 
-export const MyAtletaRegistrosEspeciales = ({ data }) => {}
+export const MyAtletaRegistrosEspeciales = ({ data }) => {
+  return (
+    <Stack p={8} bg='white' w='100%' h='100%' rounded='10px'>
+      <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Registros Especiales</Heading>
+      <Divider />
+      <Stack p={5}>
+        <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+          {data && data.length > 0 && data.map((item, index) => (
+            <div key={index}>
+
+              <List spacing={2}>
+                <ListItem display='flex' justifyContent=''>
+                  <Text w='50%' textAlign='justify'>Fecha:</Text>
+                  <Text w='50%' textAlign='justify'>{item.fecha_evento}</Text>
+                </ListItem>
+                <ListItem display='flex' justifyContent=''>
+                  <Text w='50%' textAlign='justify'>Descripción:</Text>
+                  <Text w='50%' textAlign='justify'>{item.descripcion}</Text>
+                </ListItem>
+              </List>
+              <Divider />
+            </div>
+          ))}
+        </SimpleGrid>
+      </Stack>
+    </Stack>
+  )
+}
 
 export const MyAtletaEstadisticas = ({ data }) => {
   const { hitting, running } = useEstadisticas({ data })

@@ -11,7 +11,7 @@ const AtletaView = () => {
     <>
       <Stack direction='row' w='100%' h='100%' gap='1%'>
         <Stack boxShadow='xl' bg='white' rounded='15px' p={10} align='center' w='35%' h='100%'>
-          <MyAtletaDatos data={atleta.datosGeneral} img={img} />
+          <MyAtletaDatos data={atleta.datosGeneral} img={img} registrosEspeciales={atleta.registros_especiales} />
         </Stack>
         <VStack rounded='10px' w='100%' h='100%' gap={4}>
           <Stack boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px'>
