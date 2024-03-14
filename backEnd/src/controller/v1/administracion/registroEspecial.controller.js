@@ -22,6 +22,7 @@ export const getRegistroEspecialById = async (req, res) => {
 }
 
 export const createRegistroEspecial = async (req, res) => {
+  console.log(req.body)
   try {
     const nextId = await service.nextId()
     const id_auditoria = await postAuditoria({ entity: 'registro_especial', user: req.user, body: req.body, id: nextId })
@@ -30,6 +31,7 @@ export const createRegistroEspecial = async (req, res) => {
     const data = await service.createRegistroEspecial(req.body)
     res.status(201).send(data)
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: error.message })
   }
 }

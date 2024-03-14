@@ -22,9 +22,11 @@ export const getRegistroEspecial = async (id) => {
 }
 
 export const createRegistroEspecial = async (registroEspecial) => {
+  console.log('registroEspecial', registroEspecial)
   const response = await fetch(RUTA_REGISTROS_ESPECIALES, {
     method: 'POST',
     headers: {
+      'content-type': 'application/json',
       Authorization: 'Bearer ' + auth().token
     },
     body: JSON.stringify(registroEspecial)
