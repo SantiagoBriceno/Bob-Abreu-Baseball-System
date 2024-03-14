@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { pool } from '../../../db.js'
 
-const JOIN_FICHA = 'ficha_antropometrica INNER JOIN datos_generales ON ficha_antropometrica.id = datos_generales.id_ficha INNER JOIN perimetros_corporales ON ficha_antropometrica.id = perimetros_corporales.id_ficha INNER JOIN indice_cintura_cadera ON ficha_antropometrica.id = indice_cintura_cadera.id_ficha INNER JOIN indice_masa_corporal ON ficha_antropometrica.id = indice_masa_corporal.id_ficha'
+const JOIN_FICHA = 'ficha_antropometrica INNER JOIN datos_generales ON ficha_antropometrica.id_ficha = datos_generales.id_ficha INNER JOIN perimetros_corporales ON ficha_antropometrica.id = perimetros_corporales.id_ficha INNER JOIN indice_cintura_cadera ON ficha_antropometrica.id = indice_cintura_cadera.id_ficha INNER JOIN indice_masa_corporal ON ficha_antropometrica.id = indice_masa_corporal.id_ficha'
 
 const GENERAL_ROWS = 'estatura_maxima, percentil_talla, longitud_de_pie, longitud_sentado, envergadura, imc, imc_ideal, tasa_metabolica_basal, calorias_necesarias, peso_corporal, peso_ideal, percentil_de_peso'
 
@@ -19,6 +19,11 @@ const nextId = async (table) => {
 // FICHA ANTROPOMETRICA
 const getAllFichasAntropometricas = async () => {
   const [response] = await pool.query(`SELECT * FROM ${JOIN_FICHA}`)
+  return response
+}
+
+const getGeneralDataOfFicha = async () => {
+  const [response] = await pool.query('SELECT id_ficha, id_atleta, nombre, fecha FROM ficha_antropometrica INNER JOIN atleta ON ficha_antropometrica.id_atleta = atleta.cedula INNER JOIN auditoria ON ficha_antropometrica.id_auditoria = auditoria.id')
   return response
 }
 
@@ -188,6 +193,7 @@ const createIMC = async (data) => {
 
 export default {
   nextId,
+  getGeneralDataOfFicha,
   getAllFichasAntropometricas,
   getFichaAntropometricaById,
   createFichaAntropometrica,

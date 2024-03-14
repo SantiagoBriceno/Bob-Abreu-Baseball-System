@@ -6,7 +6,16 @@ import { postAuditoria } from '../../../middleware/auditoria.js'
 
 export const getAllFichasAntropometricas = async (req, res) => {
   try {
-    const response = await service.getAllFichasAntropometricas()
+    const data = await service.getAllFichasAntropometricas()
+    res.status(200).json({ data: data.length > 0 ? data : 'No hay fichas antropometricas' })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getGeneralDataOfFicha = async (req, res) => {
+  try {
+    const response = await service.getGeneralDataOfFicha()
     res.status(200).json({ data: response.length > 0 ? response : 'No hay fichas antropometricas' })
   } catch (error) {
     console.log(error)

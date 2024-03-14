@@ -20,6 +20,7 @@ import UsuariosView from './view/Usuarios.view.jsx'
 import LesionesView from './view/Lesiones.view.jsx'
 import RunningView from './view/Estadisticas/Running.view.jsx'
 import HittingView from './view/Estadisticas/Hitting.view.jsx'
+import FichaView from './view/Ficha.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -97,6 +98,10 @@ const router = createBrowserRouter(
             {
               path: 'hitting',
               element: <HittingView />
+            },
+            {
+              path: 'ficha',
+              element: <FichaView />
             }
           ]
         }

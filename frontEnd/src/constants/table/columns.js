@@ -41,6 +41,13 @@ export const indicadoresColumns = [
   { key: 'valor', name: 'Valor' }
 ]
 
+export const fichaColumns = [
+  { key: 'id_ficha', name: 'ID Ficha' },
+  { key: 'id_atleta', name: 'Cedula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'fecha', name: 'Fecha' }
+]
+
 export const datosGeneralesColumns = [
   { key: 'id_ficha', name: 'ID Ficha' },
   { key: 'estatura_maxima', name: 'Estatura Máxima' },

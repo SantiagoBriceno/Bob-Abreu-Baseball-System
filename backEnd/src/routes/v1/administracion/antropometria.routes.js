@@ -9,6 +9,7 @@ import {
   deleteFichaAntropometrica,
   getDatosGenerales,
   getDatosGeneralesById,
+  getGeneralDataOfFicha,
   getDatosGeneralesByIdAtleta,
   getDatosGeneralesByIdFicha,
   getFichaAntropometricaById,
@@ -28,7 +29,8 @@ import {
 
 const router = Router()
 
-router.get('/ficha', userExtractor, getAllFichasAntropometricas)
+router.get('/ficha', getAllFichasAntropometricas)
+router.get('/g/ficha', getGeneralDataOfFicha)
 router.get('/ficha/:id', userExtractor, getFichaAntropometricaById)
 router.post('/ficha', userExtractor, createFichaAntropometrica)
 router.delete('/ficha/:id', userExtractor, deleteFichaAntropometrica)

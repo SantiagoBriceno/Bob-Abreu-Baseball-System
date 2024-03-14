@@ -16,7 +16,7 @@ const getRegistroEspecialById = async (id) => {
 }
 
 const getRegistroEspecialByIdPlayer = async (id) => {
-  const [data] = await pool.query('SELECT * FROM registro_especial WHERE cedula_atleta = ?', [id])
+  const [data] = await pool.query('SELECT * FROM registro_especial WHERE cedula = ?', [id])
   return data
 }
 

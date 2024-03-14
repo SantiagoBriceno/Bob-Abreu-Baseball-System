@@ -156,6 +156,11 @@ const HeaderSidebar = () => {
               key: '7',
               icon: <UserOutlined />,
               label: <NavLink to='/private/hitting'>Hitting</NavLink>
+            },
+            {
+              key: '8',
+              icon: <UserOutlined />,
+              label: <NavLink to='/private/ficha'>ficha</NavLink>
             }
 
           ]}
