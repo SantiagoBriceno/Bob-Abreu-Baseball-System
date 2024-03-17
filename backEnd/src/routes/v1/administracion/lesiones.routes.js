@@ -6,12 +6,13 @@ import {
   updateLesion,
   deleteLesion
 } from '../../../controller/v1/administracion/lesiones.controller.js'
+import { userExtractor } from '../../../middleware/userExtractor.js'
 
 const router = Router()
 
 router.get('/', getLesiones)
 router.get('/:id', getLesionByIdPlayer)
-router.post('/', createLesion)
+router.post('/', userExtractor, createLesion)
 router.put('/:id', updateLesion)
 router.delete('/:id', deleteLesion)
 
