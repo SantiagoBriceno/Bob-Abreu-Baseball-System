@@ -211,6 +211,89 @@ export const atletaFields = [
   }
 ]
 
+export const atletaEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Datos del atleta',
+      campos:
+      [
+        [
+          {
+            label: 'Cédula',
+            name: 'cedula',
+            type: 'number',
+            required: true,
+            placeholder: placeholders.cedula,
+            id: 'cedula'
+          },
+          {
+            label: 'Nombre y Apellido',
+            name: 'nombre',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.nombre,
+            id: 'nombre'
+          }
+        ],
+        [
+          {
+            label: 'Fecha de nacimiento',
+            name: 'fecha_nacimiento',
+            type: 'date',
+            required: true,
+            placeholder: placeholders.fecha_nacimiento,
+            id: 'fecha_nacimiento'
+          },
+          {
+            label: 'Lugar de nacimiento',
+            name: 'lugar_nacimiento',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.lugar_nacimiento,
+            id: 'lugar_nacimiento'
+          }
+        ],
+        [
+          {
+            label: 'Teléfono',
+            name: 'tlf',
+            type: 'text',
+            required: false,
+            placeholder: placeholders.tlf,
+            id: 'tlf'
+          }
+        ],
+        [
+          {
+            label: 'Preferecia de bateo',
+            name: 'hitting',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.hitting,
+            id: 'hitting'
+          },
+          {
+            label: 'Posición',
+            name: 'posicion',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.posicion,
+            id: 'posicion'
+          },
+          {
+            label: 'Status',
+            name: 'status',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.status,
+            id: 'estado'
+          }
+        ]
+      ]
+    }
+  ]
+}
+
 // NO ESTA TERMINADO
 export const fichaAntropometricaFields = [
   {

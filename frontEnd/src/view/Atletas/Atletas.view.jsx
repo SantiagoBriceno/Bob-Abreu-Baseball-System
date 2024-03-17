@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Stack, Heading } from '@chakra-ui/react'
 import MyForm from '../../components/MyForm'
-import { atleta } from '../../../../global.constants.js'
+import { atleta, atletaUpdate } from '../../../../global.constants.js'
 import FormModal from '../../components/modals/FormModal.jsx'
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
-import { atletaFields } from '../../constants/form/fields.js'
+import { atletaFields, atletaEditFields } from '../../constants/form/fields.js'
 import { representanteValidation } from '../../constants/dataValidation.js'
 import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
@@ -15,8 +15,8 @@ import { createAtleta, updateAtleta, deleteAtleta } from '../../service/atletas.
 const AtletasView = () => {
   const [registerOpenModal, setRegisterOpenModal] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
-  const [editData, setEditData] = useState()
   const [deleteData, setDeleteData] = useState()
+  const [editData, setEditData] = useState()
   const [isEdit, setIsEdit] = useState(false)
   const { data } = useAtleta()
   const viewLink = '/private/atletas/atleta/'
@@ -25,7 +25,6 @@ const AtletasView = () => {
 
   const closeModal = () => {
     setRegisterOpenModal(false)
-    setEditData({})
     setFormData(formDataStructure)
   }
 
@@ -33,12 +32,13 @@ const AtletasView = () => {
     setRegisterOpenModal(true)
   }
 
-  useEffect(() => {
-    if (editData) {
-      setIsEdit(true)
-      setFormData(editData)
-    }
-  }, [editData])
+  const closeEditModal = () => {
+    setEditOpenModal(false)
+  }
+
+  const openEditModal = () => {
+    setEditOpenModal(true)
+  }
 
   useEffect(() => {
     if (deleteData) {
@@ -58,7 +58,18 @@ const AtletasView = () => {
       <FormModal w='60%' isOpen={registerOpenModal} onClose={closeModal}>
         <MyForm encType fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />
       </FormModal>
+      <FormModal w='60%' isOpen={editOpenModal} onClose={closeEditModal}>
+        <EditForm data={editData} />
+      </FormModal>
     </Stack>
+  )
+}
+
+const EditForm = (data) => {
+  console.log('data', data)
+  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, false, null)
+  return (
+    <MyForm fields={atletaEditFields(data)} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }
 
