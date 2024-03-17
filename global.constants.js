@@ -66,7 +66,6 @@ export const ficha_antropometrica = {
 }
 
 export const lesiones = {
-  id: '',
   id_atleta: '',
   fecha: '',
   descripcion: ''
