@@ -17,6 +17,7 @@ import {
   Spacer,
   ButtonGroup
 } from '@chakra-ui/react'
+import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
 
 import { Link } from 'react-router-dom'
 import './css/table.css'
@@ -98,15 +99,16 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                         <Td className='button'>
                           <Stack direction='row' spacing={4} />
                           <Button id={`E%${row[idRow]}`} bgColor='primary.100' borderColor='background.border' color='text.87' _hover={{ bg: 'blue.500' }} className='button-1' onClick={handleEdit}>
-                            Editar
+                            <EditIcon />
                           </Button>
                           <Button id={`D%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='red' _hover={{ bg: 'red.500' }} className='button-2' onClick={handleDelete}>
-                            Eliminar
+                            <DeleteIcon />
                           </Button>
                           {setVisualizable &&
                             <Link to={`${viewLink}${row[idRow]}`} style={{ textDecoration: 'none' }}>
-                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3'>
-                                Visualizar
+
+                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3' onClick={handleDelete}>
+                                <ViewIcon />
                               </Button>
                             </Link>}
                         </Td>}

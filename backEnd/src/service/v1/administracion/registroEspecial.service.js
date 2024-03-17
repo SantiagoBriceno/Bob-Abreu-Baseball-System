@@ -6,7 +6,7 @@ const nextId = async () => {
 }
 
 const getRegistroEspecial = async () => {
-  const [data] = await pool.query('SELECT * FROM registro_especial')
+  const [data] = await pool.query('SELECT a.nombre, reg.id, reg.fecha_evento, reg.descripcion, reg.cedula FROM registro_especial AS reg INNER JOIN atleta AS a ON a.cedula = reg.cedula')
   return data
 }
 

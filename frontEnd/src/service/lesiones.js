@@ -22,6 +22,7 @@ export const getLesionByIdPlayer = async (id) => {
 }
 
 export const createLesion = async (lesion) => {
+  console.log('lesion', lesion)
   const response = await fetch(RUTA_LESIONES, {
     method: 'POST',
     headers: {
@@ -30,7 +31,7 @@ export const createLesion = async (lesion) => {
     },
     body: JSON.stringify(lesion)
   })
-  return response.json()
+  return response
 }
 
 export const updateLesion = async (lesion) => {
