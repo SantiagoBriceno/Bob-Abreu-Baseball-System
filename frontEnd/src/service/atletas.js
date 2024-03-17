@@ -52,7 +52,10 @@ export const updateAtleta = async (id, atleta) => {
 
 export const deleteAtleta = async (id) => {
   const response = await fetch(`${RUTA_ATLETAS}/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + auth().token
+    }
   })
   return response.json()
 }

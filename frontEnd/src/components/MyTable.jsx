@@ -39,8 +39,9 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
   }
 
   const handleDelete = (e) => {
-    const index = e.target.id.split('-')[1]
-    setDeleteData(data[index])
+    console.log('hice click en el atleta', e.target.id)
+    const index = e.target.id.split('%')[1]
+    setDeleteData(index)
   }
 
   const searcher = (e) => {
@@ -104,7 +105,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                           </Button>
                           {setVisualizable &&
                             <Link to={`${viewLink}${row[idRow]}`} style={{ textDecoration: 'none' }}>
-                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3' onClick={handleDelete}>
+                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3'>
                                 Visualizar
                               </Button>
                             </Link>}

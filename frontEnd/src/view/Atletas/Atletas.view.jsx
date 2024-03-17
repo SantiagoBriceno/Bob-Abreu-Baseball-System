@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Stack, Heading } from '@chakra-ui/react'
 import MyForm from '../../components/MyForm'
 import { atleta } from '../../../../global.constants.js'
@@ -10,22 +10,42 @@ import { validationInputAtleta } from '../../constants/validationInputs.js'
 import MyTable from '../../components/MyTable.jsx'
 import { atletaColumns as columns } from '../../constants/table/columns.js'
 import { useAtleta } from '../../hooks/table/useAtleta.js'
-import { createAtleta } from '../../service/atletas.js'
+import { createAtleta, updateAtleta, deleteAtleta } from '../../service/atletas.js'
 
 const AtletasView = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [registerOpenModal, setRegisterOpenModal] = useState(false)
+  const [editOpenModal, setEditOpenModal] = useState(false)
+  const [editData, setEditData] = useState()
+  const [deleteData, setDeleteData] = useState()
+  const [isEdit, setIsEdit] = useState(false)
   const { data } = useAtleta()
   const viewLink = '/private/atletas/atleta/'
   console.log('data', data)
-  const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true)
+  const { formData, actions, errorState, setFormData, formDataStructure } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true, isEdit, updateAtleta)
 
   const closeModal = () => {
-    setIsOpen(false)
+    setRegisterOpenModal(false)
+    setEditData({})
+    setFormData(formDataStructure)
   }
 
   const openModal = () => {
-    setIsOpen(true)
+    setRegisterOpenModal(true)
   }
+
+  useEffect(() => {
+    if (editData) {
+      setIsEdit(true)
+      setFormData(editData)
+    }
+  }, [editData])
+
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteAtleta(deleteData)
+    }
+  }, [deleteData])
 
   return (
     <Stack spacing={8} align='center'>
@@ -33,9 +53,9 @@ const AtletasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ATLETAS DE LA ACADEMIA
         </Heading>
-        <MyTable setVisualizable datatype='Agregar atleta' data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} viewLink={viewLink} />
+        <MyTable setVisualizable datatype='Agregar atleta' setDeleteData={setDeleteData} setEditData={setEditData} data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} setIsOpen={setEditOpenModal} viewLink={viewLink} />
       </Stack>
-      <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+      <FormModal w='60%' isOpen={registerOpenModal} onClose={closeModal}>
         <MyForm encType fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />
       </FormModal>
     </Stack>

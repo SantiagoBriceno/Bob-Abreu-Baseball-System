@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MyToast } from './toast'
 import { useToast } from '@chakra-ui/react'
 
-export const useMyFormHook = (formDataStructure, formDataValidation, validationMethod, onSubmit, encType = false) => {
+export const useMyFormHook = (formDataStructure, formDataValidation, validationMethod, onSubmit, encType = false, isEdit = false, onEdit) => {
   const toast = useToast()
   const [formData, setFormData] = useState(formDataStructure)
   const [errorState, setErrorState] = useState(formDataValidation)
@@ -33,15 +33,25 @@ export const useMyFormHook = (formDataStructure, formDataValidation, validationM
         })
       })
     } else {
-      e.preventDefault()
-      console.log(formData)
-      onSubmit(formData).then((response) => {
-        const { status } = response
-        console.log(status)
-        response.json().then((data) => {
-          MyToast({ toast, title: data.message, description: '', status })
+      if (isEdit) {
+        e.preventDefault()
+        onEdit(formData).then((response) => {
+          const { status } = response
+          response.json().then((data) => {
+            MyToast({ toast, title: data.message, description: '', status })
+          })
         })
-      })
+      } else {
+        e.preventDefault()
+        console.log(formData)
+        onSubmit(formData).then((response) => {
+          const { status } = response
+          console.log(status)
+          response.json().then((data) => {
+            MyToast({ toast, title: data.message, description: '', status })
+          })
+        })
+      }
     }
   }
 
@@ -58,5 +68,5 @@ export const useMyFormHook = (formDataStructure, formDataValidation, validationM
     handleBlur
   }
 
-  return { formData, actions, errorState }
+  return { formData, actions, errorState, setFormData, formDataStructure }
 }

@@ -17,7 +17,8 @@ export const getAtletas = async (req, res) => {
     const data = await service.getAtletas()
     data.map((atleta) => {
       const fecha = new Date(atleta.fecha_nacimiento)
-      atleta.fecha_nacimiento = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`
+      const mes = fecha.getMonth() + 1 < 10 ? `0${fecha.getMonth() + 1}` : fecha.getMonth() + 1
+      atleta.fecha_nacimiento = `${fecha.getFullYear()}-${mes}-${fecha.getDate()}`
       return null
     })
     res.status(200).json(data)
