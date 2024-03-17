@@ -171,6 +171,6 @@ export const usersColumns = [
 export const registroEspecialColumns = [
   { key: 'cedula', name: 'Cédula' },
   { key: 'nombre', name: 'Nombre' },
-  { key: 'fecha', name: 'Fecha' },
+  { key: 'fecha_evento', name: 'Fecha' },
   { key: 'descripcion', name: 'Descripción' }
 ]
