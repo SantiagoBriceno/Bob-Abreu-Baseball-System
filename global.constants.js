@@ -45,6 +45,17 @@ export const atleta = {
   foto: ''
 }
 
+export const atletaUpdate = {
+  cedula: '',
+  nombre: '',
+  hitting: '',
+  tlf: '',
+  lugar_nacimiento: '',
+  fecha_nacimiento: '',
+  posicion: '',
+  estado: ''
+}
+
 export const indicadores = {
   id: '',
   clase: '',
