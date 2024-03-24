@@ -2,6 +2,11 @@ import { pool } from '../../../db.js'
 
 /* Lesiones */
 
+const nextId = async () => {
+  const [data] = await pool.query('SELECT MAX(id) + 1 AS nextId FROM lesiones')
+  return data[0].nextId ? data[0].nextId : 1
+}
+
 const getAllLesiones = async () => {
   const [lesiones] = await pool.query('SELECT nombre, id_atleta, fecha, descripcion FROM lesiones INNER JOIN atleta ON lesiones.id_atleta = atleta.cedula')
   return lesiones
@@ -39,5 +44,6 @@ export default {
   createLesion,
   updateLesion,
   deleteLesion,
-  getAtletasInfo
+  getAtletasInfo,
+  nextId
 }

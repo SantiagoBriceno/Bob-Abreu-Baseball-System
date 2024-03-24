@@ -88,7 +88,7 @@ const AvatarPanel = () => {
 const HeaderSidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
   const {
-    token: { colorBgContainer, borderRadiusLG }
+    token: { borderRadiusLG }
   } = theme.useToken()
   return (
     <Layout style={{
