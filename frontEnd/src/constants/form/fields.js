@@ -43,6 +43,7 @@ export const lesionesFields = [
           label: 'Fecha de la lesión',
           name: 'fecha',
           type: 'date',
+          placeholder: 'DD/MM/AAAA',
           required: true,
           id: 'fecha'
         }
@@ -149,7 +150,7 @@ export const atletaFields = [
           name: 'fecha_nacimiento',
           type: 'date',
           required: true,
-          placeholder: '',
+          placeholder: 'DD/MM/AAAA',
           id: 'fecha_nacimiento'
         },
         {
@@ -285,7 +286,7 @@ export const atletaEditFields = (placeholders) => {
             name: 'status',
             type: 'text',
             required: true,
-            placeholder: placeholders.status,
+            placeholder: placeholders.estado,
             id: 'estado'
           }
         ]
@@ -737,7 +738,7 @@ export const registroEspecialFields = [
           name: 'fecha',
           type: 'date',
           required: true,
-          placeholder: '',
+          placeholder: 'DD/MM/AAAA',
           id: 'fecha_evento'
         }
       ],

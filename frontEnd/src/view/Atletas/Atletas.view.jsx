@@ -21,7 +21,7 @@ const AtletasView = () => {
   const { data } = useAtleta()
   const viewLink = '/private/atletas/atleta/'
   console.log('data', data)
-  const { formData, actions, errorState, setFormData, formDataStructure } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true, isEdit, updateAtleta)
+  const { formData, actions, errorState, setFormData, formDataStructure } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta, true)
 
   const closeModal = () => {
     setRegisterOpenModal(false)
@@ -66,10 +66,9 @@ const AtletasView = () => {
 }
 
 const EditForm = (data) => {
-  console.log('data', data)
-  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, false, null)
+  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
   return (
-    <MyForm fields={atletaEditFields(data)} formData={formData} actions={actions} errorMessage={errorState} />
+    <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }
 

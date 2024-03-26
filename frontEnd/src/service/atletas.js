@@ -40,10 +40,13 @@ export const createAtleta = async (atleta) => {
 }
 
 export const updateAtleta = async (id, atleta) => {
+  console.log('atleta', atleta)
   const response = await fetch(`${RUTA_ATLETAS}/${id}`, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + auth().token
+
     },
     body: JSON.stringify(atleta)
   })

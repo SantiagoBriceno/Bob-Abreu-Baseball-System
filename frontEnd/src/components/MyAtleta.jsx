@@ -9,6 +9,7 @@ import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
+import { Link } from 'react-router-dom'
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleIsOpen = () => {
@@ -155,6 +156,7 @@ export const MyAtletaEstadisticas = ({ data }) => {
       <Stack spacing={5} p={5}>
         <Heading fontWeight='800' fontSize='md'>Especificaciones deportivas</Heading>
         <Divider />
+        {/* ES ESTA */}
         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
           {/* hitting posee los siguientes atributos: bat_speed, angle_attack, rec_pitcheos, ruta_del_bate */}
           <List textAlign='left' spacing={2}>
@@ -208,7 +210,7 @@ export const MyAtletaEstadisticas = ({ data }) => {
 
 export const MyAtletaMedidasAntropometricas = ({ data }) => {
   const { datosGenerales, perimetros, icc, imc } = useAntropometria({ data })
-  // console.log('datos Generales: ', datosGenerales)
+  console.log('datos Generales: ', datosGenerales)
   // console.log('perimetros: ', perimetros)
   // console.log('icc: ', icc)
   // console.log('imc: ', imc)
@@ -240,7 +242,9 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
               </ListItem>
               <ListItem display='flex' justifyContent='space-between'>
                 <Text>Ver más</Text>
-                <Button variant='link' colorScheme='blue'>...</Button>
+                <Link to={`/private/fichas/ficha/${datosGenerales.id_ficha}`} style={{ textDecoration: 'none' }}>
+                  <Button variant='link' colorScheme='blue'>...</Button>
+                </Link>
               </ListItem>
             </List>
 
@@ -266,7 +270,9 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
               </ListItem>
               <ListItem display='flex' justifyContent='space-between'>
                 <Text>Ver más</Text>
-                <Button variant='link' colorScheme='blue'>...</Button>
+                <Link to={`/private/fichas/ficha/${datosGenerales.id_ficha}`} style={{ textDecoration: 'none' }}>
+                  <Button variant='link' colorScheme='blue'>...</Button>
+                </Link>
               </ListItem>
             </List>
             {/* Parametros de imc: cintura, cadera, relacion_cintura_cadera */}
@@ -286,7 +292,9 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
               </ListItem>
               <ListItem display='flex' justifyContent='space-between'>
                 <Text>Ver más</Text>
-                <Button variant='link' colorScheme='blue'>...</Button>
+                <Link to={`/private/fichas/ficha/${datosGenerales.id_ficha}`} style={{ textDecoration: 'none' }}>
+                  <Button variant='link' colorScheme='blue'>...</Button>
+                </Link>
               </ListItem>
             </List>
 
@@ -311,7 +319,9 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
               </ListItem>
               <ListItem display='flex' justifyContent='space-between'>
                 <Text>Ver más</Text>
-                <Button variant='link' colorScheme='blue'>...</Button>
+                <Link to={`/private/fichas/ficha/${datosGenerales.id_ficha}`} style={{ textDecoration: 'none' }}>
+                  <Button variant='link' colorScheme='blue'>...</Button>
+                </Link>
               </ListItem>
             </List>
           </SimpleGrid>

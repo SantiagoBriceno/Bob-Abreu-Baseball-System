@@ -27,6 +27,11 @@ const getGeneralDataOfFicha = async () => {
   return response
 }
 
+const getGeneralDataOfFichaById = async (id) => {
+  const [response] = await pool.query('SELECT id_ficha, id_atleta, nombre, fecha, atleta.posicion, atleta.clase FROM ficha_antropometrica INNER JOIN atleta ON ficha_antropometrica.id_atleta = atleta.cedula INNER JOIN auditoria ON ficha_antropometrica.id_auditoria = auditoria.id WHERE id_ficha = ?', [id])
+  return response
+}
+
 const getFichaAntropometricaById = async (id) => {
   const [basic] = await pool.query('SELECT id_atleta, id_ficha FROM ficha_antropometrica WHERE ficha_antropometrica.id_ficha = ?', [id])
   const [general] = await pool.query(`SELECT ${GENERAL_ROWS} FROM datos_generales WHERE datos_generales.id_ficha = ?`, [id])
@@ -194,6 +199,7 @@ const createIMC = async (data) => {
 export default {
   nextId,
   getGeneralDataOfFicha,
+  getGeneralDataOfFichaById,
   getAllFichasAntropometricas,
   getFichaAntropometricaById,
   createFichaAntropometrica,

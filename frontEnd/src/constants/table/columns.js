@@ -48,6 +48,15 @@ export const fichaColumns = [
   { key: 'fecha', name: 'Fecha' }
 ]
 
+export const datosFichaColumns = [
+  { key: 'id_ficha', name: 'ID Ficha' },
+  { key: 'id_atleta', name: 'Cedula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'fecha', name: 'Fecha' },
+  { key: 'posicion', name: 'Posición' },
+  { key: 'clase', name: 'Clase' }
+]
+
 export const datosGeneralesColumns = [
   { key: 'id_ficha', name: 'ID Ficha' },
   { key: 'estatura_maxima', name: 'Estatura Máxima' },
@@ -58,7 +67,7 @@ export const datosGeneralesColumns = [
   { key: 'imc', name: 'IMC' },
   { key: 'peso_corporal', name: 'Peso' },
   { key: 'peso_ideal', name: 'Peso Ideal' },
-  { key: 'percentil_peso', name: 'Percentil Peso' },
+  { key: 'percentil_de_peso', name: 'Percentil Peso' },
   { key: 'calorias_diarias', name: 'Calorias Diarias' }
 ]
 

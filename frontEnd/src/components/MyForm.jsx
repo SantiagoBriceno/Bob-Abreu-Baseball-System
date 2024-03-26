@@ -1,5 +1,5 @@
 import {
-  Heading, Stack
+  Heading, Stack, Text
 } from '@chakra-ui/react'
 import MyFormControl from './form/MyFormControl.jsx'
 import MyInput from './form/MyInput.jsx'
@@ -52,16 +52,31 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                             value={formData[c.id]}
                             onBlur={actions.handleBlur}
                           />
-                        : <MyInput
-                            name={c.name}
-                            type={c.type}
-                            required={c.required}
-                            placeholder={c.placeholder}
-                            id={c.id}
-                            onChange={actions.handleChange}
-                            value={c.type === 'file' ? null : formData[c.id]}
-                            onBlur={actions.handleBlur}
-                          />)}
+                        : (c.type === 'date'
+                            ? (
+                              <>
+                                <MyInput
+                                  name={c.name}
+                                  type={c.type}
+                                  required={c.required}
+                                  placeholder={c.placeholder}
+                                  id={c.id}
+                                  onChange={actions.handleChange}
+                                  value={formData[c.id]}
+                                  onBlur={actions.handleBlur}
+                                />
+                                <Text fontSize='xs' color='gray.500'>Fecha: {c.placeholder}</Text>
+                              </>)
+                            : <MyInput
+                                name={c.name}
+                                type={c.type}
+                                required={c.required}
+                                placeholder={c.placeholder}
+                                id={c.id}
+                                onChange={actions.handleChange}
+                                value={c.type === 'file' ? null : formData[c.id]}
+                                onBlur={actions.handleBlur}
+                              />))}
                 </MyFormControl>
               ))}
             </Stack>

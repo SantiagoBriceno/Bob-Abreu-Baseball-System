@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "back": "node ./backend/src/index.js",
+    "front": "vite ./frontend",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
   },
   "repository": {
     "type": "git",
@@ -14,9 +17,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "standard": "^17.1.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
+  },
+  "dependencies": {
+    "vite": "^5.2.6"
   }
 }

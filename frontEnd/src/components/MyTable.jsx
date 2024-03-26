@@ -32,11 +32,11 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
     for (let i = 0; i < data.length; i++) {
       console.log(data[i][idRow])
       if (data[i][idRow] + '' === index) {
-        console.log(data[i])
+        console.log(data[i], ' desde mytable')
         setEditData(data[i])
+        setIsOpen(!isOpen)
       }
     }
-    setIsOpen(!isOpen)
   }
 
   const handleDelete = (e) => {
@@ -107,7 +107,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                           {setVisualizable &&
                             <Link to={`${viewLink}${row[idRow]}`} style={{ textDecoration: 'none' }}>
 
-                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3' onClick={handleDelete}>
+                              <Button id={`V%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='green' _hover={{ bg: 'green.500' }} className='button-3'>
                                 <ViewIcon />
                               </Button>
                             </Link>}

@@ -24,13 +24,15 @@ import {
   getPerimetros,
   getPerimetrosById,
   getPerimetrosByIdAtleta,
-  getPerimetrosByIdFicha
+  getPerimetrosByIdFicha,
+  getAllDataOfFichaById
 } from '../../../controller/v1/administracion/antropometria.controller.js'
 
 const router = Router()
 
 router.get('/ficha', getAllFichasAntropometricas)
 router.get('/g/ficha', getGeneralDataOfFicha)
+router.get('/g/ficha/:id', getAllDataOfFichaById)
 router.get('/ficha/:id', userExtractor, getFichaAntropometricaById)
 router.post('/ficha', userExtractor, createFichaAntropometrica)
 router.delete('/ficha/:id', userExtractor, deleteFichaAntropometrica)

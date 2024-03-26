@@ -88,6 +88,26 @@ export const deleteFichaAntropometrica = async (req, res) => {
   }
 }
 
+export const getAllDataOfFichaById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const datosGenerales = await service.getDatosGeneralesByIdFicha(id)
+    const perimetros = await service.getPerimetrosByIdFicha(id)
+    const icc = await service.getICCByIdFicha(id)
+    const imc = await service.getIMCByIdFicha(id)
+    const datosFicha = await service.getGeneralDataOfFichaById(id)
+    datosFicha.map((data) => {
+      data.fecha = new Date(data.fecha).toLocaleDateString()
+      return null
+    })
+    console.log(datosFicha, 'datosFicha')
+    res.status(200).json({ datosFicha: datosFicha[0], datosGenerales: datosGenerales[0], perimetros: perimetros[0], icc: icc[0], imc: imc[0] })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
 // DATOS GENERALES DE LA FICHA ANTROPOMETRICA
 export const getDatosGenerales = async (req, res) => {
   try {
