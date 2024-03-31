@@ -32,15 +32,19 @@ const MyTableFicha = ({ datatype = 'entity', searchParam = 'nombre', data, colum
               </Thead>
               <Tbody>
                 {data
-                  ? data.map((row, i) => (
-                    <Tr
-                      className='table-row'
-                      key={i + row[idRow]}
-                    >
-                      <Td textAlign='center' className='table-cell'>{newColumn[i].name}</Td>
-                      <Td textAlign='center' className='table-cell'>{row[idRow]}</Td>
-                    </Tr>
-                  ))
+                  ? (
+                      data.map((row, i) => (
+                        newColumn.map((column, i) => (
+                          <Tr
+                            className='table-row'
+                            key={i + row[idRow]}
+                          >
+                            <Td textAlign='center' className='table-cell'>{column.name}</Td>
+                            <Td textAlign='center' className='table-cell'>{row[column.key]}</Td>
+                          </Tr>
+                        ))
+                      ))
+                    )
                   : null}
               </Tbody>
             </Table>
