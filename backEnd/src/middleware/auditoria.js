@@ -17,6 +17,7 @@ export const postAuditoria = async ({ entity, user, body, id = null }) => {
 }
 
 export const patchAuditoria = async ({ entity, user, body, id }) => {
+  console.log(user)
   const { cedula } = user
   const newAuditoria = {
     id_autor: cedula,
