@@ -65,6 +65,7 @@ const AtletasView = () => {
 }
 
 const EditForm = (data) => {
+  console.log('data desde editForm', data)
   const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
   return (
     <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />

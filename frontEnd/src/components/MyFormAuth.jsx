@@ -121,6 +121,9 @@ export function LoginCard () {
       justify='center'
       bg={useColorModeValue('gray.50', 'gray.800')}
     >
+      <Box bg='tomato' w='40%'>
+        <Text>Logo</Text>
+      </Box>
       <Stack spacing={8} mx='auto' maxW='lg' py={12} px={6}>
         <Stack align='center'>
           <Heading fontSize='4xl'>Inicia sesión</Heading>

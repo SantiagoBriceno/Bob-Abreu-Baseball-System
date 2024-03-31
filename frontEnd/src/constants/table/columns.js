@@ -54,8 +54,8 @@ export const newDatosFichaColumns = [
 ]
 
 export const datosFichaColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'id_atleta', name: 'Cedula' },
+  { key: 'id_ficha', name: 'Id Ficha' },
+  { key: 'id_atleta', name: 'Cédula' },
   { key: 'nombre', name: 'Nombre' },
   { key: 'fecha', name: 'Fecha' },
   { key: 'posicion', name: 'Posición' },
@@ -63,52 +63,47 @@ export const datosFichaColumns = [
 ]
 
 export const datosGeneralesColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'estatura_maxima', name: 'Estatura Máxima' },
+  { key: 'estatura_maxima', name: 'Estatura Máxima (cm)' },
   { key: 'percentil_talla', name: 'Percentil Talla' },
-  { key: 'longitud_de_pie', name: 'Longitud de Pie' },
-  { key: 'longitud_sentado', name: 'Longitud Sentado' },
-  { key: 'envergadura', name: 'Envergadura' },
-  { key: 'imc', name: 'IMC' },
-  { key: 'peso_corporal', name: 'Peso' },
-  { key: 'peso_ideal', name: 'Peso Ideal' },
+  { key: 'longitud_de_pie', name: 'Longitud de Pie (cm)' },
+  { key: 'longitud_sentado', name: 'Longitud Sentado (cm)' },
+  { key: 'envergadura', name: 'Envergadura (cm)' },
+  { key: 'imc', name: 'IMC (kg/m²)' },
+  { key: 'peso_corporal', name: 'Peso (kg)' },
+  { key: 'peso_ideal', name: 'Peso Ideal (kg)' },
   { key: 'percentil_de_peso', name: 'Percentil Peso' },
-  { key: 'calorias_diarias', name: 'Calorias Diarias' }
+  { key: 'calorias_diarias', name: 'Calorías Diarias (cal)' }
 ]
 
 export const perimetrosCorporalesColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'cabeza', name: 'Cabeza' },
-  { key: 'cuello', name: 'Cuello' },
-  { key: 'brazo_relajado', name: 'Brazo Relajado' },
-  { key: 'brazo_contraido', name: 'Brazo Contraido' },
-  { key: 'antebrazo', name: 'Antebrazo' },
-  { key: 'muneca', name: 'Muñeca' },
-  { key: 'torax', name: 'Tórax' },
-  { key: 'espalda', name: 'Espalda' },
-  { key: 'muslo_superior', name: 'Muslo superior' },
-  { key: 'muslo_medio', name: 'Muslo medio' },
-  { key: 'pierna', name: 'Pierna' },
-  { key: 'tobillo', name: 'Tobillo' }
+  { key: 'cabeza', name: 'Cabeza (cm)' },
+  { key: 'cuello', name: 'Cuello (cm)' },
+  { key: 'brazo_relajado', name: 'Brazo Relajado (cm)' },
+  { key: 'brazo_contraido', name: 'Brazo Contraido (cm)' },
+  { key: 'antebrazo', name: 'Antebrazo (cm)' },
+  { key: 'muneca', name: 'Muñeca (cm)' },
+  { key: 'torax', name: 'Tórax (cm)' },
+  { key: 'espalda', name: 'Espalda (cm)' },
+  { key: 'muslo_superior', name: 'Muslo superior (cm)' },
+  { key: 'muslo_medio', name: 'Muslo medio (cm)' },
+  { key: 'pierna', name: 'Pierna (cm)' },
+  { key: 'tobillo', name: 'Tobillo (cm)' }
 ]
 
 export const indiceCinturaCaderaColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'cintura', name: 'Cintura' },
-  { key: 'cadera', name: 'Cadera' },
+  { key: 'cintura', name: 'Cintura (cm)' },
+  { key: 'cadera', name: 'Cadera (cm)' },
   { key: 'icc', name: 'ICC' }
 ]
 
 export const indiceMasaCorporalColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'masa_grasa_corporal', name: 'Masa Grasa Corporal' },
-  { key: 'masa_grasa_ideal', name: 'Masa Grasa Ideal' },
-  { key: 'masa_magra_corporal', name: 'Masa Magra Corporal' },
-  { key: 'masa_magra_ideal', name: 'Masa Magra Ideal' }
+  { key: 'masa_grasa_corporal', name: 'Masa Grasa Corporal (%)' },
+  { key: 'masa_grasa_ideal', name: 'Masa Grasa Ideal (kg)' },
+  { key: 'masa_magra_corporal', name: 'Masa Magra Corporal (kg)' },
+  { key: 'masa_magra_ideal', name: 'Masa Magra Ideal (kg)' }
 ]
 
 export const perfilesFotograficosColumns = [
-  { key: 'id_ficha', name: 'ID Ficha' },
   { key: 'frente', name: 'Frente' },
   { key: 'perfil', name: 'Perfil' },
   { key: 'espalda', name: 'Espalda' }

@@ -15,7 +15,8 @@ import {
   Flex,
   Box,
   Spacer,
-  ButtonGroup
+  ButtonGroup,
+  IconButton
 } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
 
@@ -98,9 +99,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                       {action &&
                         <Td className='button'>
                           <Stack direction='row' spacing={4} />
-                          <Button id={`E%${row[idRow]}`} bgColor='primary.100' borderColor='background.border' color='text.87' _hover={{ bg: 'blue.500' }} className='button-1' onClick={handleEdit}>
-                            <EditIcon />
-                          </Button>
+                          <IconButton id={`E%${row[idRow]}`} bgColor='primary.100' borderColor='background.border' color='text.87' _hover={{ bg: 'blue.500' }} className='button-1' onClick={handleEdit} icon={<EditIcon />} />
                           <Button id={`D%${row[idRow]}`} borderColor='background.border' color='text.87' bgColor='red' _hover={{ bg: 'red.500' }} className='button-2' onClick={handleDelete}>
                             <DeleteIcon />
                           </Button>

@@ -11,10 +11,10 @@ import { useState } from 'react'
 import FormModal from './modals/FormModal'
 import { Link } from 'react-router-dom'
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
-  const [isOpenRegistrosEspeciales, setIsOpenRegistrosEspeciales] = useState(false)
+  const [isOpen, setisOpen] = useState(false)
   const [isOpenEditAtleta, setIsOpenEditAtleta] = useState(false)
-  const handleIsOpenRegistrosEspeciales = () => {
-    setIsOpenRegistrosEspeciales(!isOpenRegistrosEspeciales)
+  const handleisOpen = () => {
+    setisOpen(!isOpen)
   }
   const handleIsOpenEditAtleta = () => {
     setIsOpenEditAtleta(!isOpenEditAtleta)
@@ -87,7 +87,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           {registrosEspeciales && registrosEspeciales.length > 0
             ? (
               <CTooltip hasArrow label='Registros especiales' aria-label='A tooltip'>
-                <IconButton onClick={handleIsOpenRegistrosEspeciales} variant='ghost' icon={<HamburgerIcon />} />
+                <IconButton onClick={handleisOpen} variant='ghost' icon={<HamburgerIcon />} />
               </CTooltip>)
             : null}
 
@@ -101,7 +101,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
         </SimpleGrid>
 
       </Stack>
-      <FormModal isOpenRegistrosEspeciales={isOpenRegistrosEspeciales} onClose={handleIsOpenRegistrosEspeciales}>
+      <FormModal isOpen={isOpen} onClose={handleisOpen}>
         <MyAtletaRegistrosEspeciales data={registrosEspeciales} />
       </FormModal>
     </>
@@ -343,7 +343,7 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
 }
 
 export const DropDown = ({ title, children }) => {
-  const { isOpenRegistrosEspeciales, onToggle } = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure()
   return (
     <Stack bg='#dcdcdc' rounded='5px 5px 0 0'>
       <HStack>
@@ -354,10 +354,10 @@ export const DropDown = ({ title, children }) => {
           _hover={{ bg: 'transparent' }}
           onClick={onToggle}
           aria-label='Open'
-          icon={isOpenRegistrosEspeciales ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          icon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
         />
       </HStack>
-      <Collapse in={isOpenRegistrosEspeciales} animateOpacity>
+      <Collapse in={isOpen} animateOpacity>
         {children}
       </Collapse>
     </Stack>
@@ -466,9 +466,9 @@ export const LineChartHitting = ({ stats, param, title, index }) => {
   )
 }
 
-const EditForm = (data) => {
-  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
-  return (
-    <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />
-  )
-}
+// const EditForm = (data) => {
+//   const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
+//   return (
+//     <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />
+//   )
+// }
