@@ -9,10 +9,7 @@ const FichaView = () => {
   const { id_ficha } = useParams()
   const { data } = useFichaData({ id: id_ficha })
 
-  const datosFicha = []
-  datosFicha.push(data.datosFicha)
-
-  console.log(datosFicha)
+  console.log(data)
 
   return (
     <>
@@ -70,63 +67,43 @@ const FichaView = () => {
   )
 }
 
-// const MyFichaReport = ({ data, columns }) => {
-//   return (
-//     (
-//       data &&
-//         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
-//           <List textAlign='left' spacing={2}>
-//             {
-//           columns.map((element, index) => (
-//             <ListItem key={index} display='flex' w='80%' justifyContent='space-between'>
-//               <Text>{element.name}</Text>
-//               <Text>{data[element.key]}</Text>
-//             </ListItem>
-//           ))
-//         }
-//           </List>
-//         </SimpleGrid>
-//     )
-
-//   )
-// }
-
 const MyFichaDisplayInfo = ({ data, columns }) => {
   const halfLength = Math.ceil(columns.length / 2)
+  const fullLength = columns.length
+  console.log(halfLength)
+
   return (
     (halfLength >= 4)
       ? (
-        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
-          <List textAlign='left' spacing={2}>
-            {
-              Array.from({ length: halfLength }).map((_, i) => (
-                <div key={i}>
-                  {
-                    columns.slice(i, i + halfLength).map((element, index) => (
-                      <ListItem key={index} display='flex' w='80%' justifyContent='space-between'>
-                        <Text as='b' fontSize='md'>{element.name}</Text>
-                        <Text as='b' fontSize='sm'>{data[element.key]}</Text>
-                      </ListItem>
-                    ))
-                  }
-                </div>
-              ))
-            }
-            {
-              Array.from({ length: columns.length - halfLength }).map((_, i) => (
-                <div key={i}>
-                  {
-                    columns.slice(i + halfLength, columns.length).map((element, index) => (
-                      <ListItem key={index} display='flex' w='80%' justifyContent='space-between'>
-                        <Text>{element.name}</Text>
-                        <Text>{data[element.key]}</Text>
-                      </ListItem>
-                    ))
-                  }
-                </div>
-              ))
-            }
-          </List>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+          {
+            Array.from({ length: halfLength }).map((_, i) => (
+              <List key={i} p={2} spacing={2}>
+                {
+                  columns.slice(i, halfLength).map((element, index) => (
+                    <ListItem key={index} display='flex' w='80%' justifyContent='space-between' bg={index % 2 === 0 ? '#D3E8F5' : '#B0DDF5'} borderRadius='5px' p={2}>
+                      <Text as='b' fontSize='md'>{element.name}</Text>
+                      <Text as='b' fontSize='sm'>{data[element.key]}</Text>
+                    </ListItem>
+                  ))
+                }
+              </List>
+            ))
+          }
+          {
+            Array.from({ length: halfLength }).map((_, i) => (
+              <List key={i}>
+                {
+                  columns.slice(i + halfLength, fullLength).map((element, index) => (
+                    <ListItem key={index} display='flex' w='80%' justifyContent='space-between' bg={index % 2 === 0 ? '#D3E8F5' : '#B0DDF5'} borderRadius='5px' p={2}>
+                      <Text>{element.name}</Text>
+                      <Text>{data[element.key]}</Text>
+                    </ListItem>
+                  ))
+                }
+              </List>
+            ))
+          }
         </SimpleGrid>
         )
       : (
