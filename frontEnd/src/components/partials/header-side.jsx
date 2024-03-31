@@ -17,7 +17,10 @@ import {
   Avatar,
   Stack,
   HStack,
-  VStack
+  VStack,
+  Image,
+  Img,
+  Center
 } from '@chakra-ui/react'
 import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
@@ -96,7 +99,9 @@ const HeaderSidebar = () => {
     }}
     >
       <Sider width='fit-content' style={{ background: '#010440' }} trigger={null} collapsible collapsed={collapsed}>
-        <div className='demo-logo-vertical'><img src={logo} alt='logo' /></div>
+        <Center alignContent='center' justifyContent='center' textAlign='center' className='demo-logo-vertical'>
+          <Image fit='scale-down' boxSize='80px' src={logo} alt='logo' />
+        </Center>
         <Menu
           theme='dark'
           mode='inline'
