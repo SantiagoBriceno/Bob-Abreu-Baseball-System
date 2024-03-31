@@ -1,7 +1,7 @@
 import { pool } from '../../../db.js'
 
 const getAtletas = async () => {
-  const [data] = await pool.query('SELECT * FROM atleta WHERE estado = "activo"')
+  const [data] = await pool.query('SELECT * FROM atleta')
   return data
 }
 

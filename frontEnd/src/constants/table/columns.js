@@ -48,6 +48,11 @@ export const fichaColumns = [
   { key: 'fecha', name: 'Fecha' }
 ]
 
+export const newDatosFichaColumns = [
+  { key: 'descripcion', name: 'Descripción' },
+  { key: 'valor', name: 'Valor' }
+]
+
 export const datosFichaColumns = [
   { key: 'id_ficha', name: 'ID Ficha' },
   { key: 'id_atleta', name: 'Cedula' },

@@ -2,13 +2,18 @@
 import { Stack, VStack, HStack, Heading, List, ListItem, Text, SimpleGrid, Box } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 import { useFichaData } from '../../hooks/view/useFichaData.js'
-import { datosGeneralesColumns, datosFichaColumns, perimetrosCorporalesColumns, indiceCinturaCaderaColumns, indiceMasaCorporalColumns } from '../../constants/table/columns.js'
+import MyTableFicha from '../../components/MyTableFicha.jsx'
+import { datosGeneralesColumns, newDatosFichaColumns, datosFichaColumns, perimetrosCorporalesColumns, indiceCinturaCaderaColumns, indiceMasaCorporalColumns } from '../../constants/table/columns.js'
 
 const FichaView = () => {
   const { id_ficha } = useParams()
   const { data } = useFichaData({ id: id_ficha })
 
-  console.log('data', data)
+  const datosFicha = []
+  datosFicha.push(data.datosFicha)
+
+  console.log(datosFicha)
+
   return (
     <>
       {data &&
@@ -17,7 +22,8 @@ const FichaView = () => {
             <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
               <Stack>
                 <Heading pb={2}>Ficha antropométrica</Heading>
-                <MyFichaReport data={data.datosFicha} columns={datosFichaColumns} />
+                <MyTableFicha columns={newDatosFichaColumns} newColumn={datosFichaColumns} title='Ficha antropométrica' />
+                {/* <MyFichaReport data={data.datosFicha} columns={datosFichaColumns} /> */}
               </Stack>
             </Box>
             <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
@@ -67,7 +73,7 @@ const MyFichaReport = ({ data, columns }) => {
           <List textAlign='left' spacing={2}>
             {
           columns.map((element, index) => (
-            <ListItem key={index} display='flex' justifyContent='space-between'>
+            <ListItem key={index} display='flex' w='100%' justifyContent='space-between'>
               <Text>{element.name}</Text>
               <Text>{data[element.key]}</Text>
             </ListItem>
