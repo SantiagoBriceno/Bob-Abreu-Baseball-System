@@ -22,7 +22,7 @@ const FichaView = () => {
             <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
               <Stack>
                 <Heading pb={2}>Ficha antropométrica</Heading>
-                <MyTableFicha columns={newDatosFichaColumns} newColumn={datosFichaColumns} title='Ficha antropométrica' />
+                {/* <MyTableFicha columns={newDatosFichaColumns} newColumn={datosFichaColumns} title='Ficha antropométrica' /> */}
                 {/* <MyFichaReport data={data.datosFicha} columns={datosFichaColumns} /> */}
               </Stack>
             </Box>
