@@ -26,14 +26,14 @@ const FichaView = () => {
           <VStack h='fit-content' w='40%' gap={10} templateRows='repeat(2, 1fr)'>
             <Box boxShadow='xl' bg='white' h='100%' w='100%' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={2}>FICHA ANTROPOMÉTRICA</Heading>
+                <Heading pb={2} pl={4}>FICHA ANTROPOMÉTRICA</Heading>
                 {data.datosFicha &&
                   <MyFichaDisplayInfo columns={datosFichaColumns} data={data.datosFicha} />}
               </Stack>
             </Box>
             <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={4}>PERFILES FOTOGRÁFICOS</Heading>
+                <Heading pb={4} pl={4}>PERFILES FOTOGRÁFICOS</Heading>
                 {/* {data.datosGenerales &&
                   <MyFichaDisplayHalf columns={datosGeneralesColumns} data={data.datosGenerales} />} */}
               </Stack>
@@ -42,28 +42,28 @@ const FichaView = () => {
           <VStack h='fit-content' w='60%' gap={10}>
             <Box boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={4}>DATOS GENERALES</Heading>
+                <Heading pb={4} pl={4}>DATOS GENERALES</Heading>
                 {data.datosGenerales &&
                   <MyFichaDisplayHalf columns={datosGeneralesColumns} data={data.datosGenerales} />}
               </Stack>
             </Box>
             <Box boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={4}>PERÍMETROS CORPORALES</Heading>
+                <Heading pb={4} pl={4}>PERÍMETROS CORPORALES</Heading>
                 {data.perimetros &&
                   <MyFichaDisplayHalf columns={perimetrosCorporalesColumns} data={data.perimetros} />}
               </Stack>
             </Box>
             <Box boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={4}>ÍNDICE DE MASA CORPORAL</Heading>
+                <Heading pb={4} pl={4}>ÍNDICE DE MASA CORPORAL</Heading>
                 {data.imc &&
-                  <MyFichaDisplayInfo columns={indiceCinturaCaderaColumns} data={data.imc} />}
+                  <MyFichaDisplayInfo columns={indiceMasaCorporalColumns} data={data.imc} />}
               </Stack>
             </Box>
             <Box boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px' p={4}>
               <Stack>
-                <Heading pb={4}>ÍNDICE DE CINTURA CADERA</Heading>
+                <Heading pb={4} pl={4}>ÍNDICE DE CINTURA CADERA</Heading>
                 {data.icc &&
                   <MyFichaDisplayInfo columns={indiceCinturaCaderaColumns} data={data.icc} />}
               </Stack>

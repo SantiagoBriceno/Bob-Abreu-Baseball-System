@@ -18,10 +18,15 @@ import AtletaView from './view/Atletas/Atleta.view.jsx'
 import RegistrosEspecialesView from './view/RegistrosEspeciales.view.jsx'
 import UsuariosView from './view/Usuarios.view.jsx'
 import LesionesView from './view/Lesiones.view.jsx'
-import RunningView from './view/Estadisticas/Running.view.jsx'
-import HittingView from './view/Estadisticas/Hitting.view.jsx'
+import RunningStatsView from './view/Estadisticas/RunningStats.view.jsx'
+import HittingStatsView from './view/Estadisticas/HittingStats.view.jsx'
 import FichasView from './view/Fichas/Fichas.view.jsx'
 import FichaView from './view/Fichas/Ficha.view.jsx'
+import HittingView from './view/Estadisticas/Hitting.view.jsx'
+import RunningView from './view/Estadisticas/Running.view.jsx'
+import FieldingView from './view/Estadisticas/Fielding.view.jsx'
+import ThrowingView from './view/Estadisticas/Throwing.view.jsx'
+import MakeUpView from './view/Estadisticas/MakeUp.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -94,11 +99,11 @@ const router = createBrowserRouter(
             },
             {
               path: 'running',
-              element: <RunningView />
+              element: <RunningStatsView />
             },
             {
               path: 'hitting',
-              element: <HittingView />
+              element: <HittingStatsView />
             },
             {
               path: 'fichas',
@@ -114,6 +119,31 @@ const router = createBrowserRouter(
 
               ]
 
+            },
+            {
+              path: 'estadisticas',
+              children: [
+                {
+                  path: 'hitting',
+                  element: <HittingView />
+                },
+                {
+                  path: 'running',
+                  element: <RunningView />
+                },
+                {
+                  path: 'throwing',
+                  element: <ThrowingView />
+                },
+                {
+                  path: 'makeup',
+                  element: <MakeUpView />
+                },
+                {
+                  path: 'fielding',
+                  element: <FieldingView />
+                }
+              ]
             }
           ]
         }

@@ -13,7 +13,7 @@ const FichasView = () => {
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
-          LESIONES
+          FICHAS ANTROPOMÉTRICAS
         </Heading>
         <MyTable datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las fichas antropometricas' action setVisualizable viewLink={viewLink} />
       </Stack>

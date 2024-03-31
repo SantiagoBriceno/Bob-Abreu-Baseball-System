@@ -138,14 +138,41 @@ const HeaderSidebar = () => {
               ]
             },
             {
+              key: '9',
+              icon: <VideoCameraOutlined />,
+              label: <NavLink to='/private/estadisticas'>Estadísticas</NavLink>,
+              children: [
+                {
+                  key: '9.1',
+                  label: <NavLink to='/private/estadisticas/hitting'>Hitting</NavLink>
+                },
+                {
+                  key: '9.2',
+                  label: <NavLink to='/private/estadisticas/throwing'>Throwing</NavLink>
+                },
+                {
+                  key: '9.3',
+                  label: <NavLink to='/private/estadisticas/running'>Running</NavLink>
+                },
+                {
+                  key: '9.4',
+                  label: <NavLink to='/private/estadisticas/fielding'>Fielding</NavLink>
+                },
+                {
+                  key: '9.5',
+                  label: <NavLink to='/private/estadisticas/makeup'>Make up</NavLink>
+                }
+              ]
+            },
+            {
               key: '3',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/registros-especiales'>Registros especiales</NavLink>
+              label: <NavLink to='/private/registros-especiales'>Registros Especiales</NavLink>
             },
             {
               key: '4',
               icon: <UserOutlined />,
-              label: <NavLink to='/private/fichas'>Fichas antropométricas</NavLink>
+              label: <NavLink to='/private/fichas'>Fichas Antropométricas</NavLink>
             },
             {
               key: '5',
@@ -156,17 +183,17 @@ const HeaderSidebar = () => {
               key: '6',
               icon: <UserOutlined />,
               label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
-            },
-            {
-              key: '7',
-              icon: <UserOutlined />,
-              label: <NavLink to='/private/running'>Running</NavLink>
-            },
-            {
-              key: '8',
-              icon: <UserOutlined />,
-              label: <NavLink to='/private/hitting'>Hitting</NavLink>
             }
+            // {
+            //   key: '7',
+            //   icon: <UserOutlined />,
+            //   label: <NavLink to='/private/running'>Running</NavLink>
+            // },
+            // {
+            //   key: '8',
+            //   icon: <UserOutlined />,
+            //   label: <NavLink to='/private/hitting'>Hitting</NavLink>
+            // }
 
           ]}
         />

@@ -1,55 +1,22 @@
-import { Stack, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend } from 'chart.js'
-import { Bubble } from 'react-chartjs-2'
-
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend)
-
-export const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-    x: {
-      beginAtZero: true
-    }
-  },
-  plugins: {
-    decimation: true
-  },
-  events: ['click']
-
-}
+import { Heading, Stack } from '@chakra-ui/react'
+import MyTable from '../../components/MyTable.jsx'
+import { useState } from 'react'
+import { hittingColumns as columns } from '../../constants/table/columns.js'
+import { useHitting } from '../../hooks/table/useHitting.js'
 
 const HittingView = () => {
-  const [trainingData, setTrainingData] = useState({
-    x: [],
-    y: []
-  })
-  useEffect(() => {
-    fetch('http://localhost:3000/api/v1/estadisticas/hitting/g/graph')
-      .then((res) => res.json())
-      .then((data) => {
-        setTrainingData(data.result)
-      })
-  }, [])
-
-  const data = {
-    datasets: [
-      {
-        label: 'relacion de la velocidad de bateo con la edad en dia de los atletas de la academia',
-        data: trainingData,
-        backgroundColor: 'rgba(255, 99, 132)'
-      }
-
-    ]
-  }
-  console.log(trainingData)
+  const [isOpen, setIsOpen] = useState(false)
+  const { data } = useHitting()
+  console.log('data', data)
+  // const viewLink = '/private/fichas/ficha/'
   return (
-    <Stack h='75%' w='75%' alignItems='center'>
-      <Bubble data={data} options={options} />
-      <Text>Velocidad de bateo en Km/Hr</Text>
-
+    <Stack spacing={8} align='center'>
+      <Stack spacing={8} align='center' minH='80vh' w='90%'>
+        <Heading m={5} size='xl' fontWeight='extrabold'>
+          ESTADÍSTICAS DE BATEO
+        </Heading>
+        <MyTable datatype='Agregar nueva estadística de bateo' columns={columns} data={data} idRow='id' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las estadísticas de bateo' action setVisualizable />
+      </Stack>
     </Stack>
   )
 }
