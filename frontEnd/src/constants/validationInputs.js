@@ -11,7 +11,7 @@ export const validationInputLogin = ({ id, type, value, options = null }) => {
 
 export const validationInputUser = ({ id, type, value, options = null }) => {
   switch (id) {
-    case 'name':
+    case 'nombre':
       return { isInvalid: value.length < 3, message: 'El nombre debe tener al menos 3 caracteres', isSubmitted: false }
     case 'username':
       return { isInvalid: value.length < 7, message: 'El usuario debe tener al menos 7 caracteres', isSubmitted: false }
@@ -19,6 +19,9 @@ export const validationInputUser = ({ id, type, value, options = null }) => {
       return { isInvalid: value.length < 7, message: 'La contraseña debe tener al menos 7 caracteres', isSubmitted: false }
     case 'rol':
       return { isInvalid: value.length < 3, message: 'El rol debe tener al menos 3 caracteres', isSubmitted: false }
+    case 'cedula':
+      return { isInvalid: value.length < 7, message: 'La cédula debe tener al menos 7 caracteres', isSubmitted: false }
+
     default:
       return { isInvalid: false, message: '', isSubmitted: false }
   }
@@ -36,7 +39,7 @@ export const validationInputRepresentante = ({ id, type, value, options = null }
       return { isInvalid: value.length < 3, message: 'El rif debe tener al menos 3 caracteres', isSubmitted: false }
     case 'estatura':
       return { isInvalid: value.length < 2, message: 'La estatura debe tener al menos 2 caracteres', isSubmitted: false }
-    case 'email':
+    case 'correo':
       return { isInvalid: value.length < 7, message: 'El email debe tener al menos 7 caracteres', isSubmitted: false }
     case 'direccion':
       return { isInvalid: value.length < 7, message: 'La dirección debe tener al menos 7 caracteres', isSubmitted: false }
@@ -205,7 +208,7 @@ export const validationInputLesion = ({ id, type, value, options = null }) => {
   switch (id) {
     case 'id_atleta':
       return { isInvalid: value.length < 3, message: 'El id del atleta debe tener al menos 3 caracteres', isSubmitted: false }
-    case 'fecha_lesion':
+    case 'fecha':
       return { isInvalid: value.length < 3, message: 'La fecha de la lesión debe tener al menos 3 caracteres', isSubmitted: false }
     case 'descripcion':
       return { isInvalid: value.length < 3, message: 'La descripción debe tener al menos 3 caracteres', isSubmitted: false }

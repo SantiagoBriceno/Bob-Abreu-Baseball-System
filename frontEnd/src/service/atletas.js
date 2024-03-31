@@ -50,7 +50,7 @@ export const updateAtleta = async (id, atleta) => {
     },
     body: JSON.stringify(atleta)
   })
-  return response.json()
+  return response
 }
 
 export const deleteAtleta = async (id) => {

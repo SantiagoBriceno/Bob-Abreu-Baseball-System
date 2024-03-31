@@ -1,10 +1,17 @@
+/* eslint-disable camelcase */
 import service from '../../../service/v1/administracion/lesiones.service.js'
 import { patchAuditoria, postAuditoria, deleteAuditoria } from '../../../middleware/auditoria.js'
+import { isValidEntitie } from '../../../utils/formats/estadisticas.js'
+import { lesiones } from '../../../utils/entities/main.js'
 
 export const getLesiones = async (req, res) => {
   try {
     const atletas = await service.getAtletasInfo()
     const data = await service.getAllLesiones()
+    data.map((lesion) => {
+      lesion.fecha = new Date(lesion.fecha).toISOString().split('T')[0]
+      return null
+    })
     console.log('atletas desde el controlador: ', atletas)
     res.status(200).json({ data, atletas })
   } catch (error) {
@@ -23,12 +30,16 @@ export const getLesionByIdPlayer = async (req, res) => {
 }
 
 export const createLesion = async (req, res) => {
+  console.log('req.body: ', req.body)
   try {
+    if (!isValidEntitie(lesiones, req.body)) {
+      return res.status(400).json({ message: 'Por favor, llene todos los campos' })
+    }
     const nextId = await service.nextId()
     const id_auditoria = await postAuditoria({ entity: 'lesiones', user: req.user, body: req.body, id: nextId })
     req.body.id_auditoria = id_auditoria
     const data = await service.createLesion(req.body)
-    res.status(201).send(data)
+    res.status(201).json({ message: 'Lesion creada exitosamente', data })
   } catch (error) {
     res.status(500).send({ message: error.message })
   }

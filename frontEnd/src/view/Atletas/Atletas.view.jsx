@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Stack, Heading } from '@chakra-ui/react'
 import MyForm from '../../components/MyForm'
-import { atleta, atletaUpdate } from '../../../../global.constants.js'
+import { atleta } from '../../../../global.constants.js'
 import FormModal from '../../components/modals/FormModal.jsx'
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
 import { atletaFields, atletaEditFields } from '../../constants/form/fields.js'
@@ -17,7 +17,6 @@ const AtletasView = () => {
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [deleteData, setDeleteData] = useState()
   const [editData, setEditData] = useState()
-  const [isEdit, setIsEdit] = useState(false)
   const { data } = useAtleta()
   const viewLink = '/private/atletas/atleta/'
   console.log('data', data)

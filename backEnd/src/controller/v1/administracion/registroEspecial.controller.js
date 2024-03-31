@@ -6,6 +6,10 @@ export const getRegistroEspecial = async (req, res) => {
   try {
     const atletas = await service.getAtletasInfo()
     const data = await service.getRegistroEspecial()
+    data.map((registro) => {
+      registro.fecha_evento = new Date(registro.fecha_evento).toISOString().split('T')[0]
+      return null
+    })
     res.status(200).json({ data, atletas })
   } catch (error) {
     res.status(500).send({ message: error.message })

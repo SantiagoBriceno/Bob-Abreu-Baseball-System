@@ -11,9 +11,13 @@ import { useState } from 'react'
 import FormModal from './modals/FormModal'
 import { Link } from 'react-router-dom'
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const handleIsOpen = () => {
-    setIsOpen(!isOpen)
+  const [isOpenRegistrosEspeciales, setIsOpenRegistrosEspeciales] = useState(false)
+  const [isOpenEditAtleta, setIsOpenEditAtleta] = useState(false)
+  const handleIsOpenRegistrosEspeciales = () => {
+    setIsOpenRegistrosEspeciales(!isOpenRegistrosEspeciales)
+  }
+  const handleIsOpenEditAtleta = () => {
+    setIsOpenEditAtleta(!isOpenEditAtleta)
   }
 
   return (
@@ -28,19 +32,25 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
         <Text as='i' fontSize='lg'>{data[0].posicion}</Text>
         <Divider />
         <Heading fontSize='lg' fontWeight='400'>Datos Generales</Heading>
-        <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='fit-content'>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='100%'>
+          <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
             <List textAlign='right' spacing={2}>
-              <ListItem>Cédula</ListItem>
-              <ListItem>Fecha de nacimiento</ListItem>
-              <ListItem>Clase</ListItem>
-              <ListItem>Lugar de nacimiento</ListItem>
-            </List>
-            <List spacing={2}>
-              <ListItem>{data[0].cedula}</ListItem>
-              <ListItem>{data[0].fecha_nacimiento}</ListItem>
-              <ListItem>{data[0].clase}</ListItem>
-              <ListItem>{data[0].lugar_nacimiento}</ListItem>
+              <ListItem display='flex' gap='5'>
+                <Text w='50%'>Cedula</Text>
+                <Text>{data[0].cedula}</Text>
+              </ListItem>
+              <ListItem display='flex' gap='5'>
+                <Text w='50%'>Fecha de Nacimiento</Text>
+                <Text>{data[0].fecha_nacimiento}</Text>
+              </ListItem>
+              <ListItem display='flex' gap='5'>
+                <Text w='50%'>Clase</Text>
+                <Text>{data[0].clase}</Text>
+              </ListItem>
+              <ListItem display='flex' gap='5'>
+                <Text w='50%'>Lugar De Nacimiento</Text>
+                <Text>{data[0].lugar_nacimiento}</Text>
+              </ListItem>
             </List>
           </SimpleGrid>
         </Box>
@@ -77,7 +87,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           {registrosEspeciales && registrosEspeciales.length > 0
             ? (
               <CTooltip hasArrow label='Registros especiales' aria-label='A tooltip'>
-                <IconButton onClick={handleIsOpen} variant='ghost' icon={<HamburgerIcon />} />
+                <IconButton onClick={handleIsOpenRegistrosEspeciales} variant='ghost' icon={<HamburgerIcon />} />
               </CTooltip>)
             : null}
 
@@ -91,7 +101,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
         </SimpleGrid>
 
       </Stack>
-      <FormModal isOpen={isOpen} onClose={handleIsOpen}>
+      <FormModal isOpenRegistrosEspeciales={isOpenRegistrosEspeciales} onClose={handleIsOpenRegistrosEspeciales}>
         <MyAtletaRegistrosEspeciales data={registrosEspeciales} />
       </FormModal>
     </>
@@ -333,7 +343,7 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
 }
 
 export const DropDown = ({ title, children }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpenRegistrosEspeciales, onToggle } = useDisclosure()
   return (
     <Stack bg='#dcdcdc' rounded='5px 5px 0 0'>
       <HStack>
@@ -344,10 +354,10 @@ export const DropDown = ({ title, children }) => {
           _hover={{ bg: 'transparent' }}
           onClick={onToggle}
           aria-label='Open'
-          icon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          icon={isOpenRegistrosEspeciales ? <ChevronUpIcon /> : <ChevronDownIcon />}
         />
       </HStack>
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={isOpenRegistrosEspeciales} animateOpacity>
         {children}
       </Collapse>
     </Stack>
@@ -453,5 +463,12 @@ export const LineChartHitting = ({ stats, param, title, index }) => {
       {data ? <Line id='Line' data={data} options={options} /> : <Text>No hay datos</Text>}
       <Button onClick={handleAddData}>Agregar datos</Button>
     </Stack>
+  )
+}
+
+const EditForm = (data) => {
+  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
+  return (
+    <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }
