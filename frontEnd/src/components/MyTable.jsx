@@ -25,11 +25,10 @@ import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
 const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false, viewLink }) => {
-  console.log('data', data)
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
+    console.log('hice click en el atleta', e.target.id)
     const index = e.target.id.split('%')[1]
-    console.log(index)
     for (let i = 0; i < data.length; i++) {
       console.log(data[i][idRow])
       if (data[i][idRow] + '' === index) {
@@ -41,7 +40,6 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
   }
 
   const handleDelete = (e) => {
-    console.log('hice click en el atleta', e.target.id)
     const index = e.target.id.split('%')[1]
     setDeleteData(index)
   }
@@ -61,7 +59,6 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
   }
 
   const results = !search ? data : searchFilter(data)
-  console.log('results', results)
   return (
     <>
       <Flex bg='white' border='2px solid black' shadow='lg' rounded='10px' p='20px 30px' w='90%' alignItems='center' gap='2'>

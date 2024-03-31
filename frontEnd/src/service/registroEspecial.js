@@ -43,7 +43,7 @@ export const updateRegistroEspecial = async (id, registroEspecial) => {
     },
     body: JSON.stringify(registroEspecial)
   })
-  return response.json()
+  return response
 }
 
 export const deleteRegistroEspecial = async (id) => {

@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react'
 
 export const useEstadisticas = ({ data }) => {
+  const [openHitting, setOpenHitting] = useState(false)
+  const [openRunning, setOpenRunning] = useState(false)
+  const [openFielding, setOpenFielding] = useState(false)
+  const [openThrowing, setOpenThrowing] = useState(false)
+
+  const handleOpenHitting = () => setOpenHitting(!openHitting)
+  const handleOpenRunning = () => setOpenRunning(!openRunning)
+  const handleOpenFielding = () => setOpenFielding(!openFielding)
+  const handleOpenThrowing = () => setOpenThrowing(!openThrowing)
+
   const [hitting, setHitting] = useState({})
   const [running, setRunning] = useState({})
   const [fielding, setFielding] = useState({})
@@ -15,5 +25,5 @@ export const useEstadisticas = ({ data }) => {
       setThrowing({ id: throwing.id, value: throwing.values[throwing.values.length - 1] })
     }
   }, [])
-  return { hitting, running, fielding, throwing }
+  return { hitting, running, fielding, throwing, openHitting, openRunning, openFielding, openThrowing, handleOpenHitting, handleOpenRunning, handleOpenFielding, handleOpenThrowing }
 }

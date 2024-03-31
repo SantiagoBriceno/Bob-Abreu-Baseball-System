@@ -121,6 +121,60 @@ export const usuarioRegisterFields = [
   }
 ]
 
+export const usuarioEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Editar usuario',
+      campos: [
+        [
+          {
+            label: 'Cédula',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.cedula,
+            id: 'cedula'
+          },
+          {
+            label: 'Nombre',
+            name: 'nombre',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.nombre,
+            id: 'nombre'
+          }
+        ],
+        [
+          {
+            label: 'Username',
+            name: 'username',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.username,
+            id: 'username'
+          }
+        ],
+        [
+          {
+            label: 'Rol',
+            name: 'rol',
+            type: 'select',
+            required: true,
+            id: 'rol',
+            opt: [
+              { value: 'admin', label: 'Administrador' },
+              { value: 'deportivo', label: 'Staff deportivo' },
+              { value: 'gerente', label: 'Gerente' },
+              { value: 'fisioterapeuta', label: 'Fisioterapeuta' }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+
+}
+
 export const atletaFields = [
   {
     title: 'Datos del atleta',
@@ -796,6 +850,51 @@ export const registroEspecialFields = [
 
   }
 ]
+
+export const registroEspecialEditFields = (placeholders) => {
+  return [
+    {
+      title: '',
+      campos:
+      [
+        [
+          {
+            label: 'Cédula',
+            name: 'cedula',
+            type: 'select',
+            required: true,
+            placeholder: placeholders.cedula,
+            id: 'cedula',
+            opt: [
+              { value: placeholders.cedula, label: placeholders.nombre }
+            ]
+          },
+          {
+            label: 'Fecha',
+            name: 'fecha',
+            type: 'date',
+            required: true,
+            placeholder: placeholders.fecha_evento,
+            id: 'fecha_evento'
+          }
+        ],
+        [
+          {
+            label: 'Descripción',
+            name: 'descripcion',
+            type: 'textarea',
+            required: false,
+            placeholder: placeholders.descripcion,
+            id: 'descripcion'
+
+          }
+        ]
+
+      ]
+
+    }
+  ]
+}
 
 export const hittingFields = [
   {

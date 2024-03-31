@@ -41,4 +41,11 @@ const UsuariosView = () => {
   )
 }
 
+const EditForm = ({ data }) => {
+  const { actions, errorState, formData } = useMyFormHook({}, registrosEspecialesValidation, validationInputRegistroEspecial, updateRegistroEspecial, false, data.id)
+  return (
+    <MyForm fields={registroEspecialEditFields(data)} formData={formData} actions={actions} errorMessage={errorState} />
+  )
+}
+
 export default UsuariosView

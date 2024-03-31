@@ -166,7 +166,7 @@ export const pitchingColumns = [
 
 export const runningColumns = [
   { key: 'id', name: 'ID' },
-  { key: 'velocidad_60', name: 'Velocidad 60 yardas' },
+  { key: 'velocidad_sesenta', name: 'Velocidad 60 yardas' },
   { key: 'velocidad_home_to_first', name: 'Velocidad de home a primera' }
 ]
 

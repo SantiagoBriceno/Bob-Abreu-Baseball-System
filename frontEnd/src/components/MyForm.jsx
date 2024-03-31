@@ -23,7 +23,6 @@ const MyForm = ({ fields, formData, actions, title, errorMessage, encType = fals
 export default MyForm
 
 const FormContent = ({ fields, formData, actions, errorMessage }) => {
-  console.log('errorMessage desde formcontent', errorMessage)
   return (
     <>
       {fields.map((field, index) => (
