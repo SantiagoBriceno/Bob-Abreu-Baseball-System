@@ -797,6 +797,51 @@ export const registroEspecialFields = [
   }
 ]
 
+export const registroEspecialEditFields = (placeholders) => {
+  return [
+    {
+      title: '',
+      campos:
+      [
+        [
+          {
+            label: 'Cédula',
+            name: 'cedula',
+            type: 'select',
+            required: true,
+            placeholder: placeholders.cedula,
+            id: 'cedula',
+            opt: [
+              { value: placeholders.cedula, label: placeholders.nombre }
+            ]
+          },
+          {
+            label: 'Fecha',
+            name: 'fecha',
+            type: 'date',
+            required: true,
+            placeholder: placeholders.fecha_evento,
+            id: 'fecha_evento'
+          }
+        ],
+        [
+          {
+            label: 'Descripción',
+            name: 'descripcion',
+            type: 'textarea',
+            required: false,
+            placeholder: placeholders.descripcion,
+            id: 'descripcion'
+
+          }
+        ]
+
+      ]
+
+    }
+  ]
+}
+
 export const hittingFields = [
   {
     title: 'Datos de bateo',

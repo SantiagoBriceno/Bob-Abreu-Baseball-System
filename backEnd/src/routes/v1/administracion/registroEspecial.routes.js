@@ -13,7 +13,7 @@ const router = Router()
 router.get('/', getRegistroEspecial)
 router.get('/:id', getRegistroEspecialById)
 router.post('/', userExtractor, createRegistroEspecial)
-router.put('/:id', updateRegistroEspecial)
+router.patch('/:id', userExtractor, updateRegistroEspecial)
 router.delete('/:id', deleteRegistroEspecial)
 
 export default router
