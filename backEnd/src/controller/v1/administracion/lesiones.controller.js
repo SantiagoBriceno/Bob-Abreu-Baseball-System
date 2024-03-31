@@ -52,6 +52,7 @@ export const updateLesion = async (req, res) => {
     const data = await service.updateLesion(req.params.id, req.body)
     res.status(200).send(data)
   } catch (error) {
+    console.log('error desde el controlador: ', error)
     res.status(500).send({ message: error.message })
   }
 }

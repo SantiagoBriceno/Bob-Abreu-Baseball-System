@@ -8,7 +8,7 @@ const nextId = async () => {
 }
 
 const getAllLesiones = async () => {
-  const [lesiones] = await pool.query('SELECT nombre, id_atleta, fecha, descripcion FROM lesiones INNER JOIN atleta ON lesiones.id_atleta = atleta.cedula')
+  const [lesiones] = await pool.query('SELECT id, nombre, id_atleta, fecha, descripcion FROM lesiones INNER JOIN atleta ON lesiones.id_atleta = atleta.cedula')
   return lesiones
 }
 

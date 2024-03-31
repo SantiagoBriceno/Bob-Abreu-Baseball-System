@@ -13,7 +13,7 @@ const router = Router()
 router.get('/', getLesiones)
 router.get('/:id', getLesionByIdPlayer)
 router.post('/', userExtractor, createLesion)
-router.put('/:id', updateLesion)
+router.patch('/:id', userExtractor, updateLesion)
 router.delete('/:id', deleteLesion)
 
 export default router

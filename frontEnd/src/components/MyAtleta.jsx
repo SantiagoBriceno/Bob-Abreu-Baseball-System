@@ -10,6 +10,13 @@ import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
 import { Link } from 'react-router-dom'
+import { useMyFormHook } from '../hooks/form/useMyFormHook'
+import MyForm from './MyForm'
+import { updateAtleta } from '../service/atletas.js'
+import { atletaEditFields } from '../constants/form/fields.js'
+import { representanteValidation } from '../constants/dataValidation.js'
+import { validationInputAtleta } from '../constants/validationInputs.js'
+
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setisOpen] = useState(false)
   const [isOpenEditAtleta, setIsOpenEditAtleta] = useState(false)
@@ -92,17 +99,21 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
             : null}
 
           <CTooltip hasArrow label='Editar datos del atleta' aria-label='A tooltip'>
-            <IconButton variant='ghost' icon={<EditIcon />} />
+            <IconButton onClick={handleIsOpenEditAtleta} variant='ghost' icon={<EditIcon />} />
           </CTooltip>
 
-          <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
-            <IconButton variant='ghost' icon={<DeleteIcon />} />
-          </CTooltip>
+          {data &&
+            <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
+              <IconButton variant='ghost' icon={<DeleteIcon />} />
+            </CTooltip>}
         </SimpleGrid>
 
       </Stack>
       <FormModal isOpen={isOpen} onClose={handleisOpen}>
         <MyAtletaRegistrosEspeciales data={registrosEspeciales} />
+      </FormModal>
+      <FormModal isOpen={isOpenEditAtleta} onClose={handleIsOpenEditAtleta}>
+        <EditForm data={data} />
       </FormModal>
     </>
   )
@@ -466,9 +477,10 @@ export const LineChartHitting = ({ stats, param, title, index }) => {
   )
 }
 
-// const EditForm = (data) => {
-//   const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data.data.cedula)
-//   return (
-//     <MyForm fields={atletaEditFields(data.data)} formData={formData} actions={actions} errorMessage={errorState} />
-//   )
-// }
+const EditForm = ({ data }) => {
+  console.log('data desde editForm', data)
+  const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data[0].cedula)
+  return (
+    <MyForm fields={atletaEditFields(data[0])} formData={formData} actions={actions} errorMessage={errorState} />
+  )
+}

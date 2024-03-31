@@ -34,8 +34,8 @@ export const createLesion = async (lesion) => {
   return response
 }
 
-export const updateLesion = async (lesion) => {
-  const response = await fetch(RUTA_LESIONES + '/' + lesion.id, {
+export const updateLesion = async (id, lesion) => {
+  const response = await fetch(RUTA_LESIONES + '/' + id, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const updateLesion = async (lesion) => {
     },
     body: JSON.stringify(lesion)
   })
-  return response.json()
+  return response
 }
 
 export const deleteLesion = async (id) => {

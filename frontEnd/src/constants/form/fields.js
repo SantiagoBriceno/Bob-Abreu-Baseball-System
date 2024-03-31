@@ -295,6 +295,44 @@ export const atletaEditFields = (placeholders) => {
   ]
 }
 
+export const lesionesEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Lesiones',
+      campos: [
+        [
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula',
+            type: 'select',
+            required: true,
+            id: 'id_atleta',
+            opt: [{ value: placeholders.id_atleta, label: placeholders.nombre }]
+          },
+          {
+            label: 'Fecha de la lesión',
+            name: 'fecha',
+            type: 'date',
+            placeholder: placeholders.fecha,
+            required: true,
+            id: 'fecha'
+          }
+        ],
+        [
+          {
+            label: 'Descripción de la lesión',
+            name: 'descripcion',
+            type: 'textarea',
+            required: true,
+            placeholder: placeholders.descripcion,
+            id: 'descripcion'
+          }
+        ]
+      ]
+    }
+  ]
+}
+
 // NO ESTA TERMINADO
 export const fichaAntropometricaFields = [
   {
