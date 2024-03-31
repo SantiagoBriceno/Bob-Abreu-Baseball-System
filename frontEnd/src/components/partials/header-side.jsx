@@ -22,7 +22,7 @@ import {
 import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
 import { useSesionContext } from '../../context/SesionContext'
-import logo from './logo.svg'
+import logo from '../../../public/assets/BobLogo.png'
 import { NavLink, Outlet } from 'react-router-dom'
 
 import { ChevronDownIcon } from '@chakra-ui/icons'

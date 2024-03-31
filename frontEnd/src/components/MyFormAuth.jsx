@@ -13,8 +13,10 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Image,
   Select
 } from '@chakra-ui/react'
+import Logo from '../../public/assets/BobLogo.png'
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -120,50 +122,54 @@ export function LoginCard () {
       align='center'
       justify='center'
       bg={useColorModeValue('gray.50', 'gray.800')}
+      rounded='lg'
     >
-      <Box bg='tomato' w='40%'>
-        <Text>Logo</Text>
-      </Box>
-      <Stack spacing={8} mx='auto' maxW='lg' py={12} px={6}>
+      <Stack spacing={8} py={4} h='fit-content' w='45%'>
         <Stack align='center'>
-          <Heading fontSize='4xl'>Inicia sesión</Heading>
-        </Stack>
-        <Box
-          rounded='lg'
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow='lg'
-          p={8}
-        >
-          <Stack spacing={4}>
-            <FormControl id='username'>
-              <FormLabel>Usuario</FormLabel>
-              <Input type='users' id='username' value={username} onChange={handleChange} />
-            </FormControl>
-            <FormControl id='password'>
-              <FormLabel>Contraseña</FormLabel>
-              <Input type='password' id='password' value={password} onChange={handleChange} />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align='start'
-                justify='space-between'
-              >
-                <Text color='blue.400'>¿Se te olvidó la contraseña?</Text>
+          <HStack
+            bg={useColorModeValue('white', 'gray.700')}
+            boxShadow='lg'
+            p={8}
+            w='100%'
+            roundedBottomRight='lg'
+            roundedTopRight='lg'
+          >
+            <Box roundedBottomLeft='lg' roundedTopLeft='lg' w='100%' textAlign='center' alignContent='center' mr={20}>
+              <Image margin='0 auto' src={Logo} alt='logo' />
+              <Text as='b' fontSize='2xl' color='black'>Bienvenido a Bob Abreu System</Text>
+            </Box>
+            <Stack spacing={4} w='70%'>
+              <Heading fontSize='3xl' mb={4}>Inicia sesión</Heading>
+              <FormControl id='username'>
+                <FormLabel>Usuario</FormLabel>
+                <Input type='users' id='username' value={username} onChange={handleChange} />
+              </FormControl>
+              <FormControl id='password'>
+                <FormLabel>Contraseña</FormLabel>
+                <Input type='password' id='password' value={password} onChange={handleChange} />
+              </FormControl>
+              <Stack spacing={10}>
+                <Stack
+                  direction={{ base: 'column', sm: 'row' }}
+                  align='start'
+                  justify='space-between'
+                >
+                  {/* <Text color='blue.400'>¿Se te olvidó la contraseña?</Text> */}
+                </Stack>
+                <Button
+                  bg='blue.400'
+                  color='white'
+                  _hover={{
+                    bg: 'blue.500'
+                  }}
+                  onClick={handleSubmit}
+                >
+                  Inicia sesión
+                </Button>
               </Stack>
-              <Button
-                bg='blue.400'
-                color='white'
-                _hover={{
-                  bg: 'blue.500'
-                }}
-                onClick={handleSubmit}
-              >
-                Inicia sesión
-              </Button>
             </Stack>
-          </Stack>
-        </Box>
+          </HStack>
+        </Stack>
       </Stack>
     </Flex>
   )
