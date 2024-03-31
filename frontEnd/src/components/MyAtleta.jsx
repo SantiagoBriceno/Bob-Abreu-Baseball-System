@@ -9,11 +9,12 @@ import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
-import { Link } from 'react-router-dom'
+import { Form, Link } from 'react-router-dom'
 import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
 import { updateAtleta } from '../service/atletas.js'
 import { atletaEditFields } from '../constants/form/fields.js'
+import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from '../../../frontEnd/src/constants/table/columns.js'
 import { representanteValidation } from '../constants/dataValidation.js'
 import { validationInputAtleta } from '../constants/validationInputs.js'
 
@@ -152,7 +153,8 @@ export const MyAtletaRegistrosEspeciales = ({ data }) => {
 }
 
 export const MyAtletaEstadisticas = ({ data }) => {
-  const { hitting, running } = useEstadisticas({ data })
+  console.log(data)
+  const { hitting, running, throwing, fielding, handleOpenFielding, handleOpenHitting, handleOpenRunning, handleOpenThrowing, openFielding, openHitting, openRunning, openThrowing } = useEstadisticas({ data })
   return (
     <Stack boxShadow='xl' p={8} bg='white' w='100%' h='100%' rounded='10px'>
       <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Información relevante</Heading>
@@ -200,9 +202,15 @@ export const MyAtletaEstadisticas = ({ data }) => {
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Ver más</Text>
-              <Button variant='link' colorScheme='blue'>...</Button>
+              <Button onClick={handleOpenHitting} variant='link' colorScheme='blue'>...</Button>
             </ListItem>
           </List>
+
+          <FormModal isOpen={openHitting} onClose={handleOpenHitting}>
+            <MostrarStats stats={hitting.value} rows={hittingColumns}>
+              <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Hitting Stats</Heading>
+            </MostrarStats>
+          </FormModal>
 
           {/* Running posee los siguientes atributos:  velocidad_sesenta, velocidad_home_to_first */}
           <List spacing={2}>
@@ -217,9 +225,82 @@ export const MyAtletaEstadisticas = ({ data }) => {
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Ver más</Text>
-              <Button variant='link' colorScheme='blue'>...</Button>
+              <Button onClick={handleOpenRunning} variant='link' colorScheme='blue'>...</Button>
             </ListItem>
           </List>
+
+          <FormModal isOpen={openRunning} onClose={handleOpenRunning}>
+            <MostrarStats stats={running.value} rows={runningColumns}>
+              <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Running Stats</Heading>
+            </MostrarStats>
+          </FormModal>
+
+          {/* Throwing posee los siguientes atributos: lanzamiento_primera, lanzamiento_segunda, lanzamiento_tercera, lanzamiento_home, pop_time */}
+
+          <List spacing={2}>
+            <ListItem><Heading fontSize='sm'>Estadisticas de lanzamiento</Heading></ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Lanzamiento a primera:</Text>
+              <Text>{throwing.value ? `${throwing.value.lanzamiento_primera} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Lanzamiento a segunda:</Text>
+              <Text>{throwing.value ? `${throwing.value.lanzamiento_segunda} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Lanzamiento a tercera:</Text>
+              <Text>{throwing.value ? `${throwing.value.lanzamiento_tercera} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Lanzamiento a home:</Text>
+              <Text>{throwing.value ? `${throwing.value.lanzamiento_home} s` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Ver más</Text>
+              <Button onClick={handleOpenThrowing} variant='link' colorScheme='blue'>...</Button>
+            </ListItem>
+          </List>
+
+          <FormModal isOpen={openThrowing} onClose={handleOpenThrowing}>
+            <MostrarStats stats={throwing.value} rows={throwingColumns}>
+              <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Throwing Stats</Heading>
+            </MostrarStats>
+          </FormModal>
+
+          {/* Fielding poseee los siguientes atributos: getting_jump, alcance, manos_suaves, control_cuerpo, energia */}
+
+          <List spacing={2}>
+            <ListItem><Heading fontSize='sm'>Estadisticas de fielding</Heading></ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Getting Jump:</Text>
+              <Text>{fielding.value ? `${fielding.value.getting_jump}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Alcance:</Text>
+              <Text>{fielding.value ? `${fielding.value.alcance}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Manos suaves:</Text>
+              <Text>{fielding.value ? `${fielding.value.manos_suaves}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Control de cuerpo:</Text>
+              <Text>{fielding.value ? `${fielding.value.control_cuerpo}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Energia:</Text>
+              <Text>{fielding.value ? `${fielding.value.energia}/10` : 'no data found'}</Text>
+            </ListItem>
+            <ListItem display='flex' justifyContent='space-between'>
+              <Text>Ver más</Text>
+              <Button onClick={handleOpenFielding} variant='link' colorScheme='blue'>...</Button>
+            </ListItem>
+          </List>
+          <FormModal isOpen={openFielding} onClose={handleOpenFielding}>
+            <MostrarStats stats={fielding.value} rows={fieldingColumns}>
+              <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Fielding Stats</Heading>
+            </MostrarStats>
+          </FormModal>
 
         </SimpleGrid>
       </Stack>
@@ -229,9 +310,45 @@ export const MyAtletaEstadisticas = ({ data }) => {
   )
 }
 
+const MostrarStats = ({ stats, rows, children }) => {
+  console.log('stats: ', stats)
+  console.log('rows: ', rows)
+  return (
+    <> {stats
+      ? (
+        <>
+          <Stack p={8} bg='white' w='100%' h='100%' rounded='10px'>
+            {children}
+            <Divider />
+            <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
+              <List spacing={2}>
+                {rows.map((item, index) => (
+                  <ListItem key={index} display='flex' justifyContent='space-between'>
+                    <Text>{item.name}</Text>
+                    <Text>{stats[item.key] ? stats[item.key] : 'no data found'}</Text>
+                  </ListItem>
+                ))}
+              </List>
+            </SimpleGrid>
+            <Button>Nuevo Registro</Button>
+          </Stack>
+
+        </>
+        )
+      : (
+        <>
+          {children}
+          <Text>No hay datos</Text>
+          <Button>Nuevo Registro</Button>
+        </>
+        )}
+
+    </>
+  )
+}
+
 export const MyAtletaMedidasAntropometricas = ({ data }) => {
   const { datosGenerales, perimetros, icc, imc } = useAntropometria({ data })
-  console.log('datos Generales: ', datosGenerales)
   // console.log('perimetros: ', perimetros)
   // console.log('icc: ', icc)
   // console.log('imc: ', imc)
