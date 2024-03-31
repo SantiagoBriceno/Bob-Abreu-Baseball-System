@@ -5,11 +5,12 @@ import {
 } from '@chakra-ui/react'
 
 const MyFormControl = ({ label, helperText = null, children, mb = 0 }) => {
+  console.log('helperText desde myFormControl', helperText)
   return (
     <FormControl p={4} mb={mb} h='50%'>
       <FormLabel fontWeight='semibold'>{label}</FormLabel>
       {children}
-      <FormHelperText>{helperText}</FormHelperText>
+      {helperText && helperText.isInvalid && <FormHelperText color='red.500'>{helperText.message}</FormHelperText>}
     </FormControl>
   )
 }
