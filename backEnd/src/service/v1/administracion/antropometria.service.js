@@ -196,6 +196,11 @@ const createIMC = async (data) => {
   return response
 }
 
+const createPerfiles = async (data) => {
+  const [response] = await pool.query('INSERT INTO perfiles_fotograficos SET ?', [data])
+  return response
+}
+
 export default {
   nextId,
   getGeneralDataOfFicha,
@@ -224,5 +229,6 @@ export default {
   getIMCByIdFicha,
   getIMCByIdAtleta,
   createIMC,
+  createPerfiles,
   getFichaAntropometricaByIdAtleta
 }

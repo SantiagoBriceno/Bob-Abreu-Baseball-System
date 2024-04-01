@@ -1,11 +1,10 @@
 export const isValidEntrie = (entrie, structure) => {
-  console.log(entrie, 'entrie')
-  console.log(structure, 'structure')
-  if (Object.keys(entrie).length !== Object.keys(structure).length) {
-    return false
+  const keys = Object.keys(entrie)
+
+  for (let i = 0; i < keys.length; i++) {
+    if (entrie[keys[i]] === null || entrie[keys[i]] === '') {
+      return false
+    }
   }
-  // entrie posee nulo o vacio en algun campo, retorna false, sino true
-  return Object.keys(structure).every(key => {
-    return Object.keys(entrie).includes(key) && entrie[key] !== '' && entrie[key]
-  })
+  return true
 }

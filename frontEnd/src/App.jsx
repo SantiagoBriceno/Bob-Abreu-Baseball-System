@@ -27,6 +27,7 @@ import RunningView from './view/Estadisticas/Running.view.jsx'
 import FieldingView from './view/Estadisticas/Fielding.view.jsx'
 import ThrowingView from './view/Estadisticas/Throwing.view.jsx'
 import MakeUpView from './view/Estadisticas/MakeUp.view.jsx'
+import MyFormStepper from './components/MyFormFicha.jsx'
 
 const router = createBrowserRouter(
   [
@@ -115,6 +116,10 @@ const router = createBrowserRouter(
                 {
                   path: 'ficha/:id_ficha',
                   element: <FichaView />
+                },
+                {
+                  path: 'add',
+                  element: <MyFormStepper />
                 }
 
               ]

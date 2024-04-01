@@ -1,8 +1,13 @@
 /* eslint-disable camelcase */
 import service from '../../../service/v1/administracion/antropometria.service.js'
 import { isValidEntrie } from '../../../utils/formats/validEntrie.js'
-import { datos_generales as dg, perimetros_corporales as pc, indice_Masa_corporal as imc, indices_cintura_cadera as icc } from '../../../utils/entities/main.js'
+import { datos_generales as dg, perimetros_corporales as pc, indice_Masa_corporal as imc, indices_cintura_cadera as icc, perfiles_fotograficos as pf } from '../../../utils/entities/main.js'
 import { postAuditoria } from '../../../middleware/auditoria.js'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+
+const CURRENT_DIR = dirname(fileURLToPath(import.meta.url))
 
 export const getAllFichasAntropometricas = async (req, res) => {
   try {
@@ -45,36 +50,90 @@ export const getFichaAntropometricaByIdAtleta = async (req, res) => {
 }
 
 export const createFichaAntropometrica = async (req, res) => {
-  const { cedula, datos_generales, perimetros_corporales, indice_cintura_cadera, indice_masa_corporal } = req.body
+  console.log(req.body.frente, 'req.body.frente')
+  console.log(req.body.perfil, 'req.body.perfil')
+  console.log(req.body.posterior, 'req.body.espalda')
+
+  const { cedula } = req.body
+
+  console.log(cedula, 'cedula')
+  const {
+    estatura_maxima,
+    percentil_talla,
+    longitud_de_pie,
+    longitud_sentado,
+    envergadura,
+    imc,
+    imc_ideal,
+    tasa_metabolica_basal,
+    calorias_necesarias, peso_corporal, peso_ideal,
+    percentil_de_peso
+  } = req.body
+
+  const datos_generales = {
+    estatura_maxima,
+    percentil_talla,
+    longitud_de_pie,
+    longitud_sentado,
+    envergadura,
+    imc,
+    imc_ideal,
+    tasa_metabolica_basal,
+    calorias_necesarias,
+    peso_corporal,
+    peso_ideal,
+    percentil_de_peso
+  }
+
+  const { cabeza, cuello, brazo_relajado, brazo_contraido, antebrazo, muneca, torax, espalda, muslo_superior, muslo_medio, pierna, tobillo } = req.body
+
+  const perimetros_corporales = { cabeza, cuello, brazo_relajado, brazo_contraido, antebrazo, muneca, torax, espalda, muslo_superior, muslo_medio, pierna, tobillo }
+
+  const { cintura, cadera, relacion_cintura_cadera, masa_grasa_corporal, masa_grasa_ideal, masa_magra_corporal, masa_magra_ideal } = req.body
+
+  const indice_cintura_cadera = { cintura, cadera, relacion_cintura_cadera }
+
+  const indice_masa_corporal = { masa_grasa_corporal, masa_grasa_ideal, masa_magra_corporal, masa_magra_ideal }
+
+  const { frente, perfil, posterior } = req.body
+
+  const perfiles = { frente, perfil, espalda: posterior }
+
   const id_ficha = await service.nextId('ficha_antropometrica')
   console.log(id_ficha, 'nextId')
-  if ((!isValidEntrie(datos_generales, dg) || !isValidEntrie(perimetros_corporales, pc) || !isValidEntrie(indice_cintura_cadera, icc) || !isValidEntrie(indice_masa_corporal, imc)) && cedula && cedula !== '') {
-    return res.status(400).json({ message: 'Por favor, llene todos los campos correctamente' })
-  }
-  try {
-    datos_generales.id_ficha = id_ficha
-    await service.createDatosGenerales(datos_generales)
+  // console.log(id_ficha, 'nextId')
+  if ((isValidEntrie(datos_generales, dg) && isValidEntrie(perimetros_corporales, pc) && isValidEntrie(indice_cintura_cadera, icc) && isValidEntrie(indice_masa_corporal, imc) && isValidEntrie(perfiles, pf)) && cedula !== '') {
+    try {
+      datos_generales.id_ficha = id_ficha
+      await service.createDatosGenerales(datos_generales)
 
-    perimetros_corporales.id_ficha = id_ficha
-    await service.createPerimetros(perimetros_corporales)
+      perimetros_corporales.id_ficha = id_ficha
+      await service.createPerimetros(perimetros_corporales)
 
-    indice_cintura_cadera.id_ficha = id_ficha
-    await service.createICC(indice_cintura_cadera)
+      indice_cintura_cadera.id_ficha = id_ficha
+      await service.createICC(indice_cintura_cadera)
 
-    indice_masa_corporal.id_ficha = id_ficha
-    await service.createIMC(indice_masa_corporal)
+      indice_masa_corporal.id_ficha = id_ficha
+      await service.createIMC(indice_masa_corporal)
 
-    const ficha_antropometrica = {
-      id_atleta: cedula
+      perfiles.id_ficha = id_ficha
+      await service.createPerfiles(perfiles)
+
+      const ficha_antropometrica = {
+        id_atleta: cedula[0]
+      }
+
+      const id_auditoria = await postAuditoria({ entity: 'ficha_antropometrica', user: req.user, body: ficha_antropometrica, id: id_ficha })
+
+      ficha_antropometrica.id_auditoria = id_auditoria
+      const newFichaAntropometrica = await service.createFichaAntropometrica(ficha_antropometrica)
+      res.status(201).json(newFichaAntropometrica)
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ message: error.message })
     }
-
-    const id_auditoria = await postAuditoria({ entity: 'ficha_antropometrica', user: req.user, body: ficha_antropometrica, id: id_ficha })
-
-    ficha_antropometrica.id_auditoria = id_auditoria
-    const newFichaAntropometrica = await service.createFichaAntropometrica(ficha_antropometrica)
-    res.status(201).json(newFichaAntropometrica)
-  } catch (error) {
-    res.status(500).json({ message: error.message })
+  } else {
+    return res.status(400).json({ message: 'Por favor, llene todos los campos correctamente' })
   }
 }
 

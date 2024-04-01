@@ -1267,3 +1267,52 @@ export const runningFields = [
     ]
   }
 ]
+
+export const datosGeneralesLabel = [
+  'Estatura máxima (cm)',
+  'Percentil de talla (%)',
+  'Longitud de pie (cm)',
+  'Estatura sentado (cm)',
+  'Envergadura (cm)',
+  'Índice de masa corporal (kg/m2)',
+  'IMC Ideal (kg/m2)',
+  'Tasa metabólica basa (TMB)',
+  'Calorías necesarias (kcal)',
+  'Peso corporal (kg)',
+  'Percentil peso (%)',
+  'Peso ideal (kg)',
+  'Peso corporal (kg)',
+  'Calorías diarias (kcal)'
+]
+
+export const perimetrosLabel = [
+  'Cabeza (cm)',
+  'Cuello (cm)',
+  'Brazo relajado (cm)',
+  'Brazo contraído (cm)',
+  'Antebrazo (cm)',
+  'Muñeca (cm)',
+  'Tórax (cm)',
+  'Espalda (cm)',
+  'Muslo superior (cm)',
+  'Muslo medio (cm)',
+  'Pierna (cm)',
+  'Tobillo (cm)'
+]
+
+export const iccImcLabel = [
+  'Cintura (cm)',
+  'Cadera (cm)',
+  'Relación cintura cadera (cm)',
+  'Masa grasa corporal (kg)',
+  'Ideal masa grasa corporal (kg)',
+  'Masa magra corporal (kg)',
+  'Ideal masa magra corporal (kg)'
+
+]
+
+export const perfilesFotograficosLabel = [
+  'Perfil frontal',
+  'Perfil lateral',
+  'Perfil posterior'
+]

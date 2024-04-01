@@ -3,10 +3,14 @@ import MyTable from '../../components/MyTable.jsx'
 import { useState } from 'react'
 import { fichaColumns as columns } from '../../constants/table/columns.js'
 import { useFicha } from '../../hooks/table/useFicha.js'
+import FormModal from '../../components/modals/FormModal.jsx'
+import MyFormStepper from '../../components/MyFormFicha.jsx'
 
 const FichasView = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const { data } = useFicha()
+  const openNewView = () => {
+    window.location.href = '/private/fichas/add'
+  }
   console.log('asdkljaklsjdklasjd', data)
   const viewLink = '/private/fichas/ficha/'
   return (
@@ -15,7 +19,7 @@ const FichasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           FICHAS ANTROPOMÉTRICAS
         </Heading>
-        <MyTable datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las fichas antropometricas' action setVisualizable viewLink={viewLink} />
+        <MyTable openModal={openNewView} datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' title='visualización de las fichas antropometricas' action setVisualizable viewLink={viewLink} />
       </Stack>
     </Stack>
   )
