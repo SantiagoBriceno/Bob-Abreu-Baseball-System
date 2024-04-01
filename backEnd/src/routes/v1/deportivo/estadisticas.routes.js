@@ -5,7 +5,7 @@ import {
 
 import { createThrowingStat, deleteThrowingStat, getThrowingStatById, getThrowingStatByIdPlayer, getThrowingStats, updateThrowingStat, getFirstBaseStatByClass, getSecondBaseStatByClass, getThirdBaseStatByClass } from '../../../controller/v1/deportivo/estadisticas/throwing.controller.js'
 
-import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat, getArrayOfDaysHitting, graphDataHitting, getArrayOfDaysHittingById} from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
+import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingStatByIdPlayer, getHittingStats, updateHittingStat, getArrayOfDaysHitting, graphDataHitting, getArrayOfDaysHittingById } from '../../../controller/v1/deportivo/estadisticas/hitting.controller.js'
 
 import { createRunningStat, getArrayOfDate, graphData, getArrayOfDaysById, getArrayOfDays, getArrayOfDateById, deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
 
@@ -21,7 +21,7 @@ const router = Router()
 // AQUI IRAN LAS RUTAS DE LAS 5 DIFERENTES ESTADISTICAS DEPORTIVAS QUE SE TOMAN EN LA ACADEMIA
 
 // RUTAS PARA LAS ESTADISTICAS DE hitting DE LOS ATLETAS
-router.get('/hitting', getHittingStats)
+router.get('/hitting', userExtractor, getHittingStats)
 
 router.get('/hitting/:id', getHittingStatById)
 

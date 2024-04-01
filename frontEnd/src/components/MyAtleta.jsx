@@ -14,7 +14,7 @@ import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
 import { updateAtleta } from '../service/atletas.js'
 import { atletaEditFields } from '../constants/form/fields.js'
-import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from '../../../frontEnd/src/constants/table/columns.js'
+import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from './myAtletaUtils.js'
 import { representanteValidation } from '../constants/dataValidation.js'
 import { validationInputAtleta } from '../constants/validationInputs.js'
 

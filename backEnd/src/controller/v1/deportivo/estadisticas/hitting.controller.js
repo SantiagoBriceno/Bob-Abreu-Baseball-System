@@ -4,6 +4,7 @@ import { isValidEntitie, existStat } from '../../../../utils/formats/estadistica
 import { hitting } from '../../../../utils/entities/main.js'
 /* eslint-disable camelcase */
 export const getHittingStats = async (req, res) => {
+  console.log('getHittingStats aaaaa')
   try {
     const hittingStats = await service.getHittingStats()
     if (hittingStats.length === 0) {

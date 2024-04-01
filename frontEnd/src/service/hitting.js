@@ -8,7 +8,6 @@ export const getAllHitting = async () => {
       Authorization: 'Bearer ' + auth().token
     }
   })
-  console.log('response', response)
   return response.json()
 }
 
