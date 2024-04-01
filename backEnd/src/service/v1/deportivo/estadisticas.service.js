@@ -1,7 +1,7 @@
 import { pool } from '../../../db.js'
 
 const RUNNING_ROWS = 'id, velocidad_sesenta, velocidad_home_to_first, id_atleta'
-const HITTING_ROWS = 'id, agudeza_visual, bat_speed, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, id_atleta, angle_attack'
+const HITTING_ROWS = 'id, agudeza_visual, bat_speed, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, id_atleta, angle_attack, fecha_evaluacion'
 const THROWING_ROWS = 'id, lanzamiento_primera, lanzamiento_segunda, lanzamiento_tercera, lanzamiento_home, pop_time, id_atleta'
 const FIELDING_ROWS = 'id, getting_jump, ruta, alcance, manos_suaves, control_cuerpo, juego_de_pie, anticipacion, energia, id_atleta'
 
@@ -52,7 +52,7 @@ const getHittingStatsIds = async () => {
 }
 
 const getHittingStats = async () => {
-  const [hittingStats] = await pool.query(`SELECT ${HITTING_ROWS}, ${ROWS} FROM hitting ${innerJoin('hitting')} WHERE atleta.estado = "Activo"`)
+  const [hittingStats] = await pool.query(`SELECT ${HITTING_ROWS}, ${ROWS} FROM hitting ${innerJoin('hitting')}`)
   return hittingStats
 }
 
@@ -90,7 +90,7 @@ const getRunningStatsIds = async () => {
 }
 
 const getRunningStats = async () => {
-  const [runningStats] = await pool.query(`SELECT ${RUNNING_ROWS}, ${ROWS} FROM running ${innerJoin('running')} WHERE atleta.estado = "Activo"`)
+  const [runningStats] = await pool.query(`SELECT ${RUNNING_ROWS}, ${ROWS} FROM running ${innerJoin('running')}`)
   return runningStats
 }
 
@@ -144,7 +144,7 @@ const getThrowingStatsIds = async () => {
 }
 
 const getThrowingStats = async () => {
-  const [throwingStats] = await pool.query(`SELECT ${THROWING_ROWS}, ${ROWS} FROM throwing ${innerJoin('throwing')} WHERE atleta.estado = "Activo"`)
+  const [throwingStats] = await pool.query(`SELECT ${THROWING_ROWS}, ${ROWS} FROM throwing ${innerJoin('throwing')}`)
   return throwingStats
 }
 
@@ -177,7 +177,7 @@ const getFieldingStatsIds = async () => {
 }
 
 const getFieldingStats = async () => {
-  const [fieldingStats] = await pool.query(`SELECT ${FIELDING_ROWS}, ${ROWS} FROM fielding ${innerJoin('fielding')} WHERE atleta.estado = "Activo"`)
+  const [fieldingStats] = await pool.query(`SELECT ${FIELDING_ROWS}, ${ROWS} FROM fielding ${innerJoin('fielding')}`)
   return fieldingStats
 }
 

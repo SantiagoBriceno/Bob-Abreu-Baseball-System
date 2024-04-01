@@ -172,7 +172,6 @@ export const usuarioEditFields = (placeholders) => {
       ]
     }
   ]
-
 }
 
 export const atletaFields = [
@@ -985,6 +984,98 @@ export const hittingFields = [
     ]
   }
 ]
+
+export const hittingEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Datos de bateo',
+      campos: [
+        [
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.id_atleta,
+            id: 'id_atleta'
+          }
+        ],
+        [
+          {
+            label: 'Agudeza visual',
+            name: 'agudeza_visual',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.agudeza_visual,
+            id: 'agudeza_visual'
+          },
+          {
+            label: 'Bat speed',
+            name: 'bat_speed',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.bat_speed,
+            id: 'bat_speed'
+          }
+        ],
+        [
+          {
+            label: 'coordinación de las manos',
+            name: 'coordinacion_manos',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.coord_dos_manos,
+            id: 'coord_dos_manos'
+          },
+          {
+            label: 'Ritmo y balance',
+            name: 'ritmo_balance',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.ritmo_balance,
+            id: 'ritmo_balance'
+          }
+        ],
+        [
+          {
+            label: 'Reacción a zona de strike',
+            name: 'reaccion_zona_strike',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.rec_zona_strike,
+            id: 'rec_zona_strike'
+          },
+          {
+            label: 'Reacción a pitcheos',
+            name: 'reaccion_pitcheos',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.rec_pitcheos,
+            id: 'rec_pitcheos'
+          }
+        ],
+        [
+          {
+            label: 'Control del bate',
+            name: 'control_bate',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.control_bate,
+            id: 'control_bate'
+          },
+          {
+            label: 'Ruta del bate',
+            name: 'ruta_del_bate',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.ruta_del_bate,
+            id: 'ruta_del_bate'
+          }
+        ]
+      ]
+    }
+  ]
+}
 
 export const throwingFields = [
   {

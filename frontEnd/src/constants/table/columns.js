@@ -6,7 +6,6 @@ export const atletaColumns = [
   { key: 'fecha_nacimiento', name: 'Fecha de nacimiento' },
   { key: 'posicion', name: 'Posición' },
   { key: 'estado', name: 'Status' }
-
 ]
 
 export const userColumns = [
@@ -111,6 +110,11 @@ export const perfilesFotograficosColumns = [
 
 export const hittingColumns = [
   { key: 'id', name: 'ID' },
+  { key: 'id_atleta', name: 'Cédula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'posicion', name: 'Posición' },
+  { key: 'clase', name: 'Clase' },
+  { key: 'fecha_evaluacion', name: 'Fecha de evaluación' },
   { key: 'agudeza_visual', name: 'Agudeza Visual' },
   { key: 'bat_speed', name: 'Velocidad de bateo' },
   { key: 'angle_attack', name: 'Ángulo de ataque' },
