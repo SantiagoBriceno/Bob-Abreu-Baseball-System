@@ -1,9 +1,10 @@
 import { pool } from '../../../db.js'
 
-const RUNNING_ROWS = 'id, velocidad_sesenta, velocidad_home_to_first, id_atleta'
+const RUNNING_ROWS = 'id, velocidad_sesenta, velocidad_home_to_first, id_atleta, fecha_evaluacion'
 const HITTING_ROWS = 'id, agudeza_visual, bat_speed, coord_dos_manos, ritmo_balance, rec_zona_strike, rec_pitcheos, control_bate, ruta_del_bate, id_atleta, angle_attack, fecha_evaluacion'
-const THROWING_ROWS = 'id, lanzamiento_primera, lanzamiento_segunda, lanzamiento_tercera, lanzamiento_home, pop_time, id_atleta'
-const FIELDING_ROWS = 'id, getting_jump, ruta, alcance, manos_suaves, control_cuerpo, juego_de_pie, anticipacion, energia, id_atleta'
+const THROWING_ROWS = 'id, lanzamiento_primera, lanzamiento_segunda, lanzamiento_tercera, lanzamiento_home, pop_time, id_atleta, fecha_evaluacion, fluidez_brazo, brazo_rapido, facilidad_movimiento, linealidad_lanzamiento'
+const FIELDING_ROWS = 'id, getting_jump, ruta, alcance, manos_suaves, control_cuerpo, juego_de_pie, anticipacion, energia, fecha_evaluacion'
+const MAKEUP_ROWS = 'id, actitud, compromiso, responsabilidad, disciplina, fecha_evaluacion'
 
 const ROWS = 'atleta.clase, atleta.nombre, atleta.posicion'
 
@@ -177,7 +178,8 @@ const getFieldingStatsIds = async () => {
 }
 
 const getFieldingStats = async () => {
-  const [fieldingStats] = await pool.query(`SELECT ${FIELDING_ROWS}, ${ROWS} FROM fielding ${innerJoin('fielding')}`)
+  // SELECT ${FIELDING_ROWS}, ${ROWS} FROM fielding ${innerJoin('fielding')}
+  const [fieldingStats] = await pool.query(`SELECT *, atleta.nombre, atleta.clase, atleta.posicion FROM fielding ${innerJoin('fielding')}`)
   return fieldingStats
 }
 
@@ -205,6 +207,37 @@ const deleteFieldingStat = async (id) => {
 const getFieldingStatsByIdPlayer = async (id) => {
   const [fieldingStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${FIELDING_ROWS} FROM fielding WHERE id_atleta = ?`, [id])
   return fieldingStats
+}
+
+const getMakeupStats = async () => {
+  const [makeupStats] = await pool.query(`SELECT ${MAKEUP_ROWS}, ${ROWS} FROM makeup ${innerJoin('makeup')}`)
+  return makeupStats
+}
+
+const getMakeUpStatsByIdPlayer = async (id) => {
+  const [makeupStats] = await pool.query(`SELECT date_format(fecha_evaluacion, "%d/%m/%y") as fecha_evaluacion, ${MAKEUP_ROWS} FROM makeup WHERE id_atleta = ?`, [id])
+  return makeupStats
+}
+
+const getMakeupStatsId = async () => {
+  const [makeupStats] = await pool.query('SELECT id FROM makeup')
+  return makeupStats.map(({ id }) => id)
+}
+
+const createMakeupStat = async (makeupStat) => {
+  const [newMakeupStat] = await pool.query('INSERT INTO makeup SET ?', [makeupStat])
+  return newMakeupStat
+}
+
+const updateMakeupStat = async (id, makeupStat) => {
+  const [updatedMakeupStat] = await pool.query('UPDATE makeup SET ? WHERE id = ?', [makeupStat, id])
+  return updatedMakeupStat
+}
+
+const deleteMakeupStat = async (id) => {
+  const [makeupStat] = await pool.query('SELECT * FROM makeup WHERE id = ?', [id])
+  await pool.query('DELETE FROM makeup WHERE id = ?', [id])
+  return makeupStat
 }
 
 const getThrowingStatsByIdPlayer = async (id) => {
@@ -304,5 +337,11 @@ export default {
   getFirstBaseStatByIdPlayer,
   getRowFromTableByIdWithClass,
   getBirthDateById,
-  existPlayer
+  existPlayer,
+  getMakeupStats,
+  getMakeUpStatsByIdPlayer,
+  createMakeupStat,
+  updateMakeupStat,
+  deleteMakeupStat,
+  getMakeupStatsId
 }
