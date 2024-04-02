@@ -1136,10 +1136,148 @@ export const throwingFields = [
           placeholder: 'Pop time',
           id: 'pop_time'
         }
+      ],
+      [
+        {
+          label: 'Fluidez de brazo',
+          name: 'fluidez_brazo',
+          type: 'number',
+          required: false,
+          placeholder: 'Fluidez de brazo',
+          id: 'fluidez_brazo'
+        },
+        {
+          label: 'Brazo rápido',
+          name: 'brazo_rapido',
+          type: 'number',
+          required: false,
+          placeholder: 'Brazo rápido',
+          id: 'brazo_rapido'
+        }
+      ],
+      [
+        {
+          label: 'Facilidad de movimiento',
+          name: 'facilidad_movimiento',
+          type: 'number',
+          required: false,
+          placeholder: 'Facilidad de movimiento',
+          id: 'facilidad_movimiento'
+        },
+        {
+          label: 'Linealidad de lanzamiento',
+          name: 'linealidad_lanzamiento',
+          type: 'number',
+          required: false,
+          placeholder: 'Linealidad de lanzamiento',
+          id: 'linealidad_lanzamiento'
+        }
       ]
     ]
   }
 ]
+
+export const throwingEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Datos de lanzamiento',
+      campos: [
+        [
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.id_atleta,
+            id: 'id_atleta'
+          }
+        ],
+        [
+          {
+            label: 'Lanzamiento a primera',
+            name: 'lanzamiento_primera',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.lanzamiento_primera,
+            id: 'lanzamiento_primera'
+          },
+          {
+            label: 'Lanzamiento a segunda',
+            name: 'lanzamiento_segunda',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.lanzamiento_segunda,
+            id: 'lanzamiento_segunda'
+          }
+        ],
+        [
+          {
+            label: 'Lanzamiento a tercera',
+            name: 'lanzamiento_tercera',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.lanzamiento_tercera,
+            id: 'lanzamiento_tercera'
+          },
+          {
+            label: 'Lanzamiento a home',
+            name: 'lanzamiento_home',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.lanzamiento_home,
+            id: 'lanzamiento_home'
+          }
+        ],
+        [
+          {
+            label: 'Pop time',
+            name: 'pop_time',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.pop_time,
+            id: 'pop_time'
+          }
+        ],
+        [
+          {
+            label: 'Fluidez de brazo',
+            name: 'fluidez_brazo',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.fluidez_brazo,
+            id: 'fluidez_brazo'
+          },
+          {
+            label: 'Brazo rápido',
+            name: 'brazo_rapido',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.brazo_rapido,
+            id: 'brazo_rapido'
+          }
+        ],
+        [
+          {
+            label: 'Facilidad de movimiento',
+            name: 'facilidad_movimiento',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.facilidad_movimiento,
+            id: 'facilidad_movimiento'
+          },
+          {
+            label: 'Linealidad de lanzamiento',
+            name: 'linealidad_lanzamiento',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.linealidad_lanzamiento,
+            id: 'linealidad_lanzamiento'
+          }
+        ]
+      ]
+    }
+  ]
+}
 
 export const fieldingFields = [
   {
@@ -1231,6 +1369,98 @@ export const fieldingFields = [
   }
 ]
 
+export const fieldingEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Datos de fildeo',
+      campos: [
+        [
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.id_atleta,
+            id: 'id_atleta'
+          }
+        ],
+        [
+          {
+            label: 'Getting jump',
+            name: 'getting_jump',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.getting_jump,
+            id: 'getting_jump'
+          },
+          {
+            label: 'Ruta',
+            name: 'ruta',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.ruta,
+            id: 'ruta'
+          }
+        ],
+        [
+          {
+            label: 'Alcance',
+            name: 'alcance',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.alcance,
+            id: 'alcance'
+          },
+          {
+            label: 'Manos suaves',
+            name: 'manos_suaves',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.manos_suaves,
+            id: 'manos_suaves'
+          }
+        ],
+        [
+          {
+            label: 'Control del cuerpo',
+            name: 'control_cuerpo',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.control_cuerpo,
+            id: 'control_cuerpo'
+          },
+          {
+            label: 'Juego de pies',
+            name: 'juego_de_pie',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.juego_de_pie,
+            id: 'juego_de_pie'
+          }
+        ],
+        [
+          {
+            label: 'Anticipación',
+            name: 'anticipacion',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.anticipacion,
+            id: 'anticipacion'
+          },
+          {
+            label: 'Energía',
+            name: 'energia',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.energia,
+            id: 'energia'
+          }
+        ]
+      ]
+    }
+  ]
+}
+
 export const runningFields = [
   {
     title: 'Datos de atletismo',
@@ -1267,6 +1497,45 @@ export const runningFields = [
     ]
   }
 ]
+
+export const runningEditFields = (placeholders) => {
+  return [
+    {
+      title: 'Datos de atletismo',
+      campos: [
+        [
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.id_atleta,
+            id: 'id_atleta'
+          }
+        ],
+        [
+          {
+            label: 'Tiempo 60 yardas',
+            name: 'sesenta_yardas',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.velocidad_sesenta,
+            id: 'sesenta_yardas'
+          },
+          {
+            // agregar en la base de datos
+            label: 'Home to first',
+            name: 'home_to_first',
+            type: 'number',
+            required: false,
+            placeholder: placeholders.velocidad_home_to_first,
+            id: 'home_to_first'
+          }
+        ]
+      ]
+    }
+  ]
+}
 
 export const datosGeneralesLabel = [
   'Estatura máxima (cm)',
