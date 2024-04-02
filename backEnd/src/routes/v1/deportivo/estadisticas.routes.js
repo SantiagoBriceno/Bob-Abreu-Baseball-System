@@ -11,6 +11,8 @@ import { createRunningStat, getArrayOfDate, graphData, getArrayOfDaysById, getAr
 
 import { createFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
 
+import { getMakeUpStats, getMakeUpStatByIdPlayer, createMakeUpStat, updateMakeUpStat, deleteMakeUpStat } from '../../../controller/v1/deportivo/estadisticas/makeup.controller.js'
+
 // import { createPitchingStat, deletePitchingStat, getPitchingStatById, getPitchingStatByIdPlayer, getPitchingStats, updatePitchingStat } from '../../../controller/v1/deportivo/estadisticas/pitching.controller.js'
 
 import { userExtractor } from '../../../middleware/userExtractor.js'
@@ -22,26 +24,17 @@ const router = Router()
 
 // RUTAS PARA LAS ESTADISTICAS DE hitting DE LOS ATLETAS
 router.get('/hitting', userExtractor, getHittingStats)
-
 router.get('/hitting/:id', getHittingStatById)
-
 router.get('/hitting/player/:id', getHittingStatByIdPlayer)
-
 router.post('/hitting', userExtractor, createHittingStat)
-
 router.patch('/hitting/:id', userExtractor, updateHittingStat)
-
 router.delete('/hitting/:id', userExtractor, deleteHittingStat)
 
 // RUTAS PARA LAS ESTADISTICAS DE fielding DE LOS ATLETAS
 router.get('/fielding', getFieldingStats)
-
 router.get('/fielding/:id', getFieldingStatById)
-
 router.get('/fielding/player/:id', getFieldingStatByIdPlayer)
-
 router.post('/fielding', userExtractor, createFieldingStat, createAuditoria)
-
 router.patch('/fielding/:id', userExtractor, updateFieldingStat)
 
 // RUTAS PARA LAS ESTADISTICAS DE running DE LOS ATLETAS
@@ -60,31 +53,30 @@ router.post('/throwing', userExtractor, createThrowingStat)
 router.patch('/throwing/:id', userExtractor, updateThrowingStat)
 router.delete('/throwing/:id', userExtractor, deleteThrowingStat)
 
+// RUTAS PARA LAS ESTADISTICAS DE makeUp DE LOS ATLETAS
+router.get('/makeup', getMakeUpStats)
+router.get('/makeup/player/:id', getMakeUpStatByIdPlayer)
+router.post('/makeup', userExtractor, createMakeUpStat)
+router.patch('/makeup/:id', userExtractor, updateMakeUpStat)
+router.delete('/makeup/:id', userExtractor, deleteMakeUpStat)
+
 // RUTA PARA OBTENER TODAS LAS STATISTICAS DE UN ATLETA
 router.get('/player/:id', getStatsByIdPlayer)
-
 router.get('/running/g/promedio', getSixtyYardStatByClass)
-
 router.get('/throwing/g/primera', getFirstBaseStatByClass)
-
 router.get('/throwing/g/segunda', getSecondBaseStatByClass)
-
 router.get('/throwing/g/tercera', getThirdBaseStatByClass)
 
 // RUTAS PARA LAS ESTADISTICAS DE RUNNING PARA LA GRAFICA Y ML DE LOS ATLETAS
 
 router.get('/running/t/data', getArrayOfDays)
-
 router.get('/running/t/data/:id', getArrayOfDaysById)
-
 router.get('/running/g/graph', graphData)
 
 // RUTAS PARA LAS ESTADISTICAS DE HITTING PARA LA GRAFICA Y ML DE LOS ATLETAS
 
 router.get('/hitting/t/data', getArrayOfDaysHitting)
-
 router.get('/hitting/t/data/:id', getArrayOfDaysHittingById)
-
 router.get('/hitting/g/graph', graphDataHitting)
 
 export default router
