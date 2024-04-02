@@ -52,10 +52,14 @@ export const throwingValidation = {
   lanzamiento_segunda: { isInvalid: false, message: '', isSubmitted: false },
   lanzamiento_tercera: { isInvalid: false, message: '', isSubmitted: false },
   lanzamiento_home: { isInvalid: false, message: '', isSubmitted: false },
-  pop_time: { isInvalid: false, message: '', isSubmitted: false }
+  pop_time: { isInvalid: false, message: '', isSubmitted: false },
+  fluidez_brazo: { isInvalid: false, message: '', isSubmitted: false },
+  brazo_rapido: { isInvalid: false, message: '', isSubmitted: false },
+  facilidad_movimiento: { isInvalid: false, message: '', isSubmitted: false },
+  linealidad_lanzamiento: { isInvalid: false, message: '', isSubmitted: false }
 }
 
-export const fieldingFields = {
+export const fieldingValidation = {
   id_atleta: { isInvalid: false, message: '', isSubmitted: false },
   getting_jump: { isInvalid: false, message: '', isSubmitted: false },
   ruta: { isInvalid: false, message: '', isSubmitted: false },
@@ -67,10 +71,18 @@ export const fieldingFields = {
   energia: { isInvalid: false, message: '', isSubmitted: false }
 }
 
-export const runningFields = {
+export const runningValidation = {
   id_atleta: { isInvalid: false, message: '', isSubmitted: false },
   sesenta_yarda: { isInvalid: false, message: '', isSubmitted: false },
   home_to_first: { isInvalid: false, message: '', isSubmitted: false }
+}
+
+export const makeupValidation = {
+  id_atleta: { isInvalid: false, message: '', isSubmitted: false },
+  actitud: { isInvalid: false, message: '', isSubmitted: false },
+  compromiso: { isInvalid: false, message: '', isSubmitted: false },
+  responsabilidad: { isInvalid: false, message: '', isSubmitted: false },
+  disciplina: { isInvalid: false, message: '', isSubmitted: false }
 }
 
 export const registrosEspecialesValidation = {
