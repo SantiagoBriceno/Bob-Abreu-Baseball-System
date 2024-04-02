@@ -7,23 +7,25 @@ import { runningPrediction } from '../service/running.prediction'
 import { hittingPrediction } from '../service/hitting.prediction'
 import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FormModal from './modals/FormModal'
 import { Link } from 'react-router-dom'
 import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
-import { updateAtleta } from '../service/atletas.js'
+import { updateAtleta, getAtletaByIdReport } from '../service/atletas.js'
 import { atletaEditFields } from '../constants/form/fields.js'
 import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from './myAtletaUtils.js'
 import { representanteValidation } from '../constants/dataValidation.js'
 import { validationInputAtleta } from '../constants/validationInputs.js'
-import { dd } from '../constants/pdfMakeTemplate.js'
+import { generateDD } from '../constants/pdfMakeTemplate.js'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setisOpen] = useState(false)
   const [isOpenEditAtleta, setIsOpenEditAtleta] = useState(false)
+  const [generateReport, setGenerateReport] = useState(false)
+  const [reportData, setReportData] = useState()
   const handleisOpen = () => {
     setisOpen(!isOpen)
   }
@@ -32,9 +34,21 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   }
 
   const generatePDF = () => {
-    pdfMake.vfs = pdfFonts.pdfMake.vfs
-    pdfMake.createPdf(dd).open()
+    getAtletaByIdReport(data[0].cedula)
+      .then((data) => {
+        setReportData(data)
+      })
+    setGenerateReport(!generateReport)
   }
+
+  useEffect(() => {
+    if (reportData && generateReport) {
+      pdfMake.vfs = pdfFonts.pdfMake.vfs
+      console.log(generateDD({ athleteData: reportData }))
+      pdfMake.createPdf(generateDD({ athleteData: reportData })).open()
+      setGenerateReport(false)
+    }
+  }, [reportData])
 
   return (
     <>
@@ -79,13 +93,11 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
               <ListItem>Posición</ListItem>
               <ListItem>Estado</ListItem>
               <ListItem>Perfil</ListItem>
-              <ListItem>Throwing</ListItem>
             </List>
             <List spacing={2}>
               <ListItem>{data[0].posicion}</ListItem>
               <ListItem>{data[0].estado}</ListItem>
               <ListItem>{data[0].hitting}</ListItem>
-              <ListItem>{data[0].throwing}</ListItem>
             </List>
           </SimpleGrid>
         </Box>

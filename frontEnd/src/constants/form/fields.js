@@ -734,10 +734,11 @@ export const representanteFields = [
         {
           label: 'Cédula del atleta',
           name: 'cedula_atleta',
-          type: 'text',
+          type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'cedula_atleta'
+          id: 'cedula_atleta',
+          opt: []
         }
       ],
       [

@@ -15,7 +15,7 @@ import { useRepresentante } from '../hooks/table/useRepresentante.js'
 const RepresentanteView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { formData, actions, errorState } = useMyFormHook(representante, representanteValidation, validationInputRepresentante, createRepresentante)
-  const { data } = useRepresentante()
+  const { data } = useRepresentante({ representantesFields: representanteFields })
   console.log('data', data)
 
   const closeModal = () => {

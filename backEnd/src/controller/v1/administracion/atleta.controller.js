@@ -82,6 +82,101 @@ export const getAtletaById = async (req, res) => {
   }
 }
 
+export const getAtletaByIdReport = async (req, res) => {
+  try {
+    const { id } = req.params
+    if (!existAtleta(await service.getCedulas(), id)) {
+      return res.status(400).json({ message: 'Atleta no existe' })
+    }
+
+    // BUSCAMOS LOS ATRIBUTOS RELEVANTES PARA EL REPORTE
+    const datosGeneral = await service.getAtletaByIdReport(id)
+    datosGeneral[0].fecha_nacimiento = new Date(datosGeneral[0].fecha_nacimiento).toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' })
+    const athlete = datosGeneral[0]
+
+    // BUSCAMOS LOS PADRES DEL ATLETA PARA EL REPORTE
+    const datosPadres = await service.getAtletaPadresById(id)
+
+    // LOS DIVIDIMOS EN PADRE Y MADRE
+    const padre = datosPadres.find((padre) => padre.sexo === 'M')
+    const madre = datosPadres.find((madre) => madre.sexo === 'F')
+
+    // BUSCAMOS LAS ESTADISTICAS DEL ATLETA PARA EL REPORTE
+    const statsDB = await service.getStatsReportById(id)
+    const stats = Object.keys(statsDB)
+    const result = stats.map((stat) => {
+      return {
+        name: nameStat(stat),
+        value: statsDB[stat],
+        descripcion: descripcionStat(stat)
+      }
+    })
+
+    const athleteData = {
+      athlete,
+      parents: {
+        padre,
+        madre
+      },
+      stats: result
+    }
+    res.status(200).json(athleteData)
+  } catch (e) {
+    console.log('e', e)
+    res.status(500).json(e)
+  }
+}
+
+const nameStat = (stat) => {
+  switch (stat) {
+    case 'peso_corporal':
+      return 'Peso Corporal'
+    case 'estatura_maxima':
+      return 'Estatura Maxima'
+    case 'velocidad_sesenta':
+      return 'Velocidad 60 yardas'
+    case 'bat_speed':
+      return 'Velocidad del Bat'
+    case 'angle_attack':
+      return 'Angulo de Ataque'
+    case 'lanzamiento_primera':
+      return 'Lanzamiento Primera'
+    case 'lanzamiento_segunda':
+      return 'Lanzamiento Segunda'
+    case 'lanzamiento_tercera':
+      return 'Lanzamiento Tercera'
+    case 'pop_time':
+      return 'Pop Time'
+    default:
+      return 'No definido'
+  }
+}
+
+const descripcionStat = (stat) => {
+  switch (stat) {
+    case 'peso_corporal':
+      return 'Peso Actual del Atleta (kg)'
+    case 'estatura_maxima':
+      return 'Estatura Maxima del Atleta (cm)'
+    case 'velocidad_sesenta':
+      return 'Segundos en recorrer 60 yardas'
+    case 'bat_speed':
+      return 'Velocidad del bat (km/h)'
+    case 'angle_attack':
+      return 'Angulo de Ataque del swing (grados)'
+    case 'lanzamiento_primera':
+      return 'Velocidad de Lanzamiento Primera (mph)'
+    case 'lanzamiento_segunda':
+      return 'Velocidad de Lanzamiento Segunda (mph)'
+    case 'lanzamiento_tercera':
+      return 'Velocidad de Lanzamiento Tercera (mph)'
+    case 'pop_time':
+      return 'Tiempo de lanzamiento a segunda base (segundos)'
+    default:
+      return 'No definido'
+  }
+}
+
 export const getAtletaImg = async (req, res, next) => {
   const { id } = req.params
   try {

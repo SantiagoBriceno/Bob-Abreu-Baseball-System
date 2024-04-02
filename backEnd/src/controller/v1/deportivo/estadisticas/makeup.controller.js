@@ -1,7 +1,7 @@
 import service from '../../../../service/v1/deportivo/estadisticas.service.js'
 import { isValidEntitie, existStat } from '../../../../utils/formats/estadisticas.js'
 import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../../middleware/auditoria.js'
-import { make_up } from '../../../../utils/entities/main'
+import { make_up } from '../../../../utils/entities/main.js'
 
 export const getMakeUpStats = async (req, res) => {
   try {

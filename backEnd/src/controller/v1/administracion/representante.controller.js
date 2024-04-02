@@ -6,10 +6,11 @@ import { postAuditoria, patchAuditoria, deleteAuditoria } from '../../../middlew
 export const getRepresentantes = async (req, res) => {
   try {
     const data = await service.getRepresentantes()
+    const atletas = await service.getAtletasInfo()
     return res.send({
       status: 200,
       message: 'Representantes encontrados',
-      data
+      data: { data, atletas }
     })
   } catch (error) {
     res.status(500).json(error)

@@ -21,6 +21,16 @@ export const getAtleta = async (id) => {
   return response.json()
 }
 
+export const getAtletaByIdReport = async (id) => {
+  const response = await fetch(`${RUTA_ATLETAS}/report/pdf/${id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + auth().token
+    }
+  })
+  return response.json()
+}
+
 export const getAtletaImg = async (id) => {
   const response = await fetch(`${RUTA_ATLETAS}/img/public/${id}`, {
     method: 'GET'

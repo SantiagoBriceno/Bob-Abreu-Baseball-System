@@ -8,7 +8,7 @@ import {
   deleteAtleta,
   getAtletasByPosition,
   getAtletasClasifiedByPosition,
-  getAtletaImg
+  getAtletaByIdReport
 } from '../../../controller/v1/administracion/atleta.controller.js'
 
 import { userExtractor } from '../../../middleware/userExtractor.js'
@@ -48,6 +48,7 @@ router.get('/', userExtractor, auth.adminPermission, getAtletas)
 router.get('/:id', getAtletaById, (req, res) => {
   res.status(200).json({ data: req.data, img: req.foto })
 })
+router.get('/report/pdf/:id', userExtractor, auth.adminPermission, getAtletaByIdReport)
 router.get('/all/position', userExtractor, auth.adminPermission, getAtletasClasifiedByPosition)
 router.get('/all/position/:position', userExtractor, auth.adminPermission, getAtletasByPosition)
 router.post('/', userExtractor, auth.adminPermission, multerUpload.single('foto'), createAtleta)

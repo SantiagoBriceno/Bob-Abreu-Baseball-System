@@ -45,7 +45,13 @@ const deleteRepresentante = async (id) => {
   return deleteData[0]
 }
 
+const getAtletasInfo = async () => {
+  const [atletas] = await pool.query('SELECT nombre, cedula FROM atleta')
+  return atletas
+}
+
 export default {
+  getAtletasInfo,
   getRepresentantes,
   getRepresentante,
   getCedulas,

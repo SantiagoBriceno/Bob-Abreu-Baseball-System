@@ -19,7 +19,6 @@ import {
   HStack,
   VStack,
   Image,
-  Img,
   Center
 } from '@chakra-ui/react'
 import { Layout, Menu, Button, theme } from 'antd'
@@ -44,16 +43,16 @@ const AvatarPanel = () => {
       justify='center'
       maxH='80px'
     >
-      <Container maxH='80px' w='200px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ bg: 'white', color: 'black', borderColor: 'transparent', border: 0 }}>
-        <Accordion alignContent='center' allowMultiple width='100%' h='80px' style={{ border: 0, borderColor: 'transparent' }} mt={0} pt={0} _hover={{ bg: 'trasnparent' }}>
+      <Container maxH='80px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ color: 'black', borderColor: 'transparent', border: 0 }}>
+        <Accordion alignContent='center' allowMultiple style={{ border: 0 }} mt={0} pt={0}>
           <AccordionItem
-            _expanded={{ background: 'white', color: 'black' }}
+            _expanded={{ color: 'black' }}
           >
             <AccordionButton
               display='flex'
               alignItems='center'
-              _expanded={{ background: 'white', color: 'black' }}
-              _hover={{ bg: 'trasnparent', border: 0, borderColor: 'transparent' }}
+              _expanded={{ color: 'black' }}
+              _hover={{ background: 'white', border: 0 }}
             >
               <HStack gap={2}>
                 <Avatar color='#fff' name={username} />
@@ -64,18 +63,19 @@ const AvatarPanel = () => {
 
                   </VStack>
                 </Stack>
-                <Spacer />
                 <ChevronDownIcon fontSize='24px' />
               </HStack>
 
             </AccordionButton>
-            <AccordionPanel mt={0}>
+            <AccordionPanel
+              mt={0} boxShadow='md'
+              background='#f5f5f5'
+            >
               <Button
                 type='text'
                 icon={<UserOutlined />}
                 style={{
-                  fontSize: '16px',
-                  height: 80
+                  fontSize: '16px'
                 }}
                 onClick={() => logout()}
               > Cerrar Sesión
