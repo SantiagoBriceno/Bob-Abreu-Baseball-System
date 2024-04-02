@@ -1,24 +1,66 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import MyTable from '../../components/MyTable.jsx'
+import FormModal from '../../components/modals/FormModal.jsx'
+import MyForm from '../../components/MyForm'
+import { throwingValidation } from '../../constants/dataValidation.js'
+import { validationInputThrowing } from '../../constants/validationInputs.js'
+import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
+import { createThrowing, updateThrowing } from '../../service/throwing.js'
+import { throwing } from '../../../../global.constants.js'
 import { useState } from 'react'
-import { fichaColumns as columns } from '../../constants/table/columns.js'
-import { useFicha } from '../../hooks/table/useFicha.js'
+import { throwingFields, throwingEditFields } from '../../constants/form/fields.js'
+import { throwingColumns as columns } from '../../constants/table/columns.js'
+import { useThrowing } from '../../hooks/table/useThrowing.js'
 
-const ThrowingView = () => {
+const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { data } = useFicha()
-  console.log('asdkljaklsjdklasjd', data)
-  const viewLink = '/private/fichas/ficha/'
+  const [editOpenModal, setEditOpenModal] = useState(false)
+  const [editData, setEditData] = useState()
+  const { data } = useThrowing()
+  const { formData, actions, errorState } = useMyFormHook(throwing, throwingValidation, validationInputThrowing, createThrowing)
+  console.log('data', data)
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  const openEditModal = () => {
+    console.log('editData', editData)
+    setEditOpenModal(true)
+  }
+
+  const closeEditModal = () => {
+    setEditOpenModal(false)
+  }
+  // const viewLink = '/private/fichas/ficha/'
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
-          THROWING STATS
+          ESTADÍSTICAS DE LANZAMIENTO
         </Heading>
-        <MyTable datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las fichas antropometricas' action setVisualizable viewLink={viewLink} />
+        <MyTable datatype='Agregar nueva estadística de lanzamiento' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action setVisualizable />
       </Stack>
+      <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+        <MyForm fields={throwingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+      </FormModal>
+      <FormModal w='60%' isOpen={editOpenModal} onClose={closeEditModal}>
+        <EditForm data={editData} />
+      </FormModal>
     </Stack>
   )
 }
 
-export default ThrowingView
+const EditForm = ({ data }) => {
+  console.log('desde editForm', data)
+  const { formData, actions, errorState } = useMyFormHook({}, throwingValidation, validationInputThrowing, updateThrowing, false, data.id)
+  return (
+    <MyForm fields={throwingEditFields(data)} formData={formData} actions={actions} title='EDICIÓN DE ESTADÍSTICAS DE BATEO' errorMessage={errorState} />
+  )
+}
+
+export default HittingView
