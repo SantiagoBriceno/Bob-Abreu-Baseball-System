@@ -24,6 +24,7 @@
     "extends": "./node_modules/standard/eslintrc.json"
   },
   "dependencies": {
+    "pdfmake": "^0.2.10",
     "vite": "^5.2.6"
   }
 }
