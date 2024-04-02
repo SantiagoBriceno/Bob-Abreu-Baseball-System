@@ -1,5 +1,5 @@
 import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Tooltip as CTooltip, Image, Divider, SimpleGrid, List, ListItem, Button } from '@chakra-ui/react'
-import { AddIcon, ChevronDownIcon, ChevronUpIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { AddIcon, ChevronDownIcon, ChevronUpIcon, DownloadIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { useLineChart } from '../hooks/charts/useLineChart'
@@ -9,7 +9,7 @@ import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
 import { useState } from 'react'
 import FormModal from './modals/FormModal'
-import { Form, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
 import { updateAtleta } from '../service/atletas.js'
@@ -17,6 +17,9 @@ import { atletaEditFields } from '../constants/form/fields.js'
 import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from './myAtletaUtils.js'
 import { representanteValidation } from '../constants/dataValidation.js'
 import { validationInputAtleta } from '../constants/validationInputs.js'
+import { dd } from '../constants/pdfMakeTemplate.js'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setisOpen] = useState(false)
@@ -26,6 +29,11 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   }
   const handleIsOpenEditAtleta = () => {
     setIsOpenEditAtleta(!isOpenEditAtleta)
+  }
+
+  const generatePDF = () => {
+    pdfMake.vfs = pdfFonts.pdfMake.vfs
+    pdfMake.createPdf(dd).open()
   }
 
   return (
@@ -90,7 +98,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           </SimpleGrid>
         </Box>
 
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
 
           {registrosEspeciales && registrosEspeciales.length > 0
             ? (
@@ -106,6 +114,15 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           {data &&
             <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
               <IconButton variant='ghost' icon={<DeleteIcon />} />
+            </CTooltip>}
+
+          {data &&
+            <CTooltip hasArrow label='Generar reporte' aria-label='A tooltip'>
+              <IconButton
+                onClick={() => {
+                  generatePDF()
+                }} variant='ghost' icon={<DownloadIcon />}
+              />
             </CTooltip>}
         </SimpleGrid>
 
@@ -161,14 +178,14 @@ export const MyAtletaEstadisticas = ({ data }) => {
       <Divider />
       <Stack spacing={5} p={5} pb={0}>
         <Heading fontWeight='800' fontSize='md'>Estadísticas</Heading>
-        <DropDown title='Progreso de tiempo en Sesenta Yardas'>
+        <DropDown title='Progreso de tiempo en Sesenta Yardas' descripcion='Representa los registros de la estadistica de Running en Sesenta Yardas, aquí se podrá realizar una predicción en intervalos de 30 días para ver el rendimiento estimado del atleta'>
           <Box bg='white'>
             {data
               ? <LineChart stats={data.running} param='velocidad_sesenta' title='Progreso del tiempo de 60 yardas' index='Tiempo en segundos' />
               : <Text>No hay datos</Text>}
           </Box>
         </DropDown>
-        <DropDown title='Progreso de velocidad de bateos'>
+        <DropDown title='Progreso de velocidad de bateos' descripcion='Representa los registros de la estadística de bateo Bat Speed, aquí se podrá realizar una predicción en intervalos de 30 días para ver el rendimiento estimado del atleta en dicha estadística'>
           <Box bg='white'>
             {data
               ? <LineChartHitting stats={data.hitting} param='bat_speed' title='Progreso de la velocidad del bate en Millas Por Hora' index='MPH' />
@@ -470,12 +487,14 @@ export const MyAtletaMedidasAntropometricas = ({ data }) => {
   )
 }
 
-export const DropDown = ({ title, children }) => {
+export const DropDown = ({ title, children, descripcion }) => {
   const { isOpen, onToggle } = useDisclosure()
   return (
     <Stack bg='#dcdcdc' rounded='5px 5px 0 0'>
       <HStack>
-        <Text ml={5} w='95%'>{title}</Text>
+        <CTooltip textAlign='justify' label={descripcion} aria-label='Abrir'>
+          <Text ml={5} w='95%'>{title}</Text>
+        </CTooltip>
         <IconButton
           w='5%'
           variant='ghost'
@@ -537,7 +556,11 @@ export const LineChart = ({ stats, param, title, index }) => {
   }
   return (
     <Stack>
-      {data ? <Line id='Line' data={data} options={options} /> : <Text>No hay datos</Text>}
+      {data
+        ? (
+          <Line id='Line' data={data} options={options} />
+          )
+        : <Text>No hay datos</Text>}
       <Button onClick={handleAddData}>Agregar datos</Button>
     </Stack>
   )
