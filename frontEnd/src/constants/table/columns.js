@@ -128,6 +128,11 @@ export const hittingColumns = [
 
 export const throwingColumns = [
   { key: 'id', name: 'ID' },
+  { key: 'id_atleta', name: 'Cédula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'posicion', name: 'Posición' },
+  { key: 'clase', name: 'Clase' },
+  { key: 'fecha_evaluacion', name: 'Fecha de evaluación' },
   { key: 'lanzamiento_primera', name: 'Lanzamiento a primera' },
   { key: 'lanzamiento_segunda', name: 'Lanzamiento a segunda' },
   { key: 'lanzamiento_tercera', name: 'Lanzamiento a tercera' },
@@ -141,6 +146,11 @@ export const throwingColumns = [
 
 export const fieldingColumns = [
   { key: 'id', name: 'ID' },
+  { key: 'id_atleta', name: 'Cédula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'posicion', name: 'Posición' },
+  { key: 'clase', name: 'Clase' },
+  { key: 'fecha_evaluacion', name: 'Fecha de evaluación' },
   { key: 'getting_jump', name: 'Getting Jump' },
   { key: 'ruta', name: 'Ruta' },
   { key: 'alcance', name: 'Alcance' },
@@ -170,6 +180,11 @@ export const pitchingColumns = [
 
 export const runningColumns = [
   { key: 'id', name: 'ID' },
+  { key: 'id_atleta', name: 'Cédula' },
+  { key: 'nombre', name: 'Nombre' },
+  { key: 'posicion', name: 'Posición' },
+  { key: 'clase', name: 'Clase' },
+  { key: 'fecha_evaluacion', name: 'Fecha de evaluación' },
   { key: 'velocidad_sesenta', name: 'Velocidad 60 yardas' },
   { key: 'velocidad_home_to_first', name: 'Velocidad de home a primera' }
 ]
