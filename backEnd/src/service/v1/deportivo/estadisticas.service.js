@@ -291,8 +291,14 @@ const getRowFromTableByIdWithClass = async (table, atribute, id) => {
   return row[0]
 }
 
+const getAtletasInfo = async () => {
+  const [atletas] = await pool.query('SELECT nombre, cedula FROM atleta')
+  return atletas
+}
+
 export default {
   getAllClases,
+  getAtletasInfo,
   getExistIdPlayer,
   getArrayOfDateById,
   getHittingStatsIds,

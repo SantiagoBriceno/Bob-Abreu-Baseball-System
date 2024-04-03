@@ -7,10 +7,18 @@ import { throwing } from '../../../../utils/entities/main.js'
 export const getThrowingStats = async (req, res) => {
   try {
     const throwingStats = await service.getThrowingStats()
+    throwingStats.map((throwingStat) => {
+      throwingStat.fecha_evaluacion = new Date(throwingStat.fecha_evaluacion).toISOString().split('T')[0]
+      return null
+    })
+    const atletas = await service.getAtletasInfo()
     if (throwingStats.length === 0) {
       res.status(404).json({ message: 'No throwing stats found' })
     } else {
-      res.status(200).json(throwingStats)
+      res.status(200).json({
+        throwingStats,
+        atletas
+      })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })

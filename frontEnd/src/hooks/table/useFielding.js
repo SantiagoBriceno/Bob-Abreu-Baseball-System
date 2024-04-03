@@ -7,7 +7,7 @@ export const useFielding = () => {
     const fetchData = async () => {
       const response = await getAllFielding()
       console.log('response', response)
-      setData(response)
+      setData(response.fieldingStats)
     }
     fetchData()
   }, [])

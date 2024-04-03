@@ -42,7 +42,7 @@ export const updateRepresentante = async (id, representante) => {
     },
     body: JSON.stringify(representante)
   })
-  return response.json()
+  return response
 }
 
 export const deleteRepresentante = async (id) => {

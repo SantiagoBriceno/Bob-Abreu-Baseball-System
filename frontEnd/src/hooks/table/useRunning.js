@@ -7,7 +7,7 @@ export const useRunning = () => {
     const fetchData = async () => {
       const response = await getAllRunning()
       console.log('response', response)
-      setData(response)
+      setData(response.runningStats)
     }
     fetchData()
   }, [])

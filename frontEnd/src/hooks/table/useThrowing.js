@@ -7,7 +7,7 @@ export const useThrowing = () => {
     const fetchData = async () => {
       const response = await getAllThrowing()
       console.log('response', response)
-      setData(response)
+      setData(response.throwingStats)
     }
     fetchData()
   }, [])

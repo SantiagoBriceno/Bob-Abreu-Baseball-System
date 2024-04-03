@@ -6,10 +6,18 @@ import { fielding } from '../../../../utils/entities/main.js'
 export const getFieldingStats = async (req, res) => {
   try {
     const fieldingStats = await service.getFieldingStats()
+    fieldingStats.map((fieldingStat) => {
+      fieldingStat.fecha_evaluacion = new Date(fieldingStat.fecha_evaluacion).toISOString().split('T')[0]
+      return null
+    })
+    const atletas = await service.getAtletasInfo()
     if (fieldingStats.length === 0) {
       res.status(404).json({ message: 'No fielding stats found' })
     } else {
-      res.status(200).json(fieldingStats)
+      res.status(200).json({
+        fieldingStats,
+        atletas
+      })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
