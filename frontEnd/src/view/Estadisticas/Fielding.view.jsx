@@ -38,7 +38,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE FIELDING
         </Heading>
-        <MyTable datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action setVisualizable />
+        <MyTable datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE FIELDING' errorMessage={errorState} />
