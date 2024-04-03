@@ -24,8 +24,13 @@ import { validationInputAtleta, validationInputFielding, validationInputHitting,
 import { generateDD } from '../constants/pdfMakeTemplate.js'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+import { hitting as fhitting, throwing as fthrowing, running as frunning, fielding as ffielding } from '../../../backEnd/src/utils/entities/main.js'
 
 const FormRegister = ({ fields, entity, validationMethods, validationInputs, onSubmitMethod, title, atleta }) => {
+  console.log('atleta: ', atleta)
+  console.log('fields: ', fields)
+  console.log('entity: ', entity)
+
   fields[0].campos[0][0].type = 'text'
   fields[0].campos[0][0].placeholder = atleta.nombre
   fields[0].campos[0][0].disabled = true
@@ -389,13 +394,13 @@ export const MyAtletaEstadisticas = ({ data, nombre }) => {
           {data &&
             <FormModal w='60%' isOpen={isOpen} onClose={handleIsOpen}>
               {registerForm === 0
-                ? <FormRegister fields={hittingFields} entity={hitting} validationMethods={hittingValidation} validationInputs={validationInputHitting} onSubmitMethod={createHitting} title='Registro de estadísticas de bateo' atleta={nombre} />
+                ? <FormRegister fields={hittingFields} entity={fhitting} validationMethods={hittingValidation} validationInputs={validationInputHitting} onSubmitMethod={createHitting} title='Registro de estadísticas de bateo' atleta={nombre} />
                 : registerForm === 1
-                  ? <FormRegister fields={runningFields} entity={running} validationMethods={runningValidation} validationInputs={validationInputRunning} onSubmitMethod={createRunning} title='Registro de estadísticas de running' atleta={nombre} />
+                  ? <FormRegister fields={runningFields} entity={frunning} validationMethods={runningValidation} validationInputs={validationInputRunning} onSubmitMethod={createRunning} title='Registro de estadísticas de running' atleta={nombre} />
                   : registerForm === 2
-                    ? <FormRegister fields={throwingFields} entity={throwing} validationMethods={throwingValidation} validationInputs={validationInputThrowing} onSubmitMethod={createThrowing} title='Registro de estadísticas de lanzamiento' atleta={nombre} />
+                    ? <FormRegister fields={throwingFields} entity={fthrowing} validationMethods={throwingValidation} validationInputs={validationInputThrowing} onSubmitMethod={createThrowing} title='Registro de estadísticas de lanzamiento' atleta={nombre} />
                     : registerForm === 3
-                      ? <FormRegister fields={fieldingFields} entity={fielding} validationMethods={fieldingValidation} validationInputs={validationInputFielding} onSubmitMethod={createFielding} title='Registro de estadísticas de fielding' atleta={nombre} />
+                      ? <FormRegister fields={fieldingFields} entity={ffielding} validationMethods={fieldingValidation} validationInputs={validationInputFielding} onSubmitMethod={createFielding} title='Registro de estadísticas de fielding' atleta={nombre} />
                       : null}
             </FormModal>}
 
