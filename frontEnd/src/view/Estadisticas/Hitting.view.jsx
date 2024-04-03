@@ -5,9 +5,9 @@ import MyForm from '../../components/MyForm'
 import { hittingValidation } from '../../constants/dataValidation.js'
 import { validationInputHitting } from '../../constants/validationInputs.js'
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
-import { createHitting, updateHitting } from '../../service/hitting.js'
+import { createHitting, updateHitting, deleteHitting } from '../../service/hitting.js'
 import { hitting } from '../../../../global.constants.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { hittingFields, hittingEditFields } from '../../constants/form/fields.js'
 import { hittingColumns as columns } from '../../constants/table/columns.js'
 import { useHitting } from '../../hooks/table/useHitting.js'
@@ -15,6 +15,7 @@ import { useHitting } from '../../hooks/table/useHitting.js'
 const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
+  const [deleteData, setDeleteData] = useState()
   const [editData, setEditData] = useState()
   const { data } = useHitting(hittingFields)
   const { formData, actions, errorState } = useMyFormHook(hitting, hittingValidation, validationInputHitting, createHitting)
@@ -31,6 +32,15 @@ const HittingView = () => {
   const closeEditModal = () => {
     setEditOpenModal(false)
   }
+
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteHitting(deleteData)
+    }
+  }
+  , [deleteData])
+
   // const viewLink = '/private/fichas/ficha/'
   return (
     <Stack spacing={8} align='center'>
@@ -38,7 +48,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE BATEO
         </Heading>
-        <MyTable datatype='Agregar nueva estadística de bateo' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action />
+        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de bateo' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={hittingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
