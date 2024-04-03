@@ -1087,6 +1087,16 @@ export const hittingFields = [
           placeholder: 'Ruta del bate',
           id: 'ruta_del_bate'
         }
+      ],
+      [
+        {
+          label: 'Fecha de Evaluación',
+          name: 'fecha_evaluacion',
+          type: 'date',
+          required: false,
+          placeholder: 'Fecha de evaluación',
+          id: 'fecha_evaluacion'
+        }
       ]
     ]
   }
@@ -1279,6 +1289,16 @@ export const throwingFields = [
           required: false,
           placeholder: 'Linealidad de lanzamiento',
           id: 'linealidad_lanzamiento'
+        }
+      ],
+      [
+        {
+          label: 'Fecha de Evaluación',
+          name: 'fecha_evaluacion',
+          type: 'date',
+          required: false,
+          placeholder: 'Fecha de evaluación',
+          id: 'fecha_evaluacion'
         }
       ]
     ]
@@ -1473,6 +1493,16 @@ export const fieldingFields = [
           placeholder: 'Escala de 1 a 10',
           id: 'energia'
         }
+      ],
+      [
+        {
+          label: 'Fecha de Evaluación',
+          name: 'fecha_evaluacion',
+          type: 'date',
+          required: false,
+          placeholder: 'Fecha de evaluación',
+          id: 'fecha_evaluacion'
+        }
       ]
     ]
   }
@@ -1602,6 +1632,15 @@ export const runningFields = [
           required: false,
           placeholder: 'Tiempo en segundos',
           id: 'home_to_first'
+        }
+      ], [
+        {
+          label: 'Fecha de Evaluación',
+          name: 'fecha_evaluacion',
+          type: 'date',
+          required: false,
+          placeholder: 'Fecha de evaluación',
+          id: 'fecha_evaluacion'
         }
       ]
     ]
