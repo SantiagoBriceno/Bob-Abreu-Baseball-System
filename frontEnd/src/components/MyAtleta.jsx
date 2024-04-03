@@ -13,13 +13,26 @@ import { Link } from 'react-router-dom'
 import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
 import { updateAtleta, getAtletaByIdReport } from '../service/atletas.js'
-import { atletaEditFields } from '../constants/form/fields.js'
+import { createFielding } from '../service/fielding.js'
+import { createHitting } from '../service/hitting.js'
+import { createRunning } from '../service/running.js'
+import { createThrowing } from '../service/throwing.js'
+import { atletaEditFields, hittingFields, fieldingFields, throwingFields, runningFields } from '../constants/form/fields.js'
 import { hittingColumns, runningColumns, throwingColumns, fieldingColumns } from './myAtletaUtils.js'
-import { representanteValidation } from '../constants/dataValidation.js'
-import { validationInputAtleta } from '../constants/validationInputs.js'
+import { representanteValidation, hittingValidation, fieldingValidation, throwingValidation, runningValidation } from '../constants/dataValidation.js'
+import { validationInputAtleta, validationInputFielding, validationInputHitting, validationInputRunning, validationInputThrowing } from '../constants/validationInputs.js'
 import { generateDD } from '../constants/pdfMakeTemplate.js'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+
+import { hitting, fielding, throwing, running } from '../../../global.constants.js'
+
+const FormRegister = ({ fields, entity, validationMethods, validationInputs, onSubmitMethod, title }) => {
+  const { actions, errorState, formData } = useMyFormHook(entity, validationMethods, validationInputs, onSubmitMethod, true)
+  return (
+    <MyForm fields={fields} title={title} formData={formData} actions={actions} errorMessage={errorState} />
+  )
+}
 
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
   const [isOpen, setisOpen] = useState(false)
@@ -339,7 +352,15 @@ export const MyAtletaEstadisticas = ({ data }) => {
           {/* MODAL PARA REGISTRAR LA STAT QUE SE LE DE CLICK */}
 
           <FormModal w='60%' isOpen={isOpen} onClose={handleIsOpen}>
-            {registerForm}
+            {registerForm === 0
+              ? <FormRegister fields={hittingFields} entity={hitting} validationMethods={hittingValidation} validationInputs={validationInputHitting} onSubmitMethod={createHitting} title='Registro de estadísticas de bateo' />
+              : registerForm === 1
+                ? <FormRegister fields={runningFields} entity={running} validationMethods={runningValidation} validationInputs={validationInputRunning} onSubmitMethod={createRunning} title='Registro de estadísticas de running' />
+                : registerForm === 2
+                  ? <FormRegister fields={throwingFields} entity={throwing} validationMethods={throwingValidation} validationInputs={validationInputThrowing} onSubmitMethod={createThrowing} title='Registro de estadísticas de lanzamiento' />
+                  : registerForm === 3
+                    ? <FormRegister fields={fieldingFields} entity={fielding} validationMethods={fieldingValidation} validationInputs={validationInputFielding} onSubmitMethod={createFielding} title='Registro de estadísticas de fielding' />
+                    : null}
           </FormModal>
 
           {/* fielding
