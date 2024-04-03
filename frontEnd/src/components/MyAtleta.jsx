@@ -86,12 +86,12 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
         <Text fontWeight='800' fontSize='3xl'>{data[0].nombre}</Text>
         <Text as='i' fontSize='lg'>{data[0].posicion}</Text>
         <Divider />
-        <Heading fontSize='lg' fontWeight='400'>Datos Generales</Heading>
+        <Heading fontSize='lg' fontWeight='700'>Datos Generales</Heading>
         <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='100%'>
           <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
             <List textAlign='right' spacing={2}>
               <ListItem display='flex' gap='5'>
-                <Text w='50%'>Cedula</Text>
+                <Text w='50%'>Cédula</Text>
                 <Text>{data[0].cedula}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
@@ -103,14 +103,14 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
                 <Text>{data[0].clase}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
-                <Text w='50%'>Lugar De Nacimiento</Text>
+                <Text w='47%'>Lugar De Nacimiento</Text>
                 <Text>{data[0].lugar_nacimiento}</Text>
               </ListItem>
             </List>
           </SimpleGrid>
         </Box>
         <Divider />
-        <Heading fontSize='md' fontWeight='400'>Datos Deportivos</Heading>
+        <Heading fontSize='md' fontWeight='700'>Datos Deportivos</Heading>
 
         <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='fit-content'>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -127,7 +127,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           </SimpleGrid>
         </Box>
         <Divider />
-        <Heading fontSize='md' fontWeight='400'>Perfiles fotograficos</Heading>
+        <Heading fontSize='md' fontWeight='700'>Perfiles fotográficos</Heading>
         <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='fit-content'>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <Button variant='link' colorScheme='blue'>Perfiles</Button>
@@ -244,7 +244,7 @@ export const MyAtletaEstadisticas = ({ data, nombre }) => {
   }
   return (
     <Stack boxShadow='xl' p={8} bg='white' w='100%' h='100%' rounded='10px'>
-      <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Información relevante</Heading>
+      <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Información Relevante</Heading>
       <Divider />
       <Stack spacing={5} p={5} pb={0}>
         <Heading fontWeight='800' fontSize='md'>Estadísticas</Heading>
@@ -276,7 +276,7 @@ export const MyAtletaEstadisticas = ({ data, nombre }) => {
               <Text>{hitting.value ? `${hitting.value.bat_speed} MPH` : 'no data found'}</Text>
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
-              <Text>Angulo de ataque:</Text>
+              <Text>Ángulo de ataque:</Text>
               <Text>{hitting.value ? `${hitting.value.angle_attack} °` : 'no data found'}</Text>
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
@@ -635,7 +635,7 @@ export const LineChart = ({ stats, param, title, index }) => {
       const { prediction, estimatedYforX, date } = response
       setLastDay(lastDay + 90)
       const newDataSet = {
-        label: 'proyeccion del tiempo en 60 yardas',
+        label: 'Proyección del tiempo en 60 yardas',
         data: data.datasets[0].data.map((item, index) => {
           return index > data.datasets[0].data.length - 2 ? item : NaN
         }),
@@ -690,7 +690,7 @@ export const LineChartHitting = ({ stats, param, title, index }) => {
       const { prediction, estimatedYforX, date } = response
       setLastDay(lastDay + 90)
       const newDataSet = {
-        label: 'proyeccion de la velocidad del bate',
+        label: 'Proyección de la velocidad del bate',
         data: data.datasets[0].data.map((item, index) => {
           return index > data.datasets[0].data.length - 2 ? item : NaN
         }),

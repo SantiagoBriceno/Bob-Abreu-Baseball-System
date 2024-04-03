@@ -1,7 +1,7 @@
 export const atletaColumns = [
   { key: 'nombre', name: 'Nombre' },
   { key: 'cedula', name: 'Cédula' },
-  { key: 'tlf', name: 'Telefono' },
+  { key: 'tlf', name: 'Teléfono' },
   { key: 'lugar_nacimiento', name: 'Lugar de nacimiento' },
   { key: 'fecha_nacimiento', name: 'Fecha de nacimiento' },
   { key: 'posicion', name: 'Posición' },
@@ -19,7 +19,7 @@ export const representanteColumns = [
   { key: 'cedula', name: 'Cédula' },
   { key: 'cedula_atleta', name: 'Cédula Atleta' },
   { key: 'sexo', name: 'Sexo' },
-  { key: 'tlf', name: 'Telefono' },
+  { key: 'tlf', name: 'Teléfono' },
   { key: 'correo', name: 'Correo' },
   { key: 'direccion', name: 'Dirección' },
   { key: 'rif', name: 'RIF' },
@@ -42,7 +42,7 @@ export const indicadoresColumns = [
 
 export const fichaColumns = [
   { key: 'id_ficha', name: 'ID Ficha' },
-  { key: 'id_atleta', name: 'Cedula' },
+  { key: 'id_atleta', name: 'Cédula' },
   { key: 'nombre', name: 'Nombre' },
   { key: 'fecha', name: 'Fecha' }
 ]
