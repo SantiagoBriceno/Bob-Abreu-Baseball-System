@@ -13,7 +13,7 @@ export const getThrowingStats = async (req, res) => {
     })
     const atletas = await service.getAtletasInfo()
     if (throwingStats.length === 0) {
-      res.status(404).json({ message: 'No throwing stats found' })
+      res.status(404).json({ message: 'No throwing stats found', atletas })
     } else {
       res.status(200).json({
         throwingStats,

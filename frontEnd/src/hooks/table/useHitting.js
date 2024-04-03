@@ -8,6 +8,9 @@ export const useHitting = (fields) => {
       const response = await getAllHitting()
       console.log('response', response)
       setData(response.hittingStats)
+      fields[0].campos[0][0].opt = response.atletas.map((atleta) => {
+        return { value: atleta.cedula, label: atleta.nombre }
+      })
     }
     fetchData()
   }, [])

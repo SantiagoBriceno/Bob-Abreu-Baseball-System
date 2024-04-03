@@ -16,7 +16,7 @@ const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [editData, setEditData] = useState()
-  const { data } = useHitting()
+  const { data } = useHitting(hittingFields)
   const { formData, actions, errorState } = useMyFormHook(hitting, hittingValidation, validationInputHitting, createHitting)
   console.log('data', data)
 
@@ -26,11 +26,6 @@ const HittingView = () => {
 
   const openModal = () => {
     setIsOpen(true)
-  }
-
-  const openEditModal = () => {
-    console.log('editData', editData)
-    setEditOpenModal(true)
   }
 
   const closeEditModal = () => {

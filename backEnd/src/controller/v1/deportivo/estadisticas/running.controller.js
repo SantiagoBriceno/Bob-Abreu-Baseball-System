@@ -12,7 +12,7 @@ export const getRunningStats = async (req, res) => {
     })
     const atletas = await service.getAtletasInfo()
     if (runningStats.length === 0) {
-      res.status(404).json({ message: 'No running stats found' })
+      res.status(404).json({ message: 'No running stats found', atletas })
     } else {
       res.status(200).json({ runningStats, atletas })
     }

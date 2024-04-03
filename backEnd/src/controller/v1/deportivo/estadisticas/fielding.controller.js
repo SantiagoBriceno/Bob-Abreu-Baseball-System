@@ -12,7 +12,7 @@ export const getFieldingStats = async (req, res) => {
     })
     const atletas = await service.getAtletasInfo()
     if (fieldingStats.length === 0) {
-      res.status(404).json({ message: 'No fielding stats found' })
+      res.status(404).json({ message: 'No fielding stats found', atletas })
     } else {
       res.status(200).json({
         fieldingStats,

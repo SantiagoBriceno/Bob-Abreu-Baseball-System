@@ -13,7 +13,7 @@ export const getHittingStats = async (req, res) => {
     })
     const atletas = await service.getAtletasInfo()
     if (hittingStats.length === 0) {
-      res.status(404).json({ message: 'No hitting stats found' })
+      res.status(404).json({ message: 'No hitting stats found', atletas })
     } else {
       res.status(200).json({
         hittingStats,

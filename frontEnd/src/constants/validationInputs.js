@@ -137,21 +137,21 @@ export const validationInputFielding = ({ id, type, value, options = null }) => 
     case 'id_atleta':
       return { isInvalid: value.length < 3, message: 'El id del atleta debe tener al menos 3 caracteres', isSubmitted: false }
     case 'getting_jump':
-      return { isInvalid: value.length < 3, message: 'El getting jump debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'El getting jump no debe estar vacío', isSubmitted: false }
     case 'ruta':
-      return { isInvalid: value.length < 3, message: 'La ruta debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'La ruta del bate no debe estar vacío', isSubmitted: false }
     case 'alcance':
-      return { isInvalid: value.length < 3, message: 'El alcance debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'El alcance no debe estar vacío', isSubmitted: false }
     case 'manos_suaves':
-      return { isInvalid: value.length < 3, message: 'Las manos suaves deben tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'Las estadistica de manos suaves no debe estar vacío', isSubmitted: false }
     case 'control_cuerpo':
-      return { isInvalid: value.length < 3, message: 'El control del cuerpo debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'El control del cuerpo no debe estar vacío', isSubmitted: false }
     case 'juego_de_pie':
-      return { isInvalid: value.length < 3, message: 'El juego de pie debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'El juego de pie no debe estar vacío', isSubmitted: false }
     case 'anticipacion':
-      return { isInvalid: value.length < 3, message: 'La anticipación debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'La anticipación no debe estar vacío', isSubmitted: false }
     case 'energia':
-      return { isInvalid: value.length < 3, message: 'La energía debe tener al menos 3 caracteres', isSubmitted: false }
+      return { isInvalid: value.length < 1, message: 'La energía no debe estar vacío', isSubmitted: false }
     default:
       return { isInvalid: false, message: '', isSubmitted: false }
   }

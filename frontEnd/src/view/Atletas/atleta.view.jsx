@@ -15,7 +15,7 @@ const AtletaView = () => {
         </Stack>
         <VStack rounded='10px' w='100%' h='100%' gap={4}>
           <Stack boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px'>
-            {atleta.estadisticas ? <MyAtletaEstadisticas data={atleta.estadisticas} /> : <Text>No hay estadisticas</Text>}
+            {atleta.estadisticas ? <MyAtletaEstadisticas nombre={{ nombre: atleta.datosGeneral[0].nombre, cedula }} data={atleta.estadisticas} /> : <Text>No hay estadisticas</Text>}
           </Stack>
           <Stack boxShadow='xl' bg='white' w='100%' h='40%' rounded='10px'>
             {atleta.antropometria ? <MyAtletaMedidasAntropometricas data={atleta.antropometria} /> : <Text>No hay medidas antropometricas</Text>}
