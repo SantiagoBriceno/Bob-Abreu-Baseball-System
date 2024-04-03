@@ -5,9 +5,9 @@ import MyForm from '../../components/MyForm'
 import { runningValidation } from '../../constants/dataValidation.js'
 import { validationInputRunning } from '../../constants/validationInputs.js'
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
-import { createRunning, updateRunning } from '../../service/running.js'
+import { createRunning, updateRunning, deleteRunning } from '../../service/running.js'
 import { running } from '../../../../global.constants.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { runningFields, runningEditFields } from '../../constants/form/fields.js'
 import { runningColumns as columns } from '../../constants/table/columns.js'
 import { useRunning } from '../../hooks/table/useRunning.js'
@@ -15,6 +15,7 @@ import { useRunning } from '../../hooks/table/useRunning.js'
 const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
+  const [deleteData, setDeleteData] = useState()
   const [editData, setEditData] = useState()
   const { data } = useRunning(runningFields)
   const { formData, actions, errorState } = useMyFormHook(running, runningValidation, validationInputRunning, createRunning)
@@ -31,6 +32,15 @@ const HittingView = () => {
   const closeEditModal = () => {
     setEditOpenModal(false)
   }
+
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteRunning(deleteData)
+    }
+  }
+  , [deleteData])
+
   // const viewLink = '/private/fichas/ficha/'
   return (
     <Stack spacing={8} align='center'>
@@ -38,7 +48,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE VELOCIDAD
         </Heading>
-        <MyTable datatype='Agregar nueva estadística de velocidad' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de velocidad' action />
+        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de velocidad' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de velocidad' action />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={runningFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE RUNNING' errorMessage={errorState} />

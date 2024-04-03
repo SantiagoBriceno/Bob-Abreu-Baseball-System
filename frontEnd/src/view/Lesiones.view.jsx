@@ -5,9 +5,9 @@ import { lesionValidation } from '../constants/dataValidation.js'
 import { validationInputLesion } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { lesionesFields, lesionesEditFields } from '../constants/form/fields.js'
-import { createLesion, updateLesion } from '../service/lesiones.js'
+import { createLesion, updateLesion, deleteLesion } from '../service/lesiones.js'
 import MyTable from '../components/MyTable.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
 import { lesionesColumns as columns } from '../constants/table/columns.js'
 import { useLesiones } from '../hooks/table/useLesiones.js'
@@ -16,6 +16,7 @@ const LesionesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [editData, setEditData] = useState()
+  const [deleteData, setDeleteData] = useState()
   const { data, atletas } = useLesiones(lesionesFields)
   const { formData, actions, errorState } = useMyFormHook(lesiones, lesionValidation, validationInputLesion, createLesion)
   console.log('data', data)
@@ -28,14 +29,17 @@ const LesionesView = () => {
     setIsOpen(true)
   }
 
-  const openEditModal = () => {
-    console.log('editData', editData)
-    setEditOpenModal(true)
-  }
-
   const closeEditModal = () => {
     setEditOpenModal(false)
   }
+
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteLesion(deleteData)
+    }
+  }
+  , [deleteData])
 
   return (
     <Stack spacing={8} align='center'>
@@ -43,7 +47,7 @@ const LesionesView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           LESIONES
         </Heading>
-        <MyTable datatype='Agregar lesión' columns={columns} data={data} idRow='cedula' openModal={openModal} setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de lesiones' />
+        <MyTable setDeleteData={setDeleteData} datatype='Agregar lesión' columns={columns} data={data} idRow='cedula' openModal={openModal} setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de lesiones' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={lesionesFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />

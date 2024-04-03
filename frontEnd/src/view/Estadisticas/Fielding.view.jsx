@@ -5,9 +5,9 @@ import MyForm from '../../components/MyForm'
 import { fieldingValidation } from '../../constants/dataValidation.js'
 import { validationInputFielding } from '../../constants/validationInputs.js'
 import { useMyFormHook } from '../../hooks/form/useMyFormHook.js'
-import { createFielding, updateFielding } from '../../service/fielding.js'
+import { createFielding, updateFielding, deleteFielding } from '../../service/fielding.js'
 import { fielding } from '../../../../global.constants.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { fieldingFields, fieldingEditFields } from '../../constants/form/fields.js'
 import { fieldingColumns as columns } from '../../constants/table/columns.js'
 import { useFielding } from '../../hooks/table/useFielding.js'
@@ -15,6 +15,7 @@ import { useFielding } from '../../hooks/table/useFielding.js'
 const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
+  const [deleteData, setDeleteData] = useState()
   const [editData, setEditData] = useState()
   const { data } = useFielding(fieldingFields)
   const { formData, actions, errorState } = useMyFormHook(fielding, fieldingValidation, validationInputFielding, createFielding)
@@ -31,6 +32,13 @@ const HittingView = () => {
   const closeEditModal = () => {
     setEditOpenModal(false)
   }
+
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteFielding(deleteData)
+    }
+  }, [deleteData])
   // const viewLink = '/private/fichas/ficha/'
   return (
     <Stack spacing={8} align='center'>
@@ -38,7 +46,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE FIELDING
         </Heading>
-        <MyTable datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action />
+        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE FIELDING' errorMessage={errorState} />

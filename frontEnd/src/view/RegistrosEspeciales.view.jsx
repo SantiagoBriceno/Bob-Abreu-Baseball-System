@@ -5,9 +5,9 @@ import { registrosEspecialesValidation } from '../constants/dataValidation.js'
 import { validationInputRegistroEspecial } from '../constants/validationInputs.js'
 import { useMyFormHook } from '../hooks/form/useMyFormHook.js'
 import { registroEspecialEditFields, registroEspecialFields } from '../constants/form/fields.js'
-import { createRegistroEspecial, updateRegistroEspecial } from '../service/registroEspecial.js'
+import { createRegistroEspecial, updateRegistroEspecial, deleteRegistroEspecial } from '../service/registroEspecial.js'
 import MyTable from '../components/MyTable.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormModal from '../components/modals/FormModal.jsx'
 import { registroEspecialColumns as columns } from '../constants/table/columns.js'
 import { useRegistroEspecial } from '../hooks/table/useRegistroEspecial.js'
@@ -15,6 +15,7 @@ import { useRegistroEspecial } from '../hooks/table/useRegistroEspecial.js'
 const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
+  const [deleteData, setDeleteData] = useState()
   const [editData, setEditData] = useState()
   const { data, atletas } = useRegistroEspecial(registroEspecialFields)
   const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesValidation, validationInputRegistroEspecial, createRegistroEspecial)
@@ -31,9 +32,13 @@ const RegistrosEspecialesView = () => {
     setEditOpenModal(false)
   }
 
-  const openEditModal = () => {
-    setEditOpenModal(true)
+  useEffect(() => {
+    if (deleteData) {
+      console.log('se hace el efecto')
+      deleteRegistroEspecial(deleteData)
+    }
   }
+  , [deleteData])
 
   return (
     <Stack spacing={8} align='center'>
@@ -41,7 +46,7 @@ const RegistrosEspecialesView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           REGISTROS ESPECIALES
         </Heading>
-        <MyTable datatype='Agregar registro especial' columns={columns} data={data} idRow='id' setEditData={setEditData} openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de registros especiales' />
+        <MyTable setDeleteData={setDeleteData} datatype='Agregar registro especial' columns={columns} data={data} idRow='id' setEditData={setEditData} openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de registros especiales' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={registroEspecialFields} formData={formData} actions={actions} title='REGISTROS ESPECIALES' errorMessage={errorState} />

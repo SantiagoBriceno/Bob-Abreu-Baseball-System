@@ -35,10 +35,6 @@ const AtletasView = () => {
     setEditOpenModal(false)
   }
 
-  const openEditModal = () => {
-    setEditOpenModal(true)
-  }
-
   useEffect(() => {
     if (deleteData) {
       console.log('se hace el efecto')
