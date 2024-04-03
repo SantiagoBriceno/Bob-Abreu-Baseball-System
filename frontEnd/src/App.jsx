@@ -28,6 +28,7 @@ import FieldingView from './view/Estadisticas/Fielding.view.jsx'
 import ThrowingView from './view/Estadisticas/Throwing.view.jsx'
 import MakeUpView from './view/Estadisticas/MakeUp.view.jsx'
 import MyFormStepper from './components/MyFormFicha.jsx'
+import MainView from './view/Main.view.jsx'
 
 const router = createBrowserRouter(
   [
@@ -50,8 +51,8 @@ const router = createBrowserRouter(
           element: <HeaderSidebar />,
           children: [
             {
-              path: ''
-              // PONER LO QUE QUERAMOS
+              path: '',
+              element: <MainView />
             },
             {
               path: 'register',
