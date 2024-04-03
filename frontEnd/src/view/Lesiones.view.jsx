@@ -16,7 +16,7 @@ const LesionesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [editData, setEditData] = useState()
-  const { data } = useLesiones(lesionesFields)
+  const { data, atletas } = useLesiones(lesionesFields)
   const { formData, actions, errorState } = useMyFormHook(lesiones, lesionValidation, validationInputLesion, createLesion)
   console.log('data', data)
 
@@ -49,17 +49,17 @@ const LesionesView = () => {
         <MyForm fields={lesionesFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />
       </FormModal>
       <FormModal w='60%' isOpen={editOpenModal} onClose={closeEditModal}>
-        <EditForm data={editData} />
+        <EditForm data={editData} atletas={atletas} />
       </FormModal>
     </Stack>
   )
 }
 
-const EditForm = ({ data }) => {
+const EditForm = ({ data, atletas }) => {
   console.log('desde editForm', data)
   const { formData, actions, errorState } = useMyFormHook({}, lesionValidation, validationInputLesion, updateLesion, false, data.id)
   return (
-    <MyForm fields={lesionesEditFields(data)} formData={formData} actions={actions} title='EDICIÓN DE LESIONES' errorMessage={errorState} />
+    <MyForm fields={lesionesEditFields(data, atletas)} formData={formData} actions={actions} title='EDICIÓN DE LESIONES' errorMessage={errorState} />
   )
 }
 

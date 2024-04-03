@@ -157,11 +157,11 @@ const HeaderSidebar = () => {
                 {
                   key: '9.4',
                   label: <NavLink to='/private/estadisticas/fielding'>Fielding</NavLink>
-                },
-                {
-                  key: '9.5',
-                  label: <NavLink to='/private/estadisticas/makeup'>Make up</NavLink>
                 }
+                // {
+                //   key: '9.5',
+                //   label: <NavLink to='/private/estadisticas/makeup'>Make up</NavLink>
+                // }
               ]
             },
             {

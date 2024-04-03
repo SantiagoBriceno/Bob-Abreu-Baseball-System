@@ -42,6 +42,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
   const handleDelete = (e) => {
     const index = e.target.id.split('%')[1]
     setDeleteData(index)
+    window.location.reload()
   }
 
   const searcher = (e) => {
@@ -84,7 +85,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
                 </Tr>
               </Thead>
               <Tbody>
-                {data
+                {data && results.length > 0
                   ? results.map((row, i) => (
                     <Tr
                       className='table-row'

@@ -35,6 +35,7 @@ export const lesionesFields = [
           label: 'Cédula del atleta',
           name: 'cedula',
           type: 'select',
+          placeholder: 'Cédula del atleta...',
           required: true,
           id: 'id_atleta',
           opt: []
@@ -107,6 +108,7 @@ export const usuarioRegisterFields = [
           label: 'Rol',
           name: 'rol',
           type: 'select',
+          placeholder: 'Selecciona el rol',
           required: true,
           id: 'rol',
           opt: [
@@ -159,6 +161,7 @@ export const usuarioEditFields = (placeholders) => {
             label: 'Rol',
             name: 'rol',
             type: 'select',
+            placeholder: 'Selecciona el rol',
             required: true,
             id: 'rol',
             opt: [
@@ -348,7 +351,7 @@ export const atletaEditFields = (placeholders) => {
   ]
 }
 
-export const lesionesEditFields = (placeholders) => {
+export const lesionesEditFields = (placeholders, atletas) => {
   return [
     {
       title: 'Lesiones',
@@ -360,7 +363,10 @@ export const lesionesEditFields = (placeholders) => {
             type: 'select',
             required: true,
             id: 'id_atleta',
-            opt: [{ value: placeholders.id_atleta, label: placeholders.nombre }]
+            placeholder: placeholders.cedula,
+            opt: atletas.map((atleta) => {
+              return { value: atleta.cedula, label: atleta.nombre }
+            })
           },
           {
             label: 'Fecha de la lesión',
@@ -782,6 +788,7 @@ export const representanteFields = [
           label: 'Sexo',
           name: 'sexo',
           type: 'select',
+          placeholder: 'Selecciona el sexo...',
           required: true,
           id: 'sexo',
           opt: [{
@@ -806,6 +813,104 @@ export const representanteFields = [
   }
 
 ]
+
+export const representanteEditFields = (placeholders) => {
+  return [
+    {
+      campos: [
+        [
+          {
+            label: 'Cédula',
+            name: 'cedula',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.cedula,
+            id: 'cedula'
+          },
+          {
+            label: 'Nombre',
+            name: 'nombre',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.nombre,
+            id: 'nombre'
+          },
+          {
+            label: 'Cédula del atleta',
+            name: 'cedula_atleta',
+            type: 'select',
+            required: true,
+            placeholder: placeholders.cedula_atleta,
+            id: 'cedula_atleta',
+            opt: []
+          }
+        ],
+        [
+          {
+            label: 'Teléfono',
+            name: 'tlf',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.tlf,
+            id: 'tlf'
+          }, {
+            label: 'RIF',
+            name: 'rif',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.rif,
+            id: 'rif'
+          }
+        ],
+        [{
+          label: 'Correo Electronico',
+          name: 'correo',
+          type: 'text',
+          required: true,
+          placeholder: placeholders.correo,
+          id: 'correo'
+        }],
+        [
+
+          {
+            label: 'Dirección',
+            name: 'direccion',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.direccion,
+            id: 'direccion'
+          }
+        ],
+        [
+          {
+            label: 'Sexo',
+            name: 'sexo',
+            type: 'select',
+            placeholder: 'Selecciona el sexo...',
+            required: true,
+            id: 'sexo',
+            opt: [{
+              value: 'M',
+              label: 'Masculino'
+            },
+            {
+              value: 'F',
+              label: 'Femenino'
+            }]
+          },
+          {
+            label: 'Estatura',
+            name: 'estatura',
+            type: 'text',
+            required: true,
+            placeholder: placeholders.estatura,
+            id: 'estatura'
+          }
+        ]
+      ]
+    }
+  ]
+}
 
 // NO ESTA TERMINADO
 export const registroEspecialFields = [
@@ -851,7 +956,7 @@ export const registroEspecialFields = [
   }
 ]
 
-export const registroEspecialEditFields = (placeholders) => {
+export const registroEspecialEditFields = (placeholders, atletas) => {
   return [
     {
       title: '',
@@ -863,11 +968,11 @@ export const registroEspecialEditFields = (placeholders) => {
             name: 'cedula',
             type: 'select',
             required: true,
-            placeholder: placeholders.cedula,
+            placeholder: placeholders.nombre,
             id: 'cedula',
-            opt: [
-              { value: placeholders.cedula, label: placeholders.nombre }
-            ]
+            opt: atletas.map((atleta) => {
+              return { value: atleta.cedula, label: atleta.nombre }
+            })
           },
           {
             label: 'Fecha',

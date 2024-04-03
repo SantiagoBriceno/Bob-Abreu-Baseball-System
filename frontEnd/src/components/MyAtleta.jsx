@@ -184,6 +184,11 @@ export const MyAtletaRegistrosEspeciales = ({ data }) => {
 export const MyAtletaEstadisticas = ({ data }) => {
   console.log(data)
   const { hitting, running, throwing, fielding, handleOpenFielding, handleOpenHitting, handleOpenRunning, handleOpenThrowing, openFielding, openHitting, openRunning, openThrowing } = useEstadisticas({ data })
+  const [isOpen, setIsOpen] = useState(false)
+  const [registerForm, setRegister] = useState()
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen)
+  }
   return (
     <Stack boxShadow='xl' p={8} bg='white' w='100%' h='100%' rounded='10px'>
       <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Información relevante</Heading>
@@ -236,7 +241,7 @@ export const MyAtletaEstadisticas = ({ data }) => {
           </List>
 
           <FormModal isOpen={openHitting} onClose={handleOpenHitting}>
-            <MostrarStats stats={hitting.value} rows={hittingColumns}>
+            <MostrarStats id={0} setOpenModal={handleOpenHitting} setRegister={setIsOpen} stats={hitting.value} rows={hittingColumns} setRegisterForm={setRegister}>
               <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Hitting Stats</Heading>
             </MostrarStats>
           </FormModal>
@@ -259,7 +264,7 @@ export const MyAtletaEstadisticas = ({ data }) => {
           </List>
 
           <FormModal isOpen={openRunning} onClose={handleOpenRunning}>
-            <MostrarStats stats={running.value} rows={runningColumns}>
+            <MostrarStats setRegisterForm={setRegister} id={1} stats={running.value} setOpenModal={handleOpenRunning} setRegister={setIsOpen} rows={runningColumns}>
               <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Running Stats</Heading>
             </MostrarStats>
           </FormModal>
@@ -291,7 +296,7 @@ export const MyAtletaEstadisticas = ({ data }) => {
           </List>
 
           <FormModal isOpen={openThrowing} onClose={handleOpenThrowing}>
-            <MostrarStats stats={throwing.value} rows={throwingColumns}>
+            <MostrarStats setRegisterForm={setRegister} id={2} stats={throwing.value} rows={throwingColumns} setOpenModal={handleOpenThrowing} setRegister={setIsOpen}>
               <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Throwing Stats</Heading>
             </MostrarStats>
           </FormModal>
@@ -326,10 +331,37 @@ export const MyAtletaEstadisticas = ({ data }) => {
             </ListItem>
           </List>
           <FormModal isOpen={openFielding} onClose={handleOpenFielding}>
-            <MostrarStats stats={fielding.value} rows={fieldingColumns}>
+            <MostrarStats setRegisterForm={setRegister} setOpenModal={handleOpenFielding} setRegister={setIsOpen} id={3} stats={fielding.value} rows={fieldingColumns}>
               <Heading fontSize='2xl' fontWeight='800' textAlign='center'>Fielding Stats</Heading>
             </MostrarStats>
           </FormModal>
+
+          {/* MODAL PARA REGISTRAR LA STAT QUE SE LE DE CLICK */}
+
+          <FormModal w='60%' isOpen={isOpen} onClose={handleIsOpen}>
+            {registerForm}
+          </FormModal>
+
+          {/* fielding
+          <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+            <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+          </FormModal>
+
+           Hitting
+          <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+            <MyForm fields={hittingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+          </FormModal>
+
+           Running
+          <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+            <MyForm fields={runningFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+          </FormModal>
+
+          {/* Throwing
+
+          <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
+            <MyForm fields={throwingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+          </FormModal> */}
 
         </SimpleGrid>
       </Stack>
@@ -339,9 +371,15 @@ export const MyAtletaEstadisticas = ({ data }) => {
   )
 }
 
-const MostrarStats = ({ stats, rows, children }) => {
+const MostrarStats = ({ stats, rows, setRegister, children, setOpenModal, id, setRegisterForm }) => {
   console.log('stats: ', stats)
   console.log('rows: ', rows)
+  const handleClick = (e) => {
+    e.preventDefault()
+    setRegisterForm(id)
+    setOpenModal(false)
+    setRegister(true)
+  }
   return (
     <> {stats
       ? (
@@ -359,7 +397,7 @@ const MostrarStats = ({ stats, rows, children }) => {
                 ))}
               </List>
             </SimpleGrid>
-            <Button>Nuevo Registro</Button>
+            <Button id={id} onClick={handleClick}>Nuevo Registro</Button>
           </Stack>
 
         </>
@@ -368,7 +406,7 @@ const MostrarStats = ({ stats, rows, children }) => {
         <>
           {children}
           <Text>No hay datos</Text>
-          <Button>Nuevo Registro</Button>
+          <Button id={id} onClick={handleClick}>Nuevo Registro</Button>
         </>
         )}
 

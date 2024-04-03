@@ -260,7 +260,7 @@ export const createAtleta = async (req, res) => {
     const id_auditoria = await postAuditoria({ entity: 'atleta', user: req.user, body: atleta })
     atleta.id_auditoria = id_auditoria
     const data = await service.createAtleta(atleta)
-    res.status(201).json(data)
+    res.status(201).json({ message: 'Atleta creado exitosamente', data })
   } catch (error) {
     console.log('error', error)
     res.status(500).json(error)
@@ -277,7 +277,7 @@ export const updateAtleta = async (req, res) => {
       const id_auditoria = await patchAuditoria({ entity: 'atleta', user: req.user, body: atleta, id })
       atleta.id_auditoria = id_auditoria
       const data = await service.updateAtleta(id, atleta)
-      res.status(200).json(data)
+      res.status(200).json({ message: 'Atleta actualizado exitosamente', data })
     }
   } catch (error) {
     res.status(500).json(error)
@@ -293,7 +293,7 @@ export const deleteAtleta = async (req, res) => {
     }
     const data = await service.deleteAtleta(id)
     await deleteAuditoria({ entity: 'atleta', user: req.user, body: data, id })
-    res.status(200).json(data)
+    res.status(200).json({ message: 'Atleta eliminado exitosamente', data })
   } catch (error) {
     res.status(500).json(error)
   }

@@ -16,7 +16,7 @@ const RegistrosEspecialesView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [editData, setEditData] = useState()
-  const { data } = useRegistroEspecial(registroEspecialFields)
+  const { data, atletas } = useRegistroEspecial(registroEspecialFields)
   const { formData, actions, errorState } = useMyFormHook(registroEspecial, registrosEspecialesValidation, validationInputRegistroEspecial, createRegistroEspecial)
 
   const closeModal = () => {
@@ -47,16 +47,16 @@ const RegistrosEspecialesView = () => {
         <MyForm fields={registroEspecialFields} formData={formData} actions={actions} title='REGISTROS ESPECIALES' errorMessage={errorState} />
       </FormModal>
       <FormModal w='60%' isOpen={editOpenModal} onClose={closeEditModal}>
-        <EditForm data={editData} />
+        <EditForm data={editData} atletas={atletas} />
       </FormModal>
     </Stack>
   )
 }
 
-const EditForm = ({ data }) => {
+const EditForm = ({ data, atletas }) => {
   const { actions, errorState, formData } = useMyFormHook({}, registrosEspecialesValidation, validationInputRegistroEspecial, updateRegistroEspecial, false, data.id)
   return (
-    <MyForm fields={registroEspecialEditFields(data)} formData={formData} actions={actions} errorMessage={errorState} />
+    <MyForm title='EDICIÓN DE REGISTROS ESPECIALES' fields={registroEspecialEditFields(data, atletas)} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }
 

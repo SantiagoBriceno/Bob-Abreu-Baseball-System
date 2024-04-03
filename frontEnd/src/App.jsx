@@ -50,6 +50,10 @@ const router = createBrowserRouter(
           element: <HeaderSidebar />,
           children: [
             {
+              path: ''
+              // PONER LO QUE QUERAMOS
+            },
+            {
               path: 'register',
               element: <RegisterView />
             },

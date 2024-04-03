@@ -127,7 +127,7 @@ export const createFichaAntropometrica = async (req, res) => {
 
       ficha_antropometrica.id_auditoria = id_auditoria
       const newFichaAntropometrica = await service.createFichaAntropometrica(ficha_antropometrica)
-      res.status(201).json(newFichaAntropometrica)
+      res.status(201).json({ newFichaAntropometrica, message: 'Ficha antropometrica creada exitosamente' })
     } catch (error) {
       console.log(error)
       res.status(500).json({ message: error.message })

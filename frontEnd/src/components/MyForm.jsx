@@ -40,6 +40,7 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                         id={c.id}
                         onChange={actions.handleChange}
                         value={formData[c.id]}
+                        placeholder={c.placeholder}
                       />
                     : (c.type === 'textarea'
                         ? <MyTextArea

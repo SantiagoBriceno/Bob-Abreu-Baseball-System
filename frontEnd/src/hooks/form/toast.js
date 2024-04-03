@@ -25,7 +25,7 @@ export const MyToast = ({ toast, title, description, status }) => {
     title,
     description,
     status,
-    duration: 6000,
+    duration: 3000,
     isClosable: true,
     position: 'top-right',
     onCloseComplete: status === 'success' ? () => window.location.reload() : () => {}
