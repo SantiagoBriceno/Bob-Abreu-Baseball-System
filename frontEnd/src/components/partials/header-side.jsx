@@ -140,7 +140,7 @@ const HeaderSidebar = () => {
             {
               key: '9',
               icon: <VideoCameraOutlined />,
-              label: <NavLink to='/private/estadisticas'>Estadísticas</NavLink>,
+              label: <NavLink to='/private/estadisticas/hitting'>Estadísticas</NavLink>,
               children: [
                 {
                   key: '9.1',

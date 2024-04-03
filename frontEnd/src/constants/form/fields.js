@@ -1009,10 +1009,11 @@ export const hittingFields = [
         {
           label: 'Cédula del atleta',
           name: 'cedula',
-          type: 'text',
+          type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'id_atleta'
+          id: 'id_atleta',
+          opt: []
         }
       ],
       [
@@ -1191,10 +1192,11 @@ export const throwingFields = [
         {
           label: 'Cédula del atleta',
           name: 'cedula',
-          type: 'text',
+          type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'id_atleta'
+          id: 'id_atleta',
+          opt: []
         }
       ],
       [
@@ -1393,10 +1395,11 @@ export const fieldingFields = [
         {
           label: 'Cédula del atleta',
           name: 'cedula',
-          type: 'text',
+          type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'id_atleta'
+          id: 'id_atleta',
+          opt: []
         }
       ],
       [
@@ -1575,10 +1578,11 @@ export const runningFields = [
         {
           label: 'Cédula del atleta',
           name: 'cedula',
-          type: 'text',
+          type: 'select',
           required: true,
           placeholder: 'Cédula del atleta...',
-          id: 'id_atleta'
+          id: 'id_atleta',
+          opt: []
         }
       ],
       [

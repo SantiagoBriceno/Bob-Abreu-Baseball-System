@@ -16,7 +16,7 @@ const HittingView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [editData, setEditData] = useState()
-  const { data } = useFielding()
+  const { data } = useFielding(fieldingFields)
   const { formData, actions, errorState } = useMyFormHook(fielding, fieldingValidation, validationInputFielding, createFielding)
   console.log('data', data)
 
@@ -26,11 +26,6 @@ const HittingView = () => {
 
   const openModal = () => {
     setIsOpen(true)
-  }
-
-  const openEditModal = () => {
-    console.log('editData', editData)
-    setEditOpenModal(true)
   }
 
   const closeEditModal = () => {
@@ -46,7 +41,7 @@ const HittingView = () => {
         <MyTable datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action setVisualizable />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
-        <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />
+        <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE FIELDING' errorMessage={errorState} />
       </FormModal>
       <FormModal w='60%' isOpen={editOpenModal} onClose={closeEditModal}>
         <EditForm data={editData} />

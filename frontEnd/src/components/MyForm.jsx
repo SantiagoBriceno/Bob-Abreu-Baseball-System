@@ -77,6 +77,7 @@ const FormContent = ({ fields, formData, actions, errorMessage }) => {
                                 onChange={actions.handleChange}
                                 value={c.type === 'file' ? null : formData[c.id]}
                                 onBlur={actions.handleBlur}
+                                disabled={c.disabled}
                               />))}
                 </MyFormControl>
               ))}

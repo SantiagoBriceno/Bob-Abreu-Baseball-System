@@ -50,7 +50,11 @@ export const updateLesion = async (req, res) => {
     const id_auditoria = await patchAuditoria({ entity: 'lesiones', user: req.user, body: req.body, id: req.params.id })
     req.body.id_auditoria = id_auditoria
     const data = await service.updateLesion(req.params.id, req.body)
-    res.status(200).send(data)
+    res.status(200).json({
+      message: 'Lesion actualizada exitosamente',
+      data
+
+    })
   } catch (error) {
     console.log('error desde el controlador: ', error)
     res.status(500).send({ message: error.message })

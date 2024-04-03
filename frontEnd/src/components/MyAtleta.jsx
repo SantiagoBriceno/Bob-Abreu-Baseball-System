@@ -1,4 +1,4 @@
-import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Tooltip as CTooltip, Image, Divider, SimpleGrid, List, ListItem, Button } from '@chakra-ui/react'
+import { HStack, Stack, Box, Text, Heading, useDisclosure, Collapse, IconButton, Tooltip as CTooltip, Image, Divider, SimpleGrid, List, ListItem, Button, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogBody, AlertDialogFooter, AlertDialogHeader } from '@chakra-ui/react'
 import { AddIcon, ChevronDownIcon, ChevronUpIcon, DownloadIcon, DeleteIcon, EditIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
@@ -7,12 +7,12 @@ import { runningPrediction } from '../service/running.prediction'
 import { hittingPrediction } from '../service/hitting.prediction'
 import { useAntropometria } from '../hooks/useMedidasAntropometricas'
 import { useEstadisticas } from '../hooks/useEstadisticas'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import FormModal from './modals/FormModal'
 import { Link } from 'react-router-dom'
 import { useMyFormHook } from '../hooks/form/useMyFormHook'
 import MyForm from './MyForm'
-import { updateAtleta, getAtletaByIdReport } from '../service/atletas.js'
+import { updateAtleta, getAtletaByIdReport, deleteAtleta } from '../service/atletas.js'
 import { createFielding } from '../service/fielding.js'
 import { createHitting } from '../service/hitting.js'
 import { createRunning } from '../service/running.js'
@@ -25,22 +25,25 @@ import { generateDD } from '../constants/pdfMakeTemplate.js'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
-import { hitting, fielding, throwing, running } from '../../../global.constants.js'
+const FormRegister = ({ fields, entity, validationMethods, validationInputs, onSubmitMethod, title, atleta }) => {
+  fields[0].campos[0][0].type = 'text'
+  fields[0].campos[0][0].placeholder = atleta.nombre
+  fields[0].campos[0][0].disabled = true
 
-const FormRegister = ({ fields, entity, validationMethods, validationInputs, onSubmitMethod, title }) => {
-  const { actions, errorState, formData } = useMyFormHook(entity, validationMethods, validationInputs, onSubmitMethod, true)
+  const { actions, errorState, formData } = useMyFormHook(entity, validationMethods, validationInputs, onSubmitMethod, false)
+  formData.id_atleta = atleta.cedula
   return (
     <MyForm fields={fields} title={title} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }
 
 export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
-  const [isOpen, setisOpen] = useState(false)
+  const [isOpenRegistroEspecial, setisOpen] = useState(false)
   const [isOpenEditAtleta, setIsOpenEditAtleta] = useState(false)
   const [generateReport, setGenerateReport] = useState(false)
   const [reportData, setReportData] = useState()
   const handleisOpen = () => {
-    setisOpen(!isOpen)
+    setisOpen(!isOpenRegistroEspecial)
   }
   const handleIsOpenEditAtleta = () => {
     setIsOpenEditAtleta(!isOpenEditAtleta)
@@ -62,6 +65,10 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
       setGenerateReport(false)
     }
   }, [reportData])
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const cancelRef = useRef()
 
   return (
     <>
@@ -137,10 +144,38 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           </CTooltip>
 
           {data &&
-            <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
-              <IconButton variant='ghost' icon={<DeleteIcon />} />
-            </CTooltip>}
+            <>
+              <CTooltip hasArrow label='borrar Atleta' aria-label='A tooltip'>
+                <IconButton onClick={onOpen} variant='ghost' icon={<DeleteIcon />} />
 
+              </CTooltip>
+              <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
+                <AlertDialogOverlay>
+                  <AlertDialogContent>
+                    <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                      Borrar Atleta
+                    </AlertDialogHeader>
+
+                    <AlertDialogBody>
+                      ¿Está seguro de que desea borrar este atleta?
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                      <Button onClick={onClose}>Cancelar</Button>
+                      <Button
+                        ml={3}
+                        ref={cancelRef}
+                        colorScheme='red' onClick={() => {
+                          deleteAtleta(data[0].cedula)
+                          onClose()
+                          window.location.href = '/private/atletas'
+                        }}
+                      >Borrar
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialogOverlay>
+              </AlertDialog>
+            </>}
           {data &&
             <CTooltip hasArrow label='Generar reporte' aria-label='A tooltip'>
               <IconButton
@@ -152,7 +187,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
         </SimpleGrid>
 
       </Stack>
-      <FormModal isOpen={isOpen} onClose={handleisOpen}>
+      <FormModal isOpen={isOpenRegistroEspecial} onClose={handleisOpen}>
         <MyAtletaRegistrosEspeciales data={registrosEspeciales} />
       </FormModal>
       <FormModal isOpen={isOpenEditAtleta} onClose={handleIsOpenEditAtleta}>
@@ -194,8 +229,8 @@ export const MyAtletaRegistrosEspeciales = ({ data }) => {
   )
 }
 
-export const MyAtletaEstadisticas = ({ data }) => {
-  console.log(data)
+export const MyAtletaEstadisticas = ({ data, nombre }) => {
+  console.log('desde stats,', data)
   const { hitting, running, throwing, fielding, handleOpenFielding, handleOpenHitting, handleOpenRunning, handleOpenThrowing, openFielding, openHitting, openRunning, openThrowing } = useEstadisticas({ data })
   const [isOpen, setIsOpen] = useState(false)
   const [registerForm, setRegister] = useState()
@@ -351,17 +386,18 @@ export const MyAtletaEstadisticas = ({ data }) => {
 
           {/* MODAL PARA REGISTRAR LA STAT QUE SE LE DE CLICK */}
 
-          <FormModal w='60%' isOpen={isOpen} onClose={handleIsOpen}>
-            {registerForm === 0
-              ? <FormRegister fields={hittingFields} entity={hitting} validationMethods={hittingValidation} validationInputs={validationInputHitting} onSubmitMethod={createHitting} title='Registro de estadísticas de bateo' />
-              : registerForm === 1
-                ? <FormRegister fields={runningFields} entity={running} validationMethods={runningValidation} validationInputs={validationInputRunning} onSubmitMethod={createRunning} title='Registro de estadísticas de running' />
-                : registerForm === 2
-                  ? <FormRegister fields={throwingFields} entity={throwing} validationMethods={throwingValidation} validationInputs={validationInputThrowing} onSubmitMethod={createThrowing} title='Registro de estadísticas de lanzamiento' />
-                  : registerForm === 3
-                    ? <FormRegister fields={fieldingFields} entity={fielding} validationMethods={fieldingValidation} validationInputs={validationInputFielding} onSubmitMethod={createFielding} title='Registro de estadísticas de fielding' />
-                    : null}
-          </FormModal>
+          {data &&
+            <FormModal w='60%' isOpen={isOpen} onClose={handleIsOpen}>
+              {registerForm === 0
+                ? <FormRegister fields={hittingFields} entity={hitting} validationMethods={hittingValidation} validationInputs={validationInputHitting} onSubmitMethod={createHitting} title='Registro de estadísticas de bateo' atleta={nombre} />
+                : registerForm === 1
+                  ? <FormRegister fields={runningFields} entity={running} validationMethods={runningValidation} validationInputs={validationInputRunning} onSubmitMethod={createRunning} title='Registro de estadísticas de running' atleta={nombre} />
+                  : registerForm === 2
+                    ? <FormRegister fields={throwingFields} entity={throwing} validationMethods={throwingValidation} validationInputs={validationInputThrowing} onSubmitMethod={createThrowing} title='Registro de estadísticas de lanzamiento' atleta={nombre} />
+                    : registerForm === 3
+                      ? <FormRegister fields={fieldingFields} entity={fielding} validationMethods={fieldingValidation} validationInputs={validationInputFielding} onSubmitMethod={createFielding} title='Registro de estadísticas de fielding' atleta={nombre} />
+                      : null}
+            </FormModal>}
 
           {/* fielding
           <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
@@ -692,6 +728,6 @@ const EditForm = ({ data }) => {
   console.log('data desde editForm', data)
   const { actions, errorState, formData } = useMyFormHook({}, representanteValidation, validationInputAtleta, updateAtleta, false, data[0].cedula)
   return (
-    <MyForm fields={atletaEditFields(data[0])} formData={formData} actions={actions} errorMessage={errorState} />
+    <MyForm title='Editar atleta' fields={atletaEditFields(data[0])} formData={formData} actions={actions} errorMessage={errorState} />
   )
 }

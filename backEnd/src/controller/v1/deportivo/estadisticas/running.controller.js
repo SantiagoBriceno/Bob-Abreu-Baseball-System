@@ -6,10 +6,15 @@ import { running } from '../../../../utils/entities/main.js'
 export const getRunningStats = async (req, res) => {
   try {
     const runningStats = await service.getRunningStats()
+    runningStats.map((runningStat) => {
+      runningStat.fecha_evaluacion = new Date(runningStat.fecha_evaluacion).toISOString().split('T')[0]
+      return null
+    })
+    const atletas = await service.getAtletasInfo()
     if (runningStats.length === 0) {
-      res.status(404).json({ message: 'No running stats found' })
+      res.status(404).json({ message: 'No running stats found', atletas })
     } else {
-      res.status(200).json(runningStats)
+      res.status(200).json({ runningStats, atletas })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })

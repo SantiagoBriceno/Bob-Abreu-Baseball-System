@@ -57,7 +57,11 @@ export const updateRepresentante = async (req, res) => {
       const id_auditoria = await patchAuditoria({ entity: 'representante', user: req.user, body: representante, id })
       representante.id_auditoria = id_auditoria
       const data = await service.updateRepresentante(id, representante)
-      res.status(200).json(data)
+      res.status(200).json({
+        message: 'Representante actualizado exitosamente',
+        data
+
+      })
     } else {
       res.status(400).json({ message: 'Representante no existe' })
     }

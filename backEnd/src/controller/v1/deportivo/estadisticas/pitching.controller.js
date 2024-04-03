@@ -6,11 +6,20 @@ import { pitching } from '../../../../utils/entities/main.js'
 
 export const getPitchingStats = async (req, res) => {
   try {
+    const atletas = await service.getAtletasInfo()
     const pitchingStats = await service.getPitchingStats()
+    pitchingStats.map((pitchingStat) => {
+      pitchingStat.fecha_evaluacion = new Date(pitchingStat.fecha_evaluacion).toISOString().split('T')[0]
+      return null
+    })
     if (pitchingStats.length === 0) {
       res.status(404).json({ message: 'No pitching stats found' })
     } else {
-      res.status(200).json(pitchingStats)
+      res.status(200).json({
+        pitchingStats,
+        atletas
+
+      })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
