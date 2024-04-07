@@ -31,13 +31,13 @@ const FichaView = () => {
                   <MyFichaDisplayInfo columns={datosFichaColumns} data={data.datosFicha} />}
               </Stack>
             </Box>
-            <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
+            {/* <Box boxShadow='xl' bg='white' w='100%' h='fit-content' rounded='10px' p={4}>
               <Stack>
                 <Heading pb={4} pl={4}>PERFILES FOTOGRÁFICOS</Heading>
-                {/* {data.datosGenerales &&
-                  <MyFichaDisplayHalf columns={datosGeneralesColumns} data={data.datosGenerales} />} */}
+                data.datosGenerales &&
+                  <MyFichaDisplayHalf columns={datosGeneralesColumns} data={data.datosGenerales} />
               </Stack>
-            </Box>
+            </Box> */}
           </VStack>
           <VStack h='fit-content' w='60%' gap={10}>
             <Box boxShadow='xl' bg='white' w='100%' h='100%' rounded='10px' p={4}>

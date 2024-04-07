@@ -127,13 +127,13 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
           </SimpleGrid>
         </Box>
         <Divider />
-        <Heading fontSize='md' fontWeight='700'>Perfiles Fotográficos</Heading>
+        {/* <Heading fontSize='md' fontWeight='700'>Perfiles Fotográficos</Heading>
         <Box mb={2} bg='gray.100' p={2} rounded='xl' w='100%' h='fit-content'>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <Button variant='link' colorScheme='blue'>Perfiles</Button>
             <Button variant='link' colorScheme='blue'>...</Button>
           </SimpleGrid>
-        </Box>
+        </Box> */}
 
         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
 

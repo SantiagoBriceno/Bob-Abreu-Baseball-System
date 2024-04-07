@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 
 export const useLineChart = (info, param, title, index) => {
   const [data, setData] = useState()
+  info.x.map((fecha, index) => {
+    info.x[index] = info.x[index].split('T')[0]
+    return null
+  })
   const options = {
     responsive: true,
     plugins: {

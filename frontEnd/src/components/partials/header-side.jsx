@@ -183,17 +183,17 @@ const HeaderSidebar = () => {
               key: '6',
               icon: <UserOutlined />,
               label: <NavLink to='/private/lesiones'>Lesiones</NavLink>
+            },
+            {
+              key: '7',
+              icon: <UserOutlined />,
+              label: <NavLink to='/private/running'>Running</NavLink>
+            },
+            {
+              key: '8',
+              icon: <UserOutlined />,
+              label: <NavLink to='/private/hitting'>Hitting</NavLink>
             }
-            // {
-            //   key: '7',
-            //   icon: <UserOutlined />,
-            //   label: <NavLink to='/private/running'>Running</NavLink>
-            // },
-            // {
-            //   key: '8',
-            //   icon: <UserOutlined />,
-            //   label: <NavLink to='/private/hitting'>Hitting</NavLink>
-            // }
 
           ]}
         />
