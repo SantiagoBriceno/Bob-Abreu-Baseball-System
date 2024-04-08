@@ -12,6 +12,12 @@ export const getFichaDataById = async (id) => {
   return data
 }
 
+export const getFichaImg = async (id) => {
+  const response = await fetch(RUTA_ANTROPOMETRIA + '/img/public/' + id)
+  const data = await response
+  return data
+}
+
 export const createFicha = async (data) => {
   const response = await fetch(RUTA_ANTROPOMETRIA_POST, {
     method: 'POST',

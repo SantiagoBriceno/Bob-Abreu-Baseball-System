@@ -82,7 +82,7 @@ export const generateDD = ({ athleteData }) => {
         columns: [
           [
             {
-              text: 'Name:',
+              text: 'Nombre:',
               style: 'fieldLabel'
             },
             {
@@ -107,7 +107,7 @@ export const generateDD = ({ athleteData }) => {
         columns: [
           [
             {
-              text: 'Cedula:',
+              text: 'Cédula:',
               style: 'fieldLabel'
             },
             {
@@ -284,7 +284,7 @@ export const generateDD = ({ athleteData }) => {
       },
       {
         table: {
-          widths: ['*', '*', '*'],
+          widths: [150, '*', 70],
           body: [
             [{
               text: 'Estadistica',
@@ -298,7 +298,7 @@ export const generateDD = ({ athleteData }) => {
               text: 'Descripción',
               style: 'tableHeader'
             }],
-            ...stats.map((stat) => stat.value > 0 ? [stat.name, stat.value, stat.descripcion] : ['No data', 'No data', 'No data'])
+            ...stats.map((stat) => stat.value > 0 ? [{ text: stat.name, style: 'tableName', verticalAlignment: 'middle' }, { text: stat.descripcion, style: 'tableDescription', verticalAlignment: 'middle' }, { text: stat.value, style: 'tableValue', verticalAlignment: 'middle' }] : ['No data', 'No data', 'No data'])
           ]
         }
       }
@@ -333,6 +333,19 @@ export const generateDD = ({ athleteData }) => {
         fontSize: 13,
         color: 'white',
         fillColor: '#19284c'
+      },
+      tableName: {
+        fontSize: 12,
+        bold: true
+      },
+      tableValue: {
+        fontSize: 12,
+        bold: false,
+        alignment: 'center'
+      },
+      tableDescription: {
+        fontSize: 12,
+        bold: false
       },
       fieldLabel: {
         fontSize: 12,

@@ -38,13 +38,16 @@ const getFichaAntropometricaById = async (id) => {
   const [perimetros] = await pool.query(`SELECT ${PERIMETROS_ROWS} FROM perimetros_corporales WHERE perimetros_corporales.id_ficha = ?`, [id])
   const [icc] = await pool.query(`SELECT ${ICC_ROWS} FROM indice_cintura_cadera WHERE indice_cintura_cadera.id_ficha = ?`, [id])
   const [imc] = await pool.query(`SELECT ${IMC_ROWS} FROM indice_masa_corporal WHERE indice_masa_corporal.id_ficha = ?`, [id])
+
+  const [perfiles] = await pool.query('SELECT * FROM perfiles_fotograficos WHERE id_ficha = ?', [id])
   const response = {
     id_ficha: basic[0].id_ficha,
     cedula: basic[0].id_atleta,
     datos_general: general[0],
     perimetros_corporales: perimetros[0],
     indice_cintura_cadera: icc[0],
-    indice_masa_corporal: imc[0]
+    indice_masa_corporal: imc[0],
+    perfiles_fotograficos: perfiles[0]
   }
   return response
 }
@@ -201,6 +204,11 @@ const createPerfiles = async (data) => {
   return response
 }
 
+const getPerfilesByIdFicha = async (id) => {
+  const [response] = await pool.query('SELECT * FROM perfiles_fotograficos WHERE id_ficha = ?', [id])
+  return response
+}
+
 export default {
   nextId,
   getGeneralDataOfFicha,
@@ -230,5 +238,6 @@ export default {
   getIMCByIdAtleta,
   createIMC,
   createPerfiles,
-  getFichaAntropometricaByIdAtleta
+  getFichaAntropometricaByIdAtleta,
+  getPerfilesByIdFicha
 }

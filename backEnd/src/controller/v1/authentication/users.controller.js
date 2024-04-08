@@ -4,11 +4,11 @@ import { isValidUser, existUsername } from '../../../utils/formats/user.js'
 
 export const createUser = async (req, res) => {
   const { body } = req
-  const { username, cedula, name, password, rol } = body
+  const { username, cedula, nombre, password, rol } = body
   const newUser = {
     cedula,
     username,
-    name,
+    name: nombre,
     password,
     rol
   }
@@ -23,7 +23,7 @@ export const createUser = async (req, res) => {
       try {
         newUser.password = await bcrypt.hash(password, 10)
         const user = await service.createUser(newUser)
-        res.status(201).json(user)
+        res.status(201).json({ user, message: 'usuario creado exitosamente' })
       } catch (error) {
         res.status(500).json(error)
       }

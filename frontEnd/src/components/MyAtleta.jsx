@@ -103,7 +103,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
                 <Text>{data[0].clase}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
-                <Text w='47%'>Lugar De Nacimiento</Text>
+                <Text w='50%'>Lugar de Nacimiento</Text>
                 <Text>{data[0].lugar_nacimiento}</Text>
               </ListItem>
             </List>

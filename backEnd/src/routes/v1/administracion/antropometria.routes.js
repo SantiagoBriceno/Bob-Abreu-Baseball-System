@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Router } from 'express'
+import express, { Router } from 'express'
 
 import { userExtractor } from '../../../middleware/userExtractor.js'
 
@@ -56,7 +56,7 @@ const multerUpload = multer({
 })
 
 const router = Router()
-
+router.use('/img/public', express.static(join(CURRENT_DIR, '../../../storage/atletas/fichas')))
 router.get('/ficha', getAllFichasAntropometricas)
 router.get('/g/ficha', getGeneralDataOfFicha)
 router.get('/g/ficha/:id', getAllDataOfFichaById)
