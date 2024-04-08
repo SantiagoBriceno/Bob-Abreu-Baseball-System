@@ -3,15 +3,6 @@ import { Stack, VStack, Divider, Heading, List, ListItem, Text, SimpleGrid, Box,
 import { useParams } from 'react-router-dom'
 import { useFichaData } from '../../hooks/view/useFichaData.js'
 // import MyTableFicha from '../../components/MyTableFicha.jsx'
-import { datosGeneralesColumns, datosFichaColumns, perimetrosCorporalesColumns, indiceCinturaCaderaColumns, indiceMasaCorporalColumns } from '../../constants/table/columns.js'
-
-const useFichaDataDivisor = (columns, data) => {
-  const half = Math.ceil(columns.length / 2)
-  const firstHalf = columns.slice(0, half)
-  const secondHalf = columns.slice(half, columns.length)
-
-  return { firstHalf, secondHalf }
-}
 
 const FichaView = () => {
   const { id_ficha } = useParams()
@@ -22,11 +13,11 @@ const FichaView = () => {
   return (
     <>
       {data &&
+
         <Stack direction='row' gap='1%'>
           <Stack boxShadow='xl' bg='white' rounded='15px' p={10} align='center' w='65%'>
             {data.datosFicha ? <MyFichaDatos data={data.datosFicha} /> : <Text>No hay datos</Text>}
             {data.perfiles ? <MyPerfilesFotograficos espalda={espalda} frontal={frontal} perfil={perfil} /> : <Text>No hay perfiles fotográficos</Text>}
-
           </Stack>
           <VStack rounded='10px' w='100%' h='100%' gap={4}>
             <Stack boxShadow='xl' bg='white' w='100%' h='33%' rounded='10px'>

@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
-  TeamOutlined,
-  VideoCameraOutlined
+  UserOutlined
 } from '@ant-design/icons'
 import {
   Flex, Spacer,
@@ -26,7 +24,7 @@ import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
 import { useSesionContext } from '../../context/SesionContext'
 import logo from '../../../public/assets/BobLogo.png'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import { ChevronDownIcon } from '@chakra-ui/icons'
 const { Header, Sider, Content } = Layout
@@ -196,8 +194,6 @@ const HeaderSidebar = () => {
           //   //   icon: <UserOutlined />,
           //   //   label: <NavLink to='/private/hitting'>Hitting</NavLink>
           //   // }
-
-          // ]}
         />
       </Sider>
       <Layout>
