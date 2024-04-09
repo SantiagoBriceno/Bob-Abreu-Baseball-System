@@ -24,6 +24,7 @@ const InfieldersView = () => {
   const openModal = () => {
     setIsOpen(true)
   }
+  const viewLink = '/private/atletas/atleta/'
 
   return (
     <Stack spacing={8} align='center'>
@@ -31,7 +32,7 @@ const InfieldersView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           INFIELDERS DE LA ACADEMIA
         </Heading>
-        <MyTable setVisualizable datatype='Agregar atleta' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

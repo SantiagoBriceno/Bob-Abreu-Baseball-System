@@ -16,6 +16,7 @@ const CatchersView = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { data } = useCatcher()
   console.log('data from veiew', data)
+  const viewLink = '/private/atletas/atleta/'
   const { formData, actions, errorState } = useMyFormHook(atleta, representanteValidation, validationInputAtleta, createAtleta)
 
   const closeModal = () => {
@@ -32,7 +33,7 @@ const CatchersView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           CATCHERS DE LA ACADEMIA
         </Heading>
-        <MyTable setVisualizable datatype='Agregar atleta' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />
