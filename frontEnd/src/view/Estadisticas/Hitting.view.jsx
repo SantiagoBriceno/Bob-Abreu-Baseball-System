@@ -36,6 +36,7 @@ const HittingView = () => {
   useEffect(() => {
     if (deleteData) {
       console.log('se hace el efecto')
+      console.log('deleteData', deleteData)
       deleteHitting(deleteData)
     }
   }

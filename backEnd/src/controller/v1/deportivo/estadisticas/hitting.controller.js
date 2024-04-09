@@ -93,8 +93,10 @@ export const updateHittingStat = async (req, res) => {
 
 export const deleteHittingStat = async (req, res) => {
   const { id } = req.params
+  console.log('deleteHittingStat')
   try {
     const ids = await service.getHittingStatsIds()
+    console.log(existStat(ids, id))
     if (existStat(ids, id)) {
       const deletedHittingStat = await service.deleteHittingStat(id)
       res.status(200).json(deletedHittingStat)
@@ -103,6 +105,7 @@ export const deleteHittingStat = async (req, res) => {
       res.status(404).json({ message: 'Hitting stat not found' })
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message })
   }
 }

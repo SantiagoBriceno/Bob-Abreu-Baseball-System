@@ -27,13 +27,17 @@ const CatchersView = () => {
     setIsOpen(true)
   }
 
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           CATCHERS DE LA ACADEMIA
         </Heading>
-        <MyTable viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable data={data} isDisabled={(rol !== 'administrativo' || rol !== 'gerente')} viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

@@ -97,6 +97,7 @@ const getPositionById = async (id) => {
 }
 
 const getAtletaByPosition = async (posicion) => {
+  console.log('posicion', posicion)
   const [data] = await pool.query('SELECT * FROM atleta WHERE posicion = ?', [posicion])
   return data
 }

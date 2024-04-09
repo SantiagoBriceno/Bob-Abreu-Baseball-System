@@ -33,6 +33,10 @@ const RepresentanteView = () => {
     setIsOpen(true)
   }
 
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
+
   useEffect(() => {
     if (deleteData) {
       console.log('se hace el efecto')
@@ -40,13 +44,15 @@ const RepresentanteView = () => {
     }
   }, [deleteData])
 
+  console.log((rol === 'administrativo' || rol === 'gerente'))
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           REPRESENTANTES
         </Heading>
-        <MyTable setDeleteData={setDeleteData} setEditData={setEditData} datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de representantes' />
+        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} setDeleteData={setDeleteData} setEditData={setEditData} datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTRO DE REPRESENTANTE' errorMessage={errorState} />

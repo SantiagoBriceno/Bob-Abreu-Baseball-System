@@ -50,8 +50,8 @@ router.get('/:id', getAtletaById, (req, res) => {
 })
 router.get('/report/pdf/:id', userExtractor, auth.adminPermission, getAtletaByIdReport)
 router.get('/all/position', userExtractor, auth.adminPermission, getAtletasClasifiedByPosition)
-router.get('/all/position/:position', userExtractor, auth.adminPermission, getAtletasByPosition)
-router.post('/', userExtractor, auth.adminPermission, multerUpload.single('foto'), createAtleta)
+router.get('/all/position/:position', userExtractor, getAtletasByPosition)
+router.post('/', userExtractor, multerUpload.single('foto'), createAtleta)
 router.patch('/:id', userExtractor, auth.adminPermission, updateAtleta)
 router.delete('/:id', userExtractor, auth.adminPermission, deleteAtleta)
 

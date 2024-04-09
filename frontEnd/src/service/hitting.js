@@ -57,6 +57,7 @@ export const updateHitting = async (id, hitting) => {
 }
 
 export const deleteHitting = async (id) => {
+  console.log('id', id)
   const response = await fetch(RUTA_HITTING + '/' + id, {
     method: 'DELETE',
     headers: {

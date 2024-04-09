@@ -42,8 +42,8 @@ const AvatarPanel = () => {
       justify='center'
       maxH='80px'
     >
-      <Container maxH='80px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ color: 'black', borderColor: 'transparent', border: 0 }}>
-        <Accordion alignContent='center' allowMultiple style={{ border: 0 }} mt={0} pt={0}>
+      <Container maxH='80px' zIndex='1000' bg='rgba(255,255,255,0.09)' color='black' alignItems='center' _expanded={{ color: 'black' }}>
+        <Accordion alignContent='center' allowMultiple>
           <AccordionItem
             _expanded={{ color: 'black' }}
           >
@@ -51,7 +51,7 @@ const AvatarPanel = () => {
               display='flex'
               alignItems='center'
               _expanded={{ color: 'black' }}
-              _hover={{ background: 'white', border: 0 }}
+              _hover={{ background: 'white' }}
             >
               <HStack gap={2}>
                 <Avatar color='#fff' name={username} />
@@ -98,8 +98,12 @@ const HeaderSidebar = () => {
     }}
     >
       <Sider width='fit-content' style={{ background: '#010440' }} trigger={null} collapsible collapsed={collapsed}>
-        <Center alignContent='center' justifyContent='center' textAlign='center' className='demo-logo-vertical'>
-          <Image fit='scale-down' boxSize='80px' src={logo} alt='logo' />
+        <Center
+          alignContent='center' justifyContent='center' textAlign='center' style={{
+            margin: '10px 0px'
+          }}
+        >
+          <Image fit='scale-down' boxSize='100px' src={logo} alt='logo' />
         </Center>
         <Menu
           theme='dark'

@@ -76,7 +76,7 @@ const MyFichaDatosGenerales = ({ data }) => {
       <Stack spacing={5} p={5}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Métricas de masa corporal</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Métricas de masa corporal</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Peso corporal</Text>
               <Text>{data.peso_corporal}</Text>
@@ -96,7 +96,7 @@ const MyFichaDatosGenerales = ({ data }) => {
           </List>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Valores nutricionales</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Valores nutricionales</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Percentil de peso</Text>
               <Text>{data.percentil_de_peso}</Text>
@@ -116,7 +116,7 @@ const MyFichaDatosGenerales = ({ data }) => {
           </List>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Métricas corporales</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Métricas corporales</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Percentil de talla</Text>
               <Text>{data.percentil_talla}</Text>
@@ -157,7 +157,7 @@ const MyFichaPerimetros = ({ data }) => {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Medidas del tren superior</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Medidas del tren superior</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Cabeza</Text>
               <Text>{data.cabeza}</Text>
@@ -177,7 +177,7 @@ const MyFichaPerimetros = ({ data }) => {
           </List>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Medidas de los brazos</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Medidas de los brazos</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Brazo contraído</Text>
               <Text>{data.brazo_contraido}</Text>
@@ -197,7 +197,7 @@ const MyFichaPerimetros = ({ data }) => {
           </List>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Medidas del tren inferior</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Medidas del tren inferior</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Pierna</Text>
               <Text>{data.pierna}</Text>
@@ -232,7 +232,7 @@ const MyFichaImcIcc = ({ imc, icc }) => {
       <Stack spacing={5} p={5}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Índice de Masa Corporal</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Índice de Masa Corporal</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Masa grasa corporal</Text>
               <Text>{imc.masa_grasa_corporal}</Text>
@@ -252,7 +252,7 @@ const MyFichaImcIcc = ({ imc, icc }) => {
           </List>
 
           <List textAlign='right' spacing={2}>
-            <ListItem textAlign='center'><Heading fontSize='sm'>Índice de Cintura Cadera</Heading></ListItem>
+            <ListItem textAlign='center'><Heading fontSize='lg'>Índice de Cintura Cadera</Heading></ListItem>
             <ListItem display='flex' gap='5'>
               <Text w='60%'>Cintura</Text>
               <Text>{icc.cintura}</Text>

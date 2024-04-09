@@ -95,3 +95,20 @@ export const updateFieldingStat = async (req, res, next) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const deleteFieldingStat = async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const ids = await service.getFieldingStatsIds()
+    if (existStat(ids, id)) {
+      await service.deleteFieldingStat(id)
+      req.entity = 'fielding'
+      req.id = id
+      next()
+    } else {
+      res.status(404).json({ message: 'Fielding stat not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}

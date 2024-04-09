@@ -5,5 +5,6 @@ export const isValidEntitie = (entitie, body) => {
 }
 
 export const existStat = (ids, id) => {
-  return ids.includes(id)
+  console.log(ids, id)
+  return ids.includes(parseInt(id))
 }

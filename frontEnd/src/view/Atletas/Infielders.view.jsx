@@ -24,6 +24,10 @@ const InfieldersView = () => {
   const openModal = () => {
     setIsOpen(true)
   }
+
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
   const viewLink = '/private/atletas/atleta/'
 
   return (
@@ -32,7 +36,7 @@ const InfieldersView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           INFIELDERS DE LA ACADEMIA
         </Heading>
-        <MyTable viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MyTable isDisabled={(rol !== 'administrativo' || rol !== 'gerente')} viewLink={viewLink} setVisualizable datatype='Agregar atleta' idRow='cedula' data={data} columns={columns} title='Visualización de atletas' openModal={openModal} isOpen={isOpen} setIsOpen={setIsOpen} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

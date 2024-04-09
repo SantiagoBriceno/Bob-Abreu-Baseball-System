@@ -42,13 +42,17 @@ const AtletasView = () => {
     }
   }, [deleteData])
 
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ATLETAS DE LA ACADEMIA
         </Heading>
-        <MyTable setVisualizable datatype='Agregar atleta' setDeleteData={setDeleteData} setEditData={setEditData} data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} setIsOpen={setEditOpenModal} viewLink={viewLink} />
+        <MyTable isDisabled={(rol !== 'administrativo' || rol !== 'gerente')} setVisualizable datatype='Agregar atleta' setDeleteData={setDeleteData} setEditData={setEditData} data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} setIsOpen={setEditOpenModal} viewLink={viewLink} />
       </Stack>
       <FormModal w='60%' isOpen={registerOpenModal} onClose={closeModal}>
         <MyForm encType fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

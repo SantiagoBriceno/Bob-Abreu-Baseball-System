@@ -1,11 +1,10 @@
 import {
   Stack,
-  SimpleGrid,
   Box,
-  Heading
+  Heading,
+  Card
 } from '@chakra-ui/react'
-// import MyCardBox from '../components/form/CardBox.jsx'
-import StatsCard from '../components/StatsCard.jsx'
+import MyCardBox from '../components/form/CardBox.jsx'
 import { useDashboard } from '../hooks/useDashboard.js'
 import { AppleFilled } from '@ant-design/icons'
 import { useBarChart } from '../hooks/charts/useBarChart.js'
@@ -50,8 +49,9 @@ const MainView = () => {
           <Heading m={5} size='xl' fontWeight='extrabold'>
             Número de atletas en la academia
           </Heading>
-
-          <BarChart data={percents} labels={nameColumns} />
+          <Card w='75%' h='75%' p={10} boxShadow='xl'>
+            <BarChart data={percents} labels={nameColumns} />
+          </Card>
 
         </Stack>}
     </Stack>

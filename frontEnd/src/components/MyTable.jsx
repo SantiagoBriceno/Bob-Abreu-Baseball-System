@@ -24,7 +24,7 @@ import { Link } from 'react-router-dom'
 import './css/table.css'
 import MyInput2 from './form/MyInput2'
 
-const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false, viewLink }) => {
+const MyTable = ({ isDisabled = false, datatype = 'entity', searchParam = 'nombre', data, columns, title, idRow, inventoryMode = false, children, setEditData, setDeleteData, action = true, modalMode = false, openModal, isOpen, setIsOpen, setVisualizable = false, viewLink }) => {
   const [search, setSearch] = useState()
   const handleEdit = (e) => {
     console.log('hice click en el atleta', e.target.id)
@@ -64,7 +64,7 @@ const MyTable = ({ datatype = 'entity', searchParam = 'nombre', data, columns, t
     <>
       <Flex bg='white' border='2px solid black' shadow='lg' rounded='10px' p='20px 30px' w='90%' alignItems='center' gap='2'>
         <ButtonGroup gap='2'>
-          <Button bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>{datatype}</Button>
+          <Button isDisabled={isDisabled} bg='#F24405' onClick={openModal} color='white' _hover={{ bg: 'principales.cuaternary' }}>{datatype}</Button>
         </ButtonGroup>
         <Spacer />
         <Box p='1'>

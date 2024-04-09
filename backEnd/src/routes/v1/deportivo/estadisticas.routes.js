@@ -9,7 +9,7 @@ import { createHittingStat, deleteHittingStat, getHittingStatById, getHittingSta
 
 import { createRunningStat, getArrayOfDate, graphData, getArrayOfDaysById, getArrayOfDays, getArrayOfDateById, deleteRunningStat, getRunningStatById, getRunningStatByIdPlayer, getRunningStats, getSixtyYardStatByClass, updateRunningStat } from '../../../controller/v1/deportivo/estadisticas/running.controller.js'
 
-import { createFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
+import { createFieldingStat, deleteFieldingStat, getFieldingStatById, getFieldingStatByIdPlayer, getFieldingStats, updateFieldingStat } from '../../../controller/v1/deportivo/estadisticas/fielding.controller.js'
 
 import { getMakeUpStats, getMakeUpStatByIdPlayer, createMakeUpStat, updateMakeUpStat, deleteMakeUpStat } from '../../../controller/v1/deportivo/estadisticas/makeup.controller.js'
 
@@ -36,6 +36,7 @@ router.get('/fielding/:id', getFieldingStatById)
 router.get('/fielding/player/:id', getFieldingStatByIdPlayer)
 router.post('/fielding', userExtractor, createFieldingStat, createAuditoria)
 router.patch('/fielding/:id', userExtractor, updateFieldingStat)
+router.delete('/fielding/:id', userExtractor, deleteFieldingStat)
 
 // RUTAS PARA LAS ESTADISTICAS DE running DE LOS ATLETAS
 router.get('/running', getRunningStats)
