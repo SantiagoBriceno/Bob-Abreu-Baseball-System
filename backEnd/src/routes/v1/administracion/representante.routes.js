@@ -6,7 +6,7 @@ import auth from '../../../middleware/rolVerification.js'
 
 const router = Router()
 
-router.get('/', userExtractor, auth.adminPermission, getRepresentantes)
+router.get('/', userExtractor, getRepresentantes)
 router.get('/:id', userExtractor, auth.adminPermission, getRepresentante)
 router.post('/', userExtractor, auth.adminPermission, createRepresentante)
 router.patch('/:id', userExtractor, auth.adminPermission, updateRepresentante)
