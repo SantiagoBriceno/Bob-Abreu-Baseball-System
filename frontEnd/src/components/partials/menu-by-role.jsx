@@ -175,7 +175,7 @@ export const menu = () => {
         // }
 
       ]
-    case 'fisio':
+    case 'fisioterapeuta':
       return [
         {
           key: '1',
