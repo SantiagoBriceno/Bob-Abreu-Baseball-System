@@ -39,7 +39,7 @@ const FichaView = () => {
 const MyFichaDatos = ({ data }) => {
   return (
     <>
-      <Heading fontSize='2xl' fontWeight='800'>Datos del atleta</Heading>
+      <Heading fontSize='2xl' fontWeight='800'>Datos del Atleta</Heading>
       <Divider />
       <Stack p={4} w='100%' alignItems='center'>
         <Text fontWeight='800' fontSize='3xl'>{data.nombre}</Text>
@@ -167,7 +167,7 @@ const MyFichaPerimetros = ({ data }) => {
               <Text>{data.cuello}</Text>
             </ListItem>
             <ListItem display='flex' gap='5'>
-              <Text w='60%'>Torax</Text>
+              <Text w='60%'>Tórax</Text>
               <Text>{data.torax}</Text>
             </ListItem>
             <ListItem display='flex' gap='5'>
@@ -227,7 +227,7 @@ const MyFichaImcIcc = ({ imc, icc }) => {
   return (
 
     <Stack boxShadow='xl' p={8} w='100%' h='100%' rounded='10px'>
-      <Heading fontSize='2xl' fontWeight='800' alignItems='center'>Imc y Icc</Heading>
+      <Heading fontSize='2xl' fontWeight='800' alignItems='center'>IMC e ICC</Heading>
       <Divider />
       <Stack spacing={5} p={5}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
