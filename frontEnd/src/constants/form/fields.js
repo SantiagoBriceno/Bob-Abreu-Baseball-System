@@ -1699,7 +1699,6 @@ export const datosGeneralesLabel = [
   'Peso corporal (kg)',
   'Percentil peso (%)',
   'Peso ideal (kg)',
-  'Peso corporal (kg)',
   'Calorías diarias (kcal)'
 ]
 

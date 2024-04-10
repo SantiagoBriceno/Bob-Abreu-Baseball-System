@@ -133,8 +133,8 @@ const useMyFormFicha = () => {
     })
 
     toast({
-      title: 'Account created.',
-      description: "We've created your account for you.",
+      title: 'Ficha antropometrica creada satisfactoriamente',
+      description: 'Nuevo registro de ficha antropometrica creado con exito',
       status: 'success',
       duration: 3000,
       isClosable: true

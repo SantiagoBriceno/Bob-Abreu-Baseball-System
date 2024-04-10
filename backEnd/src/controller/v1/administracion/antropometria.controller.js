@@ -67,7 +67,7 @@ export const createFichaAntropometrica = async (req, res) => {
     imc_ideal,
     tasa_metabolica_basal,
     calorias_necesarias, peso_corporal, peso_ideal,
-    percentil_de_peso
+    percentil_de_peso, calorias_diarias
   } = req.body
 
   const datos_generales = {
@@ -82,7 +82,8 @@ export const createFichaAntropometrica = async (req, res) => {
     calorias_necesarias,
     peso_corporal,
     peso_ideal,
-    percentil_de_peso
+    percentil_de_peso,
+    calorias_diarias
   }
 
   const { cabeza, cuello, brazo_relajado, brazo_contraido, antebrazo, muneca, torax, espalda, muslo_superior, muslo_medio, pierna, tobillo } = req.body
