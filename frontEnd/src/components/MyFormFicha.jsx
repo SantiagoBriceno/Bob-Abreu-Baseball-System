@@ -1,6 +1,6 @@
 import { Box, Input, FormControl, FormLabel, Button, FormHelperText, Step, StepIndicator, StepSeparator, StepTitle, Stepper, useSteps, StepStatus, StepIcon, StepNumber, SimpleGrid, ButtonGroup, Flex, useToast, Select, Heading, Divider } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { datosGeneralesLabel, perimetrosLabel, iccImcLabel, perfilesFotograficosLabel } from '../constants/form/fields'
+import { datosGeneralesLabel, datosGeneralesPlaceholders, perimetrosLabel, perimetrosPlaceholders, iccImcLabel, iccImcPlaceholders, perfilesFotograficosLabel } from '../constants/form/fields'
 import { getAllAtletas } from '../service/atletas'
 import { createFicha } from '../service/ficha'
 
@@ -147,7 +147,7 @@ const useMyFormFicha = () => {
 const MyFormFicha = () => {
   const { handleSubmit, options, datosGenerales, perimetros, iccImc, handleChangeIccImc, handleChangeAtleta, handleChangeDatosGenerales, handleChangePerimetros, handleChangePerfilesFotograficos, perfilesFotograficos } = useMyFormFicha()
 
-  const contents = [<MyInputs key={1} controller={datosGenerales} labels={datosGeneralesLabel} setController={handleChangeDatosGenerales} title='Datos Generales' />, <MyInputs key={2} labels={perimetrosLabel} controller={perimetros} setController={handleChangePerimetros} title='Perimetros Corporales' />, <MyInputs key={3} controller={iccImc} labels={iccImcLabel} setController={handleChangeIccImc} title='ICC y IMC' />, <MyInputsPerfiles key={5} labels={perfilesFotograficosLabel} controller={perfilesFotograficos} setController={handleChangePerfilesFotograficos} title='Perfiles Fotograficos' />]
+  const contents = [<MyInputs key={1} controller={datosGenerales} placeholders={datosGeneralesPlaceholders} labels={datosGeneralesLabel} setController={handleChangeDatosGenerales} title='Datos Generales' />, <MyInputs key={2} placeholders={perimetrosPlaceholders} labels={perimetrosLabel} controller={perimetros} setController={handleChangePerimetros} title='Perimetros Corporales' />, <MyInputs key={3} controller={iccImc} placeholders={iccImcPlaceholders} labels={iccImcLabel} setController={handleChangeIccImc} title='ICC y IMC' />, <MyInputsPerfiles key={5} labels={perfilesFotograficosLabel} controller={perfilesFotograficos} setController={handleChangePerfilesFotograficos} title='Perfiles Fotograficos' />]
   return (
 
     <form encType='multipart/form-data' onSubmit={handleSubmit}>
@@ -171,7 +171,7 @@ const MyFormFicha = () => {
   )
 }
 
-const MyInputs = ({ controller, setController, labels, title }) => {
+const MyInputs = ({ controller, setController, labels, placeholders, title }) => {
   return (
     <>
       <Heading>{title}</Heading>
@@ -180,7 +180,7 @@ const MyInputs = ({ controller, setController, labels, title }) => {
         {Object.keys(controller).map((key, index) => (
           <FormControl key={index}>
             <FormLabel>{labels[index]}</FormLabel>
-            <Input id={key} value={controller[key]} onChange={setController} />
+            <Input id={key} value={controller[key]} placeholder={placeholders[index]} onChange={setController} />
           </FormControl>
         ))}
       </SimpleGrid>
@@ -284,7 +284,7 @@ const Multistep = ({ data }) => {
                 w='7rem'
                 mr='5%'
               >
-                Back
+                Regresar
               </Button>
               <Button
                 w='7rem'
@@ -300,7 +300,7 @@ const Multistep = ({ data }) => {
                 colorScheme='teal'
                 variant='outline'
               >
-                Next
+                Siguiente
               </Button>
             </Flex>
             {step === 3

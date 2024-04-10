@@ -1703,6 +1703,23 @@ export const datosGeneralesLabel = [
   'Calorías diarias (kcal)'
 ]
 
+export const datosGeneralesPlaceholders = [
+  'Ingresa la estatura máxima',
+  'Ingresa el percentil de la talla',
+  'Ingresa la longitud del pie',
+  'Ingresa la estatura sentado',
+  'Ingresa la envergadura',
+  'Ingresa el índice de masa corporal',
+  'Ingresa el IMC ideal',
+  'Ingresa la tasa metabólica basal',
+  'Ingresa las calorías necesarias',
+  'Ingresa el peso corporal',
+  'Ingresa el percentil de peso',
+  'Ingresa el peso ideal',
+  'Ingresa el peso corporal',
+  'Ingresa las calorías diarias'
+]
+
 export const perimetrosLabel = [
   'Cabeza (cm)',
   'Cuello (cm)',
@@ -1718,6 +1735,21 @@ export const perimetrosLabel = [
   'Tobillo (cm)'
 ]
 
+export const perimetrosPlaceholders = [
+  'Ingresa la circunferencia de la cabeza',
+  'Ingresa la longitud del cuello',
+  'Ingresa la longitud del brazo relajado',
+  'Ingresa la longitud del brazo contraído',
+  'Ingresa la longitud del antebrazo',
+  'Ingresa la longitud de la muñeca',
+  'Ingresa la longitud del tórax',
+  'Ingresa la longitud de la espalda',
+  'Ingresa la longitud del muslo superior',
+  'Ingresa la longitud del muslo medio',
+  'Ingresa la longitud de la pierna',
+  'Ingresa la longitud del tobillo'
+]
+
 export const iccImcLabel = [
   'Cintura (cm)',
   'Cadera (cm)',
@@ -1727,6 +1759,16 @@ export const iccImcLabel = [
   'Masa magra corporal (kg)',
   'Ideal masa magra corporal (kg)'
 
+]
+
+export const iccImcPlaceholders = [
+  'Ingresa la longitud de la cintura',
+  'Ingresa la longitud de la cadera',
+  'Ingresa la relación cintura cadera',
+  'Ingresa la masa grasa corporal',
+  'Ingresa la masa grasa corporal ideal',
+  'Ingresa la masa magra corporal',
+  'Ingresa la masa magra corporal ideal'
 ]
 
 export const perfilesFotograficosLabel = [
