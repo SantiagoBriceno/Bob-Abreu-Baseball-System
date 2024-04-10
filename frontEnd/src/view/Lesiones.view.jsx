@@ -41,13 +41,17 @@ const LesionesView = () => {
   }
   , [deleteData])
 
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           LESIONES
         </Heading>
-        <MyTable setDeleteData={setDeleteData} datatype='Agregar lesión' columns={columns} data={data} idRow='cedula' openModal={openModal} setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de lesiones' />
+        <MyTable isDisabled={!(rol === 'fisioterapeuta' || rol === 'gerente')} setDeleteData={setDeleteData} datatype='Agregar lesión' columns={columns} data={data} idRow='cedula' openModal={openModal} setEditData={setEditData} isOpen={isOpen} action={(rol === 'fisioterapeuta' || rol === 'gerente')} setIsOpen={setEditOpenModal} title='Visualización de lesiones' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={lesionesFields} formData={formData} actions={actions} title='REGISTRO DE LESIONES' errorMessage={errorState} />

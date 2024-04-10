@@ -40,6 +40,9 @@ const HittingView = () => {
     }
   }
   , [deleteData])
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
   // const viewLink = '/private/fichas/ficha/'
   return (
     <Stack spacing={8} align='center'>
@@ -47,7 +50,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE LANZAMIENTO
         </Heading>
-        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de lanzamiento' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action />
+        <MyTable isDisabled={!(rol === 'gerente' || rol === 'deportivo')} setDeleteData={setDeleteData} datatype='Agregar nueva estadística de lanzamiento' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action={(rol === 'gerente' || rol === 'deportivo')} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={throwingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE THROWING' errorMessage={errorState} />

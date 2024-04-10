@@ -6,6 +6,9 @@ import { useFicha } from '../../hooks/table/useFicha.js'
 
 const PitchingView = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
   const { data } = useFicha()
   console.log('asdkljaklsjdklasjd', data)
   const viewLink = '/private/fichas/ficha/'
@@ -15,7 +18,7 @@ const PitchingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           FICHAS ANTROPOMÉTRICAS
         </Heading>
-        <MyTable datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las fichas antropometricas' action viewLink={viewLink} />
+        <MyTable isDisabled={!(rol === 'gerente' || rol === 'deportivo')} ac datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' isOpen={isOpen} setIsOpen={setIsOpen} title='visualización de las fichas antropometricas' action={(rol === 'gerente' || rol === 'deportivo')} viewLink={viewLink} />
       </Stack>
     </Stack>
   )

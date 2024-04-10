@@ -20,6 +20,9 @@ const HittingView = () => {
   const { data } = useHitting(hittingFields)
   const { formData, actions, errorState } = useMyFormHook(hitting, hittingValidation, validationInputHitting, createHitting)
   console.log('data', data)
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
 
   const closeModal = () => {
     setIsOpen(false)
@@ -49,7 +52,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE BATEO
         </Heading>
-        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de bateo' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action />
+        <MyTable isDisabled={!(rol === 'gerente' || rol === 'deportivo')} setDeleteData={setDeleteData} datatype='Agregar nueva estadística de bateo' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de bateo' action={(rol === 'gerente' || rol === 'deportivo')} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={hittingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE BATEO' errorMessage={errorState} />

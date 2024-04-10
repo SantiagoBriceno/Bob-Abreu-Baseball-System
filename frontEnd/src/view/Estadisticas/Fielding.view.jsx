@@ -13,6 +13,9 @@ import { fieldingColumns as columns } from '../../constants/table/columns.js'
 import { useFielding } from '../../hooks/table/useFielding.js'
 
 const HittingView = () => {
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
   const [isOpen, setIsOpen] = useState(false)
   const [editOpenModal, setEditOpenModal] = useState(false)
   const [deleteData, setDeleteData] = useState()
@@ -46,7 +49,7 @@ const HittingView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ESTADÍSTICAS DE FIELDING
         </Heading>
-        <MyTable setDeleteData={setDeleteData} datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action />
+        <MyTable isDisabled={!(rol === 'gerente' || rol === 'deportivo')} setDeleteData={setDeleteData} datatype='Agregar nueva estadística de fielding' columns={columns} data={data} openModal={openModal} idRow='id' setEditData={setEditData} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de las estadísticas de fielding' action={(rol === 'gerente' || rol === 'deportivo')} />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={fieldingFields} formData={formData} actions={actions} title='REGISTRO DE ESTADÍSITCAS DE FIELDING' errorMessage={errorState} />

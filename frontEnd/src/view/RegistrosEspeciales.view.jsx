@@ -40,13 +40,17 @@ const RegistrosEspecialesView = () => {
   }
   , [deleteData])
 
+  const user = JSON.parse(window.localStorage.getItem('auth')).user
+
+  const rol = user ? user.rol : ''
+
   return (
     <Stack spacing={8} align='center'>
       <Stack spacing={8} align='center' minH='80vh' w='90%'>
         <Heading m={5} size='xl' fontWeight='extrabold'>
           REGISTROS ESPECIALES
         </Heading>
-        <MyTable setDeleteData={setDeleteData} datatype='Agregar registro especial' columns={columns} data={data} idRow='id' setEditData={setEditData} openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de registros especiales' />
+        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} action={(rol === 'administrativo' || rol === 'gerente')} setDeleteData={setDeleteData} datatype='Agregar registro especial' columns={columns} data={data} idRow='id' setEditData={setEditData} openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de registros especiales' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={registroEspecialFields} formData={formData} actions={actions} title='REGISTROS ESPECIALES' errorMessage={errorState} />
