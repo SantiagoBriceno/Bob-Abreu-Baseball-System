@@ -38,7 +38,7 @@ const MainView = () => {
       {percents &&
         <Stack spacing={8} align='center' minH='80vh' w='90%'>
           <Heading m={5} size='xl' fontWeight='extrabold'>
-            Número de atletas en la academia
+            Número de Atletas en la Academia
           </Heading>
           <Card w='75%' h='75%' p={10} boxShadow='xl'>
             <BarChart data={percents} labels={nameColumns} />
