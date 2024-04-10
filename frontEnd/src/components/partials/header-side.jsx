@@ -24,7 +24,7 @@ import { Layout, Menu, Button, theme } from 'antd'
 import './index.css'
 import { useSesionContext } from '../../context/SesionContext'
 import logo from '../../../public/assets/BobLogo.png'
-import { Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 import { ChevronDownIcon } from '@chakra-ui/icons'
 const { Header, Sider, Content } = Layout
@@ -103,7 +103,9 @@ const HeaderSidebar = () => {
             margin: '10px 0px'
           }}
         >
-          <Image fit='scale-down' boxSize='100px' src={logo} alt='logo' />
+          <NavLink to='/private'>
+            <Image fit='scale-down' boxSize='100px' src={logo} alt='logo' />
+          </NavLink>
         </Center>
         <Menu
           theme='dark'
