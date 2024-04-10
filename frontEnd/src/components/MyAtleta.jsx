@@ -92,19 +92,19 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
             <List textAlign='right' spacing={2}>
               <ListItem display='flex' gap='5'>
                 <Text w='50%'>Cédula</Text>
-                <Text>{data[0].cedula}</Text>
+                <Text textAlign='left'>{data[0].cedula}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
                 <Text w='50%'>Fecha de Nacimiento</Text>
-                <Text>{data[0].fecha_nacimiento}</Text>
+                <Text textAlign='left'>{data[0].fecha_nacimiento}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
                 <Text w='50%'>Clase</Text>
-                <Text>{data[0].clase}</Text>
+                <Text textAlign='left'>{data[0].clase}</Text>
               </ListItem>
               <ListItem display='flex' gap='5'>
                 <Text w='50%'>Lugar de Nacimiento</Text>
-                <Text>{data[0].lugar_nacimiento}</Text>
+                <Text textAlign='left'>{data[0].lugar_nacimiento}</Text>
               </ListItem>
             </List>
           </SimpleGrid>
