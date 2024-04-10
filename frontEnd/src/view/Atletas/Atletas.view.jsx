@@ -52,7 +52,7 @@ const AtletasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           ATLETAS DE LA ACADEMIA
         </Heading>
-        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} action={!(rol === 'administrativo' || rol === 'gerente')} setVisualizable datatype='Agregar atleta' setDeleteData={setDeleteData} setEditData={setEditData} data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} setIsOpen={setEditOpenModal} viewLink={viewLink} />
+        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} action={(rol === 'administrativo' || rol === 'gerente')} setVisualizable datatype='Agregar atleta' setDeleteData={setDeleteData} setEditData={setEditData} data={data} idRow='cedula' columns={columns} title='Visualización de atletas' openModal={openModal} setIsOpen={setEditOpenModal} viewLink={viewLink} />
       </Stack>
       <FormModal w='60%' isOpen={registerOpenModal} onClose={closeModal}>
         <MyForm encType fields={atletaFields} formData={formData} actions={actions} errorMessage={errorState} />

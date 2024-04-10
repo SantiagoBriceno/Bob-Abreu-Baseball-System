@@ -4,9 +4,7 @@ import {
   Heading,
   Card
 } from '@chakra-ui/react'
-import MyCardBox from '../components/form/CardBox.jsx'
 import { useDashboard } from '../hooks/useDashboard.js'
-import { AppleFilled } from '@ant-design/icons'
 import { useBarChart } from '../hooks/charts/useBarChart.js'
 
 import {
@@ -33,13 +31,6 @@ const MainView = () => {
     { key: 'nroInfielders', name: 'Infielders' },
     { key: 'nroOutfielders', name: 'Outfielders' }
   ]
-
-  const newData = data && data.length > 0 && data.map((item) => {
-    const nameColumn = nameColumns.find((column) => column.key === Object.keys(item)[0]).name
-    const key = Object.keys(item)[0]
-
-    return { id: key, name: nameColumn, description: item[key], icon: AppleFilled }
-  })
   console.log('newData', data)
   return (
     <Stack spacing={8} align='center'>

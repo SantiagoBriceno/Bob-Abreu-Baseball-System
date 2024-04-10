@@ -52,7 +52,7 @@ const RepresentanteView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           REPRESENTANTES
         </Heading>
-        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} action={!(rol === 'administrativo' || rol === 'gerente')} setDeleteData={setDeleteData} setEditData={setEditData} datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de representantes' />
+        <MyTable isDisabled={!(rol === 'administrativo' || rol === 'gerente')} action={(rol === 'administrativo' || rol === 'gerente')} setDeleteData={setDeleteData} setEditData={setEditData} datatype='Agregar representante' columns={columns} data={data} idRow='cedula' openModal={openModal} isOpen={isOpen} setIsOpen={setEditOpenModal} title='Visualización de representantes' />
       </Stack>
       <FormModal w='60%' isOpen={isOpen} onClose={closeModal}>
         <MyForm fields={representanteFields} formData={formData} actions={actions} title='REGISTRO DE REPRESENTANTE' errorMessage={errorState} />
