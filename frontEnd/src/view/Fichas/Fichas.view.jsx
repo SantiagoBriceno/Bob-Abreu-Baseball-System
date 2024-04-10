@@ -20,7 +20,7 @@ const FichasView = () => {
         <Heading m={5} size='xl' fontWeight='extrabold'>
           FICHAS ANTROPOMÉTRICAS
         </Heading>
-        <MyTable isDisabled={rol === 'deportivo'} action={!(rol === 'deportivo')} openModal={openNewView} datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' title='visualización de las fichas antropometricas' setVisualizable viewLink={viewLink} />
+        <MyTable openModal={openNewView} datatype='Agregar nueva ficha antropométrica' columns={columns} data={data} idRow='id_ficha' title='visualización de las fichas antropometricas' setVisualizable viewLink={viewLink} />
       </Stack>
     </Stack>
   )
