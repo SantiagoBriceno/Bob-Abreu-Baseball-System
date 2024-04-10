@@ -31,7 +31,7 @@ const UsuariosView = () => {
   useEffect(() => {
     if (deleteData) {
       console.log('se hace el efecto')
-      deleteAtleta(deleteData)
+      deleteUser(deleteData)
     }
   }, [deleteData])
 
