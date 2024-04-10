@@ -83,7 +83,7 @@ export const MyAtletaDatos = ({ data = [''], img, registrosEspeciales }) => {
       <Image src={img} alt='Imagen del atleta' borderRadius='full' w='60%' />
 
       <Stack p={4} w='100%' h='65%' alignItems='center'>
-        <Text fontWeight='800' fontSize='3xl'>{data[0].nombre}</Text>
+        <Text fontWeight='800' fontSize='3xl' textAlign='center'>{data[0].nombre}</Text>
         <Text as='i' fontSize='lg'>{data[0].posicion}</Text>
         <Divider />
         <Heading fontSize='lg' fontWeight='700'>Datos Generales</Heading>
@@ -270,7 +270,7 @@ export const MyAtletaEstadisticas = ({ data, nombre }) => {
         <SimpleGrid columns={{ base: 1, md: 4 }} spacing={10}>
           {/* hitting posee los siguientes atributos: bat_speed, angle_attack, rec_pitcheos, ruta_del_bate */}
           <List textAlign='left' spacing={2}>
-            <ListItem><Heading fontSize='sm'>Estadisticas de bateo</Heading></ListItem>
+            <ListItem><Heading fontSize='sm'>Estadísticas de bateo</Heading></ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Velocidad del bate:</Text>
               <Text>{hitting.value ? `${hitting.value.bat_speed} MPH` : 'no data found'}</Text>
@@ -301,14 +301,14 @@ export const MyAtletaEstadisticas = ({ data, nombre }) => {
 
           {/* Running posee los siguientes atributos:  velocidad_sesenta, velocidad_home_to_first */}
           <List spacing={2}>
-            <ListItem><Heading fontSize='sm'>Estadisticas de running</Heading></ListItem>
+            <ListItem><Heading fontSize='sm'>Estadísticas de running</Heading></ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Velocidad en 60 yardas:</Text>
               <Text>{running.value ? `${running.value.velocidad_sesenta} s` : 'no data found'}</Text>
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Velocidad de home a primera:</Text>
-              <Text>{running.value ? `${running.value.velocidad_home_to_first} s` : 'no data found'}</Text>
+              <Text w='35px'>{running.value ? `${running.value.velocidad_home_to_first} s` : 'no data found'}</Text>
             </ListItem>
             <ListItem display='flex' justifyContent='space-between'>
               <Text>Ver más</Text>
