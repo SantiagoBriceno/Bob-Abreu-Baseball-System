@@ -65,7 +65,7 @@ const BarChart = ({ data, labels }) => {
     labels: labels.map((item) => item.name),
     datasets: [
       {
-        label: 'Atletas',
+        label: 'Número de Atletas',
         data: labels.map((item) => data[item.key]),
         backgroundColor: 'rgba(251, 79, 2, 0.2)',
         borderColor: 'rgba(251, 79, 2, 1)',
