@@ -15,8 +15,13 @@ const getUsers = async () => {
   return data
 }
 
+const deleteUser = async (cedula) => {
+  const [data] = await pool.query('DELETE FROM users WHERE cedula = ?', [cedula])
+  return data
+}
 export default {
   createUser,
   getUsernames,
-  getUsers
+  getUsers,
+  deleteUser
 }

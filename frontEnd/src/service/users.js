@@ -21,5 +21,15 @@ export const createUser = async (user) => {
     },
     body: JSON.stringify(user)
   })
-  return response.json()
+  return response
+}
+
+export const deleteUser = async (cedula) => {
+  const response = await fetch(`${RUTA_REGISTER}/${cedula}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + auth().token
+    }
+  })
+  return response
 }

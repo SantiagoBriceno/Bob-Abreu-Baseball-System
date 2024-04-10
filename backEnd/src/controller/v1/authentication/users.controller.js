@@ -39,8 +39,19 @@ export const getUsers = async (req, res) => {
       const primeraLetraDelRol = user.rol.charAt(0).toUpperCase()
       const restoDelRol = user.rol.slice(1)
       user.rol = primeraLetraDelRol + restoDelRol
+      return null
     })
     res.status(200).json(users)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+export const deleteUser = async (req, res) => {
+  const { cedula } = req.params
+  try {
+    await service.deleteUser(cedula)
+    res.status(200).json({ message: 'usuario eliminado exitosamente' })
   } catch (error) {
     res.status(500).json(error)
   }
