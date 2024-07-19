@@ -4,15 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "back": "node ./backend/src/index.js",
+    "front": "vite ./frontend",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SantiagoBriceno/Bob-Abreu-Baseball-System.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "standard": "^17.1.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
+  },
+  "dependencies": {
+    "pdfmake": "^0.2.10",
+    "vite": "^5.2.6"
   }
 }

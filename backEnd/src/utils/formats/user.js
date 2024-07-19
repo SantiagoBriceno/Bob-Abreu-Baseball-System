@@ -1,9 +1,8 @@
+import { user as structure } from '../entities/main.js'
 export const isValidUser = (user) => {
-  const { username, name, password } = user
-  if (!username || username === '' || !name || name === '' || !password || password === '') {
-    return false
-  }
-  return true
+  return Object.keys(structure).every(key => {
+    return Object.keys(user).includes(key)
+  })
 }
 
 export const existUsername = (usernames, username) => {

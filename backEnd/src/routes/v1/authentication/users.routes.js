@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { createUser } from '../../../controller/v1/users.controller.js'
+import { createUser, getUsers, deleteUser } from '../../../controller/v1/authentication/users.controller.js'
+import { userExtractor } from '../../../middleware/userExtractor.js'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-router.post('/', createUser)
+router.get('/', getUsers)
+router.post('/', userExtractor, createUser)
+router.delete('/:cedula', userExtractor, deleteUser)
 
 export default router

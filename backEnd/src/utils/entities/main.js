@@ -1,66 +1,64 @@
 /* eslint-disable camelcase */
 // Estructuras de datos para las entidades de la base de datos
 
-const representante = {
+export const user = {
+  cedula: '',
+  username: '',
+  name: '',
+  password: '',
+  rol: ''
+}
+
+export const representante = {
   cedula: '',
   nombre: '',
   tlf: '',
   rif: '',
   estatura: '',
-  email: '',
+  sexo: '',
+  correo: '',
   direccion: '',
-  cedula_atleta: '',
-  id_auditoria: ''
+  cedula_atleta: ''
 }
 
-const registro_especial = {
-  id: '',
+export const registro_especial = {
   cedula_atleta: '',
   fecha_evento: '',
-  descripcion: '',
-  id_auditoria: ''
+  descripcion: ''
 }
 
-const atleta = {
+export const atleta = {
   cedula: '',
   nombre: '',
   tlf: '',
   lugar_nacimiento: '',
   fecha_nacimiento: '',
-  email: '',
+  hitting: '',
   posicion: '',
   estado: '',
-  foto: '',
-  id_auditoria: ''
-
+  foto: ''
 }
 
-const indicadores = {
+export const indicadores = {
   id: '',
   clase: '',
   posicion: '',
   estadistica: '',
-  valor: '',
-  id_auditoria: ''
+  valor: ''
 }
 
-const auditoria = {
+export const auditoria = {
   id: '',
   create_in: '',
   id_autor: '',
   descripcion: ''
 }
 
-const ficha_antropometrica = {
-  id_ficha: '',
-  id_atleta: '',
-  id_auditoria: ''
+export const ficha_antropometrica = {
+  id_atleta: ''
 }
 
-const datos_generales = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
+export const datos_generales = {
   estatura_maxima: '',
   percentil_talla: '',
   longitud_de_pie: '',
@@ -72,14 +70,10 @@ const datos_generales = {
   calorias_necesarias: '',
   peso_corporal: '',
   peso_ideal: '',
-  percentil_de_peso: '',
-  id_auditoria: ''
+  percentil_de_peso: ''
 }
 
-const perimetros_corporales = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
+export const perimetros_corporales = {
   cabeza: '',
   cuello: '',
   brazo_relajado: '',
@@ -91,50 +85,30 @@ const perimetros_corporales = {
   muslo_superior: '',
   muslo_medio: '',
   pierna: '',
-  tobillo: '',
-  id_auditoria: ''
+  tobillo: ''
 }
 
-const indices_cintura_cadera = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
+export const indices_cintura_cadera = {
   cintura: '',
   cadera: '',
-  relacion_cintura_cadera: '',
-  id_auditoria: ''
+  relacion_cintura_cadera: ''
 }
 
-const indice_Masa_corporal = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
+export const indice_Masa_corporal = {
   masa_grasa_corporal: '',
   masa_grasa_ideal: '',
   masa_magra_corporal: '',
-  masa_magra_ideal: '',
-  id_auditoria: ''
+  masa_magra_ideal: ''
 }
 
-const perfiles_fotograficos = {
-  id: '',
-  id_ficha: '',
-  id_atleta: '',
+export const perfiles_fotograficos = {
   frente: '',
   lateral: '',
-  espalda: '',
-  id_auditoria: ''
+  espalda: ''
 }
 
-const estadisticas = {
-  id_stat: '',
+export const hitting = {
   id_atleta: '',
-  id_auditoria: ''
-}
-
-const hitting = {
-  id: '',
-  id_stat: '',
   agudeza_visual: '',
   bat_speed: '',
   angle_attack: '',
@@ -144,33 +118,30 @@ const hitting = {
   rec_pitcheos: '',
   control_bate: '',
   rutal_del_bate: '',
-  id_auditoria: ''
+  fecha_evaluacion: ''
 }
 
-const throwing = {
-  id: '',
-  id_stat: '',
+export const throwing = {
+  id_atleta: '',
   lanzamiento_primera: '',
   lanzamiento_segunda: '',
   lanzamiento_tercera: '',
   lanzamiento_home: '',
   pop_time: '',
-  id_auditoria: ''
+  fecha_evaluacion: ''
 }
 
-const make_up = {
-  id: '',
-  id_stat: '',
+export const make_up = {
+  id_atleta: '',
   actitud: '',
   compromiso: '',
   responsabilidad: '',
   disciplina: '',
-  id_auditoria: ''
+  fecha_evaluacion: ''
 }
 
-const fielding = {
-  id: '',
-  id_stat: '',
+export const fielding = {
+  id_atleta: '',
   getting_jump: '',
   ruta: '',
   alcance: '',
@@ -179,35 +150,27 @@ const fielding = {
   juego_de_pie: '',
   anticipacion: '',
   energia: '',
-  id_auditoria: ''
+  fecha_evaluacion: ''
 }
 
-const pitching = {
-  id: '',
-  id_stat: '',
+export const pitching = {
+  id_atleta: '',
   velocidad_recta: '',
   velocidad_curva: '',
   velocidad_slider: '',
   velocidad_cambio: '',
-  id_auditoria: ''
+  fecha_evaluacion: ''
 }
 
-export default {
-  representante,
-  registro_especial,
-  atleta,
-  indicadores,
-  auditoria,
-  ficha_antropometrica,
-  datos_generales,
-  perimetros_corporales,
-  indices_cintura_cadera,
-  indice_Masa_corporal,
-  perfiles_fotograficos,
-  estadisticas,
-  hitting,
-  throwing,
-  make_up,
-  fielding,
-  pitching
+export const running = {
+  id_atleta: '',
+  velocidad_sesenta: '',
+  velocidad_home_to_first: '',
+  fecha_evaluacion: ''
+}
+
+export const lesiones = {
+  id_atleta: '',
+  fecha: '',
+  descripcion: ''
 }
